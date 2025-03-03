@@ -9,14 +9,15 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import "react-native-reanimated";
-import { useColorScheme } from "@/hooks/useColorScheme";
+import { useColorScheme } from "nativewind";
 import "../global.css";
+import { View } from "@/components/ui/View/View";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
+  const { colorScheme, setColorScheme } = useColorScheme();
   const [loaded] = useFonts({
     "Pretendard-Black": require("../assets/fonts/Pretendard-Black.otf"),
     "Pretendard-Bold": require("../assets/fonts/Pretendard-Bold.otf"),
@@ -28,6 +29,8 @@ export default function RootLayout() {
     "Pretendard-SemiBold": require("../assets/fonts/Pretendard-SemiBold.otf"),
     "Pretendard-Thin": require("../assets/fonts/Pretendard-Thin.otf"),
   });
+
+  setColorScheme("dark");
 
   useEffect(() => {
     if (loaded) {

@@ -1,7 +1,7 @@
 import { Text as RNText, TextProps as RNTextProps } from "react-native";
 import { cva, VariantProps } from "class-variance-authority";
 
-const text = cva([], {
+const text = cva(["dark:text-primary"], {
   variants: {
     variant: {
       default: ["text-base", "leading-6"],
