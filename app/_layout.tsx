@@ -30,7 +30,8 @@ export default function RootLayout() {
     "Pretendard-Thin": require("../assets/fonts/Pretendard-Thin.otf"),
   });
 
-  setColorScheme("dark");
+  setColorScheme("light");
+  // setColorScheme("dark");
 
   useEffect(() => {
     if (loaded) {

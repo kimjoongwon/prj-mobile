@@ -14,6 +14,13 @@ export default function HomeScreen() {
         />
       }
     >
+      <View className="h-20 w-20 border-1">
+        <Text>Content3</Text>
+      </View>
+      <View className="h-20 w-20 border-1">
+        <Text>Content2-foreground</Text>
+      </View>
+
       <Text variant="title" fontWeight="black">
         안녕
       </Text>
