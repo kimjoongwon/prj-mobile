@@ -1,4 +1,4 @@
-const { heroui } = require("@heroui/react");
+const { Colors } = require("./constants/Colors");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -18,6 +18,7 @@ module.exports = {
         "pretendard-thin": ["Pretendard-Thin"],
         "pretendard-extralight": ["Pretendard-ExtraLight"],
       },
+      colors: Colors,
     },
   },
   darkMode: "class",
