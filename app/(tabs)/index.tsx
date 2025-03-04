@@ -4,8 +4,12 @@ import { Text } from "@/components/ui/Text/Text";
 import { Image, StyleSheet } from "react-native";
 import { Button } from "@/components/ui/Button/Button";
 import { Input } from "@/components/ui/Input/Input";
+import { observer, useLocalObservable } from "mobx-react-lite";
 
-export default function HomeScreen() {
+const HomeScreen = observer(() => {
+  const localstate = useLocalObservable(() => ({
+    value: "",
+  }));
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
@@ -16,7 +20,20 @@ export default function HomeScreen() {
         />
       }
     >
-      <Input />
+      <Button disabled variant="default">
+        Default
+      </Button>
+      <Button variant="default">Default</Button>
+      <Button variant="solid">Solid</Button>
+      <Button variant="bordered">Bordered</Button>
+      <Button variant="light">Light</Button>
+      <Input
+        state={localstate}
+        path="value"
+        label={"이메일"}
+        placeholder="hahah"
+      />
+      <Text>{localstate.value}</Text>
       <View className="h-20 w-20 items-center justify-center dark:bg-dark-content4 bg-light-content4">
         <Text>Content4</Text>
       </View>
@@ -29,14 +46,11 @@ export default function HomeScreen() {
       <View className="h-20 w-20 items-center justify-center dark:bg-dark-content1 bg-light-content1">
         <Text>Content1</Text>
       </View>
-
-      <Button variant="default">Default</Button>
-      <Button variant="solid">Solid</Button>
-      <Button variant="bordered">Bordered</Button>
-      <Button variant="light">Light</Button>
     </ParallaxScrollView>
   );
-}
+});
+
+export default HomeScreen;
 
 const styles = StyleSheet.create({
   titleContainer: {},

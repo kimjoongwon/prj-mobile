@@ -11,7 +11,6 @@ import { useEffect } from "react";
 import "react-native-reanimated";
 import { useColorScheme } from "nativewind";
 import "../global.css";
-import { View } from "@/components/ui/View/View";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -30,7 +29,7 @@ export default function RootLayout() {
     "Pretendard-Thin": require("../assets/fonts/Pretendard-Thin.otf"),
   });
 
-  // setColorScheme("light");
+  setColorScheme("light");
   // setColorScheme("dark");
 
   useEffect(() => {
