@@ -1,22 +1,8 @@
+import { cva } from "class-variance-authority";
 import { View as RNView, type ViewProps } from "react-native";
 
-import { useThemeColor } from "@/hooks/useThemeColor";
+const view = cva([""]);
 
-export type ThemedViewProps = ViewProps & {
-  lightColor?: string;
-  darkColor?: string;
-};
-
-export function View({
-  style,
-  lightColor,
-  darkColor,
-  ...otherProps
-}: ThemedViewProps) {
-  const backgroundColor = useThemeColor(
-    { light: lightColor, dark: darkColor },
-    "background"
-  );
-
-  return <RNView style={[{ backgroundColor }, style]} {...otherProps} />;
+export function View({ className, ...rest }: ViewProps) {
+  return <RNView {...rest} className={view({ className })} />;
 }

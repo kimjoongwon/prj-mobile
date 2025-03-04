@@ -1,7 +1,7 @@
 import { Text as RNText, TextProps as RNTextProps } from "react-native";
 import { cva, VariantProps } from "class-variance-authority";
 
-const text = cva(["dark:text-primary"], {
+const text = cva(["text-black", "dark:text-white"], {
   variants: {
     variant: {
       default: ["text-base", "leading-6"],
@@ -21,6 +21,12 @@ const text = cva(["dark:text-primary"], {
       heavy: ["font-pretendard-extrabold"],
       black: ["font-pretendard-black"],
     },
+    color: {
+      primary: ["text-primary"],
+      secondary: ["text-secondary"],
+      success: ["text-success"],
+      warning: ["text-warning"],
+    },
   },
   defaultVariants: {
     variant: "default",
@@ -30,6 +36,8 @@ const text = cva(["dark:text-primary"], {
 
 type TextProps = RNTextProps & VariantProps<typeof text>;
 
-export function Text({ className, variant, ...rest }: TextProps) {
-  return <RNText className={text({ className, variant })} {...rest} />;
+export function Text({ className, variant, fontWeight, ...rest }: TextProps) {
+  return (
+    <RNText className={text({ className, variant, fontWeight })} {...rest} />
+  );
 }

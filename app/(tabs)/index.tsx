@@ -1,7 +1,9 @@
 import ParallaxScrollView from "@/components/ui/ParallaxScrollView/ParallaxScrollView";
 import { View } from "@/components/ui/View/View";
 import { Text } from "@/components/ui/Text/Text";
-import { Image, StyleSheet, Platform } from "react-native";
+import { Image, StyleSheet } from "react-native";
+import { Button } from "@/components/ui/Button/Button";
+import { Input } from "@/components/ui/Input/Input";
 
 export default function HomeScreen() {
   return (
@@ -14,63 +16,24 @@ export default function HomeScreen() {
         />
       }
     >
-      <View className="h-20 w-20 border-1">
+      <Input />
+      <View className="h-20 w-20 items-center justify-center dark:bg-dark-content4 bg-light-content4">
+        <Text>Content4</Text>
+      </View>
+      <View className="h-20 w-20 items-center justify-center dark:bg-dark-content3 bg-light-content3">
         <Text>Content3</Text>
       </View>
-      <View className="h-20 w-20 border-1">
-        <Text>Content2-foreground</Text>
+      <View className="h-20 w-20 items-center justify-center dark:bg-dark-content2 bg-light-content2">
+        <Text>Content2</Text>
+      </View>
+      <View className="h-20 w-20 items-center justify-center dark:bg-dark-content1 bg-light-content1">
+        <Text>Content1</Text>
       </View>
 
-      <Text variant="title" fontWeight="black">
-        안녕
-      </Text>
-      <View className="flex">
-        <View>
-          <Text variant="title">Welcome1</Text>
-        </View>
-        <View>
-          <Text variant="title">Welcome2</Text>
-        </View>
-      </View>
-      <View style={styles.stepContainer}>
-        <Text
-          variant="subtitle"
-          style={{
-            fontWeight: "ultralight",
-          }}
-        >
-          Step 1: Try it-
-        </Text>
-        <Text>
-          Edit <Text variant="defaultSemiBold">app/(tabs)/index.tsx</Text> to
-          see changes. Press{" "}
-          <Text variant="defaultSemiBold">
-            {Platform.select({
-              ios: "cmd + d",
-              android: "cmd + m",
-              web: "F12",
-            })}
-          </Text>{" "}
-          to open developer tools.
-        </Text>
-      </View>
-      <View style={styles.stepContainer}>
-        <Text variant="subtitle">Step 2: Explore</Text>
-        <Text>
-          Tap the Explore tab to learn more about what's included in this
-          starter app.
-        </Text>
-      </View>
-      <View style={styles.stepContainer}>
-        <Text variant="subtitle">Step 3: Get a fresh start</Text>
-        <Text>
-          When you're ready, run{" "}
-          <Text variant="defaultSemiBold">npm run reset-project</Text> to get a
-          fresh <Text variant="defaultSemiBold">app</Text> directory. This will
-          move the current <Text variant="defaultSemiBold">app</Text> to{" "}
-          <Text variant="defaultSemiBold">app-example</Text>.
-        </Text>
-      </View>
+      <Button variant="default">Default</Button>
+      <Button variant="solid">Solid</Button>
+      <Button variant="bordered">Bordered</Button>
+      <Button variant="light">Light</Button>
     </ParallaxScrollView>
   );
 }
