@@ -3,6 +3,7 @@ import { observer } from "mobx-react-lite";
 import { EmailInput } from "@/components/inputs/Email/EmailInput";
 import { PasswordInput } from "@/components/inputs/Password/PasswordInput";
 import { Card } from "@/components/ui/Card/Card";
+import { Link } from "expo-router";
 
 export type LoginFormProps = {
   state: {

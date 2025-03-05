@@ -41,18 +41,25 @@ export const button = cva(
         false: null,
         true: ["opacity-50", "cursor-not-allowed"],
       },
+      size: {
+        sm: ["h-8", "px-3"],
+        md: ["h-10", "px-4"],
+        lg: ["h-12", "px-5"],
+      },
     },
     defaultVariants: {
       variant: "default",
       color: "default",
+      disabled: false,
+      size: "md",
     },
   }
 );
 
-export const text = cva(["font-pretendard-bold"], {
+export const text = cva([], {
   variants: {
     variant: {
-      default: ["text-black"],
+      default: ["text-black", "font-pretendard-black"],
       bordered: ["text-light-primary", "dark:text-dark-primary"],
       solid: ["text-white"],
       light: ["text-light-primary", "dark:text-dark-primary"],
@@ -66,15 +73,16 @@ export const text = cva(["font-pretendard-bold"], {
 type ButtonProps = RNPressableProps & VariantProps<typeof button>;
 
 export const Button = (props: ButtonProps) => {
-  const { children, variant, color, disabled, className, ...rest } = props;
+  const { children, variant, color, disabled, className, size, ...rest } =
+    props;
 
   return (
     <Pressable
       {...rest}
-      className={button({ className, variant, color, disabled })}
+      className={button({ className, variant, color, disabled, size })}
     >
       {typeof children === "string" ? (
-        <Text fontWeight="medium" className={text({ variant })}>
+        <Text className={text({ variant })}>
           {typeof children === "string" && children}
         </Text>
       ) : (

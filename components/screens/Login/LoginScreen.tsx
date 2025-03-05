@@ -1,14 +1,27 @@
-import { LoginPayloadDto } from "@/codegen/model";
+import { createContext, useContext } from "react";
 import { LoginForm } from "@/components/forms/Login/LoginForm";
-import { observable } from "mobx";
-import React, { createContext, useContext } from "react";
 import { useState } from "./hooks/useState";
 import { useHandlers } from "./hooks/useHandlers";
+import { Button } from "@/components/ui/Button/Button";
+import { View } from "@/components/ui/View/View";
 
 export const LoginScreen = () => {
   const loginScreen = useLoginScreen();
 
-  return <LoginForm state={loginScreen.state.form.inputs} />;
+  return (
+    <View className="gap-y-4">
+      <LoginForm state={loginScreen.state.form.inputs} />
+      <Button
+        size="lg"
+        variant="solid"
+        color="primary"
+        disabled={loginScreen.handlers.isGetTokenPending}
+        onPress={loginScreen.handlers.onClickLogin}
+      >
+        로그인
+      </Button>
+    </View>
+  );
 };
 
 export interface LoginScreenContext {

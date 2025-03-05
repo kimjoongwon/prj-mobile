@@ -69,7 +69,7 @@ export const Input = observer(<T extends object>(props: InputProps<T>) => {
 
   return (
     <View className="gap-y-2">
-      {label && <Text fontWeight="semibold">{label}</Text>}
+      {label && <Text fontWeight="medium">{label}</Text>}
       <TextInput
         {...rest}
         placeholderTextColor={

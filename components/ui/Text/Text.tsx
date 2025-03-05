@@ -8,7 +8,7 @@ const text = cva(["text-black", "dark:text-white"], {
       defaultSemiBold: ["text-base", "font-pretendard-semibold"],
       title: ["text-3xl", "font-pretendard-bold"],
       subtitle: ["text-xl", "font-bold"],
-      link: ["leading-7", "text-base", "text-[#0a7ea4]"],
+      link: ["leading-7", "text-base", "text-[`#0a7ea4`]"],
     },
     fontWeight: {
       ultralight: ["font-pretendard-extralight"],
