@@ -5,11 +5,13 @@ import { Image, StyleSheet } from "react-native";
 import { Button } from "@/components/ui/Button/Button";
 import { Input } from "@/components/ui/Input/Input";
 import { observer, useLocalObservable } from "mobx-react-lite";
+import { useRouter } from "expo-router";
 
 const HomeScreen = observer(() => {
   const localstate = useLocalObservable(() => ({
     value: "",
   }));
+  const router = useRouter();
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
@@ -23,7 +25,9 @@ const HomeScreen = observer(() => {
       <Button disabled variant="default">
         Default
       </Button>
-      <Button variant="default">Default</Button>
+      <Button variant="default" onPress={() => router.push("/login")}>
+        onPress
+      </Button>
       <Button variant="solid">Solid</Button>
       <Button variant="bordered">Bordered</Button>
       <Button variant="light">Light</Button>

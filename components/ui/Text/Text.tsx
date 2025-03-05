@@ -4,9 +4,9 @@ import { cva, VariantProps } from "class-variance-authority";
 const text = cva(["text-black", "dark:text-white"], {
   variants: {
     variant: {
-      default: ["text-base", "leading-6"],
+      default: ["text-base", "leading-6", "font-pretendard-regular"],
       defaultSemiBold: ["text-base", "font-pretendard-semibold"],
-      title: ["text-4xl", "font-pretendard-bold"],
+      title: ["text-3xl", "font-pretendard-bold"],
       subtitle: ["text-xl", "font-bold"],
       link: ["leading-7", "text-base", "text-[#0a7ea4]"],
     },
@@ -30,7 +30,6 @@ const text = cva(["text-black", "dark:text-white"], {
   },
   defaultVariants: {
     variant: "default",
-    fontWeight: "regular",
   },
 });
 

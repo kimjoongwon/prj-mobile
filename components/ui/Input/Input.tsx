@@ -20,8 +20,8 @@ const input = cva(
     "py-2",
     "min-h-10",
     "rounded-md",
-    "bg-light-content3",
-    "dark:bg-dark-content3",
+    "bg-light-content2",
+    "dark:bg-dark-content2",
     "cursor-text",
     "text-light-foreground",
     "dark:text-dark-foreground",
@@ -39,7 +39,7 @@ const input = cva(
   }
 );
 
-type InputProps<T> = TextInputProps &
+export type InputProps<T> = TextInputProps &
   VariantProps<typeof input> & {
     label: string;
   } & MobxProps<T>;
@@ -68,8 +68,8 @@ export const Input = observer(<T extends object>(props: InputProps<T>) => {
   });
 
   return (
-    <View>
-      {label && <Text fontWeight="medium">{label}</Text>}
+    <View className="gap-y-2">
+      {label && <Text fontWeight="semibold">{label}</Text>}
       <TextInput
         {...rest}
         placeholderTextColor={
