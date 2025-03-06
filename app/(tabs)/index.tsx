@@ -5,13 +5,22 @@ import { Image, StyleSheet } from "react-native";
 import { Button } from "@/components/ui/Button/Button";
 import { Input } from "@/components/ui/Input/Input";
 import { observer, useLocalObservable } from "mobx-react-lite";
-import { useRouter } from "expo-router";
+import { SplashScreen, useRouter } from "expo-router";
+import { useEffect } from "react";
 
 const HomeScreen = observer(() => {
   const localstate = useLocalObservable(() => ({
     value: "",
   }));
+
+  useEffect(() => {
+    setTimeout(() => {
+      SplashScreen.hideAsync();
+    }, 1000);
+  }, []);
+
   const router = useRouter();
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}

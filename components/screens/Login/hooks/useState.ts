@@ -11,8 +11,8 @@ export const useState = (): State => {
   const state = observable({
     form: {
       inputs: {
-        email: "",
-        password: "",
+        email: "galaxy@gmail.com",
+        password: "rkdmf12!@",
       },
     },
   });

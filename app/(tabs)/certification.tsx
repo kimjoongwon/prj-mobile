@@ -6,7 +6,7 @@ import { Text } from "@/components/ui/Text/Text";
 import { Collapsible } from "@/components/ui/Collapsible/Collapsible";
 import { ExternalLink } from "@/components/ui/ExternalLink/ExternalLink";
 
-export default function TabTwoScreen() {
+export default function Certification() {
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#D0D0D0", dark: "#353636" }}

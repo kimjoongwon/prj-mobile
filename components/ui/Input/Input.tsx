@@ -46,7 +46,7 @@ export type InputProps<T> = TextInputProps &
 
 export const Input = observer(<T extends object>(props: InputProps<T>) => {
   const { className, variant, label = "ff", state, path, ...rest } = props;
-  const initialValue = UtilService.get(rest, "value");
+  const initialValue = UtilService.get(state, path);
   const { colorScheme } = useColorScheme();
   const localState = useLocalObservable(() => ({
     value: initialValue,
@@ -77,6 +77,7 @@ export const Input = observer(<T extends object>(props: InputProps<T>) => {
         }
         className={input({ className, variant })}
         onChangeText={handleOnChangeText}
+        value={localState.value}
       />
     </View>
   );
