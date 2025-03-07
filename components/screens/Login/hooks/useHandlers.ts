@@ -27,6 +27,9 @@ export const useHandlers = (context: Partial<LoginScreenContext>) => {
       router.replace("/(tabs)");
     } catch (error) {
       if (isAxiosError(error)) {
+        console.log("error", error.cause);
+        console.log("error", error.code);
+        console.log("error", error.request);
         console.log("error", error.response);
       }
     }

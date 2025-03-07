@@ -1,28 +1,17 @@
 import { Tabs } from "expo-router";
-import React from "react";
 import { Platform } from "react-native";
-
-import { IconSymbol } from "@/components/ui/IconSymbol/IconSymbol";
 import TabBarBackground from "@/components/ui/TabBarBackground/TabBarBackground";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { HapticTab } from "@/components/ui/HapticTab/HapticTab";
-import { Camera, CameraIcon, CircuitBoard } from "lucide-react-native";
-import { icons, LucideProps } from "lucide-react-native";
-import { ColorValue } from "react-native";
+import {
+  Users,
+  Calendar,
+  CheckCheckIcon,
+  User,
+  LucideScanQrCode,
+} from "lucide-react-native";
 
-interface IconProps {
-  name: keyof typeof icons;
-  color?: ColorValue;
-  size?: LucideProps["size"];
-}
-
-const Icon: React.FC<IconProps> = ({ name, color, size }) => {
-  const LucideIcon: React.FC<LucideProps & { color?: ColorValue }> =
-    icons[name];
-
-  return <LucideIcon color={color} size={size} />;
-};
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
@@ -30,7 +19,7 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].primary,
-        headerShown: false,
+        headerShown: true,
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
         tabBarStyle: Platform.select({
@@ -45,18 +34,14 @@ export default function TabLayout() {
         name="index"
         options={{
           title: "예약",
-          tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="calendar" color={color} />
-          ),
+          tabBarIcon: ({ color }) => <Calendar size={24} color={color} />,
         }}
       />
       <Tabs.Screen
         name="community"
         options={{
           title: "커뮤니티",
-          tabBarIcon: ({ color }) => (
-            <Icon name="Cable" color={color} size={28} />
-          ),
+          tabBarIcon: ({ color }) => <Users size={24} color={color} />,
         }}
       />
       <Tabs.Screen
@@ -64,7 +49,7 @@ export default function TabLayout() {
         options={{
           title: "출석",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="qrcode" color={color} />
+            <LucideScanQrCode size={24} color={color} />
           ),
         }}
       />
@@ -72,18 +57,14 @@ export default function TabLayout() {
         name="certification"
         options={{
           title: "인증",
-          tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="person.fill.badge.plus" color={color} />
-          ),
+          tabBarIcon: ({ color }) => <CheckCheckIcon size={24} color={color} />,
         }}
       />
       <Tabs.Screen
         name="my"
         options={{
           title: "마이",
-          tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="person" color={color} />
-          ),
+          tabBarIcon: ({ color }) => <User size={24} color={color} />,
         }}
       />
     </Tabs>
