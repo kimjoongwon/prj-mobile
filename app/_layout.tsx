@@ -73,6 +73,14 @@ export default function RootLayout() {
           value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
         >
           <Stack>
+            <Stack.Screen
+              name="tenants"
+              options={{
+                headerTitle: "지점",
+                headerShown: true,
+                presentation: "modal",
+              }}
+            />
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
             <Stack.Screen name="login" options={{ headerShown: false }} />
             <Stack.Screen name="index" options={{ headerShown: false }} />

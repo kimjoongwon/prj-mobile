@@ -1,4 +1,4 @@
-import { Tabs } from "expo-router";
+import { Tabs, useRouter } from "expo-router";
 import { Platform } from "react-native";
 import TabBarBackground from "@/components/ui/TabBarBackground/TabBarBackground";
 import { Colors } from "@/constants/Colors";
@@ -11,15 +11,25 @@ import {
   User,
   LucideScanQrCode,
 } from "lucide-react-native";
+import { Button } from "@/components/ui/Button/Button";
+import { useEffect } from "react";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push("/tenants");
+  }, []);
 
   return (
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].primary,
         headerShown: true,
+        headerLeft: () => (
+          <Button onPress={() => router.push("/tenants")}>가즈아</Button>
+        ),
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
         tabBarStyle: Platform.select({
