@@ -1,7 +1,7 @@
 import React from "react";
 import { Pressable, PressableProps as RNPressableProps } from "react-native";
 import { cva, VariantProps } from "class-variance-authority";
-import { Text } from "@/components/ui/Text/Text";
+import { Text } from "@/components/ui/common/Text/Text";
 
 export const button = cva(
   [
@@ -31,7 +31,7 @@ export const button = cva(
       },
       color: {
         default: ["dark:bg-dark-default", "bg-light-default"],
-        primary: ["dark:bg-dark-primary-500", "bg-light-primary-500"],
+        primary: ["dark:bg-dark-primary", "bg-light-primary"],
         secondary: ["dark:bg-dark-secondary-500", "bg-light-secondary-500"],
         success: ["dark:bg-dark-success", "bg-light-success"],
         warning: ["dark:bg-dark-warning", "bg-light-warning"],

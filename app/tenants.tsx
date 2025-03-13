@@ -1,5 +1,7 @@
 import React from "react";
-import { FlatList, Text, View, Image, StyleSheet } from "react-native";
+import { View } from "@/components/ui";
+import { GymCard } from "@/components/ui/GymCard/GymCard";
+import { FlatList, StyleSheet } from "react-native";
 
 const stores = [
   {
@@ -7,52 +9,51 @@ const stores = [
     name: "종로수송",
     address: "서울특별시 종로구 종로5길30 (청진동) 1~3층",
     distance: "123m",
-    image: "https://example.com/image1.jpg",
+    image: "https://picsum.photos/id/237/200/300",
   },
   {
     id: "2",
     name: "종로R",
     address: "서울특별시 종로구 종로 51(종로2가)",
     distance: "169m",
-    image: "https://example.com/image2.jpg",
+    image: "https://picsum.photos/id/237/200/300",
   },
   {
     id: "3",
     name: "종로구청",
     address: "서울특별시 종로구 삼봉로 71(수송동)",
     distance: "201m",
-    image: "https://example.com/image3.jpg",
+    image: "https://picsum.photos/id/237/200/300",
   },
   {
     id: "4",
     name: "광화문DE타워",
     address: "서울특별시 종로구 종로3길17 (청진동) DE타워",
     distance: "203m",
-    image: "https://example.com/image4.jpg",
+    image: "https://picsum.photos/id/237/200/300",
   },
   {
     id: "5",
     name: "종각",
     address: "서울특별시 종로구 종로64 (종로2가)",
     distance: "274m",
-    image: "https://example.com/image5.jpg",
+    image: "https://picsum.photos/id/237/200/300",
   },
 ];
 
 const Tenants = () => {
-  const renderItem = ({ item }) => (
-    <View style={styles.itemContainer}>
-      <Image source={{ uri: item.image }} style={styles.image} />
-      <View style={styles.textContainer}>
-        <Text className="text-primary-500">{item.name}</Text>
-        <Text style={styles.address}>{item.address}</Text>
-        <Text style={styles.distance}>{item.distance}</Text>
+  const renderItem = ({ item }) => {
+    return (
+      <View>
+        <GymCard name={item.name} label={item.address} />
       </View>
-    </View>
-  );
+    );
+  };
 
   return (
     <FlatList
+      className="bg-light-content2 p-2"
+      contentContainerClassName="gap-y-2"
       data={stores}
       renderItem={renderItem}
       keyExtractor={(item) => item.id}

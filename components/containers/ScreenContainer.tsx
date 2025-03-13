@@ -1,5 +1,5 @@
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { View } from "../ui/View/View";
+import { View } from "../ui/common/View/View";
 
 type ScreenContainerProps = {
   children: React.ReactNode;

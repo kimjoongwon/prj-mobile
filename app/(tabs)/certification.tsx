@@ -1,10 +1,10 @@
-import ParallaxScrollView from "@/components/ui/ParallaxScrollView/ParallaxScrollView";
+import ParallaxScrollView from "@/components/ui/common/ParallaxScrollView/ParallaxScrollView";
 import { StyleSheet, Image, Platform } from "react-native";
-import { IconSymbol } from "@/components/ui/IconSymbol/IconSymbol";
-import { View } from "@/components/ui/View/View";
-import { Text } from "@/components/ui/Text/Text";
-import { Collapsible } from "@/components/ui/Collapsible/Collapsible";
-import { ExternalLink } from "@/components/ui/ExternalLink/ExternalLink";
+import { IconSymbol } from "@/components/ui/common/IconSymbol/IconSymbol";
+import { View } from "@/components/ui/common/View/View";
+import { Text } from "@/components/ui/common/Text/Text";
+import { Collapsible } from "@/components/ui/common/Collapsible/Collapsible";
+import { ExternalLink } from "@/components/ui/common/ExternalLink/ExternalLink";
 
 export default function Certification() {
   return (

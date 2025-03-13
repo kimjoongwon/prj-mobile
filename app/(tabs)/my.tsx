@@ -1,5 +1,5 @@
-import { Text } from "@/components/ui/Text/Text";
-import { View } from "@/components/ui/View/View";
+import { Text } from "@/components/ui/common/Text/Text";
+import { View } from "@/components/ui/common/View/View";
 
 const My = () => {
   return (

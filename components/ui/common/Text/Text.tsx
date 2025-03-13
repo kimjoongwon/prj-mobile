@@ -8,7 +8,7 @@ const text = cva(
       variant: {
         default: ["text-base", "leading-6", "font-pretendard-regular"],
         defaultSemiBold: ["text-base", "font-pretendard-semibold"],
-        title: ["text-3xl", "font-pretendard-bold"],
+        title: ["text-2xl", "font-pretendard-bold"],
         subtitle: ["text-xl", "font-bold"],
         link: ["leading-7", "text-base", "text-[`#0a7ea4`]"],
         caption: [

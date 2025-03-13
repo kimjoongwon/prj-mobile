@@ -1,6 +1,4 @@
-import { Gym } from "@/components/ui/Gym/Gym";
-import { Text } from "@/components/ui/Text/Text";
-import { View } from "@/components/ui/View/View";
+import { GymCard } from "@/components/ui/GymCard/GymCard";
 import { FlatList } from "react-native";
 import ActionSheet from "react-native-actions-sheet";
 const stores = [
@@ -41,18 +39,7 @@ const stores = [
   },
 ];
 export const GymActionSheet = () => {
-  const renderItem = () => (
-    <Gym
-      address={"서울특별시 종로구 종로5길30 (청진동) 1~3층"}
-      phone="02-1234-5678"
-      email="galaxy@gmail.com"
-      businessNumber="123-45-67890"
-      space={{
-        name: "종로수송",
-        label: "종로수송",
-      }}
-    />
-  );
+  const renderItem = () => <GymCard />;
   return (
     <ActionSheet>
       <FlatList

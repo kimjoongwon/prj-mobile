@@ -1,10 +1,10 @@
-import { View } from "@/components/ui/View/View";
-import { Text } from "@/components/ui/Text/Text";
+import { View } from "@/components/ui/common/View/View";
+import { Text } from "@/components/ui/common/Text/Text";
 import { StyleSheet } from "react-native";
 import { observer } from "mobx-react-lite";
-import { SplashScreen, useRouter } from "expo-router";
+import { SplashScreen } from "expo-router";
 import { useEffect } from "react";
-import { Button } from "@/components/ui/Button/Button";
+import { Button } from "@/components/ui/common/Button/Button";
 import { SheetManager } from "react-native-actions-sheet";
 
 const HomeScreen = observer(() => {
@@ -13,8 +13,6 @@ const HomeScreen = observer(() => {
       SplashScreen.hideAsync();
     }, 1000);
   }, []);
-
-  const router = useRouter();
 
   return (
     <View>
@@ -25,18 +23,3 @@ const HomeScreen = observer(() => {
 });
 
 export default HomeScreen;
-
-const styles = StyleSheet.create({
-  titleContainer: {},
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: "absolute",
-  },
-});

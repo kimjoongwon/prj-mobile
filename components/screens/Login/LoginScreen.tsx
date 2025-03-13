@@ -2,8 +2,8 @@ import { createContext, useContext } from "react";
 import { LoginForm } from "@/components/forms/Login/LoginForm";
 import { useState } from "./hooks/useState";
 import { useHandlers } from "./hooks/useHandlers";
-import { Button } from "@/components/ui/Button/Button";
-import { View } from "@/components/ui/View/View";
+import { Button } from "@/components/ui/common/Button/Button";
+import { View } from "@/components/ui/common/View/View";
 
 export const LoginScreen = () => {
   const loginScreen = useLoginScreen();

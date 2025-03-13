@@ -1,9 +1,9 @@
 import { Tabs, useRouter } from "expo-router";
 import { Platform } from "react-native";
-import TabBarBackground from "@/components/ui/TabBarBackground/TabBarBackground";
+import TabBarBackground from "@/components/ui/common/TabBarBackground/TabBarBackground";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
-import { HapticTab } from "@/components/ui/HapticTab/HapticTab";
+import { HapticTab } from "@/components/ui/common/HapticTab/HapticTab";
 import {
   Users,
   Calendar,
@@ -11,7 +11,7 @@ import {
   User,
   LucideScanQrCode,
 } from "lucide-react-native";
-import { Button } from "@/components/ui/Button/Button";
+import { Button } from "@/components/ui/common/Button/Button";
 import { useEffect } from "react";
 
 export default function TabLayout() {

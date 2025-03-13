@@ -1,8 +1,8 @@
-import { Text } from "@/components/ui/Text/Text";
+import { Text } from "@/components/ui/common/Text/Text";
 import { observer } from "mobx-react-lite";
 import { EmailInput } from "@/components/inputs/Email/EmailInput";
 import { PasswordInput } from "@/components/inputs/Password/PasswordInput";
-import { Card } from "@/components/ui/Card/Card";
+import { Card } from "@/components/ui/common/Card/Card";
 import { Link } from "expo-router";
 
 export type LoginFormProps = {

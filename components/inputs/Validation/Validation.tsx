@@ -2,8 +2,8 @@ import { cloneElement } from "react";
 import { uniq } from "lodash-es";
 import { observer, useLocalObservable } from "mobx-react-lite";
 import { Validation } from "@/types";
-import { View } from "@/components/ui/View/View";
-import { Text } from "@/components/ui/Text/Text";
+import { View } from "@/components/ui/common/View/View";
+import { Text } from "@/components/ui/common/Text/Text";
 
 type InputValidationProps = {
   children: React.ReactElement;

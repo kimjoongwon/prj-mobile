@@ -1,4 +1,4 @@
-import { View } from "@/components/ui/View/View";
+import { View } from "@/components/ui/common/View/View";
 
 const GatewayScreen = () => {
   return <View />;

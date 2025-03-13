@@ -1,22 +1,30 @@
 import { cva, VariantProps } from "class-variance-authority";
-import { View } from "../View/View";
-import { ClassProp } from "class-variance-authority/dist/types";
+import { Pressable } from "react-native";
 
 const card = cva([
   "bg-light-content1",
   "dark:bg-dark-content3",
   "p-6",
-  "rounded-md",
+  "rounded-lg",
   "shadow-inner",
   "gap-y-4",
+  "active:opacity-50",
 ]);
 
 type CardProps = VariantProps<typeof card> & {
   children: React.ReactNode;
-  className?: ClassProp | undefined;
+  className?: string;
 };
 
 export const Card = (props: CardProps) => {
   const { children, className } = props;
-  return <View className={card(className)}>{children}</View>;
+  return (
+    <Pressable
+      className={card({
+        className,
+      })}
+    >
+      {children}
+    </Pressable>
+  );
 };

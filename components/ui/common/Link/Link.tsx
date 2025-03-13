@@ -1,5 +1,5 @@
 import { LinkProps, Link as ExpoLink } from "expo-router";
-import { Text } from "@/components/ui/Text/Text";
+import { Text } from "@/components/ui/common/Text/Text";
 
 export const Link = (props: LinkProps) => {
   const { children, ...rest } = props;

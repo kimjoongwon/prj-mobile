@@ -1,4 +1,4 @@
-import { Input, InputProps } from "@/components/ui/Input/Input";
+import { Input, InputProps } from "@/components/ui/common/Input/Input";
 import { observer } from "mobx-react-lite";
 import { InputValidation } from "../Validation/Validation";
 
