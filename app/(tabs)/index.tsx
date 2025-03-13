@@ -4,6 +4,8 @@ import { StyleSheet } from "react-native";
 import { observer } from "mobx-react-lite";
 import { SplashScreen, useRouter } from "expo-router";
 import { useEffect } from "react";
+import { Button } from "@/components/ui/Button/Button";
+import { SheetManager } from "react-native-actions-sheet";
 
 const HomeScreen = observer(() => {
   useEffect(() => {
@@ -16,6 +18,9 @@ const HomeScreen = observer(() => {
 
   return (
     <View>
+      <Button onPress={() => SheetManager.show("gyms")}>
+        Action Sheet
+      </Button>
       <Text>HomeScreen</Text>
     </View>
   );

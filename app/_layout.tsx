@@ -4,12 +4,7 @@ import {
   ThemeProvider,
 } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import {
-  Redirect,
-  Stack,
-  useNavigationContainerRef,
-  useRouter,
-} from "expo-router";
+import { Stack, useNavigationContainerRef, useRouter } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
@@ -22,6 +17,8 @@ import { useReactNavigationDevTools } from "@dev-plugins/react-navigation";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import "react-native-reanimated";
 import "../global.css";
+import "@/components/sheets";
+import { SheetProvider } from "react-native-actions-sheet";
 
 export const mmkv = new MMKV();
 const queryClient = new QueryClient();
@@ -30,7 +27,6 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const navigationRef = useNavigationContainerRef();
-
   useReactNavigationDevTools(navigationRef);
   useReactQueryDevTools(queryClient);
   useMMKVDevTools();
@@ -72,21 +68,23 @@ export default function RootLayout() {
         <ThemeProvider
           value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
         >
-          <Stack>
-            <Stack.Screen
-              name="tenants"
-              options={{
-                headerTitle: "지점",
-                headerShown: true,
-                presentation: "modal",
-              }}
-            />
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="login" options={{ headerShown: false }} />
-            <Stack.Screen name="index" options={{ headerShown: false }} />
-            <Stack.Screen name="+not-found" />
-          </Stack>
-          <StatusBar style="auto" />
+          <SheetProvider>
+            <Stack>
+              <Stack.Screen
+                name="tenants"
+                options={{
+                  headerTitle: "지점",
+                  headerShown: true,
+                  presentation: "modal",
+                }}
+              />
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen name="login" options={{ headerShown: false }} />
+              <Stack.Screen name="index" options={{ headerShown: false }} />
+              <Stack.Screen name="+not-found" />
+            </Stack>
+            <StatusBar style="auto" />
+          </SheetProvider>
         </ThemeProvider>
       </SafeAreaProvider>
     </QueryClientProvider>
