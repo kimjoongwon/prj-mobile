@@ -16,6 +16,7 @@ export interface TenantDto {
   roleId: string;
   userId: string;
   spaceId: string;
+  default: boolean;
   user?: UserDto;
   space?: SpaceDto;
 }

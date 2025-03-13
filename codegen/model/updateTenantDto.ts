@@ -8,4 +8,5 @@ export interface UpdateTenantDto {
   roleId?: string;
   userId?: string;
   spaceId?: string;
+  default?: boolean;
 }

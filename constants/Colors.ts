@@ -45,7 +45,6 @@ export const Colors = {
     warning: "#f5a524",
     danger: "#F31260",
     text: "#ECEDEE",
-    // background: "#151718",
     tint: tintColorDark,
     icon: "#9BA1A6",
     tabIconDefault: "#9BA1A6",

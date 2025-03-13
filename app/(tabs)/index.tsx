@@ -18,9 +18,7 @@ const HomeScreen = observer(() => {
 
   return (
     <View>
-      <Button onPress={() => SheetManager.show("gyms")}>
-        Action Sheet
-      </Button>
+      <Button onPress={() => SheetManager.show("gyms")}>Action Sheet</Button>
       <Text>HomeScreen</Text>
     </View>
   );

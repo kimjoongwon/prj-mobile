@@ -1,5 +1,5 @@
 import { registerSheet, SheetDefinition } from "react-native-actions-sheet";
-import { GymActionSheet } from "./GymActionSheet/GymActionSheet";
+import { GymActionSheet } from "./GymActionSheet/Gym";
 
 registerSheet("gyms", GymActionSheet);
 

@@ -4,7 +4,7 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export interface CreateSpaceDto {
-  label: string;
-  name: string;
-}
+export type GetGymsByQueryParams = {
+skip?: number;
+take?: number;
+};

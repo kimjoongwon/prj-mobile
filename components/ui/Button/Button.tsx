@@ -31,8 +31,8 @@ export const button = cva(
       },
       color: {
         default: ["dark:bg-dark-default", "bg-light-default"],
-        primary: ["dark:bg-dark-primary", "bg-light-primary"],
-        secondary: ["dark:bg-dark-secondary", "bg-light-secondary"],
+        primary: ["dark:bg-dark-primary-500", "bg-light-primary-500"],
+        secondary: ["dark:bg-dark-secondary-500", "bg-light-secondary-500"],
         success: ["dark:bg-dark-success", "bg-light-success"],
         warning: ["dark:bg-dark-warning", "bg-light-warning"],
         danger: ["dark:bg-dark-danger", "bg-light-danger"],

@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  FlatList,
-  Text,
-  View,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
+import { FlatList, Text, View, Image, StyleSheet } from "react-native";
 
 const stores = [
   {
@@ -48,14 +41,14 @@ const stores = [
 
 const Tenants = () => {
   const renderItem = ({ item }) => (
-    <TouchableOpacity style={styles.card}>
+    <View style={styles.itemContainer}>
       <Image source={{ uri: item.image }} style={styles.image} />
       <View style={styles.textContainer}>
-        <Text style={styles.name}>{item.name}</Text>
+        <Text className="text-primary-500">{item.name}</Text>
         <Text style={styles.address}>{item.address}</Text>
         <Text style={styles.distance}>{item.distance}</Text>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 
   return (
@@ -63,46 +56,33 @@ const Tenants = () => {
       data={stores}
       renderItem={renderItem}
       keyExtractor={(item) => item.id}
-      contentContainerStyle={styles.list}
     />
   );
 };
 
 const styles = StyleSheet.create({
-  list: {
-    padding: 10,
-  },
-  card: {
+  itemContainer: {
     flexDirection: "row",
-    backgroundColor: "#fff",
-    borderRadius: 10,
-    padding: 15,
-    marginVertical: 10,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 5,
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ccc",
   },
   image: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    marginRight: 15,
+    width: 50,
+    height: 50,
+    marginRight: 10,
   },
   textContainer: {
     flex: 1,
     justifyContent: "center",
   },
   name: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "bold",
-    marginBottom: 5,
   },
   address: {
     fontSize: 14,
     color: "#555",
-    marginBottom: 5,
   },
   distance: {
     fontSize: 12,

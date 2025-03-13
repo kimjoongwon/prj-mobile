@@ -8,4 +8,5 @@ export interface CreateTenantDto {
   roleId: string;
   userId: string;
   spaceId: string;
+  default: boolean;
 }
