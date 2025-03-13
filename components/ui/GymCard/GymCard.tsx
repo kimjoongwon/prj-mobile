@@ -3,8 +3,7 @@ import { Card } from "../common/Card/Card";
 import { Text } from "../common/Text/Text";
 import { View } from "../common/View/View";
 import { Image } from "expo-image";
-import { Button } from "../common";
-import { Check, CheckCheck, UserRoundCheck } from "lucide-react-native";
+import { Check } from "lucide-react-native";
 
 interface GymCardProps {
   gym: GymDto;

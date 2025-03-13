@@ -19,7 +19,7 @@ export default function TabLayout() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push("/tenants");
+    router.push("/gyms");
   }, []);
 
   return (
@@ -28,7 +28,7 @@ export default function TabLayout() {
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].primary,
         headerShown: true,
         headerLeft: () => (
-          <Button onPress={() => router.push("/tenants")}>가즈아</Button>
+          <Button onPress={() => router.push("/gyms")}>가즈아</Button>
         ),
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,

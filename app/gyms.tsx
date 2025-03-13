@@ -1,7 +1,6 @@
 import React from "react";
 import { View } from "@/components/ui";
-import { GymCard } from "@/components/ui/GymCard/GymCard";
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList } from "react-native";
 
 const stores = [
   {
@@ -41,19 +40,13 @@ const stores = [
   },
 ];
 
-const Tenants = () => {
-  const renderItem = ({ item }) => {
-    return (
-      <View>
-        <GymCard name={item.name} label={item.address} />
-      </View>
-    );
+const Gyms = () => {
+  const renderItem = () => {
+    return <View></View>;
   };
 
   return (
     <FlatList
-      className="bg-light-content2 p-2"
-      contentContainerClassName="gap-y-2"
       data={stores}
       renderItem={renderItem}
       keyExtractor={(item) => item.id}
@@ -61,34 +54,4 @@ const Tenants = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  itemContainer: {
-    flexDirection: "row",
-    padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
-  },
-  image: {
-    width: 50,
-    height: 50,
-    marginRight: 10,
-  },
-  textContainer: {
-    flex: 1,
-    justifyContent: "center",
-  },
-  name: {
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  address: {
-    fontSize: 14,
-    color: "#555",
-  },
-  distance: {
-    fontSize: 12,
-    color: "#999",
-  },
-});
-
-export default Tenants;
+export default Gyms;
