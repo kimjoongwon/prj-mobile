@@ -26,7 +26,7 @@ const queryClient = new QueryClient();
 SplashScreen.preventAutoHideAsync();
 
 export const unstable_settings = {
-  initialRouteName: "gateway",
+  initialRouteName: "gym-select",
 };
 
 export default function RootLayout() {
@@ -85,9 +85,12 @@ export default function RootLayout() {
             >
               <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
               <Stack.Screen name="login" options={{ headerShown: false }} />
-              <Stack.Screen name="index" options={{ headerShown: false }} />
               <Stack.Screen
-                name="gym-select"
+                name="gateway/index"
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="gym-select/index"
                 options={{
                   title: "지점 선택",
                 }}

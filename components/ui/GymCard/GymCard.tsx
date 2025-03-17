@@ -3,24 +3,17 @@ import { Card } from "../common/Card/Card";
 import { Text } from "../common/Text/Text";
 import { View } from "../common/View/View";
 import { Image } from "expo-image";
+import { Pressable } from "react-native";
 
 interface GymCardProps {
   gym: GymDto;
+  onPress?: (gym: GymDto) => void;
 }
 
 export const GymCard = (props: GymCardProps) => {
-  const {
-    gym = {
-      space: {
-        name: "버핏 그라운드",
-        label: "강남",
-      },
-      address: "서울특별시 강남구 강남대로 1234",
-      phone: "02-1234-5678",
-    },
-  } = props;
+  const { gym, onPress } = props;
 
-  return (
+  const CardContent = (
     <Card className="flex-row gap-x-2 items-start h-30">
       <Image
         style={{
@@ -36,5 +29,11 @@ export const GymCard = (props: GymCardProps) => {
         <Text variant="caption">{gym.phone}</Text>
       </View>
     </Card>
+  );
+
+  return onPress ? (
+    <Pressable onPress={() => onPress(gym)}>{CardContent}</Pressable>
+  ) : (
+    CardContent
   );
 };

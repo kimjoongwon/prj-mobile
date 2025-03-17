@@ -24,7 +24,7 @@ export const useHandlers = (context: Partial<LoginScreenContext>) => {
         mmkv.set("accessToken", data.accessToken);
       }
 
-      router.replace("/(tabs)");
+      router.replace("/gym-select");
     } catch (error) {
       if (isAxiosError(error)) {
         console.log("error", error.cause);

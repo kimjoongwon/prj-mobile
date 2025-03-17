@@ -24,7 +24,7 @@ const itemContainer = cva(["p-1"], {
   },
 });
 
-export const SearchAndSelect = observer(
+export const ItemSelector = observer(
   <T extends ObjectWithId>(props: SearchAndSelectProps<T>) => {
     const { data, selectionMode = "single" } = props;
 
@@ -64,20 +64,6 @@ export const SearchAndSelect = observer(
       );
     };
 
-    const handleOnChangeText = action((text: string) => {
-      localState.queryText = text;
-    });
-
-    return (
-      <View className="flex-1">
-        <Input
-          state={localState}
-          path="queryText"
-          placeholder="검색어를 입력해주세요."
-          onChangeText={handleOnChangeText}
-        />
-        <FlatList data={data} renderItem={renderItem} />
-      </View>
-    );
+    return <FlatList data={data} renderItem={renderItem} />;
   }
 );

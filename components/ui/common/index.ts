@@ -10,3 +10,4 @@ export * from "./ParallaxScrollView/ParallaxScrollView";
 export * from "./Space/Space";
 export * from "./Text/Text";
 export * from "./View/View";
+export * from "./ItemSelector/ItemSelector";
