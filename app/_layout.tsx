@@ -74,15 +74,7 @@ export default function RootLayout() {
           value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
         >
           <SheetProvider>
-            <Stack
-              screenOptions={{
-                contentStyle: {
-                  flex: 1,
-                  backgroundColor: "white",
-                  padding: 20,
-                },
-              }}
-            >
+            <Stack>
               <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
               <Stack.Screen name="login" options={{ headerShown: false }} />
               <Stack.Screen

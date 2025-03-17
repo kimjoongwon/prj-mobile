@@ -7,7 +7,7 @@ export * from "./IconSymbol/IconSymbol";
 export * from "./Input/Input";
 export * from "./Link/Link";
 export * from "./ParallaxScrollView/ParallaxScrollView";
-export * from "./Space/Space";
+export * from "./Spacer/Spacer";
 export * from "./Text/Text";
 export * from "./View/View";
 export * from "./ItemSelector/ItemSelector";

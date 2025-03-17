@@ -10,7 +10,7 @@ import { action } from "mobx";
 type SearchAndSelectProps<T> = {
   data: T[];
   renderItem: (item: T) => React.ReactNode;
-  selectionMode: "single" | "multiple";
+  selectionMode?: "single" | "multiple";
 };
 
 type ObjectWithId = object & { id: string };
@@ -34,6 +34,10 @@ export const ItemSelector = observer(
     }));
 
     const handleOnPress = action((item: T) => {
+      if (!selectionMode) {
+        return;
+      }
+
       if (selectionMode === "single") {
         localState.selectedRowIds = [item.id];
         return;

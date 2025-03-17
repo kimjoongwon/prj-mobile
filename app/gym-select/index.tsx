@@ -1,21 +1,26 @@
 import React from "react";
 import { useGetGymsByQuery } from "@/codegen/apis";
 import { GymCard } from "@/components/ui/GymCard/GymCard";
-import { ItemSelector, Text, View } from "@/components/ui";
+import { ItemSelector, Spacer, Text } from "@/components/ui";
+import { useRouter } from "expo-router";
+import { ScreenContainer } from "@/components/containers/ScreenContainer";
 
 const GymSelect = () => {
   const { data: getGymsByQueryResponse } = useGetGymsByQuery();
+  const router = useRouter();
   const gyms = getGymsByQueryResponse?.data ?? [];
 
   return (
-    <View>
+    <ScreenContainer className="gap-4">
+      <Spacer h={4} />
       <Text variant="title">내 지점 선택</Text>
       <ItemSelector
         data={gyms}
-        renderItem={(item) => <GymCard gym={item} />}
-        selectionMode="single"
+        renderItem={(item) => (
+          <GymCard gym={item} onPress={() => router.push("/(tabs)")} />
+        )}
       />
-    </View>
+    </ScreenContainer>
   );
 };
 
