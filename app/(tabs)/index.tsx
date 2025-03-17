@@ -1,6 +1,5 @@
 import { View } from "@/components/ui/common/View/View";
 import { Text } from "@/components/ui/common/Text/Text";
-import { StyleSheet } from "react-native";
 import { observer } from "mobx-react-lite";
 import { SplashScreen } from "expo-router";
 import { useEffect } from "react";

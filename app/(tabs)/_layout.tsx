@@ -12,15 +12,10 @@ import {
   LucideScanQrCode,
 } from "lucide-react-native";
 import { Button } from "@/components/ui/common/Button/Button";
-import { useEffect } from "react";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
   const router = useRouter();
-
-  useEffect(() => {
-    router.push("/gyms");
-  }, []);
 
   return (
     <Tabs
@@ -28,7 +23,7 @@ export default function TabLayout() {
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].primary,
         headerShown: true,
         headerLeft: () => (
-          <Button onPress={() => router.push("/gyms")}>가즈아</Button>
+          <Button onPress={() => router.push("/gym-select")}>가즈아</Button>
         ),
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,

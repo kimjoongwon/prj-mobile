@@ -15,10 +15,10 @@ import { useReactQueryDevTools } from "@dev-plugins/react-query";
 import { useMMKVDevTools } from "@dev-plugins/react-native-mmkv";
 import { useReactNavigationDevTools } from "@dev-plugins/react-navigation";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { SheetProvider } from "react-native-actions-sheet";
 import "react-native-reanimated";
 import "../global.css";
 import "@/components/sheets";
-import { SheetProvider } from "react-native-actions-sheet";
 
 export const mmkv = new MMKV();
 const queryClient = new QueryClient();
@@ -51,7 +51,7 @@ export default function RootLayout() {
   useEffect(() => {
     if (loaded) {
       if (accessToken) {
-        router.replace("/(tabs)");
+        router.replace("/gym-select");
       } else {
         router.replace("/login");
       }
@@ -69,19 +69,24 @@ export default function RootLayout() {
           value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
         >
           <SheetProvider>
-            <Stack>
-              <Stack.Screen
-                name="tenants"
-                options={{
-                  headerTitle: "지점",
-                  headerShown: true,
-                  presentation: "modal",
-                }}
-              />
+            <Stack
+              screenOptions={{
+                contentStyle: {
+                  flex: 1,
+                  backgroundColor: "white",
+                  padding: 20,
+                },
+              }}
+            >
               <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
               <Stack.Screen name="login" options={{ headerShown: false }} />
               <Stack.Screen name="index" options={{ headerShown: false }} />
-              <Stack.Screen name="gyms" options={{ headerShown: false }} />
+              <Stack.Screen
+                name="gym-select"
+                options={{
+                  title: "지점 선택",
+                }}
+              />
               <Stack.Screen name="+not-found" />
             </Stack>
             <StatusBar style="auto" />
