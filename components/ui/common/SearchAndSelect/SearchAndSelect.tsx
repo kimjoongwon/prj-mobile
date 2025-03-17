@@ -30,7 +30,7 @@ export const SearchAndSelect = observer(
 
     const localState = useLocalObservable(() => ({
       selectedRowIds: [] as string[],
-      query: "",
+      queryText: "",
     }));
 
     const handleOnPress = action((item: T) => {
@@ -64,13 +64,17 @@ export const SearchAndSelect = observer(
       );
     };
 
+    const handleOnChangeText = action((text: string) => {
+      localState.queryText = text;
+    });
+
     return (
       <View className="flex-1">
         <Input
-          label={"검색어"}
-          placeholder="검색어를 입력해주세요."
-          path="query"
           state={localState}
+          path="queryText"
+          placeholder="검색어를 입력해주세요."
+          onChangeText={handleOnChangeText}
         />
         <FlatList data={data} renderItem={renderItem} />
       </View>

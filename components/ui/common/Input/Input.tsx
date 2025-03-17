@@ -41,11 +41,11 @@ const input = cva(
 
 export type InputProps<T> = TextInputProps &
   VariantProps<typeof input> & {
-    label: string;
+    label?: string;
   } & MobxProps<T>;
 
 export const Input = observer(<T extends object>(props: InputProps<T>) => {
-  const { className, variant, label = "ff", state, path, ...rest } = props;
+  const { className, variant, label, state, path, ...rest } = props;
   const initialValue = UtilService.get(state, path);
   const { colorScheme } = useColorScheme();
   const localState = useLocalObservable(() => ({

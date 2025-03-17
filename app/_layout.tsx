@@ -25,6 +25,10 @@ const queryClient = new QueryClient();
 
 SplashScreen.preventAutoHideAsync();
 
+export const unstable_settings = {
+  initialRouteName: "gateway",
+};
+
 export default function RootLayout() {
   const navigationRef = useNavigationContainerRef();
   useReactNavigationDevTools(navigationRef);
@@ -47,8 +51,9 @@ export default function RootLayout() {
 
   setColorScheme("light");
 
-  const accessToken = mmkv.getString("accessToken");
   useEffect(() => {
+    const accessToken = mmkv.getString("accessToken");
+
     if (loaded) {
       if (accessToken) {
         router.replace("/gym-select");

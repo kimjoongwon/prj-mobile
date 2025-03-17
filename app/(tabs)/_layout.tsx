@@ -13,6 +13,10 @@ import {
 } from "lucide-react-native";
 import { Button } from "@/components/ui/common/Button/Button";
 
+export const unstable_settings = {
+  initialRouteName: "attendance",
+};
+
 export default function TabLayout() {
   const colorScheme = useColorScheme();
   const router = useRouter();
