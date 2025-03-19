@@ -11,3 +11,4 @@ export * from "./Spacer/Spacer";
 export * from "./Text/Text";
 export * from "./View/View";
 export * from "./ItemSelector/ItemSelector";
+export * from "./Image/Image";

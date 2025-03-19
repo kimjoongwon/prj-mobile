@@ -28,7 +28,7 @@
         <key>CFBundleURLSchemes</key>
         <array>
           <string>myapp</string>
-          <string>com.anonymous.Sequence</string>
+          <string>com.anonymous.Sequence.test</string>
         </array>
       </dict>
       <dict>

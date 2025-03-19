@@ -13,16 +13,13 @@ import {
 } from "lucide-react-native";
 import { Button } from "@/components/ui/common/Button/Button";
 
-export const unstable_settings = {
-  initialRouteName: "attendance",
-};
-
 export default function TabLayout() {
   const colorScheme = useColorScheme();
   const router = useRouter();
 
   return (
     <Tabs
+      // initialRouteName="/my"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].primary,
         headerShown: true,
@@ -39,13 +36,13 @@ export default function TabLayout() {
         }),
       }}
     >
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="index"
         options={{
           title: "예약",
           tabBarIcon: ({ color }) => <Calendar size={24} color={color} />,
         }}
-      />
+      /> */}
       <Tabs.Screen
         name="community"
         options={{

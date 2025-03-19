@@ -4,7 +4,12 @@ import {
   ThemeProvider,
 } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import { Stack, useNavigationContainerRef, useRouter } from "expo-router";
+import {
+  Stack,
+  useNavigationContainerRef,
+  useRootNavigationState,
+  useRouter,
+} from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
@@ -23,11 +28,11 @@ import "@/components/sheets";
 export const mmkv = new MMKV();
 const queryClient = new QueryClient();
 
-SplashScreen.preventAutoHideAsync();
-
 export const unstable_settings = {
-  initialRouteName: "gym-select",
+  // Ensure any route can link back to `/`
+  initialRouteName: "gateway",
 };
+SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const navigationRef = useNavigationContainerRef();
@@ -35,7 +40,6 @@ export default function RootLayout() {
   useReactQueryDevTools(queryClient);
   useMMKVDevTools();
 
-  const router = useRouter();
   const { colorScheme, setColorScheme } = useColorScheme();
   const [loaded] = useFonts({
     "Pretendard-Black": require("../assets/fonts/Pretendard-Black.otf"),
@@ -51,18 +55,6 @@ export default function RootLayout() {
 
   setColorScheme("light");
 
-  useEffect(() => {
-    const accessToken = mmkv.getString("accessToken");
-
-    if (loaded) {
-      if (accessToken) {
-        router.replace("/gym-select");
-      } else {
-        router.replace("/login");
-      }
-    }
-  }, [loaded]);
-
   if (!loaded) {
     return null;
   }
@@ -76,17 +68,9 @@ export default function RootLayout() {
           <SheetProvider>
             <Stack>
               <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen name="gateway" options={{ headerShown: false }} />
               <Stack.Screen name="login" options={{ headerShown: false }} />
-              <Stack.Screen
-                name="gateway/index"
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="gym-select/index"
-                options={{
-                  title: "지점 선택",
-                }}
-              />
+              <Stack.Screen name="gym-select" />
               <Stack.Screen name="+not-found" />
             </Stack>
             <StatusBar style="auto" />

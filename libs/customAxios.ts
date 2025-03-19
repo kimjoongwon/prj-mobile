@@ -4,7 +4,7 @@ export const AXIOS_INSTANCE = Axios.create({
   baseURL:
     process.env.NODE_ENV === "production"
       ? "https://wallyops.com"
-      : "http://192.168.233.197:3005",
+      : "http://192.168.0.70:3005",
 });
 
 export const customInstance = <T>(

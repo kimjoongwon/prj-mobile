@@ -59,14 +59,22 @@ export const button = cva(
 export const text = cva([], {
   variants: {
     variant: {
-      default: ["text-black", "font-pretendard-black"],
-      bordered: ["text-light-primary", "dark:text-dark-primary"],
-      solid: ["text-white"],
-      light: ["text-light-primary", "dark:text-dark-primary"],
+      bordered: [],
+      solid: [],
+      light: [],
+      default: [],
+    },
+    color: {
+      default: ["dark:text-dark-default", "text-light-default"],
+      primary: ["dark:text-dark-primary", "text-light-primary"],
+      secondary: ["dark:text-dark-secondary-500", "text-light-secondary-500"],
+      success: ["dark:text-dark-success", "text-light-success"],
+      warning: ["dark:text-dark-warning", "text-light-warning"],
+      danger: ["dark:text-dark-danger", "text-light-danger"],
     },
   },
   defaultVariants: {
-    variant: "default",
+    color: "default",
   },
 });
 
@@ -76,13 +84,16 @@ export const Button = (props: ButtonProps) => {
   const { children, variant, color, disabled, className, size, ...rest } =
     props;
 
+  console.log("variant", variant);
+  console.log("color", color);
+  console.log("text class", text({ variant, color }));
   return (
     <Pressable
       {...rest}
       className={button({ className, variant, color, disabled, size })}
     >
       {typeof children === "string" ? (
-        <Text className={text({ variant })}>
+        <Text className={text({ variant, color })}>
           {typeof children === "string" && children}
         </Text>
       ) : (
