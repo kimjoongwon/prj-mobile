@@ -53,6 +53,10 @@ export default function RootLayout() {
     "Pretendard-Thin": require("../assets/fonts/Pretendard-Thin.otf"),
   });
 
+  useEffect(() => {
+    SplashScreen.hideAsync();
+  }, []);
+
   setColorScheme("light");
 
   if (!loaded) {
