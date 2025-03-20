@@ -9,7 +9,7 @@ type ScreenContainerProps = {
 };
 
 const screenContainer = cva([
-  "flex flex-1 dark:bg-dark-background bg-light-background px-5",
+  "flex flex-1 dark:bg-dark-background bg-light-background p-4",
 ]);
 
 export const ScreenContainer = (props: ScreenContainerProps) => {
@@ -20,7 +20,7 @@ export const ScreenContainer = (props: ScreenContainerProps) => {
   return (
     <View
       className={screenContainer({ className })}
-      style={{ paddingTop: safeArea ? insets.top : 0 }}
+      style={{ paddingTop: safeArea ? insets.top : 8 * 4 }}
     >
       {children}
     </View>

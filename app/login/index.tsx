@@ -1,8 +1,5 @@
-import { ScreenContainer } from "@/components/containers/ScreenContainer";
-import {
-  LoginScreen,
-  LoginScreenProvider,
-} from "@/components/screens/Login/LoginScreen";
+import { ScreenContainer } from "@/components/containers";
+import { LoginScreen, LoginScreenProvider } from "@/components/screens";
 import { SplashScreen } from "expo-router";
 import { useEffect } from "react";
 

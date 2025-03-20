@@ -29,7 +29,6 @@ export const mmkv = new MMKV();
 const queryClient = new QueryClient();
 
 export const unstable_settings = {
-  // Ensure any route can link back to `/`
   initialRouteName: "gateway",
 };
 SplashScreen.preventAutoHideAsync();
@@ -54,10 +53,10 @@ export default function RootLayout() {
   });
 
   useEffect(() => {
-    SplashScreen.hideAsync();
-  }, []);
-
-  setColorScheme("light");
+    // if (loaded) {
+    //   router.replace("/login");
+    // }
+  }, [loaded]);
 
   if (!loaded) {
     return null;
@@ -74,7 +73,16 @@ export default function RootLayout() {
               <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
               <Stack.Screen name="gateway" options={{ headerShown: false }} />
               <Stack.Screen name="login" options={{ headerShown: false }} />
-              <Stack.Screen name="gym-select" />
+              <Stack.Screen
+                name="gateway/index"
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="gym-select/index"
+                options={{
+                  headerShown: false,
+                }}
+              />
               <Stack.Screen name="+not-found" />
             </Stack>
             <StatusBar style="auto" />
