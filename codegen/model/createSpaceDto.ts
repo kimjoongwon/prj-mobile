@@ -7,4 +7,5 @@
 export interface CreateSpaceDto {
   label: string;
   name: string;
+  tenantId: string;
 }

@@ -5,7 +5,7 @@ import { View } from "../View/View";
 import { Text } from "../Text/Text";
 import { useEffect } from "react";
 import { action, reaction } from "mobx";
-import { UtilService } from "@/services/UtilService";
+import { UtilService } from "@/services/Util";
 import { MobxProps } from "@/types";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "nativewind";

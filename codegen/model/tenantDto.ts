@@ -13,10 +13,10 @@ export interface TenantDto {
   updatedAt: string;
   /** @nullable */
   removedAt: string | null;
+  main: boolean;
   roleId: string;
   userId: string;
   spaceId: string;
-  default: boolean;
   user?: UserDto;
   space?: SpaceDto;
 }

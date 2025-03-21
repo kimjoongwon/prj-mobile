@@ -5092,6 +5092,65 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       return useMutation(mutationOptions);
     }
     
+export const verify = (
+    verifyBody: BodyType<string>,
+ options?: SecondParameter<typeof customInstance>,signal?: AbortSignal
+) => {
+      
+      
+      return customInstance<unknown>(
+      {url: `/api/v1/auth/token/verify`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: verifyBody, signal
+    },
+      options);
+    }
+  
+
+
+export const getVerifyMutationOptions = <TError = ErrorType<void>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof verify>>, TError,{data: BodyType<string>}, TContext>, request?: SecondParameter<typeof customInstance>}
+): UseMutationOptions<Awaited<ReturnType<typeof verify>>, TError,{data: BodyType<string>}, TContext> => {
+    
+const mutationKey = ['verify'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof verify>>, {data: BodyType<string>}> = (props) => {
+          const {data} = props ?? {};
+
+          return  verify(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type VerifyMutationResult = NonNullable<Awaited<ReturnType<typeof verify>>>
+    export type VerifyMutationBody = BodyType<string>
+    export type VerifyMutationError = ErrorType<void>
+
+    export const useVerify = <TError = ErrorType<void>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof verify>>, TError,{data: BodyType<string>}, TContext>, request?: SecondParameter<typeof customInstance>}
+): UseMutationResult<
+        Awaited<ReturnType<typeof verify>>,
+        TError,
+        {data: BodyType<string>},
+        TContext
+      > => {
+
+      const mutationOptions = getVerifyMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    
 export const createRole = (
     createRoleDto: BodyType<CreateRoleDto>,
  options?: SecondParameter<typeof customInstance>,signal?: AbortSignal

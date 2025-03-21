@@ -4,43 +4,39 @@ import {
   ThemeProvider,
 } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import {
-  Stack,
-  useNavigationContainerRef,
-  useRootNavigationState,
-  useRouter,
-} from "expo-router";
-import * as SplashScreen from "expo-splash-screen";
+import { Stack, useNavigationContainerRef } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { useEffect } from "react";
 import { useColorScheme } from "nativewind";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { MMKV } from "react-native-mmkv";
 import { useReactQueryDevTools } from "@dev-plugins/react-query";
 import { useMMKVDevTools } from "@dev-plugins/react-native-mmkv";
 import { useReactNavigationDevTools } from "@dev-plugins/react-navigation";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { SheetProvider } from "react-native-actions-sheet";
+import * as SplashScreen from "expo-splash-screen";
+import { App } from "@/services";
+import { ActivityIndicator } from "react-native";
+import { observer } from "mobx-react-lite";
+import { AuthController } from "@/controllers";
 import "react-native-reanimated";
 import "../global.css";
 import "@/components/sheets";
 
-export const mmkv = new MMKV();
-const queryClient = new QueryClient();
-
-export const unstable_settings = {
-  initialRouteName: "gateway",
-};
 SplashScreen.preventAutoHideAsync();
 
-export default function RootLayout() {
+export const unstable_settings = { initialRouteName: "gateway" };
+export const queryClient = new QueryClient();
+export const app = new App();
+
+export const RootLayout = observer(() => {
   const navigationRef = useNavigationContainerRef();
   useReactNavigationDevTools(navigationRef);
   useReactQueryDevTools(queryClient);
   useMMKVDevTools();
 
-  const { colorScheme, setColorScheme } = useColorScheme();
-  const [loaded] = useFonts({
+  const { colorScheme } = useColorScheme();
+
+  const [isFontLoaded] = useFonts({
     "Pretendard-Black": require("../assets/fonts/Pretendard-Black.otf"),
     "Pretendard-Bold": require("../assets/fonts/Pretendard-Bold.otf"),
     "Pretendard-ExtraBold": require("../assets/fonts/Pretendard-ExtraBold.otf"),
@@ -52,14 +48,8 @@ export default function RootLayout() {
     "Pretendard-Thin": require("../assets/fonts/Pretendard-Thin.otf"),
   });
 
-  useEffect(() => {
-    // if (loaded) {
-    //   router.replace("/login");
-    // }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
+  if (!app.isInitialized && !isFontLoaded) {
+    return <ActivityIndicator />;
   }
 
   return (
@@ -69,6 +59,7 @@ export default function RootLayout() {
           value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
         >
           <SheetProvider>
+            <AuthController />
             <Stack>
               <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
               <Stack.Screen name="gateway" options={{ headerShown: false }} />
@@ -91,4 +82,4 @@ export default function RootLayout() {
       </SafeAreaProvider>
     </QueryClientProvider>
   );
-}
+});
