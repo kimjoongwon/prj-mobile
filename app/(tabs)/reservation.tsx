@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { Button } from "@/components/ui/common/Button/Button";
 import { SheetManager } from "react-native-actions-sheet";
 
-const HomeScreen = observer(() => {
+const ReservationScreen = observer(() => {
   useEffect(() => {
     setTimeout(() => {
       SplashScreen.hideAsync();
@@ -16,9 +16,9 @@ const HomeScreen = observer(() => {
   return (
     <View>
       <Button onPress={() => SheetManager.show("gyms")}>Action Sheet</Button>
-      <Text>HomeScreen</Text>
+      <Text>Reservation</Text>
     </View>
   );
 });
 
-export default HomeScreen;
+export default ReservationScreen;

@@ -6,10 +6,10 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 import { HapticTab } from "@/components/ui/common/HapticTab/HapticTab";
 import {
   Users,
-  Calendar,
   CheckCheckIcon,
   User,
   LucideScanQrCode,
+  Calendar,
 } from "lucide-react-native";
 import { Button } from "@/components/ui/common/Button/Button";
 
@@ -19,12 +19,11 @@ export default function TabLayout() {
 
   return (
     <Tabs
-      // initialRouteName="/my"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].primary,
         headerShown: true,
         headerLeft: () => (
-          <Button onPress={() => router.push("/gym-select")}>가즈아</Button>
+          <Button onPress={() => router.push("/gateway")}>가즈아</Button>
         ),
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
@@ -36,13 +35,13 @@ export default function TabLayout() {
         }),
       }}
     >
-      {/* <Tabs.Screen
-        name="index"
+      <Tabs.Screen
+        name="reservation"
         options={{
           title: "예약",
           tabBarIcon: ({ color }) => <Calendar size={24} color={color} />,
         }}
-      /> */}
+      />
       <Tabs.Screen
         name="community"
         options={{

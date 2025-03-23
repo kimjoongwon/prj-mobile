@@ -28,7 +28,7 @@ export const unstable_settings = { initialRouteName: "gateway" };
 export const queryClient = new QueryClient();
 export const app = new App();
 
-export const RootLayout = observer(() => {
+const RootLayout = observer(() => {
   const navigationRef = useNavigationContainerRef();
   useReactNavigationDevTools(navigationRef);
   useReactQueryDevTools(queryClient);
@@ -48,9 +48,13 @@ export const RootLayout = observer(() => {
     "Pretendard-Thin": require("../assets/fonts/Pretendard-Thin.otf"),
   });
 
-  if (!app.isInitialized && !isFontLoaded) {
+  if (!isFontLoaded) {
     return <ActivityIndicator />;
   }
+
+  SplashScreen.hideAsync();
+
+  console.log("_layout");
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -61,13 +65,15 @@ export const RootLayout = observer(() => {
           <SheetProvider>
             <AuthController />
             <Stack>
-              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-              <Stack.Screen name="gateway" options={{ headerShown: false }} />
-              <Stack.Screen name="login" options={{ headerShown: false }} />
               <Stack.Screen
                 name="gateway/index"
                 options={{ headerShown: false }}
               />
+              <Stack.Screen
+                name="login/index"
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
               <Stack.Screen
                 name="gym-select/index"
                 options={{
@@ -83,3 +89,5 @@ export const RootLayout = observer(() => {
     </QueryClientProvider>
   );
 });
+
+export default RootLayout;
