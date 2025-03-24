@@ -5,10 +5,10 @@ import { View } from "../View/View";
 import { Text } from "../Text/Text";
 import { useEffect } from "react";
 import { action, reaction } from "mobx";
-import { UtilService } from "@/services/Util";
 import { MobxProps } from "@/types";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "nativewind";
+import { Util } from "@/services";
 
 const input = cva(
   [
@@ -46,7 +46,7 @@ export type InputProps<T> = TextInputProps &
 
 export const Input = observer(<T extends object>(props: InputProps<T>) => {
   const { className, variant, label, state, path, ...rest } = props;
-  const initialValue = UtilService.get(state, path);
+  const initialValue = Util.get(state, path);
   const { colorScheme } = useColorScheme();
   const localState = useLocalObservable(() => ({
     value: initialValue,
@@ -56,7 +56,7 @@ export const Input = observer(<T extends object>(props: InputProps<T>) => {
     const disposer = reaction(
       () => localState.value,
       (value) => {
-        UtilService.set(state, path, value);
+        Util.set(state, path, value);
       }
     );
 

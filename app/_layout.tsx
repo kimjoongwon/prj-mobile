@@ -14,22 +14,21 @@ import { useReactNavigationDevTools } from "@dev-plugins/react-navigation";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { SheetProvider } from "react-native-actions-sheet";
 import * as SplashScreen from "expo-splash-screen";
-import { App } from "@/services";
 import { ActivityIndicator } from "react-native";
 import { observer } from "mobx-react-lite";
 import { AuthController } from "@/controllers";
 import "react-native-reanimated";
 import "../global.css";
 import "@/components/sheets";
+import "@/services/init";
 
 SplashScreen.preventAutoHideAsync();
 
-export const unstable_settings = { initialRouteName: "gateway" };
 export const queryClient = new QueryClient();
-export const app = new App();
 
 const RootLayout = observer(() => {
   const navigationRef = useNavigationContainerRef();
+  // Expo DevTools
   useReactNavigationDevTools(navigationRef);
   useReactQueryDevTools(queryClient);
   useMMKVDevTools();
@@ -54,8 +53,6 @@ const RootLayout = observer(() => {
 
   SplashScreen.hideAsync();
 
-  console.log("_layout");
-
   return (
     <QueryClientProvider client={queryClient}>
       <SafeAreaProvider>
@@ -73,14 +70,20 @@ const RootLayout = observer(() => {
                 name="login/index"
                 options={{ headerShown: false }}
               />
-              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen //
+                name="(tabs)"
+                options={{ headerShown: false }}
+              />
               <Stack.Screen
                 name="gym-select/index"
                 options={{
                   headerShown: false,
                 }}
               />
-              <Stack.Screen name="+not-found" />
+              <Stack.Screen
+                //
+                name="+not-found"
+              />
             </Stack>
             <StatusBar style="auto" />
           </SheetProvider>
