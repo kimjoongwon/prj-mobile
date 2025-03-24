@@ -51,8 +51,6 @@ const RootLayout = observer(() => {
     return <ActivityIndicator />;
   }
 
-  SplashScreen.hideAsync();
-
   return (
     <QueryClientProvider client={queryClient}>
       <SafeAreaProvider>

@@ -1,16 +1,17 @@
 import { MMKV } from "react-native-mmkv";
 import { App } from "./App";
 
-export class DB {
+export class Storage {
   databases: Map<string, MMKV> = new Map();
   app: App;
 
   constructor(app: App) {
-    this.app = app;
+    console.log("Storage Initialized");
     this.databases.set("common", new MMKV());
+    this.app = app;
   }
 
-  getCommonDatabase() {
+  get commonDB() {
     return this.databases.get("common");
   }
 
@@ -22,7 +23,7 @@ export class DB {
     this.databases.set(tenantId, mmkv);
   }
 
-  getDatabase({ tenantId }: { tenantId: string }) {
+  database({ tenantId }: { tenantId: string }) {
     return this.databases.get(tenantId);
   }
 }

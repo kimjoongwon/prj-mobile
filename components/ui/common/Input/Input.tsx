@@ -67,8 +67,6 @@ export const Input = observer(<T extends object>(props: InputProps<T>) => {
     localState.value = value;
   });
 
-  console.log("input class", input({ className, variant }));
-
   return (
     <View className="gap-y-2">
       {label && <Text variant="title">{label}</Text>}

@@ -84,9 +84,6 @@ export const Button = (props: ButtonProps) => {
   const { children, variant, color, disabled, className, size, ...rest } =
     props;
 
-  console.log("variant", variant);
-  console.log("color", color);
-  console.log("text class", text({ variant, color }));
   return (
     <Pressable
       {...rest}
