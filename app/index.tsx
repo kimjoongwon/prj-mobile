@@ -8,8 +8,7 @@ const GatewayScreen = () => {
   const router = useRouter();
 
   useEffect(() => {
-    app.isInitialized = true;
-    app.setRouter(router);
+    app.setIsInitialized(true);
   }, []);
 
   return (

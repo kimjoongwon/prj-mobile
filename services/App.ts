@@ -25,4 +25,8 @@ export class App {
     this.isInitialized = true;
     makeAutoObservable(this);
   }
+
+  setIsInitialized(isInitialized: boolean) {
+    this.isInitialized = isInitialized;
+  }
 }
