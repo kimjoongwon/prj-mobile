@@ -1,5 +1,5 @@
 import { Text, View } from "@/components/ui";
-import { app, token } from "@/services/init";
+import { app } from "@/services/init";
 import { Redirect } from "expo-router";
 import { observer } from "mobx-react-lite";
 
@@ -11,7 +11,7 @@ export const AuthController = observer(() => {
   // 유저의 토큰이 존재하지 않는다면 로그인 페이지로 이동
   if (app.isInitialized) {
     if (app.auth?.user.isLoggedIn) {
-      if (token.valid) {
+      if (app.token.valid) {
         return <Redirect href="/(tabs)/my" />;
       } else {
         return <Redirect href="/login" />;

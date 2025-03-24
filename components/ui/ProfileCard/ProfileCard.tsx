@@ -2,7 +2,6 @@ import React from "react";
 import { Text } from "../common/Text/Text";
 import { Button } from "../common/Button/Button";
 import { Card } from "../common/Card/Card";
-import { mmkv } from "@/app/_layout";
 import { useRouter } from "expo-router";
 import { Avatar } from "../common/Avatar/Avatar";
 import { View } from "../common";
@@ -10,7 +9,6 @@ import { View } from "../common";
 export const ProfileCard = () => {
   const router = useRouter();
   const handleLogout = () => {
-    mmkv.delete("accessToken");
     router.replace("/gateway");
   };
 

@@ -8,7 +8,7 @@ import { action, reaction } from "mobx";
 import { MobxProps } from "@/types";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "nativewind";
-import { Util } from "@/services";
+import { Util } from "@/services/Util";
 
 const input = cva(
   [

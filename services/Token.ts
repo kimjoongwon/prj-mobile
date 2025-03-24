@@ -19,6 +19,7 @@ export class Token {
 
   async verify() {
     const isValid = !!(await verifyToken());
+    console.log("Token is valid: ", isValid);
     this.valid = isValid;
   }
 
