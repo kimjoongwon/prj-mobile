@@ -1,15 +1,16 @@
-import { useFormField } from "@shared/hooks";
-import { MobxProps } from "@shared/types";
+import { useFormField } from "@cocrepo/hooks";
+import type { MobxProps } from "@cocrepo/types";
 import { get } from "lodash-es";
 import { action } from "mobx";
 import { observer } from "mobx-react-lite";
-import React, { useCallback } from "react";
+import type React from "react";
+import { useCallback } from "react";
 import {
-	ListSelectMultipleProps as BaseListSelectMultipleProps,
-	ListSelectProps as BaseListSelectProps,
-	ListSelectSingleProps as BaseListSelectSingleProps,
+	type ListSelectMultipleProps as BaseListSelectMultipleProps,
+	type ListSelectProps as BaseListSelectProps,
+	type ListSelectSingleProps as BaseListSelectSingleProps,
 	ListSelect as ListSelectComponent,
-	SelectionMode,
+	type SelectionMode,
 } from "./ListSelect";
 
 // Single 모드용 MobX Props
@@ -64,7 +65,7 @@ export function ListSelect<T extends object, D extends object>(
 			action((selectedData: D | null) => {
 				localState.value = selectedData;
 			}),
-			[localState],
+			[localState.value],
 		);
 
 		return (
@@ -89,7 +90,7 @@ export function ListSelect<T extends object, D extends object>(
 			action((selectedData: D[]) => {
 				localState.value = selectedData;
 			}),
-			[localState],
+			[localState.value],
 		);
 
 		return (
@@ -111,8 +112,9 @@ ObservedListSelect.displayName = "MobxListSelect";
 // 기본 컴포넌트도 export
 export { ListSelectComponent };
 export type {
+	BaseListSelectMultipleProps,
 	BaseListSelectProps,
 	BaseListSelectSingleProps,
-	BaseListSelectMultipleProps,
-	SelectionMode,
+	SelectionMode
 };
+

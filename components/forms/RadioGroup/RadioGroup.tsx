@@ -1,13 +1,3 @@
-import { MobxProps } from "@shared/types";
-import React, { useCallback, useMemo, useState } from "react";
-import { Pressable, TextStyle, View, ViewProps, ViewStyle } from "react-native";
-import Animated, {
-	Easing,
-	interpolate,
-	useAnimatedStyle,
-	useSharedValue,
-	withTiming,
-} from "react-native-reanimated";
 import { useTheme } from "@/components/contexts/ThemeContext";
 import {
 	baseGroupStyles,
@@ -17,6 +7,22 @@ import {
 	styles,
 } from "@/components/forms/RadioGroup/RadioGroup.styles";
 import { Text } from "@/components/ui/Text";
+import type { MobxProps } from "@cocrepo/types";
+import React, { useCallback, useMemo, useState } from "react";
+import {
+	Pressable,
+	type TextStyle,
+	View,
+	type ViewProps,
+	type ViewStyle,
+} from "react-native";
+import Animated, {
+	Easing,
+	interpolate,
+	useAnimatedStyle,
+	useSharedValue,
+	withTiming,
+} from "react-native-reanimated";
 
 export type RadioGroupSize = "sm" | "md" | "lg";
 export type RadioGroupColor =

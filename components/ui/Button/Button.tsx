@@ -1,15 +1,15 @@
-import React from "react";
+import { useTheme } from "@/components/contexts/ThemeContext";
+import { Text } from "@/components/ui/Text";
+import type React from "react";
 import {
 	ActivityIndicator,
 	StyleSheet,
-	TextStyle,
+	type TextStyle,
 	TouchableOpacity,
-	TouchableOpacityProps,
+	type TouchableOpacityProps,
 	View,
-	ViewStyle,
+	type ViewStyle,
 } from "react-native";
-import { useTheme } from "@/components/contexts/ThemeContext";
-import { Text } from "@/components/ui/Text";
 
 export type ButtonVariant =
 	| "solid"

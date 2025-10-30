@@ -1,16 +1,16 @@
-import { useFormField } from "@shared/hooks";
-import { MobxProps } from "@shared/types";
+import { useFormField } from "@cocrepo/hooks";
+import type { MobxProps } from "@cocrepo/types";
 import { get } from "lodash-es";
 import { action } from "mobx";
 import { observer } from "mobx-react-lite";
 import {
-	RadioGroupProps as BaseRadioGroupProps,
-	MobxRadioGroupProps,
-	RadioGroupColor,
+	type RadioGroupProps as BaseRadioGroupProps,
+	type MobxRadioGroupProps,
+	type RadioGroupColor,
 	RadioGroup as RadioGroupComponent,
-	RadioGroupOrientation,
-	RadioGroupRef,
-	RadioGroupSize,
+	type RadioGroupOrientation,
+	type RadioGroupRef,
+	type RadioGroupSize,
 } from "./RadioGroup";
 
 export interface RadioGroupProps<T, D = any>
@@ -47,10 +47,8 @@ RadioGroup.displayName = "MobxRadioGroup";
 
 export { RadioGroupComponent };
 export type {
-	BaseRadioGroupProps,
-	RadioGroupSize,
-	RadioGroupColor,
+	BaseRadioGroupProps, MobxRadioGroupProps, RadioGroupColor,
 	RadioGroupOrientation,
-	RadioGroupRef,
-	MobxRadioGroupProps,
+	RadioGroupRef, RadioGroupSize
 };
+
