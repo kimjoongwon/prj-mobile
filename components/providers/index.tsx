@@ -1,9 +1,9 @@
 export * from "./ThemeProvider";
 
-import { PropsWithChildren, ReactNode } from "react";
+import { DarkModeSwitch } from "@/components/ui/DarkModeSwitch";
+import type { PropsWithChildren, ReactNode } from "react";
 import { StyleSheet, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { DarkModeSwitch } from "@/components/ui/DarkModeSwitch";
 import { ThemeProvider } from "./ThemeProvider";
 
 interface ProvidersProps extends PropsWithChildren {
