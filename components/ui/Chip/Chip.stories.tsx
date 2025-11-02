@@ -1,62 +1,62 @@
-import { Ionicons } from "@expo/vector-icons";
-import type { Meta, StoryObj } from "@storybook/react-native";
-import { Image, View } from "react-native";
-import type { ChipProps } from "@/components/ui/Chip/Chip";
-import { Chip } from "@/components/ui/Chip/Chip";
-import { Text } from "@/components/ui/Text";
+import { Ionicons } from '@expo/vector-icons';
+import type { Meta, StoryObj } from '@storybook/react-native';
+import { Image, View } from 'react-native';
+import { Text } from '../Text';
+import type { ChipProps } from './Chip';
+import { Chip } from './Chip';
 
 const meta: Meta<ChipProps> = {
-	title: "components/Chip",
+	title: 'components/Chip',
 	component: Chip,
 	parameters: {
-		layout: "centered",
+		layout: 'centered',
 		docs: {
 			description: {
 				component:
-					"모던한 디자인의 정적 Chip 컴포넌트입니다. 다양한 변형, 색상, 크기를 지원하며 UI 표시 역할만 합니다.",
+					'모던한 디자인의 정적 Chip 컴포넌트입니다. 다양한 변형, 색상, 크기를 지원하며 UI 표시 역할만 합니다.',
 			},
 		},
 	},
 	argTypes: {
 		variant: {
-			control: { type: "select" },
-			options: ["solid", "bordered", "light", "flat", "faded", "shadow"],
-			description: "칩 변형",
+			control: { type: 'select' },
+			options: ['solid', 'bordered', 'light', 'flat', 'faded', 'shadow'],
+			description: '칩 변형',
 		},
 		color: {
-			control: { type: "select" },
+			control: { type: 'select' },
 			options: [
-				"default",
-				"primary",
-				"secondary",
-				"success",
-				"warning",
-				"danger",
+				'default',
+				'primary',
+				'secondary',
+				'success',
+				'warning',
+				'danger',
 			],
-			description: "칩 색상",
+			description: '칩 색상',
 		},
 		size: {
-			control: { type: "select" },
-			options: ["sm", "md", "lg"],
-			description: "칩 크기",
+			control: { type: 'select' },
+			options: ['sm', 'md', 'lg'],
+			description: '칩 크기',
 		},
 		radius: {
-			control: { type: "select" },
-			options: ["none", "sm", "md", "lg", "full"],
-			description: "모서리 둥글기",
+			control: { type: 'select' },
+			options: ['none', 'sm', 'md', 'lg', 'full'],
+			description: '모서리 둥글기',
 		},
 		isDisabled: {
-			control: { type: "boolean" },
-			description: "비활성화 상태",
+			control: { type: 'boolean' },
+			description: '비활성화 상태',
 		},
 		children: {
-			control: { type: "text" },
-			description: "칩 내용",
+			control: { type: 'text' },
+			description: '칩 내용',
 		},
 	},
 	decorators: [
-		(Story) => (
-			<View style={{ padding: 16, alignItems: "flex-start" }}>
+		Story => (
+			<View style={{ padding: 16, alignItems: 'flex-start' }}>
 				<Story />
 			</View>
 		),
@@ -68,12 +68,12 @@ type Story = StoryObj<ChipProps>;
 
 export const Default: Story = {
 	args: {
-		children: "Default Chip",
+		children: 'Default Chip',
 	},
 };
 
 export const WithEndContent: Story = {
-	render: (args) => (
+	render: args => (
 		<Chip
 			{...args}
 			variant="bordered"
@@ -87,7 +87,7 @@ export const WithEndContent: Story = {
 };
 
 export const WithStartIcon: Story = {
-	render: (args) => (
+	render: args => (
 		<Chip
 			{...args}
 			variant="solid"
@@ -101,7 +101,7 @@ export const WithStartIcon: Story = {
 };
 
 export const WithEndIcon: Story = {
-	render: (args) => (
+	render: args => (
 		<Chip
 			{...args}
 			variant="bordered"
@@ -115,14 +115,14 @@ export const WithEndIcon: Story = {
 };
 
 export const WithAvatar: Story = {
-	render: (args) => (
+	render: args => (
 		<Chip
 			{...args}
 			variant="light"
 			color="success"
 			avatar={
 				<Image
-					source={{ uri: "https://i.pravatar.cc/40?img=1" }}
+					source={{ uri: 'https://i.pravatar.cc/40?img=1' }}
 					style={{ width: 20, height: 20, borderRadius: 10 }}
 				/>
 			}
@@ -136,8 +136,8 @@ export const WithAvatar: Story = {
 export const AllVariants: Story = {
 	render: () => (
 		<View style={{ gap: 16 }}>
-			<Text style={{ fontSize: 18, fontWeight: "bold" }}>All Variants</Text>
-			<View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
+			<Text style={{ fontSize: 18, fontWeight: 'bold' }}>All Variants</Text>
+			<View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
 				<Chip variant="solid" color="primary">
 					Solid
 				</Chip>
@@ -165,8 +165,8 @@ export const AllVariants: Story = {
 export const AllColors: Story = {
 	render: () => (
 		<View style={{ gap: 16 }}>
-			<Text style={{ fontSize: 18, fontWeight: "bold" }}>All Colors</Text>
-			<View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
+			<Text style={{ fontSize: 18, fontWeight: 'bold' }}>All Colors</Text>
+			<View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
 				<Chip color="default">Default</Chip>
 				<Chip color="primary">Primary</Chip>
 				<Chip color="secondary">Secondary</Chip>
@@ -182,8 +182,8 @@ export const AllColors: Story = {
 export const AllSizes: Story = {
 	render: () => (
 		<View style={{ gap: 16 }}>
-			<Text style={{ fontSize: 18, fontWeight: "bold" }}>All Sizes</Text>
-			<View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
+			<Text style={{ fontSize: 18, fontWeight: 'bold' }}>All Sizes</Text>
+			<View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
 				<Chip size="sm" color="primary">
 					Small
 				</Chip>
@@ -202,8 +202,8 @@ export const AllSizes: Story = {
 export const AllRadius: Story = {
 	render: () => (
 		<View style={{ gap: 16 }}>
-			<Text style={{ fontSize: 18, fontWeight: "bold" }}>All Radius</Text>
-			<View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
+			<Text style={{ fontSize: 18, fontWeight: 'bold' }}>All Radius</Text>
+			<View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
 				<Chip radius="none" color="primary">
 					None
 				</Chip>
@@ -228,8 +228,8 @@ export const AllRadius: Story = {
 export const WithContentExamples: Story = {
 	render: () => (
 		<View style={{ gap: 16 }}>
-			<Text style={{ fontSize: 18, fontWeight: "bold" }}>Content Examples</Text>
-			<View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
+			<Text style={{ fontSize: 18, fontWeight: 'bold' }}>Content Examples</Text>
+			<View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
 				<Chip variant="solid" color="primary">
 					Solid Chip
 				</Chip>
@@ -255,14 +255,14 @@ export const WithContentExamples: Story = {
 							style={{
 								width: 16,
 								height: 16,
-								backgroundColor: "#f5a524",
+								backgroundColor: '#f5a524',
 								borderRadius: 8,
-								justifyContent: "center",
-								alignItems: "center",
+								justifyContent: 'center',
+								alignItems: 'center',
 							}}
 						>
 							<Text
-								style={{ color: "white", fontSize: 10, fontWeight: "bold" }}
+								style={{ color: 'white', fontSize: 10, fontWeight: 'bold' }}
 							>
 								!
 							</Text>
@@ -280,8 +280,8 @@ export const WithContentExamples: Story = {
 export const Disabled: Story = {
 	render: () => (
 		<View style={{ gap: 16 }}>
-			<Text style={{ fontSize: 18, fontWeight: "bold" }}>Disabled States</Text>
-			<View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
+			<Text style={{ fontSize: 18, fontWeight: 'bold' }}>Disabled States</Text>
+			<View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
 				<Chip isDisabled>Disabled</Chip>
 				<Chip isDisabled color="primary">
 					Disabled Primary
@@ -310,10 +310,10 @@ export const RealWorldExamples: Story = {
 	render: () => (
 		<View style={{ gap: 24 }}>
 			<View>
-				<Text style={{ fontSize: 16, fontWeight: "600", marginBottom: 8 }}>
+				<Text style={{ fontSize: 16, fontWeight: '600', marginBottom: 8 }}>
 					기술 스택
 				</Text>
-				<View style={{ flexDirection: "row", flexWrap: "wrap", gap: 6 }}>
+				<View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
 					<Chip size="sm" variant="flat" color="primary">
 						React Native
 					</Chip>
@@ -330,10 +330,10 @@ export const RealWorldExamples: Story = {
 			</View>
 
 			<View>
-				<Text style={{ fontSize: 16, fontWeight: "600", marginBottom: 8 }}>
+				<Text style={{ fontSize: 16, fontWeight: '600', marginBottom: 8 }}>
 					선택된 필터
 				</Text>
-				<View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
+				<View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
 					<Chip
 						variant="solid"
 						color="primary"
@@ -359,10 +359,10 @@ export const RealWorldExamples: Story = {
 			</View>
 
 			<View>
-				<Text style={{ fontSize: 16, fontWeight: "600", marginBottom: 8 }}>
+				<Text style={{ fontSize: 16, fontWeight: '600', marginBottom: 8 }}>
 					상태 표시
 				</Text>
-				<View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
+				<View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
 					<Chip variant="light" color="success">
 						<Text>● </Text>Active
 					</Chip>

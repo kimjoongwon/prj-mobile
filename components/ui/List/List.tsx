@@ -1,5 +1,5 @@
-import React from "react";
-import { ScrollView, View, type ViewStyle } from "react-native";
+import React from 'react';
+import { ScrollView, View, type ViewStyle } from 'react-native';
 
 export interface ListProps<T> {
 	data: T[];
@@ -35,8 +35,8 @@ export const List = <T extends object>(props: ListProps<T>) => {
 	const containerStyle: ViewStyle = {
 		...contentContainerStyle,
 		...(horizontal
-			? { flexDirection: "row", gap: gap }
-			: { flexDirection: "column", gap: gap }),
+			? { flexDirection: 'row', gap: gap }
+			: { flexDirection: 'column', gap: gap }),
 	};
 
 	return (

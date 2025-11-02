@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export const sizes = {
 	sm: {
@@ -24,8 +24,8 @@ export const sizes = {
 export const baseContainerStyles = StyleSheet.create({
 	base: {
 		borderRadius: 8,
-		flexDirection: "row",
-		alignItems: "center",
+		flexDirection: 'row',
+		alignItems: 'center',
 	},
 	disabled: {
 		opacity: 0.5,
@@ -38,13 +38,13 @@ export const variantStyles = StyleSheet.create({
 	},
 	bordered: {
 		borderWidth: 1,
-		backgroundColor: "transparent",
+		backgroundColor: 'transparent',
 	},
 	borderedFocused: {
 		borderWidth: 2,
 	},
 	underlined: {
-		backgroundColor: "transparent",
+		backgroundColor: 'transparent',
 		borderRadius: 0,
 		borderBottomWidth: 1,
 		paddingHorizontal: 0,
@@ -59,22 +59,22 @@ export const variantStyles = StyleSheet.create({
 
 export const labelStyles = StyleSheet.create({
 	base: {
-		fontWeight: "500",
+		fontWeight: '500',
 	},
 	outside: {
 		marginBottom: 4,
 	},
 	insideAbsolute: {
-		position: "absolute",
+		position: 'absolute',
 	},
 });
 
 export const styles = StyleSheet.create({
 	container: {
-		width: "100%",
+		width: '100%',
 	},
 	inputWrapper: {
-		position: "relative",
+		position: 'relative',
 	},
 	contentContainer: {
 		marginHorizontal: 4,
@@ -83,22 +83,22 @@ export const styles = StyleSheet.create({
 		padding: 4,
 	},
 	requiredStar: {
-		color: "#f31260",
+		color: '#f31260',
 	},
 	description: {
 		fontSize: 12,
-		color: "#71717a",
+		color: '#71717a',
 		marginTop: 4,
 	},
 	errorMessage: {
 		fontSize: 12,
-		color: "#f31260",
+		color: '#f31260',
 		marginTop: 4,
 	},
 	outsideLeftContainer: {
-		flexDirection: "row",
-		alignItems: "flex-start",
-		width: "100%",
+		flexDirection: 'row',
+		alignItems: 'flex-start',
+		width: '100%',
 	},
 	outsideLeftLabelContainer: {
 		width: 100,

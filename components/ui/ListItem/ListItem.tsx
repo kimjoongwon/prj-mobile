@@ -1,11 +1,11 @@
-import React from "react";
-import { Image, View, ViewStyle } from "react-native";
-import { useTheme } from "@/components/contexts/ThemeContext";
-import { sizes, styles } from "@/components/ui/ListItem/ListItem.styles";
-import { Text } from "@/components/ui/Text";
+import React from 'react';
+import { Image, View, ViewStyle } from 'react-native';
+import { useTheme } from '../../contexts/ThemeContext';
+import { Text } from '../Text';
+import { sizes, styles } from './ListItem.styles';
 
-export type ListItemVariant = "default" | "card" | "simple";
-export type ListItemSize = "sm" | "md" | "lg";
+export type ListItemVariant = 'default' | 'card' | 'simple';
+export type ListItemSize = 'sm' | 'md' | 'lg';
 
 export interface ListItemProps {
 	title: string;
@@ -20,13 +20,13 @@ export interface ListItemProps {
 	isSelected?: boolean;
 }
 
-export const ListItem: React.FC<ListItemProps> = (props) => {
+export const ListItem: React.FC<ListItemProps> = props => {
 	const {
 		title,
 		description,
 		imageUrl,
-		variant = "default",
-		size = "md",
+		variant = 'default',
+		size = 'md',
 		showImage = true,
 		startContent,
 		endContent,
@@ -57,8 +57,8 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
 		minHeight: sizeConfig.height,
 		paddingHorizontal: sizeConfig.paddingHorizontal,
 		paddingVertical: sizeConfig.paddingVertical,
-		...(variant === "card" && styles.cardVariant),
-		...(variant === "simple" && styles.simpleVariant),
+		...(variant === 'card' && styles.cardVariant),
+		...(variant === 'simple' && styles.simpleVariant),
 		backgroundColor: theme.colors.content1.DEFAULT,
 		borderColor: isSelected
 			? theme.colors.primary.DEFAULT
@@ -105,7 +105,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
 									fontSize: sizeConfig.descriptionFontSize,
 								},
 							]}
-							numberOfLines={size === "sm" ? 1 : 2}
+							numberOfLines={size === 'sm' ? 1 : 2}
 						>
 							{description}
 						</Text>

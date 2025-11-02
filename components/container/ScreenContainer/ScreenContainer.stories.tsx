@@ -1,34 +1,34 @@
-import { Button } from "@/components/ui/Button";
-import { Text } from "@/components/ui/Text";
-import type { Meta, StoryObj } from "@storybook/react";
-import { StyleSheet, View } from "react-native";
-import { ScreenContainerView } from "./ScreenContainerView";
+import type { Meta, StoryObj } from '@storybook/react';
+import { StyleSheet, View } from 'react-native';
+import { Button } from '../../ui/Button';
+import { Text } from '../../ui/Text';
+import { ScreenContainerView } from './ScreenContainerView';
 
 const meta: Meta<typeof ScreenContainerView> = {
-	title: "Container/ScreenContainer",
+	title: 'Container/ScreenContainer',
 	component: ScreenContainerView,
 	parameters: {
-		layout: "fullscreen",
+		layout: 'fullscreen',
 		docs: {
 			description: {
 				component:
-					"스크린 전체를 감싸는 컨테이너 컴포넌트입니다. 다크/라이트 모드에 따라 배경색이 자동으로 설정되며, SafeAreaView와 StatusBar를 제어할 수 있습니다.",
+					'스크린 전체를 감싸는 컨테이너 컴포넌트입니다. 다크/라이트 모드에 따라 배경색이 자동으로 설정되며, SafeAreaView와 StatusBar를 제어할 수 있습니다.',
 			},
 		},
 	},
 	argTypes: {
 		statusBarStyle: {
-			control: { type: "select" },
-			options: ["light-content", "dark-content", "auto"],
-			description: "StatusBar 스타일",
+			control: { type: 'select' },
+			options: ['light-content', 'dark-content', 'auto'],
+			description: 'StatusBar 스타일',
 		},
 		backgroundColor: {
-			control: { type: "color" },
-			description: "커스텀 배경색 (선택사항)",
+			control: { type: 'color' },
+			description: '커스텀 배경색 (선택사항)',
 		},
 	},
 	args: {
-		statusBarStyle: "auto",
+		statusBarStyle: 'auto',
 	},
 };
 
@@ -50,7 +50,7 @@ const DemoContent: React.FC = () => (
 );
 
 export const Default: Story = {
-	render: (args) => (
+	render: args => (
 		<ScreenContainerView {...args}>
 			<DemoContent />
 		</ScreenContainerView>
@@ -58,7 +58,7 @@ export const Default: Story = {
 };
 
 export const WithoutSafeArea: Story = {
-	render: (args) => (
+	render: args => (
 		<ScreenContainerView {...args}>
 			<DemoContent />
 		</ScreenContainerView>
@@ -66,7 +66,7 @@ export const WithoutSafeArea: Story = {
 	parameters: {
 		docs: {
 			description: {
-				story: "SafeArea를 사용하지 않는 버전입니다.",
+				story: 'SafeArea를 사용하지 않는 버전입니다.',
 			},
 		},
 	},
@@ -74,9 +74,9 @@ export const WithoutSafeArea: Story = {
 
 export const LightStatusBar: Story = {
 	args: {
-		statusBarStyle: "light-content",
+		statusBarStyle: 'light-content',
 	},
-	render: (args) => (
+	render: args => (
 		<ScreenContainerView {...args}>
 			<DemoContent />
 		</ScreenContainerView>
@@ -84,7 +84,7 @@ export const LightStatusBar: Story = {
 	parameters: {
 		docs: {
 			description: {
-				story: "StatusBar 스타일을 light-content로 고정합니다.",
+				story: 'StatusBar 스타일을 light-content로 고정합니다.',
 			},
 		},
 	},
@@ -92,9 +92,9 @@ export const LightStatusBar: Story = {
 
 export const DarkStatusBar: Story = {
 	args: {
-		statusBarStyle: "dark-content",
+		statusBarStyle: 'dark-content',
 	},
-	render: (args) => (
+	render: args => (
 		<ScreenContainerView {...args}>
 			<DemoContent />
 		</ScreenContainerView>
@@ -102,7 +102,7 @@ export const DarkStatusBar: Story = {
 	parameters: {
 		docs: {
 			description: {
-				story: "StatusBar 스타일을 dark-content로 고정합니다.",
+				story: 'StatusBar 스타일을 dark-content로 고정합니다.',
 			},
 		},
 	},
@@ -110,9 +110,9 @@ export const DarkStatusBar: Story = {
 
 export const CustomBackground: Story = {
 	args: {
-		backgroundColor: "#e3f2fd",
+		backgroundColor: '#e3f2fd',
 	},
-	render: (args) => (
+	render: args => (
 		<ScreenContainerView {...args}>
 			<DemoContent />
 		</ScreenContainerView>
@@ -120,14 +120,14 @@ export const CustomBackground: Story = {
 	parameters: {
 		docs: {
 			description: {
-				story: "커스텀 배경색을 사용하는 예제입니다.",
+				story: '커스텀 배경색을 사용하는 예제입니다.',
 			},
 		},
 	},
 };
 
 export const ScrollableContent: Story = {
-	render: (args) => (
+	render: args => (
 		<ScreenContainerView {...args}>
 			<View style={demoStyles.scrollContent}>
 				{Array.from({ length: 20 }, (_, index) => (
@@ -142,7 +142,7 @@ export const ScrollableContent: Story = {
 	parameters: {
 		docs: {
 			description: {
-				story: "스크롤 가능한 콘텐츠와 함께 사용하는 예제입니다.",
+				story: '스크롤 가능한 콘텐츠와 함께 사용하는 예제입니다.',
 			},
 		},
 	},
@@ -151,16 +151,16 @@ export const ScrollableContent: Story = {
 const demoStyles = StyleSheet.create({
 	content: {
 		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
+		justifyContent: 'center',
+		alignItems: 'center',
 		padding: 20,
 	},
 	title: {
-		textAlign: "center",
+		textAlign: 'center',
 		marginBottom: 16,
 	},
 	description: {
-		textAlign: "center",
+		textAlign: 'center',
 		marginBottom: 24,
 		paddingHorizontal: 20,
 	},
@@ -174,6 +174,6 @@ const demoStyles = StyleSheet.create({
 		padding: 16,
 		marginBottom: 8,
 		borderRadius: 8,
-		backgroundColor: "rgba(0, 0, 0, 0.05)",
+		backgroundColor: 'rgba(0, 0, 0, 0.05)',
 	},
 });

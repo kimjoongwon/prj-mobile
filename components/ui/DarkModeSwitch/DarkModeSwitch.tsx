@@ -1,8 +1,8 @@
-import { useTheme } from "@/components/contexts/ThemeContext";
-import { Ionicons } from "@expo/vector-icons";
-import { observer } from "mobx-react-lite";
-import React from "react";
-import { StyleSheet, TouchableOpacity, View, ViewStyle } from "react-native";
+import { Ionicons } from '@expo/vector-icons';
+import { observer } from 'mobx-react-lite';
+import React from 'react';
+import { StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native';
+import { useTheme } from '../../contexts/ThemeContext';
 
 export interface DarkModeSwitchProps {
 	style?: ViewStyle;
@@ -28,7 +28,7 @@ export const DarkModeSwitch: React.FC<DarkModeSwitchProps> = observer(
 					activeOpacity={0.7}
 				>
 					<Ionicons
-						name={isDark ? "sunny" : "moon"}
+						name={isDark ? 'sunny' : 'moon'}
 						size={20}
 						color={
 							isDark
@@ -39,10 +39,10 @@ export const DarkModeSwitch: React.FC<DarkModeSwitchProps> = observer(
 				</TouchableOpacity>
 			</View>
 		);
-	},
+	}
 );
 
-DarkModeSwitch.displayName = "DarkModeSwitch";
+DarkModeSwitch.displayName = 'DarkModeSwitch';
 
 const styles = StyleSheet.create({
 	container: {
@@ -52,10 +52,10 @@ const styles = StyleSheet.create({
 		width: 44,
 		height: 44,
 		borderRadius: 22,
-		justifyContent: "center",
-		alignItems: "center",
+		justifyContent: 'center',
+		alignItems: 'center',
 		borderWidth: 1,
-		shadowColor: "#000",
+		shadowColor: '#000',
 		shadowOffset: {
 			width: 0,
 			height: 2,

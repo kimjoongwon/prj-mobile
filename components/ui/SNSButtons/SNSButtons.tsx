@@ -1,7 +1,7 @@
-import React from "react";
-import { StyleSheet, ViewStyle } from "react-native";
-import { Button } from "@/components/ui/Button";
-import { View } from "@/components/ui/View";
+import React from 'react';
+import { StyleSheet, ViewStyle } from 'react-native';
+import { Button } from '../Button';
+import { View } from '../View';
 
 export interface SNSButtonsProps {
 	onGooglePress?: () => void;
@@ -64,18 +64,18 @@ export const SNSButtons: React.FC<SNSButtonsProps> = ({
 const styles = StyleSheet.create({
 	container: {
 		gap: 12,
-		width: "100%",
+		width: '100%',
 	},
 	button: {
-		width: "100%",
+		width: '100%',
 	},
 	appleButton: {
-		width: "100%",
-		backgroundColor: "#000000",
+		width: '100%',
+		backgroundColor: '#000000',
 	},
 	kakaoButton: {
-		width: "100%",
-		backgroundColor: "#FEE500",
+		width: '100%',
+		backgroundColor: '#FEE500',
 	},
 });
 

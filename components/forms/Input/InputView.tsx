@@ -1,50 +1,50 @@
-import { useTheme } from "@/components/contexts/ThemeContext";
+import { Ionicons } from '@expo/vector-icons';
+import type React from 'react';
 import {
-  baseContainerStyles,
-  labelStyles,
-  sizes,
-  styles,
-  variantStyles,
-} from "@/components/forms/Input/Input.styles";
-import { Text } from "@/components/ui/Text";
-import { Ionicons } from "@expo/vector-icons";
-import type React from "react";
+	forwardRef,
+	useCallback,
+	useEffect,
+	useImperativeHandle,
+	useMemo,
+	useRef,
+	useState,
+} from 'react';
 import {
-  forwardRef,
-  useCallback,
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import {
-  TextInput,
-  type TextInputProps,
-  type TextStyle,
-  TouchableOpacity,
-  View,
-  type ViewStyle,
-} from "react-native";
+	TextInput,
+	type TextInputProps,
+	type TextStyle,
+	TouchableOpacity,
+	View,
+	type ViewStyle,
+} from 'react-native';
 import Animated, {
-  interpolate,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
+	interpolate,
+	useAnimatedStyle,
+	useSharedValue,
+	withTiming,
+} from 'react-native-reanimated';
+import { useTheme } from '../../contexts/ThemeContext';
+import { Text } from '../../ui/Text';
+import {
+	baseContainerStyles,
+	labelStyles,
+	sizes,
+	styles,
+	variantStyles,
+} from './Input.styles';
 
-export type InputVariant = "flat" | "bordered" | "underlined" | "faded";
+export type InputVariant = 'flat' | 'bordered' | 'underlined' | 'faded';
 export type InputColor =
-	| "default"
-	| "primary"
-	| "secondary"
-	| "success"
-	| "warning"
-	| "danger";
-export type InputSize = "sm" | "md" | "lg";
-export type LabelPlacement = "inside" | "outside" | "outside-left";
+	| 'default'
+	| 'primary'
+	| 'secondary'
+	| 'success'
+	| 'warning'
+	| 'danger';
+export type InputSize = 'sm' | 'md' | 'lg';
+export type LabelPlacement = 'inside' | 'outside' | 'outside-left';
 
-export interface InputProps extends Omit<TextInputProps, "style"> {
+export interface InputProps extends Omit<TextInputProps, 'style'> {
 	variant?: InputVariant;
 	color?: InputColor;
 	size?: InputSize;
@@ -78,11 +78,11 @@ export interface InputRef {
 export const InputView = forwardRef<InputRef, InputProps>(
 	(
 		{
-			variant = "flat",
-			color = "default",
-			size = "md",
+			variant = 'flat',
+			color = 'default',
+			size = 'md',
 			label,
-			labelPlacement = "inside",
+			labelPlacement = 'inside',
 			description,
 			errorMessage,
 			isRequired = false,
@@ -99,20 +99,20 @@ export const InputView = forwardRef<InputRef, InputProps>(
 			onChangeText,
 			...props
 		},
-		ref,
+		ref
 	) => {
 		const { theme } = useTheme();
 		const [isFocused, setIsFocused] = useState(false);
-		const [inputValue, setInputValue] = useState(value || "");
+		const [inputValue, setInputValue] = useState(value || '');
 		const animatedLabelPosition = useSharedValue(
-			(value || "").length > 0 ? 1 : 0,
+			(value || '').length > 0 ? 1 : 0
 		);
 
 		// Sync external value with internal state
 		useEffect(() => {
 			if (value !== undefined && value !== inputValue) {
 				setInputValue(value);
-				if (labelPlacement === "inside") {
+				if (labelPlacement === 'inside') {
 					animatedLabelPosition.value = withTiming(value.length > 0 ? 1 : 0, {
 						duration: 200,
 					});
@@ -124,12 +124,12 @@ export const InputView = forwardRef<InputRef, InputProps>(
 		// Memoized color scheme for performance
 		const colorScheme = useMemo(() => {
 			const colorTokens =
-				theme.colors[isInvalid ? "danger" : color] || theme.colors.default;
+				theme.colors[isInvalid ? 'danger' : color] || theme.colors.default;
 			const baseBg = theme.colors.default[100];
 			const baseLabel = theme.colors.default[600];
 
 			switch (variant) {
-				case "flat":
+				case 'flat':
 					return {
 						bg: baseBg,
 						border: isFocused ? colorTokens.DEFAULT : colorTokens[200],
@@ -137,7 +137,7 @@ export const InputView = forwardRef<InputRef, InputProps>(
 						placeholder: theme.colors.foreground,
 						label: baseLabel,
 					};
-				case "bordered":
+				case 'bordered':
 					return {
 						bg: baseBg,
 						border: isFocused ? colorTokens.DEFAULT : colorTokens[300],
@@ -145,7 +145,7 @@ export const InputView = forwardRef<InputRef, InputProps>(
 						placeholder: colorTokens[400],
 						label: baseLabel,
 					};
-				case "underlined":
+				case 'underlined':
 					return {
 						bg: baseBg,
 						border: isFocused ? colorTokens.DEFAULT : colorTokens[300],
@@ -153,7 +153,7 @@ export const InputView = forwardRef<InputRef, InputProps>(
 						placeholder: colorTokens[400],
 						label: baseLabel,
 					};
-				case "faded":
+				case 'faded':
 					return {
 						bg: baseBg,
 						border: isFocused ? colorTokens.DEFAULT : colorTokens[200],
@@ -177,23 +177,25 @@ export const InputView = forwardRef<InputRef, InputProps>(
 		const handleFocus = useCallback(
 			(e: any) => {
 				setIsFocused(true);
-				if (labelPlacement === "inside") {
+				if (labelPlacement === 'inside') {
 					animatedLabelPosition.value = withTiming(1, { duration: 200 });
 				}
 				props.onFocus?.(e);
 			},
-			[labelPlacement, animatedLabelPosition, props.onFocus],
+			// eslint-disable-next-line react-hooks/exhaustive-deps
+			[labelPlacement, animatedLabelPosition]
 		);
 
 		const handleBlur = useCallback(
 			(e: any) => {
 				setIsFocused(false);
-				if (labelPlacement === "inside" && !inputValue && !value) {
+				if (labelPlacement === 'inside' && !inputValue && !value) {
 					animatedLabelPosition.value = withTiming(0, { duration: 200 });
 				}
 				props.onBlur?.(e);
 			},
-			[labelPlacement, inputValue, value, animatedLabelPosition, props.onBlur],
+			// eslint-disable-next-line react-hooks/exhaustive-deps
+			[labelPlacement, inputValue, value, animatedLabelPosition]
 		);
 
 		const handleChangeText = useCallback(
@@ -201,13 +203,13 @@ export const InputView = forwardRef<InputRef, InputProps>(
 				setInputValue(text);
 				onChangeText?.(text);
 			},
-			[onChangeText],
+			[onChangeText]
 		);
 
 		const handleClear = useCallback(() => {
-			setInputValue("");
-			onChangeText?.("");
-			if (labelPlacement === "inside") {
+			setInputValue('');
+			onChangeText?.('');
+			if (labelPlacement === 'inside') {
 				animatedLabelPosition.value = withTiming(0, { duration: 200 });
 			}
 		}, [onChangeText, labelPlacement, animatedLabelPosition]);
@@ -220,7 +222,7 @@ export const InputView = forwardRef<InputRef, InputProps>(
 				blur: () => inputRef.current?.blur(),
 				clear: handleClear,
 			}),
-			[handleClear],
+			[handleClear]
 		);
 
 		// Memoized container style for performance
@@ -237,21 +239,21 @@ export const InputView = forwardRef<InputRef, InputProps>(
 			}
 
 			switch (variant) {
-				case "bordered":
+				case 'bordered':
 					return {
 						...baseStyle,
 						...variantStyles.bordered,
 						...(isFocused ? variantStyles.borderedFocused : {}),
-						borderColor: isFocused ? colorScheme.border : "#e4e4e7",
+						borderColor: isFocused ? colorScheme.border : '#e4e4e7',
 					};
-				case "underlined":
+				case 'underlined':
 					return {
 						...baseStyle,
 						...variantStyles.underlined,
 						...(isFocused ? variantStyles.underlinedFocused : {}),
-						borderBottomColor: isFocused ? colorScheme.border : "#e4e4e7",
+						borderBottomColor: isFocused ? colorScheme.border : '#e4e4e7',
 					};
-				case "faded":
+				case 'faded':
 					return {
 						...baseStyle,
 						...variantStyles.faded,
@@ -268,7 +270,7 @@ export const InputView = forwardRef<InputRef, InputProps>(
 		// Memoized label styles for performance
 		const labelStyleMemo = useMemo(() => {
 			const colorTokens =
-				theme.colors[isInvalid ? "danger" : color] || theme.colors.default;
+				theme.colors[isInvalid ? 'danger' : color] || theme.colors.default;
 
 			// 라벨 색상 로직: 포커스 시에만 색상 변경
 			let labelColor: string;
@@ -285,7 +287,7 @@ export const InputView = forwardRef<InputRef, InputProps>(
 				color: labelColor,
 			};
 
-			if (labelPlacement === "outside") {
+			if (labelPlacement === 'outside') {
 				return [
 					baseStyle,
 					labelStyles.outside,
@@ -294,7 +296,7 @@ export const InputView = forwardRef<InputRef, InputProps>(
 				].filter(Boolean) as TextStyle[];
 			}
 
-			if (labelPlacement === "inside") {
+			if (labelPlacement === 'inside') {
 				return [
 					baseStyle,
 					labelStyles.insideAbsolute,
@@ -323,12 +325,12 @@ export const InputView = forwardRef<InputRef, InputProps>(
 				fontSize: interpolate(
 					animatedLabelPosition.value,
 					[0, 1],
-					[sizeConfig.fontSize, sizeConfig.labelFontSize],
+					[sizeConfig.fontSize, sizeConfig.labelFontSize]
 				),
 				top: interpolate(
 					animatedLabelPosition.value,
 					[0, 1],
-					[sizeConfig.height / 2 - sizeConfig.fontSize / 2, 4],
+					[sizeConfig.height / 2 - sizeConfig.fontSize / 2, 4]
 				),
 			};
 		}, [sizeConfig]);
@@ -336,7 +338,7 @@ export const InputView = forwardRef<InputRef, InputProps>(
 		const renderLabel = useCallback(() => {
 			if (!label) return null;
 
-			if (labelPlacement === "outside-left") {
+			if (labelPlacement === 'outside-left') {
 				return (
 					<View style={styles.outsideLeftLabelContainer}>
 						<Text style={labelStyleMemo}>
@@ -347,7 +349,7 @@ export const InputView = forwardRef<InputRef, InputProps>(
 				);
 			}
 
-			if (labelPlacement === "outside") {
+			if (labelPlacement === 'outside') {
 				return (
 					<Text style={labelStyleMemo}>
 						{label}
@@ -375,7 +377,7 @@ export const InputView = forwardRef<InputRef, InputProps>(
 				fontSize: sizeConfig.fontSize,
 				color: colorScheme.text,
 				paddingTop:
-					labelPlacement === "inside" && label && (isFocused || inputValue)
+					labelPlacement === 'inside' && label && (isFocused || inputValue)
 						? 16
 						: 0,
 			}),
@@ -386,7 +388,7 @@ export const InputView = forwardRef<InputRef, InputProps>(
 				label,
 				isFocused,
 				inputValue,
-			],
+			]
 		);
 
 		const handleContainerPress = useCallback(() => {
@@ -395,7 +397,7 @@ export const InputView = forwardRef<InputRef, InputProps>(
 				inputRef.current?.focus();
 
 				// Ensure focus state is set immediately for label animation
-				if (labelPlacement === "inside" && !isFocused) {
+				if (labelPlacement === 'inside' && !isFocused) {
 					setIsFocused(true);
 					animatedLabelPosition.value = withTiming(1, { duration: 200 });
 				}
@@ -408,6 +410,7 @@ export const InputView = forwardRef<InputRef, InputProps>(
 			isFocused,
 		]);
 
+		// biome-ignore lint/correctness/useExhaustiveDependencies: props is stable from forwardRef
 		// biome-ignore lint/correctness/useExhaustiveDependencies: props is stable from forwardRef
 		const renderInput = useCallback(() => {
 			return (
@@ -432,7 +435,7 @@ export const InputView = forwardRef<InputRef, InputProps>(
 						editable={!isDisabled && !isReadOnly}
 						placeholderTextColor={colorScheme.placeholder}
 						placeholder={
-							labelPlacement === "inside" ? undefined : props.placeholder
+							labelPlacement === 'inside' ? undefined : props.placeholder
 						}
 					/>
 
@@ -447,6 +450,7 @@ export const InputView = forwardRef<InputRef, InputProps>(
 					)}
 				</TouchableOpacity>
 			);
+			// eslint-disable-next-line react-hooks/exhaustive-deps
 		}, [
 			containerStyle,
 			style,
@@ -468,7 +472,7 @@ export const InputView = forwardRef<InputRef, InputProps>(
 			endContent,
 		]);
 
-		if (labelPlacement === "outside-left") {
+		if (labelPlacement === 'outside-left') {
 			return (
 				<View style={styles.outsideLeftContainer}>
 					{renderLabel()}
@@ -487,10 +491,10 @@ export const InputView = forwardRef<InputRef, InputProps>(
 
 		return (
 			<View style={styles.container}>
-				{labelPlacement === "outside" && renderLabel()}
+				{labelPlacement === 'outside' && renderLabel()}
 				<View style={styles.inputWrapper}>
 					{renderInput()}
-					{labelPlacement === "inside" && renderLabel()}
+					{labelPlacement === 'inside' && renderLabel()}
 				</View>
 				{description && !errorMessage && (
 					<Text style={styles.description}>{description}</Text>
@@ -500,9 +504,9 @@ export const InputView = forwardRef<InputRef, InputProps>(
 				)}
 			</View>
 		);
-	},
+	}
 );
 
-InputView.displayName = "InputView";
+InputView.displayName = 'InputView';
 
 export default InputView;

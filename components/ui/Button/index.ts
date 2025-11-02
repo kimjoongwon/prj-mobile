@@ -3,8 +3,5 @@ export type {
 	ButtonRadius,
 	ButtonSize,
 	ButtonVariant,
-} from "./Button";
-export {
-	Button,
-	type ButtonProps,
-} from "./Button";
+} from './Button';
+export { Button, type ButtonProps } from './Button';

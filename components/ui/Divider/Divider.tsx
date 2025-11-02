@@ -1,10 +1,10 @@
-import { useTheme } from "@/components/contexts/ThemeContext";
-import { Text } from "@/components/ui/Text";
-import type React from "react";
-import { StyleSheet, View, type ViewStyle } from "react-native";
+import type React from 'react';
+import { StyleSheet, View, type ViewStyle } from 'react-native';
+import { useTheme } from '../../contexts/ThemeContext';
+import { Text } from '../Text';
 
-export type DividerOrientation = "horizontal" | "vertical";
-export type DividerVariant = "default" | "subtle" | "strong";
+export type DividerOrientation = 'horizontal' | 'vertical';
+export type DividerVariant = 'default' | 'subtle' | 'strong';
 
 export interface DividerProps {
 	orientation?: DividerOrientation;
@@ -17,10 +17,10 @@ export interface DividerProps {
 }
 
 export const Divider: React.FC<DividerProps> = ({
-	orientation = "horizontal",
+	orientation = 'horizontal',
 	thickness = 1,
 	color,
-	variant = "default",
+	variant = 'default',
 	children,
 	style,
 	margin = 16,
@@ -32,9 +32,9 @@ export const Divider: React.FC<DividerProps> = ({
 		if (color) return color;
 
 		switch (variant) {
-			case "subtle":
+			case 'subtle':
 				return isDark ? theme.colors.default[200] : theme.colors.default[200];
-			case "strong":
+			case 'strong':
 				return isDark ? theme.colors.default[600] : theme.colors.default[700];
 			default:
 				return isDark ? theme.colors.default[300] : theme.colors.default[400];
@@ -74,16 +74,16 @@ export const Divider: React.FC<DividerProps> = ({
 	}
 
 	const dividerStyle: ViewStyle =
-		orientation === "horizontal"
+		orientation === 'horizontal'
 			? {
 					height: thickness,
-					width: "100%",
+					width: '100%',
 					backgroundColor: dividerColor,
 					marginVertical: margin,
 				}
 			: {
 					width: thickness,
-					height: "100%",
+					height: '100%',
 					backgroundColor: dividerColor,
 					marginHorizontal: margin,
 				};
@@ -93,8 +93,8 @@ export const Divider: React.FC<DividerProps> = ({
 
 const styles = StyleSheet.create({
 	containerWithText: {
-		flexDirection: "row",
-		alignItems: "center",
+		flexDirection: 'row',
+		alignItems: 'center',
 	},
 	lineWithText: {
 		flex: 1,

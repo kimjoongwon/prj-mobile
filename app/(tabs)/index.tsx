@@ -1,4 +1,4 @@
-import { Text, View } from "@/components";
+import { Text, View } from '@/components';
 
 export function HomeScreen() {
 	return (

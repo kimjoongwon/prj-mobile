@@ -1,1 +1,1 @@
-export { SNSButtons, type SNSButtonsProps } from "./SNSButtons";
+export { SNSButtons, type SNSButtonsProps } from './SNSButtons';

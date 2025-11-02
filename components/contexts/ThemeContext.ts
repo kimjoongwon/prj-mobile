@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext } from 'react';
 
 // 색상 타입 정의
 export interface ColorScale {
@@ -58,7 +58,7 @@ export interface Theme {
 	};
 }
 
-export type ThemeMode = "light" | "dark";
+export type ThemeMode = 'light' | 'dark';
 
 export interface ThemeContextValue {
 	theme: Theme;
@@ -69,14 +69,14 @@ export interface ThemeContextValue {
 
 // Theme Context 생성
 export const ThemeContext = createContext<ThemeContextValue | undefined>(
-	undefined,
+	undefined
 );
 
 // useTheme 훅
 export const useTheme = (): ThemeContextValue => {
 	const context = useContext(ThemeContext);
 	if (context === undefined) {
-		throw new Error("useTheme must be used within a ThemeProvider");
+		throw new Error('useTheme must be used within a ThemeProvider');
 	}
 	return context;
 };

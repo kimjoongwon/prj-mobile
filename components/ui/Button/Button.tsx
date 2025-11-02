@@ -1,6 +1,4 @@
-import { useTheme } from "@/components/contexts/ThemeContext";
-import { Text } from "@/components/ui/Text";
-import type React from "react";
+import type React from 'react';
 import {
 	ActivityIndicator,
 	StyleSheet,
@@ -9,27 +7,29 @@ import {
 	type TouchableOpacityProps,
 	View,
 	type ViewStyle,
-} from "react-native";
+} from 'react-native';
+import { useTheme } from '../../contexts/ThemeContext';
+import { Text } from '../Text';
 
 export type ButtonVariant =
-	| "solid"
-	| "bordered"
-	| "light"
-	| "flat"
-	| "faded"
-	| "shadow"
-	| "ghost";
+	| 'solid'
+	| 'bordered'
+	| 'light'
+	| 'flat'
+	| 'faded'
+	| 'shadow'
+	| 'ghost';
 export type ButtonColor =
-	| "default"
-	| "primary"
-	| "secondary"
-	| "success"
-	| "warning"
-	| "danger";
-export type ButtonSize = "sm" | "md" | "lg";
-export type ButtonRadius = "none" | "sm" | "md" | "lg" | "full";
+	| 'default'
+	| 'primary'
+	| 'secondary'
+	| 'success'
+	| 'warning'
+	| 'danger';
+export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonRadius = 'none' | 'sm' | 'md' | 'lg' | 'full';
 
-export interface ButtonProps extends Omit<TouchableOpacityProps, "style"> {
+export interface ButtonProps extends Omit<TouchableOpacityProps, 'style'> {
 	children?: React.ReactNode;
 	variant?: ButtonVariant;
 	color?: ButtonColor;
@@ -75,10 +75,10 @@ const radiusValues = {
 
 export const Button: React.FC<ButtonProps> = ({
 	children,
-	variant = "solid",
-	color = "primary",
-	size = "md",
-	radius = "md",
+	variant = 'solid',
+	color = 'primary',
+	size = 'md',
+	radius = 'md',
 	isDisabled = false,
 	isLoading = false,
 	isIconOnly = false,
@@ -96,47 +96,47 @@ export const Button: React.FC<ButtonProps> = ({
 		const colorTokens = theme.colors[color] || theme.colors.default;
 
 		switch (variant) {
-			case "solid":
+			case 'solid':
 				return {
 					bg: colorTokens.DEFAULT,
 					text: colorTokens.foreground,
 					border: colorTokens.DEFAULT,
 				};
-			case "bordered":
+			case 'bordered':
 				return {
-					bg: "transparent",
+					bg: 'transparent',
 					text: colorTokens.DEFAULT,
 					border: colorTokens.DEFAULT,
 				};
-			case "light":
+			case 'light':
 				return {
 					bg: isDark ? colorTokens[200] : colorTokens[100],
 					text: isDark ? colorTokens[900] : colorTokens[700],
-					border: "transparent",
+					border: 'transparent',
 				};
-			case "flat":
+			case 'flat':
 				return {
 					bg: isDark ? colorTokens[300] : colorTokens[100],
 					text: isDark ? colorTokens[900] : colorTokens[800],
-					border: "transparent",
+					border: 'transparent',
 				};
-			case "faded":
+			case 'faded':
 				return {
 					bg: isDark ? colorTokens[100] : colorTokens[50],
 					text: isDark ? colorTokens[800] : colorTokens[700],
 					border: isDark ? colorTokens[300] : colorTokens[200],
 				};
-			case "shadow":
+			case 'shadow':
 				return {
 					bg: colorTokens.DEFAULT,
 					text: colorTokens.foreground,
 					border: colorTokens.DEFAULT,
 				};
-			case "ghost":
+			case 'ghost':
 				return {
-					bg: "transparent",
+					bg: 'transparent',
 					text: colorTokens.DEFAULT,
-					border: "transparent",
+					border: 'transparent',
 				};
 			default:
 				return {
@@ -177,18 +177,18 @@ export const Button: React.FC<ButtonProps> = ({
 			isDisabled || isLoading
 				? getDisabledStyle().borderColor
 				: colorScheme.border,
-		borderWidth: variant === "bordered" || variant === "faded" ? 1 : 0,
+		borderWidth: variant === 'bordered' || variant === 'faded' ? 1 : 0,
 		borderRadius,
-		flexDirection: "row",
-		alignItems: "center",
-		justifyContent: "center",
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center',
 		opacity:
 			isDisabled || isLoading ? parseFloat(theme.layout.disabledOpacity) : 1,
 		// Add shadow for shadow variant with theme-aware shadow color
-		...(variant === "shadow" &&
+		...(variant === 'shadow' &&
 			!isDisabled &&
 			!isLoading && {
-				shadowColor: isDark ? "#000000" : colorScheme.bg,
+				shadowColor: isDark ? '#000000' : colorScheme.bg,
 				shadowOffset: {
 					width: 0,
 					height: 4,
@@ -210,8 +210,8 @@ export const Button: React.FC<ButtonProps> = ({
 	const textStyleConfig: TextStyle = {
 		color: getTextColor(),
 		fontSize: sizeConfig.fontSize,
-		fontWeight: "500",
-		textAlign: "center",
+		fontWeight: '500',
+		textAlign: 'center',
 	};
 
 	const handlePress = (event: any) => {
@@ -267,13 +267,13 @@ export const Button: React.FC<ButtonProps> = ({
 
 const styles = StyleSheet.create({
 	contentContainer: {
-		flexDirection: "row",
-		alignItems: "center",
-		justifyContent: "center",
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center',
 	},
 	iconContainer: {
-		alignItems: "center",
-		justifyContent: "center",
+		alignItems: 'center',
+		justifyContent: 'center',
 	},
 });
 

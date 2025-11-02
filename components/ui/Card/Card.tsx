@@ -1,11 +1,11 @@
-import React from "react";
-import { View, ViewProps, ViewStyle } from "react-native";
-import { useTheme } from "@/components/contexts/ThemeContext";
+import React from 'react';
+import { View, ViewProps, ViewStyle } from 'react-native';
+import { useTheme } from '../../contexts/ThemeContext';
 
-export interface CardProps extends Omit<ViewProps, "style"> {
+export interface CardProps extends Omit<ViewProps, 'style'> {
 	children?: React.ReactNode;
 	style?: ViewStyle;
-	padding?: number | "sm" | "md" | "lg";
+	padding?: number | 'sm' | 'md' | 'lg';
 }
 
 const paddingValues = {
@@ -17,14 +17,14 @@ const paddingValues = {
 export const Card: React.FC<CardProps> = ({
 	children,
 	style,
-	padding = "md",
+	padding = 'md',
 	...props
 }) => {
 	const { theme } = useTheme();
 
 	// 패딩 값 계산
 	const getPaddingValue = () => {
-		if (typeof padding === "number") return padding;
+		if (typeof padding === 'number') return padding;
 		return paddingValues[padding];
 	};
 

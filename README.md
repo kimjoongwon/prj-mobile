@@ -54,11 +54,13 @@ npm start
 ```
 
 **사용 시기:**
+
 - 처음 앱을 시작할 때
 - 파일 저장으로 HMR(Hot Module Replacement)이 잘 작동할 때
 - 번들러 캐시 문제가 없을 때
 
 **출력 옵션:**
+
 - `i` - iOS Simulator 실행
 - `a` - Android Emulator 실행
 - `w` - 웹 브라우저에서 실행
@@ -74,12 +76,14 @@ npm run start:clear
 ```
 
 **사용 시기:**
+
 - 번들러 캐시 문제로 `npm start`가 정상 작동하지 않을 때
 - 새로운 의존성을 추가한 후
 - 스타일 또는 설정 변경이 적용되지 않을 때
 - Metro 오류가 발생했을 때
 
 **언제 사용할까 판단:**
+
 ```
 npm start → 에러 발생?
    ↓ YES
@@ -95,11 +99,13 @@ npm run start:clear → 해결?
 #### iOS
 
 **기본 실행:**
+
 ```bash
 npm run ios
 ```
 
 **캐시 초기화 후 실행:**
+
 ```bash
 npm run ios:clear
 ```
@@ -107,11 +113,13 @@ npm run ios:clear
 #### Android
 
 **기본 실행:**
+
 ```bash
 npm run android
 ```
 
 **캐시 초기화 후 실행:**
+
 ```bash
 npm run android:clear
 ```
@@ -119,11 +127,13 @@ npm run android:clear
 #### 웹
 
 **기본 실행:**
+
 ```bash
 npm run web
 ```
 
 **캐시 초기화 후 실행:**
+
 ```bash
 npm run web:clear
 ```
@@ -136,16 +146,16 @@ Prebuild는 **Expo 구성을 기반으로 iOS(`ios/`) 및 Android(`android/`) �
 
 ### Prebuild가 필요한 케이스
 
-| 상황 | 필요 | 명령어 |
-|------|:---:|--------|
-| 처음 iOS/Android 빌드하기 | ✅ | `npm run prebuild:clean` |
-| 네이티브 패키지 추가 (`npx expo install`) | ✅ | `npm run prebuild:clean` |
-| app.json 설정 변경 | ✅ | `npm run prebuild:clean` |
-| 번들 설정 변경 | ✅ | `npm run prebuild:clean` |
-| 의존성 버전 업그레이드 | ✅ | `npm run prebuild:clean` |
-| 네이티브 코드 수정 | ✅ | `npm run prebuild:clean` |
-| 파일 저장으로 HMR 적용 | ❌ | `npm start` (prebuild 불필요) |
-| CSS 스타일 변경 | ❌ | `npm start` (prebuild 불필요) |
+| 상황                                      | 필요 | 명령어                        |
+| ----------------------------------------- | :--: | ----------------------------- |
+| 처음 iOS/Android 빌드하기                 |  ✅  | `npm run prebuild:clean`      |
+| 네이티브 패키지 추가 (`npx expo install`) |  ✅  | `npm run prebuild:clean`      |
+| app.json 설정 변경                        |  ✅  | `npm run prebuild:clean`      |
+| 번들 설정 변경                            |  ✅  | `npm run prebuild:clean`      |
+| 의존성 버전 업그레이드                    |  ✅  | `npm run prebuild:clean`      |
+| 네이티브 코드 수정                        |  ✅  | `npm run prebuild:clean`      |
+| 파일 저장으로 HMR 적용                    |  ❌  | `npm start` (prebuild 불필요) |
+| CSS 스타일 변경                           |  ❌  | `npm start` (prebuild 불필요) |
 
 ---
 
@@ -158,6 +168,7 @@ npm run prebuild
 ```
 
 **사용 시기:**
+
 - 네이티브 프로젝트가 이미 존재하고
 - 작은 변경사항만 적용되었을 때
 - 빠른 빌드를 원할 때
@@ -175,6 +186,7 @@ npm run prebuild:clean
 ```
 
 **사용 시기:**
+
 - 처음 네이티브 프로젝트를 생성할 때
 - 네이티브 설정 충돌이 발생했을 때
 - 의존성이 추가/제거되었을 때
@@ -246,6 +258,7 @@ npm run storybook:native:android
 ```
 
 **Storybook 모드의 특징:**
+
 - 네이티브 Storybook UI가 전체 화면에 표시됨
 - 앱의 일반 라우팅은 우회됨
 - 컴포넌트를 개별적으로 테스트 가능
@@ -288,6 +301,7 @@ components/
 ```
 
 **규칙:**
+
 - `LoginScreen`, `HomeScreen` 등의 컴포넌트가 있다면
 - 카테고리 폴더명: `screens/` (소문자, 복수형, 접미사 포함)
 - 컴포넌트 폴더명: `LoginScreen/`, `HomeScreen/` (PascalCase, 접미사 포함)
@@ -320,6 +334,7 @@ components/
 ```
 
 **규칙:**
+
 - `Input`, `RadioGroup`, `LoginForm` 등 공통 패턴이 없다면
 - 카테고리 폴더명: `forms/` (소문자, 복수형)
 - 컴포넌트 폴더명: `Input/`, `RadioGroup/` (PascalCase, 전체 이름)
@@ -343,13 +358,13 @@ ComponentName/
 
 #### 파일별 역할
 
-| 파일 | 역할 | 포함 내용 |
-|------|------|----------|
-| `ComponentName.tsx` | **메인 컴포넌트** | - UI 렌더링<br>- Custom Hook 사용<br>- Props 정의<br>- JSX/TSX 구조 |
-| `useComponentName.ts` | **로직 레이어** | - 비즈니스 로직<br>- 상태 관리 (useState, useReducer)<br>- Side Effects (useEffect)<br>- API 호출<br>- 데이터 가공<br>- 이벤트 핸들러 |
-| `ComponentName.styles.ts` | **스타일 정의** | - StyleSheet 정의<br>- 테마 기반 스타일 |
-| `ComponentName.stories.tsx` | **스토리북** | - 컴포넌트 문서화<br>- 다양한 상태 시각화 |
-| `index.ts` | **Export** | - 모듈 진입점<br>- Re-export만 담당 |
+| 파일                        | 역할              | 포함 내용                                                                                                                             |
+| --------------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `ComponentName.tsx`         | **메인 컴포넌트** | - UI 렌더링<br>- Custom Hook 사용<br>- Props 정의<br>- JSX/TSX 구조                                                                   |
+| `useComponentName.ts`       | **로직 레이어**   | - 비즈니스 로직<br>- 상태 관리 (useState, useReducer)<br>- Side Effects (useEffect)<br>- API 호출<br>- 데이터 가공<br>- 이벤트 핸들러 |
+| `ComponentName.styles.ts`   | **스타일 정의**   | - StyleSheet 정의<br>- 테마 기반 스타일                                                                                               |
+| `ComponentName.stories.tsx` | **스토리북**      | - 컴포넌트 문서화<br>- 다양한 상태 시각화                                                                                             |
+| `index.ts`                  | **Export**        | - 모듈 진입점<br>- Re-export만 담당                                                                                                   |
 
 ---
 
@@ -369,6 +384,7 @@ components/
 ```
 
 **폴더명 규칙:**
+
 - 카테고리 폴더: `screens/` (소문자 복수형, 접미사 포함)
 - 컴포넌트 폴더명: `LoginScreen/` (PascalCase, 접미사 포함)
 - 실제 컴포넌트명: `LoginScreen` (전체 이름 사용)
@@ -381,56 +397,56 @@ components/
 import { useState, useEffect } from 'react';
 
 export interface LoginScreenData {
-  title: string;
-  items: string[];
+	title: string;
+	items: string[];
 }
 
 /**
  * LoginScreen 컴포넌트의 비즈니스 로직을 담당하는 Custom Hook
  */
 export function useLoginScreen() {
-  // 상태 관리
-  const [data, setData] = useState<LoginScreenData | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+	// 상태 관리
+	const [data, setData] = useState<LoginScreenData | null>(null);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState<string | null>(null);
 
-  // 데이터 로드
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        setLoading(true);
-        const response = await fetch('/api/login-screen-data');
-        const result = await response.json();
-        setData(result);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    }
-    
-    fetchData();
-  }, []);
+	// 데이터 로드
+	useEffect(() => {
+		async function fetchData() {
+			try {
+				setLoading(true);
+				const response = await fetch('/api/login-screen-data');
+				const result = await response.json();
+				setData(result);
+			} catch (err) {
+				setError(err.message);
+			} finally {
+				setLoading(false);
+			}
+		}
 
-  // 이벤트 핸들러
-  const handleRefresh = async () => {
-    setLoading(true);
-    // 새로고침 로직
-  };
+		fetchData();
+	}, []);
 
-  const handleItemPress = (item: string) => {
-    console.log('Item pressed:', item);
-    // 네비게이션 또는 다른 비즈니스 로직
-  };
+	// 이벤트 핸들러
+	const handleRefresh = async () => {
+		setLoading(true);
+		// 새로고침 로직
+	};
 
-  // Hook의 반환값 (컴포넌트에서 사용할 데이터와 함수)
-  return {
-    data,
-    loading,
-    error,
-    handleRefresh,
-    handleItemPress,
-  };
+	const handleItemPress = (item: string) => {
+		console.log('Item pressed:', item);
+		// 네비게이션 또는 다른 비즈니스 로직
+	};
+
+	// Hook의 반환값 (컴포넌트에서 사용할 데이터와 함수)
+	return {
+		data,
+		loading,
+		error,
+		handleRefresh,
+		handleItemPress,
+	};
 }
 ```
 
@@ -479,11 +495,11 @@ export default function LoginScreen({ title }: LoginScreenProps) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title || data?.title}</Text>
-      
+
       <FlatList
         data={data?.items}
         renderItem={({ item }) => (
-          <Text 
+          <Text
             style={styles.item}
             onPress={() => handleItemPress(item)}
           >
@@ -492,7 +508,7 @@ export default function LoginScreen({ title }: LoginScreenProps) {
         )}
         keyExtractor={(item, index) => index.toString()}
       />
-      
+
       <Button onPress={handleRefresh} title="Refresh" />
     </View>
   );
@@ -505,25 +521,25 @@ export default function LoginScreen({ title }: LoginScreenProps) {
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 16,
-  },
-  item: {
-    padding: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#e0e0e0',
-  },
-  errorText: {
-    color: 'red',
-    fontSize: 16,
-    marginBottom: 16,
-  },
+	container: {
+		flex: 1,
+		padding: 16,
+	},
+	title: {
+		fontSize: 24,
+		fontWeight: 'bold',
+		marginBottom: 16,
+	},
+	item: {
+		padding: 12,
+		borderBottomWidth: 1,
+		borderBottomColor: '#e0e0e0',
+	},
+	errorText: {
+		color: 'red',
+		fontSize: 16,
+		marginBottom: 16,
+	},
 });
 ```
 
@@ -534,11 +550,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 import ScreenContainer from './Screen';
 
 const meta = {
-  title: 'Container/ScreenContainer',
-  component: ScreenContainer,
-  parameters: {
-    layout: 'fullscreen',
-  },
+	title: 'Container/ScreenContainer',
+	component: ScreenContainer,
+	parameters: {
+		layout: 'fullscreen',
+	},
 } satisfies Meta<typeof ScreenContainer>;
 
 export default meta;
@@ -546,15 +562,15 @@ type Story = StoryObj<typeof meta>;
 
 // 완전한 컴포넌트를 스토리로 문서화
 export const Default: Story = {
-  args: {
-    title: 'My Screen',
-  },
+	args: {
+		title: 'My Screen',
+	},
 };
 
 export const CustomTitle: Story = {
-  args: {
-    title: 'Custom Title Override',
-  },
+	args: {
+		title: 'Custom Title Override',
+	},
 };
 ```
 
@@ -583,23 +599,24 @@ forms/
 ```
 
 **`useLoginForm.ts`:**
+
 ```typescript
 export function useLoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState({});
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	const [errors, setErrors] = useState({});
 
-  const validate = () => {
-    // 유효성 검사 로직
-  };
+	const validate = () => {
+		// 유효성 검사 로직
+	};
 
-  const handleSubmit = async () => {
-    if (validate()) {
-      // API 호출
-    }
-  };
+	const handleSubmit = async () => {
+		if (validate()) {
+			// API 호출
+		}
+	};
 
-  return { email, setEmail, password, setPassword, errors, handleSubmit };
+	return { email, setEmail, password, setPassword, errors, handleSubmit };
 }
 ```
 
@@ -615,17 +632,18 @@ screens/
 ```
 
 **`useLoginScreen.ts`:**
+
 ```typescript
 export function useLoginScreen() {
-  const navigation = useNavigation();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+	const navigation = useNavigation();
+	const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const handleLoginSuccess = () => {
-    setIsAuthenticated(true);
-    navigation.navigate('Home');
-  };
+	const handleLoginSuccess = () => {
+		setIsAuthenticated(true);
+		navigation.navigate('Home');
+	};
 
-  return { isAuthenticated, handleLoginSuccess };
+	return { isAuthenticated, handleLoginSuccess };
 }
 ```
 
@@ -657,7 +675,8 @@ components/
         ├── useLoginScreen.ts
         └── index.ts
 ```
-```
+
+````
 
 ---
 
@@ -679,39 +698,43 @@ components/
 // 로직과 UI가 명확히 분리
 useScreen.ts  → 비즈니스 로직만
 Screen.tsx    → UI 렌더링만
-```
+````
 
 #### ✅ **2. 로직 재사용성**
+
 ```typescript
 // Custom Hook은 여러 컴포넌트에서 재사용 가능
 import { useScreen } from '@/components/container/Screen';
 
 function AnotherComponent() {
-  const { data, loading } = useScreen(); // 동일한 로직 재사용
-  // 다른 UI로 렌더링 가능
+	const { data, loading } = useScreen(); // 동일한 로직 재사용
+	// 다른 UI로 렌더링 가능
 }
 ```
 
 #### ✅ **3. 테스트 용이성**
+
 ```typescript
 // Hook 단위 테스트 (비즈니스 로직)
 import { renderHook } from '@testing-library/react-hooks';
 import { useScreen } from './useScreen';
 
 test('should fetch data on mount', () => {
-  const { result } = renderHook(() => useScreen());
-  expect(result.current.loading).toBe(true);
+	const { result } = renderHook(() => useScreen());
+	expect(result.current.loading).toBe(true);
 });
 
 // 컴포넌트는 Storybook으로 시각적 테스트
 ```
 
 #### ✅ **4. 현대 React 패턴**
+
 - React 공식 권장 패턴 (2019+)
 - Hooks 생태계와 자연스럽게 통합
 - 팀원들에게 익숙한 구조
 
 #### ✅ **5. 명확한 역할 구분**
+
 ```
 View 파일:  순수 UI만 → Storybook 테스트 쉬움
 메인 파일:  상태 관리만 → 목 주입 쉬움
@@ -719,25 +742,27 @@ useXXX 파일: 로직만 → 유닛 테스트 쉬움
 ```
 
 #### ✅ **6. 확장성**
+
 ```typescript
 // 다른 상태 관리 도구로 쉽게 전환
 // InputView.tsx는 그대로 유지
 // Input.tsx만 교체
 
 // MobX → Redux
-Input.tsx       // Redux 통합으로 변경
-InputView.tsx   // 변경 없음
+Input.tsx; // Redux 통합으로 변경
+InputView.tsx; // 변경 없음
 
 // 또는 동시 지원
-MobxInput.tsx   // MobX 버전
-ReduxInput.tsx  // Redux 버전
-InputView.tsx   // 공통 UI
+MobxInput.tsx; // MobX 버전
+ReduxInput.tsx; // Redux 버전
+InputView.tsx; // 공통 UI
 ```
 
 #### ✅ **7. 점진적 복잡도**
+
 ```
 단순 → 복잡
-Button.tsx (순수 UI만) 
+Button.tsx (순수 UI만)
   ↓
 InputView.tsx + Input.tsx (UI + 상태)
   ↓
@@ -751,46 +776,51 @@ ScreenView.tsx + Screen.tsx + useScreen.ts (UI + 상태 + 로직)
 #### 생성해야 할 때:
 
 ✅ **복잡한 유효성 검사**
+
 ```typescript
 // useEmailInput.ts
 export function useEmailInput() {
-  const validateEmail = (email: string) => {
-    if (!email.includes('@')) return 'Invalid format';
-    const domain = email.split('@')[1];
-    const blockedDomains = ['tempmail.com', 'throwaway.email'];
-    if (blockedDomains.includes(domain)) return 'Domain not allowed';
-    // ... 더 복잡한 검증
-  };
+	const validateEmail = (email: string) => {
+		if (!email.includes('@')) return 'Invalid format';
+		const domain = email.split('@')[1];
+		const blockedDomains = ['tempmail.com', 'throwaway.email'];
+		if (blockedDomains.includes(domain)) return 'Domain not allowed';
+		// ... 더 복잡한 검증
+	};
 }
 ```
 
 ✅ **값 변환/포매팅 로직**
+
 ```typescript
 // usePhoneInput.ts
 export function usePhoneInput() {
-  const formatPhone = (value: string) => {
-    const numbers = value.replace(/\D/g, '');
-    if (numbers.length <= 3) return numbers;
-    if (numbers.length <= 7) return `${numbers.slice(0,3)}-${numbers.slice(3)}`;
-    return `${numbers.slice(0,3)}-${numbers.slice(3,7)}-${numbers.slice(7,11)}`;
-  };
+	const formatPhone = (value: string) => {
+		const numbers = value.replace(/\D/g, '');
+		if (numbers.length <= 3) return numbers;
+		if (numbers.length <= 7)
+			return `${numbers.slice(0, 3)}-${numbers.slice(3)}`;
+		return `${numbers.slice(0, 3)}-${numbers.slice(3, 7)}-${numbers.slice(7, 11)}`;
+	};
 }
 ```
 
 ✅ **여러 컴포넌트에서 재사용할 로직**
+
 ```typescript
 // useFormValidation.ts - 여러 폼에서 사용
 export function useFormValidation() {
-  const required = (value: any) => !value ? 'Required field' : undefined;
-  const minLength = (min: number) => (value: string) => 
-    value.length < min ? `Minimum ${min} characters` : undefined;
-  // ...
+	const required = (value: any) => (!value ? 'Required field' : undefined);
+	const minLength = (min: number) => (value: string) =>
+		value.length < min ? `Minimum ${min} characters` : undefined;
+	// ...
 }
 ```
 
 #### 생성하지 않아도 될 때:
 
 ❌ **단순 상태 관리** (MobX가 담당)
+
 ```typescript
 // ❌ 불필요한 Hook
 function useInput() {
@@ -805,30 +835,33 @@ const Input = observer(({ state, path }) => {
 ```
 
 ❌ **간단한 onChange 핸들러**
+
 ```typescript
 // ❌ 불필요한 Hook
 function useInput() {
-  const handleChange = (value: string) => {
-    console.log(value);
-  };
+	const handleChange = (value: string) => {
+		console.log(value);
+	};
 }
 
 // ✅ 컴포넌트에 직접 작성
 const Input = observer(() => {
-  const handleChange = action((value: string) => {
-    localState.value = value;
-  });
+	const handleChange = action((value: string) => {
+		localState.value = value;
+	});
 });
 ```
-├── screens/                # 공통 접미사 "Screen"을 가진 컴포넌트들
-│   └── LoginScreen/
-│       ├── LoginScreen.tsx
-│       └── index.tsx
-└── providers/              # Provider 컴포넌트들
-    └── ThemeProvider/
-        ├── ThemeProvider.tsx
-        └── index.tsx
-```
+
+├── screens/ # 공통 접미사 "Screen"을 가진 컴포넌트들
+│ └── LoginScreen/
+│ ├── LoginScreen.tsx
+│ └── index.tsx
+└── providers/ # Provider 컴포넌트들
+└── ThemeProvider/
+├── ThemeProvider.tsx
+└── index.tsx
+
+````
 
 ---
 
@@ -896,7 +929,7 @@ const Input = observer(() => {
 **해결책:**
 ```bash
 npm run prebuild:clean
-```
+````
 
 캐시 문제일 가능성이 높습니다. `--clean` 플래그로 완전 재생성합니다.
 
@@ -907,6 +940,7 @@ npm run prebuild:clean
 **증상:** 파일 저장 후 변경사항이 반영되지 않음
 
 **해결책:**
+
 ```bash
 npm run start:clear
 ```
@@ -918,6 +952,7 @@ Metro bundler 캐시를 초기화합니다.
 ### 3. 의존성 설치 후 앱이 실행되지 않음
 
 **해결책:**
+
 ```bash
 npm run prebuild:clean
 ```
@@ -929,11 +964,13 @@ npm run prebuild:clean
 ### 4. iOS/Android 특정 플랫폼만 문제
 
 **iOS 문제:**
+
 ```bash
 npm run prebuild:ios:clean
 ```
 
 **Android 문제:**
+
 ```bash
 npm run prebuild:android:clean
 ```

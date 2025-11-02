@@ -1,48 +1,48 @@
-import type { Meta, StoryObj } from "@storybook/react-native";
-import { View } from "react-native";
-import type { TextProps } from "@/components/ui/Text/Text";
-import { Text } from "@/components/ui/Text/Text";
+import type { Meta, StoryObj } from '@storybook/react-native';
+import { View } from 'react-native';
+import type { TextProps } from './Text';
+import { Text } from './Text';
 
 const meta: Meta<TextProps> = {
-	title: "components/Text",
+	title: 'components/Text',
 	component: Text,
 	parameters: {
-		layout: "centered",
+		layout: 'centered',
 		docs: {
 			description: {
-				component: "테마를 지원하는 타이포그래피 컴포넌트입니다.",
+				component: '테마를 지원하는 타이포그래피 컴포넌트입니다.',
 			},
 		},
 	},
 	argTypes: {
 		variant: {
-			control: { type: "select" },
+			control: { type: 'select' },
 			options: [
-				"h1",
-				"h2",
-				"h3",
-				"h4",
-				"h5",
-				"h6",
-				"body1",
-				"body2",
-				"caption",
-				"overline",
+				'h1',
+				'h2',
+				'h3',
+				'h4',
+				'h5',
+				'h6',
+				'body1',
+				'body2',
+				'caption',
+				'overline',
 			],
-			description: "Text의 타이포그래피 스타일",
+			description: 'Text의 타이포그래피 스타일',
 		},
 		color: {
-			control: { type: "select" },
+			control: { type: 'select' },
 			options: [
-				"foreground",
-				"primary",
-				"secondary",
-				"success",
-				"warning",
-				"danger",
-				"default",
+				'foreground',
+				'primary',
+				'secondary',
+				'success',
+				'warning',
+				'danger',
+				'default',
 			],
-			description: "Text의 색상",
+			description: 'Text의 색상',
 		},
 	},
 };
@@ -52,113 +52,113 @@ type Story = StoryObj<TextProps>;
 
 export const 기본: Story = {
 	args: {
-		children: "기본 텍스트입니다",
+		children: '기본 텍스트입니다',
 	},
-	render: (args) => <Text {...args} />,
+	render: args => <Text {...args} />,
 };
 
 export const 헤딩1: Story = {
 	args: {
-		variant: "h1",
-		children: "헤딩 1 텍스트",
+		variant: 'h1',
+		children: '헤딩 1 텍스트',
 	},
-	render: (args) => <Text {...args} />,
+	render: args => <Text {...args} />,
 };
 
 export const 헤딩2: Story = {
 	args: {
-		variant: "h2",
-		children: "헤딩 2 텍스트",
+		variant: 'h2',
+		children: '헤딩 2 텍스트',
 	},
-	render: (args) => <Text {...args} />,
+	render: args => <Text {...args} />,
 };
 
 export const 헤딩3: Story = {
 	args: {
-		variant: "h3",
-		children: "헤딩 3 텍스트",
+		variant: 'h3',
+		children: '헤딩 3 텍스트',
 	},
-	render: (args) => <Text {...args} />,
+	render: args => <Text {...args} />,
 };
 
 export const 본문1: Story = {
 	args: {
-		variant: "body1",
-		children: "본문 1 텍스트입니다. 일반적인 본문에 사용됩니다.",
+		variant: 'body1',
+		children: '본문 1 텍스트입니다. 일반적인 본문에 사용됩니다.',
 	},
-	render: (args) => <Text {...args} />,
+	render: args => <Text {...args} />,
 };
 
 export const 본문2: Story = {
 	args: {
-		variant: "body2",
-		children: "본문 2 텍스트입니다. 보조적인 본문에 사용됩니다.",
+		variant: 'body2',
+		children: '본문 2 텍스트입니다. 보조적인 본문에 사용됩니다.',
 	},
-	render: (args) => <Text {...args} />,
+	render: args => <Text {...args} />,
 };
 
 export const 캡션: Story = {
 	args: {
-		variant: "caption",
-		children: "캡션 텍스트입니다. 작은 설명에 사용됩니다.",
+		variant: 'caption',
+		children: '캡션 텍스트입니다. 작은 설명에 사용됩니다.',
 	},
-	render: (args) => <Text {...args} />,
+	render: args => <Text {...args} />,
 };
 
 export const 오버라인: Story = {
 	args: {
-		variant: "overline",
-		children: "오버라인 텍스트",
+		variant: 'overline',
+		children: '오버라인 텍스트',
 	},
-	render: (args) => <Text {...args} />,
+	render: args => <Text {...args} />,
 };
 
 export const 주요색상: Story = {
 	args: {
-		color: "primary",
-		children: "주요 색상 텍스트",
+		color: 'primary',
+		children: '주요 색상 텍스트',
 	},
-	render: (args) => <Text {...args} />,
+	render: args => <Text {...args} />,
 };
 
 export const 보조색상: Story = {
 	args: {
-		color: "secondary",
-		children: "보조 색상 텍스트",
+		color: 'secondary',
+		children: '보조 색상 텍스트',
 	},
-	render: (args) => <Text {...args} />,
+	render: args => <Text {...args} />,
 };
 
 export const 성공색상: Story = {
 	args: {
-		color: "success",
-		children: "성공 색상 텍스트",
+		color: 'success',
+		children: '성공 색상 텍스트',
 	},
-	render: (args) => <Text {...args} />,
+	render: args => <Text {...args} />,
 };
 
 export const 경고색상: Story = {
 	args: {
-		color: "warning",
-		children: "경고 색상 텍스트",
+		color: 'warning',
+		children: '경고 색상 텍스트',
 	},
-	render: (args) => <Text {...args} />,
+	render: args => <Text {...args} />,
 };
 
 export const 위험색상: Story = {
 	args: {
-		color: "danger",
-		children: "위험 색상 텍스트",
+		color: 'danger',
+		children: '위험 색상 텍스트',
 	},
-	render: (args) => <Text {...args} />,
+	render: args => <Text {...args} />,
 };
 
 export const 기본색상: Story = {
 	args: {
-		color: "default",
-		children: "기본 색상 텍스트",
+		color: 'default',
+		children: '기본 색상 텍스트',
 	},
-	render: (args) => <Text {...args} />,
+	render: args => <Text {...args} />,
 };
 
 export const 타이포그래피계층: Story = {
@@ -194,9 +194,9 @@ export const 색상팔레트: Story = {
 
 export const 플레이그라운드: Story = {
 	args: {
-		variant: "body1",
-		color: "foreground",
-		children: "플레이그라운드 텍스트",
+		variant: 'body1',
+		color: 'foreground',
+		children: '플레이그라운드 텍스트',
 	},
-	render: (args) => <Text {...args} />,
+	render: args => <Text {...args} />,
 };

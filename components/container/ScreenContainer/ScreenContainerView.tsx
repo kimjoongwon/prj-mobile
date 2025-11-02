@@ -1,18 +1,18 @@
-import { useTheme } from "@/components/contexts/ThemeContext";
-import type React from "react";
-import { StatusBar, View, type ViewStyle } from "react-native";
-import { styles } from "./ScreenContainer.styles";
+import type React from 'react';
+import { StatusBar, View, type ViewStyle } from 'react-native';
+import { useTheme } from '../../contexts/ThemeContext';
+import { styles } from './ScreenContainer.styles';
 
 export interface ScreenContainerViewProps {
 	children: React.ReactNode;
-	statusBarStyle?: "light-content" | "dark-content" | "auto";
+	statusBarStyle?: 'light-content' | 'dark-content' | 'auto';
 	backgroundColor?: string;
 	style?: ViewStyle;
 }
 
 export const ScreenContainerView: React.FC<ScreenContainerViewProps> = ({
 	children,
-	statusBarStyle = "auto",
+	statusBarStyle = 'auto',
 	backgroundColor,
 	style,
 	...props
@@ -22,8 +22,8 @@ export const ScreenContainerView: React.FC<ScreenContainerViewProps> = ({
 	const containerBackgroundColor = backgroundColor || theme.colors.background;
 
 	const getStatusBarStyle = () => {
-		if (statusBarStyle === "auto") {
-			return isDark ? "light-content" : "dark-content";
+		if (statusBarStyle === 'auto') {
+			return isDark ? 'light-content' : 'dark-content';
 		}
 		return statusBarStyle;
 	};

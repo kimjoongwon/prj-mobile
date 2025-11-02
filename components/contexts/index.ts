@@ -8,4 +8,4 @@ export {
 	type ThemeContextValue,
 	type ThemeMode,
 	useTheme,
-} from "./ThemeContext";
+} from './ThemeContext';

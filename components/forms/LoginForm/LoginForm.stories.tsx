@@ -1,16 +1,16 @@
-import type { Meta, StoryObj } from "@storybook/react-native";
-import { observable } from "mobx";
-import type { LoginFormProps, LoginFormState } from "./LoginForm";
-import { LoginForm } from "./LoginForm";
+import type { Meta, StoryObj } from '@storybook/react-native';
+import { observable } from 'mobx';
+import type { LoginFormProps, LoginFormState } from './LoginForm';
+import { LoginForm } from './LoginForm';
 
 const meta: Meta<LoginFormProps> = {
-	title: "forms/LoginForm",
+	title: 'forms/LoginForm',
 	component: LoginForm,
 	parameters: {
-		layout: "centered",
+		layout: 'centered',
 		docs: {
 			description: {
-				component: "이메일과 비밀번호를 입력받는 로그인 폼 컴포넌트입니다.",
+				component: '이메일과 비밀번호를 입력받는 로그인 폼 컴포넌트입니다.',
 			},
 		},
 	},
@@ -22,8 +22,8 @@ type Story = StoryObj<LoginFormProps>;
 export const 기본: Story = {
 	render: () => {
 		const state = observable<LoginFormState>({
-			email: "",
-			password: "",
+			email: '',
+			password: '',
 		});
 
 		return <LoginForm state={state} />;
@@ -33,8 +33,8 @@ export const 기본: Story = {
 export const 입력된상태: Story = {
 	render: () => {
 		const state = observable<LoginFormState>({
-			email: "user@example.com",
-			password: "password123",
+			email: 'user@example.com',
+			password: 'password123',
 		});
 
 		return <LoginForm state={state} />;
@@ -44,8 +44,8 @@ export const 입력된상태: Story = {
 export const 플레이그라운드: Story = {
 	render: () => {
 		const state = observable<LoginFormState>({
-			email: "",
-			password: "",
+			email: '',
+			password: '',
 		});
 
 		return <LoginForm state={state} />;

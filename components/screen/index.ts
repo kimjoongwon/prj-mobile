@@ -1,1 +1,1 @@
-export { LoginScreen } from "@/components/screen/LoginScreen";
+export { LoginScreen } from './LoginScreen';

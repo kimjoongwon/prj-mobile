@@ -1,40 +1,40 @@
-import { useTheme } from "@/components/contexts/ThemeContext";
-import {
-	baseGroupStyles,
-	baseLabelStyles,
-	baseRadioStyles,
-	sizes,
-	styles,
-} from "@/components/forms/RadioGroup/RadioGroup.styles";
-import { Text } from "@/components/ui/Text";
-import type { MobxProps } from "@cocrepo/types";
-import React, { useCallback, useMemo, useState } from "react";
+import type { MobxProps } from '@cocrepo/types';
+import React, { useCallback, useMemo, useState } from 'react';
 import {
 	Pressable,
 	type TextStyle,
 	View,
 	type ViewProps,
 	type ViewStyle,
-} from "react-native";
+} from 'react-native';
 import Animated, {
 	Easing,
 	interpolate,
 	useAnimatedStyle,
 	useSharedValue,
 	withTiming,
-} from "react-native-reanimated";
+} from 'react-native-reanimated';
+import { useTheme } from '../../contexts/ThemeContext';
+import { Text } from '../../ui/Text';
+import {
+	baseGroupStyles,
+	baseLabelStyles,
+	baseRadioStyles,
+	sizes,
+	styles,
+} from './RadioGroup.styles';
 
-export type RadioGroupSize = "sm" | "md" | "lg";
+export type RadioGroupSize = 'sm' | 'md' | 'lg';
 export type RadioGroupColor =
-	| "default"
-	| "primary"
-	| "secondary"
-	| "success"
-	| "warning"
-	| "danger";
-export type RadioGroupOrientation = "horizontal" | "vertical";
+	| 'default'
+	| 'primary'
+	| 'secondary'
+	| 'success'
+	| 'warning'
+	| 'danger';
+export type RadioGroupOrientation = 'horizontal' | 'vertical';
 
-export interface RadioGroupProps<T = any> extends Omit<ViewProps, "style"> {
+export interface RadioGroupProps<T = any> extends Omit<ViewProps, 'style'> {
 	data: T[];
 	label?: string;
 	name?: string;
@@ -69,7 +69,7 @@ export interface RadioGroupProps<T = any> extends Omit<ViewProps, "style"> {
 // MobX RadioGroup Props
 export interface MobxRadioGroupProps<T, D = any>
 	extends MobxProps<T>,
-		Omit<RadioGroupProps<D>, "value" | "onValueChange"> {}
+		Omit<RadioGroupProps<D>, 'value' | 'onValueChange'> {}
 
 export interface RadioGroupRef {
 	setValue: (value: string) => void;
@@ -78,15 +78,15 @@ export interface RadioGroupRef {
 	blur: () => void;
 }
 
-export const RadioGroup = <T = any>({
+export const RadioGroup = <T = any,>({
 	data,
 	label,
 	name,
 	value: controlledValue,
 	defaultValue,
-	size = "md",
-	color = "primary",
-	orientation = "vertical",
+	size = 'md',
+	color = 'primary',
+	orientation = 'vertical',
 	isDisabled = false,
 	isRequired = false,
 	isInvalid = false,
@@ -116,7 +116,7 @@ export const RadioGroup = <T = any>({
 
 	const colorScheme = useMemo(() => {
 		const colorTokens =
-			theme.colors[isInvalid ? "danger" : color] || theme.colors.default;
+			theme.colors[isInvalid ? 'danger' : color] || theme.colors.default;
 
 		return {
 			label: colorTokens.DEFAULT,
@@ -135,7 +135,7 @@ export const RadioGroup = <T = any>({
 
 			onValueChange?.(newValue, selectedItem, selectedIndex);
 		},
-		[controlledValue, onValueChange],
+		[controlledValue, onValueChange]
 	);
 
 	const containerStyle = useMemo((): ViewStyle => {
@@ -151,7 +151,7 @@ export const RadioGroup = <T = any>({
 			gap: sizeConfig.groupSpacing,
 		};
 
-		if (orientation === "horizontal") {
+		if (orientation === 'horizontal') {
 			return {
 				...baseStyle,
 				...baseGroupStyles.horizontal,
@@ -221,17 +221,11 @@ export const RadioGroup = <T = any>({
 				...baseRadioStyles.radio,
 				width: sizeConfig.radioSize,
 				height: sizeConfig.radioSize,
-				backgroundColor: "transparent",
+				backgroundColor: 'transparent',
 				borderColor: isSelected ? colorScheme.label : colorScheme.border,
 				...(isOptionDisabled ? baseRadioStyles.disabled : {}),
 			};
-		}, [
-			sizeConfig.radioSize,
-			isSelected,
-			colorScheme.label,
-			colorScheme.border,
-			isOptionDisabled,
-		]);
+		}, [isSelected, isOptionDisabled]);
 
 		const innerRadioStyle = useMemo((): ViewStyle => {
 			return {
@@ -240,7 +234,7 @@ export const RadioGroup = <T = any>({
 				backgroundColor: colorScheme.label,
 				borderRadius: sizeConfig.iconSize / 2,
 			};
-		}, [sizeConfig.iconSize, colorScheme.label]);
+		}, []);
 
 		const optionLabelStyleMemo = useMemo(() => {
 			return {
@@ -249,16 +243,16 @@ export const RadioGroup = <T = any>({
 				marginLeft: sizeConfig.spacing,
 				...(isOptionDisabled ? { opacity: 0.5 } : {}),
 			};
-		}, [sizeConfig, colorScheme.text, isOptionDisabled]);
+		}, [isOptionDisabled]);
 
 		const containerStyleForOption = useMemo(() => {
 			const baseStyle = [styles.radioContainer];
-			if (orientation === "horizontal") {
+			if (orientation === 'horizontal') {
 				// @ts-ignore
 				baseStyle.push(styles.horizontalRadioContainer);
 			}
 			return baseStyle;
-		}, [orientation]);
+		}, []);
 
 		return (
 			<Pressable
@@ -306,7 +300,7 @@ export const RadioGroup = <T = any>({
 				{label}
 				{isRequired && (
 					<Text style={[styles.requiredStar, { color: colorScheme.error }]}>
-						{" "}
+						{' '}
 						*
 					</Text>
 				)}
@@ -330,6 +324,7 @@ export const RadioGroup = <T = any>({
 				/>
 			);
 		});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [data, keyExtractor, valueExtractor, selectedValue, handleValueChange]);
 
 	return (
@@ -353,6 +348,6 @@ export const RadioGroup = <T = any>({
 	);
 };
 
-RadioGroup.displayName = "RadioGroup";
+RadioGroup.displayName = 'RadioGroup';
 
 export default RadioGroup;

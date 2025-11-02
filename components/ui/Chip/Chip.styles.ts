@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export const sizes = {
 	sm: {
@@ -34,18 +34,18 @@ export const radiusValues = {
 
 export const styles = StyleSheet.create({
 	chip: {
-		flexDirection: "row",
-		alignItems: "center",
+		flexDirection: 'row',
+		alignItems: 'center',
 		borderWidth: 1,
-		overflow: "hidden",
-		alignSelf: "flex-start",
+		overflow: 'hidden',
+		alignSelf: 'flex-start',
 	},
 	chipContent: {
-		flexDirection: "row",
-		alignItems: "center",
+		flexDirection: 'row',
+		alignItems: 'center',
 	},
 	chipText: {
-		fontWeight: "500",
+		fontWeight: '500',
 	},
 	startContent: {
 		marginRight: 6,
@@ -55,7 +55,7 @@ export const styles = StyleSheet.create({
 	},
 	avatar: {
 		borderRadius: 999,
-		overflow: "hidden",
+		overflow: 'hidden',
 		marginRight: 6,
 	},
 

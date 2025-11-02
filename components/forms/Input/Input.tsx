@@ -1,14 +1,14 @@
-import { useFormField } from "@cocrepo/hooks";
-import type { MobxProps } from "@cocrepo/types";
-import { get } from "lodash-es";
-import { action } from "mobx";
-import { observer } from "mobx-react-lite";
-import type React from "react";
-import { type InputProps as BaseInputProps, InputView } from "./InputView";
+import { useFormField } from '@cocrepo/hooks';
+import type { MobxProps } from '@cocrepo/types';
+import { get } from 'lodash-es';
+import { action } from 'mobx';
+import { observer } from 'mobx-react-lite';
+import type React from 'react';
+import { type InputProps as BaseInputProps, InputView } from './InputView';
 
 export interface InputProps<T>
 	extends MobxProps<T>,
-		Omit<BaseInputProps, "value" | "onChangeText"> {}
+		Omit<BaseInputProps, 'value' | 'onChangeText'> {}
 
 /**
  * Input - MobX Integrated Component
@@ -34,6 +34,6 @@ export const Input = observer(<T extends object>(props: InputProps<T>) => {
 	);
 });
 
-Input.displayName = "Input";
+Input.displayName = 'Input';
 
 export default Input;

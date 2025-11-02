@@ -1,36 +1,36 @@
-import type { Meta, StoryObj } from "@storybook/react-native";
-import { Logo } from "@/components/ui/Logo";
-import type { LogoProps } from "@/components/ui/Logo/Logo";
+import type { Meta, StoryObj } from '@storybook/react-native';
+import type { LogoProps } from './Logo';
+import { Logo } from './Logo';
 
 const meta: Meta<LogoProps> = {
-	title: "components/ui/Logo",
+	title: 'components/ui/Logo',
 	component: Logo,
 	parameters: {
-		layout: "centered",
+		layout: 'centered',
 		docs: {
 			description: {
-				component: "브랜드 로고를 표시하는 텍스트 컴포넌트입니다.",
+				component: '브랜드 로고를 표시하는 텍스트 컴포넌트입니다.',
 			},
 		},
 	},
 	argTypes: {
 		size: {
-			control: { type: "select" },
-			options: ["sm", "md", "lg"],
-			description: "로고의 크기",
+			control: { type: 'select' },
+			options: ['sm', 'md', 'lg'],
+			description: '로고의 크기',
 		},
 		color: {
-			control: { type: "select" },
+			control: { type: 'select' },
 			options: [
-				"foreground",
-				"primary",
-				"secondary",
-				"success",
-				"warning",
-				"danger",
-				"default",
+				'foreground',
+				'primary',
+				'secondary',
+				'success',
+				'warning',
+				'danger',
+				'default',
 			],
-			description: "로고의 색상",
+			description: '로고의 색상',
 		},
 	},
 };
@@ -40,48 +40,48 @@ type Story = StoryObj<LogoProps>;
 
 export const 기본: Story = {
 	args: {},
-	render: (args) => <Logo {...args} />,
+	render: args => <Logo {...args} />,
 };
 
 export const 작은크기: Story = {
 	args: {
-		size: "sm",
+		size: 'sm',
 	},
-	render: (args) => <Logo {...args} />,
+	render: args => <Logo {...args} />,
 };
 
 export const 중간크기: Story = {
 	args: {
-		size: "md",
+		size: 'md',
 	},
-	render: (args) => <Logo {...args} />,
+	render: args => <Logo {...args} />,
 };
 
 export const 큰크기: Story = {
 	args: {
-		size: "lg",
+		size: 'lg',
 	},
-	render: (args) => <Logo {...args} />,
+	render: args => <Logo {...args} />,
 };
 
 export const 주요색상: Story = {
 	args: {
-		color: "primary",
+		color: 'primary',
 	},
-	render: (args) => <Logo {...args} />,
+	render: args => <Logo {...args} />,
 };
 
 export const 보조색상: Story = {
 	args: {
-		color: "secondary",
+		color: 'secondary',
 	},
-	render: (args) => <Logo {...args} />,
+	render: args => <Logo {...args} />,
 };
 
 export const 플레이그라운드: Story = {
 	args: {
-		size: "md",
-		color: "primary",
+		size: 'md',
+		color: 'primary',
 	},
-	render: (args) => <Logo {...args} />,
+	render: args => <Logo {...args} />,
 };

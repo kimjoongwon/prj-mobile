@@ -1,7 +1,7 @@
-import React from "react";
-import { StyleSheet } from "react-native";
-import { Input } from "@/components/forms/Input";
-import { Card } from "@/components/ui/Card/Card";
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import { Card } from '../../ui/Card/Card';
+import { Input } from '../Input';
 
 export interface LoginFormState {
 	email: string;
@@ -40,7 +40,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ state }) => {
 const styles = StyleSheet.create({
 	container: {
 		gap: 16,
-		width: "100%",
+		width: '100%',
 	},
 });
 

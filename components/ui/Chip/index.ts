@@ -4,5 +4,5 @@ export type {
 	ChipRadius,
 	ChipSize,
 	ChipVariant,
-} from "./Chip";
-export { Chip } from "./Chip";
+} from './Chip';
+export { Chip } from './Chip';

@@ -1,18 +1,18 @@
-import { type Theme, useTheme } from "@/components/contexts/ThemeContext";
-import { Button } from "@/components/ui/Button";
-import { Text } from "@/components/ui/Text";
-import type { NativeStackHeaderProps } from "@react-navigation/native-stack";
-import type React from "react";
-import { Platform, StyleSheet, View, type ViewStyle } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import type { NativeStackHeaderProps } from '@react-navigation/native-stack';
+import type React from 'react';
+import { Platform, StyleSheet, View, type ViewStyle } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { type Theme, useTheme } from '../../contexts/ThemeContext';
+import { Button } from '../Button';
+import { Text } from '../Text';
 
-export type HeaderVariant = "default" | "transparent" | "elevated";
+export type HeaderVariant = 'default' | 'transparent' | 'elevated';
 
 export interface HeaderAction {
 	title: string;
 	onPress: () => void;
-	variant?: "ghost" | "solid" | "light";
-	color?: "primary" | "secondary" | "default";
+	variant?: 'ghost' | 'solid' | 'light';
+	color?: 'primary' | 'secondary' | 'default';
 }
 
 export interface HeaderProps extends NativeStackHeaderProps {
@@ -24,13 +24,13 @@ export interface HeaderProps extends NativeStackHeaderProps {
 	centerContent?: React.ReactNode;
 	style?: ViewStyle;
 	showStatusBar?: boolean;
-	statusBarStyle?: "auto" | "inverted" | "light" | "dark";
+	statusBarStyle?: 'auto' | 'inverted' | 'light' | 'dark';
 }
 
 export const Header: React.FC<HeaderProps> = ({
 	title,
 	subtitle,
-	variant = "default",
+	variant = 'default',
 	leftAction,
 	rightAction,
 	centerContent,
@@ -42,8 +42,8 @@ export const Header: React.FC<HeaderProps> = ({
 
 	const headerStyle = [
 		dynamicStyles.container,
-		variant === "transparent" && dynamicStyles.transparent,
-		variant === "elevated" && dynamicStyles.elevated,
+		variant === 'transparent' && dynamicStyles.transparent,
+		variant === 'elevated' && dynamicStyles.elevated,
 		style,
 	];
 
@@ -54,8 +54,8 @@ export const Header: React.FC<HeaderProps> = ({
 				<View style={dynamicStyles.leftSection}>
 					{leftAction && (
 						<Button
-							variant={leftAction.variant || "ghost"}
-							color={leftAction.color || "default"}
+							variant={leftAction.variant || 'ghost'}
+							color={leftAction.color || 'default'}
 							size="sm"
 							onPress={leftAction.onPress}
 						>
@@ -97,8 +97,8 @@ export const Header: React.FC<HeaderProps> = ({
 				<View style={dynamicStyles.rightSection}>
 					{rightAction && (
 						<Button
-							variant={rightAction.variant || "ghost"}
-							color={rightAction.color || "default"}
+							variant={rightAction.variant || 'ghost'}
+							color={rightAction.color || 'default'}
 							size="sm"
 							onPress={rightAction.onPress}
 						>
@@ -120,9 +120,9 @@ const createStyles = (theme: Theme, statusBarHeight: number) =>
 			borderBottomColor: theme.colors.default[200],
 		},
 		transparent: {
-			backgroundColor: "transparent",
+			backgroundColor: 'transparent',
 			borderBottomWidth: 0,
-			position: "absolute",
+			position: 'absolute',
 			top: 0,
 			left: 0,
 			right: 0,
@@ -142,32 +142,32 @@ const createStyles = (theme: Theme, statusBarHeight: number) =>
 			}),
 		},
 		content: {
-			flexDirection: "row",
-			alignItems: "center",
+			flexDirection: 'row',
+			alignItems: 'center',
 			height: 56,
 			paddingHorizontal: 16,
 		},
 		leftSection: {
 			flex: 1,
-			alignItems: "flex-start",
+			alignItems: 'flex-start',
 		},
 		centerSection: {
 			flex: 2,
-			alignItems: "center",
+			alignItems: 'center',
 		},
 		rightSection: {
 			flex: 1,
-			alignItems: "flex-end",
+			alignItems: 'flex-end',
 		},
 		titleContainer: {
-			alignItems: "center",
+			alignItems: 'center',
 		},
 		title: {
-			fontWeight: "600",
-			textAlign: "center",
+			fontWeight: '600',
+			textAlign: 'center',
 		},
 		subtitle: {
-			textAlign: "center",
+			textAlign: 'center',
 			marginTop: 2,
 		},
 	});

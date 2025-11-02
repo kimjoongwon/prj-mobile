@@ -1,9 +1,9 @@
-import { observer } from "mobx-react-lite";
-import type React from "react";
+import { observer } from 'mobx-react-lite';
+import type React from 'react';
 import {
-  ScreenContainerView,
-  type ScreenContainerViewProps,
-} from "./ScreenContainerView";
+	ScreenContainerView,
+	type ScreenContainerViewProps,
+} from './ScreenContainerView';
 
 export type ScreenContainerProps = ScreenContainerViewProps;
 
@@ -12,7 +12,7 @@ export type ScreenContainerProps = ScreenContainerViewProps;
  * Currently just wraps ScreenContainerView with observer for future state integration.
  */
 export const ScreenContainer: React.FC<ScreenContainerProps> = observer(
-	(props) => {
+	props => {
 		return <ScreenContainerView {...props} />;
-	},
+	}
 );

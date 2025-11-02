@@ -1,10 +1,10 @@
-export * from "./ThemeProvider";
+import type { PropsWithChildren, ReactNode } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { DarkModeSwitch } from '../ui/DarkModeSwitch';
+import { ThemeProvider } from './ThemeProvider';
 
-import { DarkModeSwitch } from "@/components/ui/DarkModeSwitch";
-import type { PropsWithChildren, ReactNode } from "react";
-import { StyleSheet, View } from "react-native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import { ThemeProvider } from "./ThemeProvider";
+export * from './ThemeProvider';
 
 interface ProvidersProps extends PropsWithChildren {
 	// 테스트나 Storybook에서 SafeArea를 비활성화할 수 있는 옵션
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	darkModeSwitchContainer: {
-		position: "absolute",
+		position: 'absolute',
 		bottom: 100, // 하단 탭 바보다 위에 배치
 		left: 20,
 		zIndex: 9999,

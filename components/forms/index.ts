@@ -1,4 +1,3 @@
-export * from "@/components/forms/Input";
-export * from "@/components/forms/ListSelect";
-export * from "@/components/forms/RadioGroup";
-
+export * from './Input';
+export * from './ListSelect';
+export * from './RadioGroup';

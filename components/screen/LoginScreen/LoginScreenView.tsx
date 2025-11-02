@@ -1,12 +1,12 @@
-import { type Theme, useTheme } from "@/components/contexts/ThemeContext";
-import { Button } from "@/components/ui/Button";
-import { Divider } from "@/components/ui/Divider";
-import { Logo } from "@/components/ui/Logo";
-import { ScrollView } from "@/components/ui/ScrollView";
-import { Text } from "@/components/ui/Text";
-import { View } from "@/components/ui/View";
-import type React from "react";
-import { StyleSheet, type ViewStyle } from "react-native";
+import type React from 'react';
+import { StyleSheet, type ViewStyle } from 'react-native';
+import { type Theme, useTheme } from '../../contexts/ThemeContext';
+import { Button } from '../../ui/Button';
+import { Divider } from '../../ui/Divider';
+import { Logo } from '../../ui/Logo';
+import { ScrollView } from '../../ui/ScrollView';
+import { Text } from '../../ui/Text';
+import { View } from '../../ui/View';
 
 export interface LoginScreenViewProps {
 	email: string;
@@ -117,11 +117,11 @@ const createStyles = (theme: Theme) =>
 			paddingBottom: 40,
 		},
 		logoSection: {
-			alignItems: "center",
+			alignItems: 'center',
 			marginBottom: 40,
 		},
 		headerSection: {
-			alignItems: "center",
+			alignItems: 'center',
 			marginBottom: 32,
 		},
 		title: {
@@ -129,7 +129,7 @@ const createStyles = (theme: Theme) =>
 			color: theme.colors.foreground,
 		},
 		subtitle: {
-			textAlign: "center",
+			textAlign: 'center',
 			color: theme.colors.default[600],
 		},
 		formSection: {
@@ -142,7 +142,7 @@ const createStyles = (theme: Theme) =>
 			marginVertical: 24,
 		},
 		linksSection: {
-			alignItems: "center",
+			alignItems: 'center',
 			gap: 8,
 		},
 		linkButton: {

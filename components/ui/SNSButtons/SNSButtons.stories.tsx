@@ -1,31 +1,31 @@
-import type { Meta, StoryObj } from "@storybook/react-native";
-import { View } from "react-native";
-import { SNSButtons } from "@/components/ui/SNSButtons";
-import type { SNSButtonsProps } from "@/components/ui/SNSButtons/SNSButtons";
+import type { Meta, StoryObj } from '@storybook/react-native';
+import { View } from 'react-native';
+import type { SNSButtonsProps } from './SNSButtons';
+import { SNSButtons } from './SNSButtons';
 
 const meta: Meta<SNSButtonsProps> = {
-	title: "components/ui/SNSButtons",
+	title: 'components/ui/SNSButtons',
 	component: SNSButtons,
 	parameters: {
-		layout: "centered",
+		layout: 'centered',
 		docs: {
 			description: {
-				component: "소셜 로그인 버튼들을 표시하는 컴포넌트입니다.",
+				component: '소셜 로그인 버튼들을 표시하는 컴포넌트입니다.',
 			},
 		},
 	},
 	argTypes: {
 		showGoogle: {
-			control: { type: "boolean" },
-			description: "Google 로그인 버튼 표시 여부",
+			control: { type: 'boolean' },
+			description: 'Google 로그인 버튼 표시 여부',
 		},
 		showApple: {
-			control: { type: "boolean" },
-			description: "Apple 로그인 버튼 표시 여부",
+			control: { type: 'boolean' },
+			description: 'Apple 로그인 버튼 표시 여부',
 		},
 		showKakao: {
-			control: { type: "boolean" },
-			description: "카카오 로그인 버튼 표시 여부",
+			control: { type: 'boolean' },
+			description: '카카오 로그인 버튼 표시 여부',
 		},
 	},
 };
@@ -35,7 +35,7 @@ type Story = StoryObj<SNSButtonsProps>;
 
 export const 기본: Story = {
 	args: {},
-	render: (args) => (
+	render: args => (
 		<View style={{ width: 300, padding: 20 }}>
 			<SNSButtons {...args} />
 		</View>
@@ -48,7 +48,7 @@ export const 구글만: Story = {
 		showApple: false,
 		showKakao: false,
 	},
-	render: (args) => (
+	render: args => (
 		<View style={{ width: 300, padding: 20 }}>
 			<SNSButtons {...args} />
 		</View>
@@ -61,7 +61,7 @@ export const 애플만: Story = {
 		showApple: true,
 		showKakao: false,
 	},
-	render: (args) => (
+	render: args => (
 		<View style={{ width: 300, padding: 20 }}>
 			<SNSButtons {...args} />
 		</View>
@@ -74,7 +74,7 @@ export const 카카오만: Story = {
 		showApple: false,
 		showKakao: true,
 	},
-	render: (args) => (
+	render: args => (
 		<View style={{ width: 300, padding: 20 }}>
 			<SNSButtons {...args} />
 		</View>
@@ -87,7 +87,7 @@ export const 구글애플만: Story = {
 		showApple: true,
 		showKakao: false,
 	},
-	render: (args) => (
+	render: args => (
 		<View style={{ width: 300, padding: 20 }}>
 			<SNSButtons {...args} />
 		</View>
@@ -100,7 +100,7 @@ export const 플레이그라운드: Story = {
 		showApple: true,
 		showKakao: true,
 	},
-	render: (args) => (
+	render: args => (
 		<View style={{ width: 300, padding: 20 }}>
 			<SNSButtons {...args} />
 		</View>

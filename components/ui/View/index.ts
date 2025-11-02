@@ -1,1 +1,1 @@
-export { View, type ViewProps } from "./View";
+export { View, type ViewProps } from './View';

@@ -1,25 +1,25 @@
-import React from "react";
-import { View, type ViewStyle } from "react-native";
-import { useTheme } from "@/components/contexts/ThemeContext";
-import { radiusValues, sizes, styles } from "@/components/ui/Chip/Chip.styles";
-import { Text } from "@/components/ui/Text";
+import React from 'react';
+import { View, type ViewStyle } from 'react-native';
+import { useTheme } from '../../contexts/ThemeContext';
+import { Text } from '../Text';
+import { radiusValues, sizes, styles } from './Chip.styles';
 
 export type ChipVariant =
-	| "solid"
-	| "bordered"
-	| "light"
-	| "flat"
-	| "faded"
-	| "shadow";
+	| 'solid'
+	| 'bordered'
+	| 'light'
+	| 'flat'
+	| 'faded'
+	| 'shadow';
 export type ChipColor =
-	| "default"
-	| "primary"
-	| "secondary"
-	| "success"
-	| "warning"
-	| "danger";
-export type ChipSize = "sm" | "md" | "lg";
-export type ChipRadius = "none" | "sm" | "md" | "lg" | "full";
+	| 'default'
+	| 'primary'
+	| 'secondary'
+	| 'success'
+	| 'warning'
+	| 'danger';
+export type ChipSize = 'sm' | 'md' | 'lg';
+export type ChipRadius = 'none' | 'sm' | 'md' | 'lg' | 'full';
 
 export interface ChipProps {
 	children?: React.ReactNode;
@@ -36,10 +36,10 @@ export interface ChipProps {
 
 export const Chip: React.FC<ChipProps> = ({
 	children,
-	variant = "solid",
-	color = "default",
-	size = "md",
-	radius = "full",
+	variant = 'solid',
+	color = 'default',
+	size = 'md',
+	radius = 'full',
 	isDisabled = false,
 	startContent,
 	endContent,
@@ -55,37 +55,37 @@ export const Chip: React.FC<ChipProps> = ({
 		const colorTokens = theme.colors[color] || theme.colors.default;
 
 		switch (variant) {
-			case "solid":
+			case 'solid':
 				return {
 					backgroundColor: colorTokens.DEFAULT,
 					borderColor: colorTokens.DEFAULT,
 					textColor: colorTokens.foreground,
 				};
-			case "bordered":
+			case 'bordered':
 				return {
-					backgroundColor: "transparent",
+					backgroundColor: 'transparent',
 					borderColor: colorTokens.DEFAULT,
 					textColor: colorTokens.DEFAULT,
 				};
-			case "light":
+			case 'light':
 				return {
 					backgroundColor: colorTokens[100],
 					borderColor: colorTokens[200],
 					textColor: colorTokens[800],
 				};
-			case "flat":
+			case 'flat':
 				return {
 					backgroundColor: colorTokens[100],
-					borderColor: "transparent",
+					borderColor: 'transparent',
 					textColor: colorTokens[800],
 				};
-			case "faded":
+			case 'faded':
 				return {
 					backgroundColor: colorTokens[50],
 					borderColor: colorTokens[300],
 					textColor: colorTokens[700],
 				};
-			case "shadow":
+			case 'shadow':
 				return {
 					backgroundColor: colorTokens.DEFAULT,
 					borderColor: colorTokens.DEFAULT,
@@ -109,7 +109,7 @@ export const Chip: React.FC<ChipProps> = ({
 		borderRadius: radiusValue,
 		backgroundColor: colorScheme.backgroundColor,
 		borderColor: colorScheme.borderColor,
-		...(variant === "shadow" && styles.shadowVariant),
+		...(variant === 'shadow' && styles.shadowVariant),
 		...(isDisabled && styles.disabled),
 	};
 

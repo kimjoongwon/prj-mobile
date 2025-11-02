@@ -1,14 +1,10 @@
-import { useTheme } from "@/components/contexts/ThemeContext";
-import {
-    type InputProps,
-    type InputRef,
-    InputView,
-} from "@/components/forms/Input/InputView";
-import { Text } from "@/components/ui/Text";
-import { Ionicons } from "@expo/vector-icons";
-import type { Meta, StoryObj } from "@storybook/react-native";
-import { useRef } from "react";
-import { TouchableOpacity, View } from "react-native";
+import { Ionicons } from '@expo/vector-icons';
+import type { Meta, StoryObj } from '@storybook/react-native';
+import { useRef } from 'react';
+import { TouchableOpacity, View } from 'react-native';
+import { useTheme } from '../../contexts/ThemeContext';
+import { Text } from '../../ui/Text';
+import { type InputProps, type InputRef, InputView } from './InputView';
 
 // Extended args interface for Storybook
 interface InputStoryArgs extends InputProps {
@@ -27,56 +23,56 @@ const iconMapping = {
 };
 
 const meta: Meta<InputStoryArgs> = {
-	title: "Forms/Input",
+	title: 'Forms/Input',
 	component: InputView,
 	argTypes: {
 		variant: {
-			control: { type: "select" },
-			options: ["flat", "bordered", "underlined", "faded"],
+			control: { type: 'select' },
+			options: ['flat', 'bordered', 'underlined', 'faded'],
 		},
 		color: {
-			control: { type: "select" },
+			control: { type: 'select' },
 			options: [
-				"default",
-				"primary",
-				"secondary",
-				"success",
-				"warning",
-				"danger",
+				'default',
+				'primary',
+				'secondary',
+				'success',
+				'warning',
+				'danger',
 			],
 		},
 		size: {
-			control: { type: "select" },
-			options: ["sm", "md", "lg"],
+			control: { type: 'select' },
+			options: ['sm', 'md', 'lg'],
 		},
 		labelPlacement: {
-			control: { type: "select" },
-			options: ["inside", "outside", "outside-left"],
+			control: { type: 'select' },
+			options: ['inside', 'outside', 'outside-left'],
 		},
 		startIcon: {
-			control: { type: "select" },
-			options: ["none", "mail", "search", "person", "lock"],
+			control: { type: 'select' },
+			options: ['none', 'mail', 'search', 'person', 'lock'],
 			mapping: iconMapping,
 		},
 		endIcon: {
-			control: { type: "select" },
-			options: ["none", "eye", "search"],
+			control: { type: 'select' },
+			options: ['none', 'eye', 'search'],
 			mapping: iconMapping,
 		},
 		isDisabled: {
-			control: { type: "boolean" },
+			control: { type: 'boolean' },
 		},
 		isReadOnly: {
-			control: { type: "boolean" },
+			control: { type: 'boolean' },
 		},
 		isInvalid: {
-			control: { type: "boolean" },
+			control: { type: 'boolean' },
 		},
 		isRequired: {
-			control: { type: "boolean" },
+			control: { type: 'boolean' },
 		},
 		isClearable: {
-			control: { type: "boolean" },
+			control: { type: 'boolean' },
 		},
 	},
 	decorators: [
@@ -100,178 +96,178 @@ type Story = StoryObj<InputStoryArgs>;
 
 export const Default: Story = {
 	args: {
-		label: "Email",
-		placeholder: "Enter your email",
-		variant: "flat",
-		color: "default",
-		size: "md",
-		labelPlacement: "inside",
+		label: 'Email',
+		placeholder: 'Enter your email',
+		variant: 'flat',
+		color: 'default',
+		size: 'md',
+		labelPlacement: 'inside',
 	},
 };
 
 export const Flat: Story = {
 	args: {
-		label: "Flat Input",
-		placeholder: "Enter text",
-		variant: "flat",
-		color: "primary",
-		size: "md",
-		labelPlacement: "inside",
+		label: 'Flat Input',
+		placeholder: 'Enter text',
+		variant: 'flat',
+		color: 'primary',
+		size: 'md',
+		labelPlacement: 'inside',
 	},
 };
 
 export const Bordered: Story = {
 	args: {
-		label: "Bordered Input",
-		placeholder: "Enter text",
-		variant: "bordered",
-		color: "primary",
-		size: "md",
-		labelPlacement: "inside",
+		label: 'Bordered Input',
+		placeholder: 'Enter text',
+		variant: 'bordered',
+		color: 'primary',
+		size: 'md',
+		labelPlacement: 'inside',
 	},
 };
 
 export const Underlined: Story = {
 	args: {
-		label: "Underlined Input",
-		placeholder: "Enter text",
-		variant: "underlined",
-		color: "primary",
-		size: "md",
-		labelPlacement: "inside",
+		label: 'Underlined Input',
+		placeholder: 'Enter text',
+		variant: 'underlined',
+		color: 'primary',
+		size: 'md',
+		labelPlacement: 'inside',
 	},
 };
 
 export const Faded: Story = {
 	args: {
-		label: "Faded Input",
-		placeholder: "Enter text",
-		variant: "faded",
-		color: "primary",
-		size: "md",
-		labelPlacement: "inside",
+		label: 'Faded Input',
+		placeholder: 'Enter text',
+		variant: 'faded',
+		color: 'primary',
+		size: 'md',
+		labelPlacement: 'inside',
 	},
 };
 
 export const WithStartContent: Story = {
 	args: {
-		label: "Email",
-		placeholder: "Enter your email",
-		variant: "bordered",
-		color: "primary",
-		size: "md",
-		labelPlacement: "inside",
-		startIcon: "mail",
+		label: 'Email',
+		placeholder: 'Enter your email',
+		variant: 'bordered',
+		color: 'primary',
+		size: 'md',
+		labelPlacement: 'inside',
+		startIcon: 'mail',
 	},
 };
 
 export const WithEndContent: Story = {
 	args: {
-		label: "Password",
-		placeholder: "Enter your password",
-		variant: "bordered",
-		color: "primary",
-		size: "md",
-		labelPlacement: "inside",
+		label: 'Password',
+		placeholder: 'Enter your password',
+		variant: 'bordered',
+		color: 'primary',
+		size: 'md',
+		labelPlacement: 'inside',
 		secureTextEntry: true,
-		endIcon: "eye",
+		endIcon: 'eye',
 	},
 };
 
 export const Clearable: Story = {
 	args: {
-		label: "Search",
-		placeholder: "Search something",
-		variant: "bordered",
-		color: "primary",
-		size: "md",
-		labelPlacement: "inside",
+		label: 'Search',
+		placeholder: 'Search something',
+		variant: 'bordered',
+		color: 'primary',
+		size: 'md',
+		labelPlacement: 'inside',
 		isClearable: true,
 	},
 };
 
 export const OutsideLabel: Story = {
 	args: {
-		label: "Outside Label",
-		placeholder: "Enter text",
-		variant: "bordered",
-		color: "primary",
-		size: "md",
-		labelPlacement: "outside",
+		label: 'Outside Label',
+		placeholder: 'Enter text',
+		variant: 'bordered',
+		color: 'primary',
+		size: 'md',
+		labelPlacement: 'outside',
 	},
 };
 
 export const OutsideLeftLabel: Story = {
 	args: {
-		label: "Name",
-		placeholder: "Enter your name",
-		variant: "bordered",
-		color: "primary",
-		size: "md",
-		labelPlacement: "outside-left",
+		label: 'Name',
+		placeholder: 'Enter your name',
+		variant: 'bordered',
+		color: 'primary',
+		size: 'md',
+		labelPlacement: 'outside-left',
 	},
 };
 
 export const Required: Story = {
 	args: {
-		label: "Required Field",
-		placeholder: "This field is required",
-		variant: "bordered",
-		color: "primary",
-		size: "md",
-		labelPlacement: "inside",
+		label: 'Required Field',
+		placeholder: 'This field is required',
+		variant: 'bordered',
+		color: 'primary',
+		size: 'md',
+		labelPlacement: 'inside',
 		isRequired: true,
 	},
 };
 
 export const Invalid: Story = {
 	args: {
-		label: "Invalid Input",
-		placeholder: "Enter text",
-		variant: "bordered",
-		color: "primary",
-		size: "md",
-		labelPlacement: "inside",
+		label: 'Invalid Input',
+		placeholder: 'Enter text',
+		variant: 'bordered',
+		color: 'primary',
+		size: 'md',
+		labelPlacement: 'inside',
 		isInvalid: true,
-		errorMessage: "This field is invalid",
+		errorMessage: 'This field is invalid',
 	},
 };
 
 export const WithDescription: Story = {
 	args: {
-		label: "Username",
-		placeholder: "Enter your username",
-		variant: "bordered",
-		color: "primary",
-		size: "md",
-		labelPlacement: "inside",
-		description: "Username must be at least 3 characters long",
+		label: 'Username',
+		placeholder: 'Enter your username',
+		variant: 'bordered',
+		color: 'primary',
+		size: 'md',
+		labelPlacement: 'inside',
+		description: 'Username must be at least 3 characters long',
 	},
 };
 
 export const Disabled: Story = {
 	args: {
-		label: "Disabled Input",
-		placeholder: "This input is disabled",
-		variant: "bordered",
-		color: "primary",
-		size: "md",
-		labelPlacement: "inside",
+		label: 'Disabled Input',
+		placeholder: 'This input is disabled',
+		variant: 'bordered',
+		color: 'primary',
+		size: 'md',
+		labelPlacement: 'inside',
 		isDisabled: true,
-		value: "Disabled value",
+		value: 'Disabled value',
 	},
 };
 
 export const ReadOnly: Story = {
 	args: {
-		label: "Read Only Input",
-		placeholder: "This input is read only",
-		variant: "bordered",
-		color: "primary",
-		size: "md",
-		labelPlacement: "inside",
+		label: 'Read Only Input',
+		placeholder: 'This input is read only',
+		variant: 'bordered',
+		color: 'primary',
+		size: 'md',
+		labelPlacement: 'inside',
 		isReadOnly: true,
-		value: "Read only value",
+		value: 'Read only value',
 	},
 };
 
@@ -403,59 +399,61 @@ export const Variants: Story = {
 	args: {},
 };
 
-export const FocusTest: Story = {
-	render: () => {
-		const inputRef = useRef<InputRef>(null);
-		const { theme } = useTheme();
+const FocusTestComponent: React.FC = () => {
+	const inputRef = useRef<InputRef>(null);
+	const { theme } = useTheme();
 
-		return (
-			<View style={{ gap: 16 }}>
-				<InputView
-					ref={inputRef}
-					label="Test Input"
-					placeholder="Click buttons to test focus"
-					variant="bordered"
-					color="primary"
-					size="md"
-					labelPlacement="inside"
-				/>
-				<View style={{ flexDirection: "row", gap: 10 }}>
-					<TouchableOpacity
-						style={{
-							backgroundColor: theme.colors.primary.DEFAULT,
-							padding: 12,
-							borderRadius: 8,
-							flex: 1,
-						}}
-						onPress={() => inputRef.current?.focus()}
-					>
-						<Text style={{ color: "white", textAlign: "center" }}>Focus</Text>
-					</TouchableOpacity>
-					<TouchableOpacity
-						style={{
-							backgroundColor: theme.colors.danger.DEFAULT,
-							padding: 12,
-							borderRadius: 8,
-							flex: 1,
-						}}
-						onPress={() => inputRef.current?.blur()}
-					>
-						<Text style={{ color: "white", textAlign: "center" }}>Blur</Text>
-					</TouchableOpacity>
-					<TouchableOpacity
-						style={{
-							backgroundColor: theme.colors.warning.DEFAULT,
-							padding: 12,
-							borderRadius: 8,
-							flex: 1,
-						}}
-						onPress={() => inputRef.current?.clear()}
-					>
-						<Text style={{ color: "white", textAlign: "center" }}>Clear</Text>
-					</TouchableOpacity>
-				</View>
+	return (
+		<View style={{ gap: 16 }}>
+			<InputView
+				ref={inputRef}
+				label="Test Input"
+				placeholder="Click buttons to test focus"
+				variant="bordered"
+				color="primary"
+				size="md"
+				labelPlacement="inside"
+			/>
+			<View style={{ flexDirection: 'row', gap: 10 }}>
+				<TouchableOpacity
+					style={{
+						backgroundColor: theme.colors.primary.DEFAULT,
+						padding: 12,
+						borderRadius: 8,
+						flex: 1,
+					}}
+					onPress={() => inputRef.current?.focus()}
+				>
+					<Text style={{ color: 'white', textAlign: 'center' }}>Focus</Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+					style={{
+						backgroundColor: theme.colors.danger.DEFAULT,
+						padding: 12,
+						borderRadius: 8,
+						flex: 1,
+					}}
+					onPress={() => inputRef.current?.blur()}
+				>
+					<Text style={{ color: 'white', textAlign: 'center' }}>Blur</Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+					style={{
+						backgroundColor: theme.colors.warning.DEFAULT,
+						padding: 12,
+						borderRadius: 8,
+						flex: 1,
+					}}
+					onPress={() => inputRef.current?.clear()}
+				>
+					<Text style={{ color: 'white', textAlign: 'center' }}>Clear</Text>
+				</TouchableOpacity>
 			</View>
-		);
-	},
+		</View>
+	);
+};
+
+export const FocusTest: Story = {
+	render: () => <FocusTestComponent />,
 	args: {},
 };

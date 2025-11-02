@@ -1,5 +1,5 @@
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { RadioGroupSize } from "@/components/forms/RadioGroup/RadioGroup";
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { RadioGroupSize } from './RadioGroup';
 
 export const sizes: Record<
 	RadioGroupSize,
@@ -36,14 +36,14 @@ export const sizes: Record<
 
 export const baseGroupStyles: Record<string, ViewStyle> = {
 	container: {
-		flexDirection: "column",
+		flexDirection: 'column',
 	},
 	group: {
-		flexDirection: "column",
+		flexDirection: 'column',
 	},
 	horizontal: {
-		flexDirection: "row",
-		flexWrap: "wrap",
+		flexDirection: 'row',
+		flexWrap: 'wrap',
 	},
 	disabled: {
 		opacity: 0.5,
@@ -52,16 +52,16 @@ export const baseGroupStyles: Record<string, ViewStyle> = {
 
 export const baseRadioStyles: Record<string, ViewStyle> = {
 	container: {
-		flexDirection: "row",
-		alignItems: "center",
+		flexDirection: 'row',
+		alignItems: 'center',
 		marginBottom: 8,
 	},
 	radio: {
-		alignItems: "center",
-		justifyContent: "center",
+		alignItems: 'center',
+		justifyContent: 'center',
 		borderWidth: 2,
 		borderRadius: 50,
-		position: "relative",
+		position: 'relative',
 	},
 	selected: {
 		borderWidth: 0,
@@ -73,11 +73,11 @@ export const baseRadioStyles: Record<string, ViewStyle> = {
 
 export const baseLabelStyles: Record<string, TextStyle> = {
 	groupLabel: {
-		fontWeight: "600",
+		fontWeight: '600',
 		marginBottom: 8,
 	},
 	radioLabel: {
-		fontWeight: "400",
+		fontWeight: '400',
 		lineHeight: 20,
 	},
 	description: {
@@ -92,18 +92,18 @@ export const baseLabelStyles: Record<string, TextStyle> = {
 
 export const styles = StyleSheet.create({
 	container: {
-		flexDirection: "column",
+		flexDirection: 'column',
 	},
 	group: {
-		flexDirection: "column",
+		flexDirection: 'column',
 	},
 	horizontal: {
-		flexDirection: "row",
-		flexWrap: "wrap",
+		flexDirection: 'row',
+		flexWrap: 'wrap',
 	},
 	radioContainer: {
-		flexDirection: "row",
-		alignItems: "center",
+		flexDirection: 'row',
+		alignItems: 'center',
 		marginBottom: 8,
 	},
 	horizontalRadioContainer: {
@@ -111,8 +111,8 @@ export const styles = StyleSheet.create({
 		marginBottom: 8,
 	},
 	radio: {
-		alignItems: "center",
-		justifyContent: "center",
+		alignItems: 'center',
+		justifyContent: 'center',
 		borderWidth: 2,
 		borderRadius: 50,
 	},
@@ -120,16 +120,16 @@ export const styles = StyleSheet.create({
 		borderRadius: 50,
 	},
 	labelContainer: {
-		flexDirection: "column",
+		flexDirection: 'column',
 		flex: 1,
-		justifyContent: "center",
+		justifyContent: 'center',
 	},
 	groupLabel: {
-		fontWeight: "600",
+		fontWeight: '600',
 		marginBottom: 8,
 	},
 	radioLabel: {
-		fontWeight: "400",
+		fontWeight: '400',
 	},
 	description: {
 		fontSize: 12,

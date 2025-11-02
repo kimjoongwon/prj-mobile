@@ -1,13 +1,15 @@
 // Pure UI Component
 
-export type { InputProps } from "./Input";
+export type { InputProps } from './Input';
 // MobX Integrated Component (default)
-export { Input as default, Input } from "./Input";
+export { Input as default, Input } from './Input';
 // Re-export types
-export { InputView } from "./InputView";
+export { InputView } from './InputView';
 export type {
-	InputColor, InputRef,
+	InputColor,
+	InputRef,
 	InputSize,
-	InputVariant, InputProps as InputViewProps, LabelPlacement
-} from "./InputView";
-
+	InputVariant,
+	InputProps as InputViewProps,
+	LabelPlacement,
+} from './InputView';
