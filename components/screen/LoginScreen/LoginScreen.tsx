@@ -1,4 +1,3 @@
-import type { LoginFormState } from "@/components/forms/LoginForm";
 import { observable } from "mobx";
 import { observer } from "mobx-react-lite";
 import React from "react";
@@ -12,7 +11,7 @@ export type LoginScreenProps = Omit<LoginScreenViewProps, "email" | "password">;
  */
 export const LoginScreen: React.FC<LoginScreenProps> = observer((props) => {
 	const [loginState] = React.useState(() =>
-		observable<LoginFormState>({
+		observable({
 			email: "",
 			password: "",
 		}),
