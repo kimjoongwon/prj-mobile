@@ -1,6 +1,9 @@
+import { Providers } from '@/components/providers';
 import { Stack } from 'expo-router';
 import 'react-native-reanimated';
-import { Providers } from '@/components/providers';
+import "../global.css";
+import { Suspense, lazy } from 'react';
+import { Text } from '@/components';
 
 export const unstable_settings = {
   anchor: '(tabs)',
@@ -20,11 +23,13 @@ export default function RootLayout() {
   const isStorybookMode = process.env.EXPO_PUBLIC_STORYBOOK === 'true';
 
   if (isStorybookMode) {
-    // Storybook 모드: 라우팅을 완전히 우회하고 Storybook만 표시
-    const StorybookView = require('../.rnstorybook').default;
+    // Storybook 모드: 동적 import로 로드하여 Node.js 모듈 에러 방지
+    const StorybookView = lazy(() => import('../.rnstorybook'));
     return (
       <Providers>
-        <StorybookView />
+        <Suspense fallback={<></>}>
+          <StorybookView />
+        </Suspense>
       </Providers>
     );
   }
