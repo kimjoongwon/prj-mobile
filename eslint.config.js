@@ -15,4 +15,20 @@ module.exports = defineConfig([
 			},
 		},
 	},
+	{
+		files: ["components/**/*.{ts,tsx}"],
+		rules: {
+			"no-restricted-imports": [
+				"error",
+				{
+					patterns: [
+						{
+							group: ["@components/*"],
+							message: "Use relative imports within components folder",
+						},
+					],
+				},
+			],
+		},
+	},
 ]);

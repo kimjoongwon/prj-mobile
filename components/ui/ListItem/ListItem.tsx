@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, View, ViewStyle } from 'react-native';
-import { useTheme } from '../../contexts/ThemeContext';
+import { useTheme } from '../../hooks/useTheme';
 import { Text } from '../Text';
 import { sizes, styles } from './ListItem.styles';
 

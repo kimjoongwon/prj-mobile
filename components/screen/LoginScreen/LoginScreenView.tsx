@@ -1,6 +1,6 @@
 import type React from 'react';
 import { StyleSheet, type ViewStyle } from 'react-native';
-import { type Theme, useTheme } from '../../contexts/ThemeContext';
+import { type Theme, useTheme } from '../../hooks/useTheme';
 import { Button } from '../../ui/Button';
 import { Divider } from '../../ui/Divider';
 import { Logo } from '../../ui/Logo';

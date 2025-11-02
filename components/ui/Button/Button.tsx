@@ -8,7 +8,7 @@ import {
 	View,
 	type ViewStyle,
 } from 'react-native';
-import { useTheme } from '../../contexts/ThemeContext';
+import { useTheme } from '../../hooks/useTheme';
 import { Text } from '../Text';
 
 export type ButtonVariant =

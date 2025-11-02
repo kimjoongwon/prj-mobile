@@ -2,7 +2,7 @@ import type { NativeStackHeaderProps } from '@react-navigation/native-stack';
 import type React from 'react';
 import { Platform, StyleSheet, View, type ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { type Theme, useTheme } from '../../contexts/ThemeContext';
+import { type Theme, useTheme } from '../../hooks/useTheme';
 import { Button } from '../Button';
 import { Text } from '../Text';
 
