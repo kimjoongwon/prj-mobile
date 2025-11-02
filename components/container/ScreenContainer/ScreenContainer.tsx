@@ -1,48 +1,18 @@
-import { useTheme } from "@/components/contexts/ThemeContext";
 import { observer } from "mobx-react-lite";
 import type React from "react";
-import { StatusBar, View, type ViewProps, type ViewStyle } from "react-native";
+import {
+  ScreenContainerView,
+  type ScreenContainerViewProps,
+} from "./ScreenContainerView";
 
-export interface ScreenContainerProps extends Omit<ViewProps, "style"> {
-	children: React.ReactNode;
-	statusBarStyle?: "light-content" | "dark-content" | "auto";
-	backgroundColor?: string;
-	style?: ViewStyle;
-}
+export type ScreenContainerProps = ScreenContainerViewProps;
 
+/**
+ * ScreenContainer component with MobX observer wrapper.
+ * Currently just wraps ScreenContainerView with observer for future state integration.
+ */
 export const ScreenContainer: React.FC<ScreenContainerProps> = observer(
-	({ children, statusBarStyle = "auto", backgroundColor, style, ...props }) => {
-		const { theme, isDark } = useTheme();
-
-		const containerBackgroundColor = backgroundColor || theme.colors.background;
-
-		const statusBarStyleValue = (() => {
-			if (statusBarStyle === "auto") {
-				return isDark ? "light-content" : "dark-content";
-			}
-			return statusBarStyle;
-		})();
-
-		const containerStyle: ViewStyle = {
-			flex: 1,
-			paddingHorizontal: 20,
-			backgroundColor: containerBackgroundColor,
-			...style,
-		};
-
-		return (
-			<View style={containerStyle} {...props}>
-				<StatusBar
-					barStyle={statusBarStyleValue}
-					backgroundColor={containerBackgroundColor}
-					translucent={false}
-				/>
-				{children}
-			</View>
-		);
+	(props) => {
+		return <ScreenContainerView {...props} />;
 	},
 );
-
-ScreenContainer.displayName = "ScreenContainer";
-
-export default ScreenContainer;

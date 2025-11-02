@@ -1,10 +1,14 @@
+import { useTheme } from "@/components/contexts/ThemeContext";
+import {
+    type InputProps,
+    type InputRef,
+    InputView,
+} from "@/components/forms/Input/InputView";
+import { Text } from "@/components/ui/Text";
 import { Ionicons } from "@expo/vector-icons";
 import type { Meta, StoryObj } from "@storybook/react-native";
 import { useRef } from "react";
 import { TouchableOpacity, View } from "react-native";
-import { useTheme } from "@/components/contexts/ThemeContext";
-import { Input, InputProps, InputRef } from "@/components/forms/Input/Input";
-import { Text } from "@/components/ui/Text";
 
 // Extended args interface for Storybook
 interface InputStoryArgs extends InputProps {
@@ -24,7 +28,7 @@ const iconMapping = {
 
 const meta: Meta<InputStoryArgs> = {
 	title: "Forms/Input",
-	component: Input,
+	component: InputView,
 	argTypes: {
 		variant: {
 			control: { type: "select" },
@@ -274,7 +278,7 @@ export const ReadOnly: Story = {
 export const Sizes: Story = {
 	render: () => (
 		<View style={{ gap: 16 }}>
-			<Input
+			<InputView
 				label="Small Input"
 				placeholder="Small size"
 				variant="bordered"
@@ -282,7 +286,7 @@ export const Sizes: Story = {
 				size="sm"
 				labelPlacement="inside"
 			/>
-			<Input
+			<InputView
 				label="Medium Input"
 				placeholder="Medium size"
 				variant="bordered"
@@ -290,7 +294,7 @@ export const Sizes: Story = {
 				size="md"
 				labelPlacement="inside"
 			/>
-			<Input
+			<InputView
 				label="Large Input"
 				placeholder="Large size"
 				variant="bordered"
@@ -306,7 +310,7 @@ export const Sizes: Story = {
 export const Colors: Story = {
 	render: () => (
 		<View style={{ gap: 16 }}>
-			<Input
+			<InputView
 				label="Default Color"
 				placeholder="Default color"
 				variant="bordered"
@@ -314,7 +318,7 @@ export const Colors: Story = {
 				size="md"
 				labelPlacement="inside"
 			/>
-			<Input
+			<InputView
 				label="Primary Color"
 				placeholder="Primary color"
 				variant="bordered"
@@ -322,7 +326,7 @@ export const Colors: Story = {
 				size="md"
 				labelPlacement="inside"
 			/>
-			<Input
+			<InputView
 				label="Secondary Color"
 				placeholder="Secondary color"
 				variant="bordered"
@@ -330,7 +334,7 @@ export const Colors: Story = {
 				size="md"
 				labelPlacement="inside"
 			/>
-			<Input
+			<InputView
 				label="Success Color"
 				placeholder="Success color"
 				variant="bordered"
@@ -338,7 +342,7 @@ export const Colors: Story = {
 				size="md"
 				labelPlacement="inside"
 			/>
-			<Input
+			<InputView
 				label="Warning Color"
 				placeholder="Warning color"
 				variant="bordered"
@@ -346,7 +350,7 @@ export const Colors: Story = {
 				size="md"
 				labelPlacement="inside"
 			/>
-			<Input
+			<InputView
 				label="Danger Color"
 				placeholder="Danger color"
 				variant="bordered"
@@ -362,7 +366,7 @@ export const Colors: Story = {
 export const Variants: Story = {
 	render: () => (
 		<View style={{ gap: 16 }}>
-			<Input
+			<InputView
 				label="Flat Variant"
 				placeholder="Flat variant"
 				variant="flat"
@@ -370,7 +374,7 @@ export const Variants: Story = {
 				size="md"
 				labelPlacement="inside"
 			/>
-			<Input
+			<InputView
 				label="Bordered Variant"
 				placeholder="Bordered variant"
 				variant="bordered"
@@ -378,7 +382,7 @@ export const Variants: Story = {
 				size="md"
 				labelPlacement="inside"
 			/>
-			<Input
+			<InputView
 				label="Underlined Variant"
 				placeholder="Underlined variant"
 				variant="underlined"
@@ -386,7 +390,7 @@ export const Variants: Story = {
 				size="md"
 				labelPlacement="inside"
 			/>
-			<Input
+			<InputView
 				label="Faded Variant"
 				placeholder="Faded variant"
 				variant="faded"
@@ -406,7 +410,7 @@ export const FocusTest: Story = {
 
 		return (
 			<View style={{ gap: 16 }}>
-				<Input
+				<InputView
 					ref={inputRef}
 					label="Test Input"
 					placeholder="Click buttons to test focus"

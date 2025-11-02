@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { StyleSheet, View } from "react-native";
 import { Button } from "@/components/ui/Button";
 import { Text } from "@/components/ui/Text";
-import { ScreenContainer } from "./ScreenContainer";
+import type { Meta, StoryObj } from "@storybook/react";
+import { StyleSheet, View } from "react-native";
+import { ScreenContainerView } from "./ScreenContainerView";
 
-const meta: Meta<typeof ScreenContainer> = {
+const meta: Meta<typeof ScreenContainerView> = {
 	title: "Container/ScreenContainer",
-	component: ScreenContainer,
+	component: ScreenContainerView,
 	parameters: {
 		layout: "fullscreen",
 		docs: {
@@ -51,17 +51,17 @@ const DemoContent: React.FC = () => (
 
 export const Default: Story = {
 	render: (args) => (
-		<ScreenContainer {...args}>
+		<ScreenContainerView {...args}>
 			<DemoContent />
-		</ScreenContainer>
+		</ScreenContainerView>
 	),
 };
 
 export const WithoutSafeArea: Story = {
 	render: (args) => (
-		<ScreenContainer {...args}>
+		<ScreenContainerView {...args}>
 			<DemoContent />
-		</ScreenContainer>
+		</ScreenContainerView>
 	),
 	parameters: {
 		docs: {
@@ -77,9 +77,9 @@ export const LightStatusBar: Story = {
 		statusBarStyle: "light-content",
 	},
 	render: (args) => (
-		<ScreenContainer {...args}>
+		<ScreenContainerView {...args}>
 			<DemoContent />
-		</ScreenContainer>
+		</ScreenContainerView>
 	),
 	parameters: {
 		docs: {
@@ -95,9 +95,9 @@ export const DarkStatusBar: Story = {
 		statusBarStyle: "dark-content",
 	},
 	render: (args) => (
-		<ScreenContainer {...args}>
+		<ScreenContainerView {...args}>
 			<DemoContent />
-		</ScreenContainer>
+		</ScreenContainerView>
 	),
 	parameters: {
 		docs: {
@@ -113,9 +113,9 @@ export const CustomBackground: Story = {
 		backgroundColor: "#e3f2fd",
 	},
 	render: (args) => (
-		<ScreenContainer {...args}>
+		<ScreenContainerView {...args}>
 			<DemoContent />
-		</ScreenContainer>
+		</ScreenContainerView>
 	),
 	parameters: {
 		docs: {
@@ -128,15 +128,16 @@ export const CustomBackground: Story = {
 
 export const ScrollableContent: Story = {
 	render: (args) => (
-		<ScreenContainer {...args}>
+		<ScreenContainerView {...args}>
 			<View style={demoStyles.scrollContent}>
 				{Array.from({ length: 20 }, (_, index) => (
+					// biome-ignore lint/suspicious/noArrayIndexKey: demo content with static list
 					<View key={index} style={demoStyles.scrollItem}>
 						<Text variant="body1">스크롤 아이템 {index + 1}</Text>
 					</View>
 				))}
 			</View>
-		</ScreenContainer>
+		</ScreenContainerView>
 	),
 	parameters: {
 		docs: {

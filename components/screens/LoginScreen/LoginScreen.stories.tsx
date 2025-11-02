@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-native";
 import { View } from "react-native";
-import { LoginScreen } from "@/components/screens/LoginScreen";
-import type { LoginScreenProps } from "@/components/screens/LoginScreen/LoginScreen";
+import { LoginScreenView, type LoginScreenViewProps } from "./LoginScreenView";
 
-const meta: Meta<LoginScreenProps> = {
+const meta: Meta<LoginScreenViewProps> = {
 	title: "screens/LoginScreen",
-	component: LoginScreen,
+	component: LoginScreenView,
 	parameters: {
 		layout: "fullscreen",
 		docs: {
@@ -44,12 +43,12 @@ const meta: Meta<LoginScreenProps> = {
 };
 
 export default meta;
-type Story = StoryObj<LoginScreenProps>;
+type Story = StoryObj<LoginScreenViewProps>;
 
 export const 기본: Story = {
 	render: (args) => (
 		<View style={{ flex: 1, backgroundColor: "#ffffff" }}>
-			<LoginScreen {...args} />
+			<LoginScreenView {...args} email="" password="" />
 		</View>
 	),
 };
@@ -57,8 +56,10 @@ export const 기본: Story = {
 export const 콜백함수포함: Story = {
 	render: (args) => (
 		<View style={{ flex: 1, backgroundColor: "#ffffff" }}>
-			<LoginScreen
+			<LoginScreenView
 				{...args}
+				email=""
+				password=""
 				onLogin={(email, password, keepLoggedIn) =>
 					console.log("로그인:", { email, password, keepLoggedIn })
 				}
@@ -73,10 +74,13 @@ export const 콜백함수포함: Story = {
 };
 
 export const 플레이그라운드: Story = {
-	args: {},
+	args: {
+		email: "",
+		password: "",
+	},
 	render: (args) => (
 		<View style={{ flex: 1, backgroundColor: "#ffffff" }}>
-			<LoginScreen {...args} />
+			<LoginScreenView {...args} />
 		</View>
 	),
 };

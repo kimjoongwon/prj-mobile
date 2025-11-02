@@ -270,27 +270,27 @@ npm run storybook:native:android
 
 #### 1. 공통 접미사를 가진 컴포넌트 폴더
 
-여러 컴포넌트가 공통된 접미사(예: `Container`)를 공유하는 경우, **접미사를 제거한 소문자 폴더**를 생성하고 내부에 각 컴포넌트를 PascalCase 폴더로 배치합니다.
+여러 컴포넌트가 공통된 접미사(예: `Screen`)를 공유하는 경우, **접미사를 포함한 소문자 복수형 폴더**를 생성하고 내부에 각 컴포넌트를 PascalCase 폴더(접미사 포함)로 배치합니다.
 
 **예시:**
 
 ```
 components/
-└── container/              ← 소문자 카테고리 폴더
-    ├── ScreenContainer/    ← PascalCase 컴포넌트 폴더
-    │   ├── ScreenContainer.tsx
-    │   ├── ScreenContainer.styles.ts
-    │   ├── ScreenContainer.stories.tsx
+└── screens/                ← 소문자 복수형 카테고리 폴더 (접미사 포함)
+    ├── LoginScreen/        ← PascalCase 컴포넌트 폴더 (접미사 포함)
+    │   ├── LoginScreen.tsx
+    │   ├── LoginScreen.styles.ts
+    │   ├── LoginScreen.stories.tsx
     │   └── index.tsx
-    └── FormContainer/      ← PascalCase 컴포넌트 폴더
-        ├── FormContainer.tsx
+    └── HomeScreen/         ← PascalCase 컴포넌트 폴더 (접미사 포함)
+        ├── HomeScreen.tsx
         └── index.tsx
 ```
 
 **규칙:**
-- `ScreenContainer`, `FormContainer` 등의 컴포넌트가 있다면
-- 카테고리 폴더명: `container/` (소문자, 단수형)
-- 컴포넌트 폴더명: `ScreenContainer/`, `FormContainer/` (PascalCase, 전체 이름)
+- `LoginScreen`, `HomeScreen` 등의 컴포넌트가 있다면
+- 카테고리 폴더명: `screens/` (소문자, 복수형, 접미사 포함)
+- 컴포넌트 폴더명: `LoginScreen/`, `HomeScreen/` (PascalCase, 접미사 포함)
 
 ---
 
@@ -353,44 +353,44 @@ ComponentName/
 
 ---
 
-### 상세 예시: `container/Screen/` 구조
+### 상세 예시: `screens/LoginScreen/` 구조
 
 #### 폴더 구조
 
 ```
 components/
-└── container/                    ← 카테고리 폴더 (소문자)
-    └── Screen/                   ← 컴포넌트 폴더 (PascalCase, 접미사 제거)
-        ├── Screen.tsx            ← 메인 컴포넌트
-        ├── useScreen.ts          ← 비즈니스 로직 (Custom Hook)
-        ├── Screen.styles.ts      ← 스타일
-        ├── Screen.stories.tsx    ← Storybook
+└── screens/                      ← 카테고리 폴더 (소문자 복수형)
+    └── LoginScreen/              ← 컴포넌트 폴더 (PascalCase, 접미사 포함)
+        ├── LoginScreen.tsx       ← 메인 컴포넌트
+        ├── useLoginScreen.ts     ← 비즈니스 로직 (Custom Hook)
+        ├── LoginScreen.styles.ts ← 스타일
+        ├── LoginScreen.stories.tsx ← Storybook
         └── index.ts              ← Export
 ```
 
 **폴더명 규칙:**
-- 카테고리 폴더가 `container/`이므로 컨텍스트가 이미 "Container"를 암시
-- 컴포넌트 폴더명: `Screen/` (접미사 `Container` 제거)
-- 실제 컴포넌트명: `ScreenContainer` (전체 이름 사용)
+- 카테고리 폴더: `screens/` (소문자 복수형, 접미사 포함)
+- 컴포넌트 폴더명: `LoginScreen/` (PascalCase, 접미사 포함)
+- 실제 컴포넌트명: `LoginScreen` (전체 이름 사용)
 
 #### 코드 예시
 
-**`useScreen.ts` (Custom Hook - 로직 레이어):**
+**`useLoginScreen.ts` (Custom Hook - 로직 레이어):**
 
 ```typescript
 import { useState, useEffect } from 'react';
 
-export interface ScreenData {
+export interface LoginScreenData {
   title: string;
   items: string[];
 }
 
 /**
- * Screen 컴포넌트의 비즈니스 로직을 담당하는 Custom Hook
+ * LoginScreen 컴포넌트의 비즈니스 로직을 담당하는 Custom Hook
  */
-export function useScreen() {
+export function useLoginScreen() {
   // 상태 관리
-  const [data, setData] = useState<ScreenData | null>(null);
+  const [data, setData] = useState<LoginScreenData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -399,7 +399,7 @@ export function useScreen() {
     async function fetchData() {
       try {
         setLoading(true);
-        const response = await fetch('/api/screen-data');
+        const response = await fetch('/api/login-screen-data');
         const result = await response.json();
         setData(result);
       } catch (err) {
@@ -434,27 +434,27 @@ export function useScreen() {
 }
 ```
 
-**`Screen.tsx` (메인 컴포넌트 - UI 레이어):**
+**`LoginScreen.tsx` (메인 컴포넌트 - UI 레이어):**
 
 ```typescript
 import React from 'react';
 import { View, Text, FlatList, ActivityIndicator } from 'react-native';
-import { useScreen } from './useScreen';
-import styles from './Screen.styles';
+import { useLoginScreen } from './useLoginScreen';
+import styles from './LoginScreen.styles';
 import { Button } from '@/components/ui/Button';
 
-export interface ScreenContainerProps {
+export interface LoginScreenProps {
   // 외부에서 주입받을 props (선택적)
   title?: string;
 }
 
 /**
- * Screen Container Component
- * Custom Hook(useScreen)을 사용하여 로직을 분리
+ * LoginScreen Component
+ * Custom Hook(useLoginScreen)을 사용하여 로직을 분리
  */
-export default function ScreenContainer({ title }: ScreenContainerProps) {
+export default function LoginScreen({ title }: LoginScreenProps) {
   // Custom Hook에서 로직 가져오기
-  const { data, loading, error, handleRefresh, handleItemPress } = useScreen();
+  const { data, loading, error, handleRefresh, handleItemPress } = useLoginScreen();
 
   // 로딩 상태
   if (loading) {
@@ -499,7 +499,7 @@ export default function ScreenContainer({ title }: ScreenContainerProps) {
 }
 ```
 
-**`Screen.styles.ts` (스타일):**
+**`LoginScreen.styles.ts` (스타일):**
 
 ```typescript
 import { StyleSheet } from 'react-native';
@@ -527,7 +527,7 @@ export default StyleSheet.create({
 });
 ```
 
-**`Screen.stories.tsx` (Storybook):**
+**`LoginScreen.stories.tsx` (Storybook):**
 
 ```typescript
 import type { Meta, StoryObj } from '@storybook/react';
@@ -635,16 +635,16 @@ export function useLoginScreen() {
 
 ```
 components/
-├── container/              # 공통 접미사 "Container"를 가진 컴포넌트들
-│   └── Screen/             # 폴더명은 접미사 제거
-│       ├── Screen.tsx
-│       ├── useScreen.ts
+├── container/              # 공통 접미사 "Container"를 가진 컴포넌트들 (현재 사용하지 않음)
+│   └── ScreenContainer/    # 폴더명은 접미사 포함
+│       ├── ScreenContainer.tsx
+│       ├── useScreenContainer.ts
 │       └── index.ts
 ├── forms/                  # 폼 관련 컴포넌트들 (공통 규칙 없음)
 │   ├── Input/
 │   ├── RadioGroup/
-│   └── Login/
-│       ├── Login.tsx
+│   └── LoginForm/
+│       ├── LoginForm.tsx
 │       ├── useLoginForm.ts
 │       └── index.ts
 ├── ui/                     # UI 컴포넌트들 (공통 규칙 없음)
@@ -652,10 +652,11 @@ components/
 │   ├── Card/
 │   └── Text/
 └── screens/                # 공통 접미사 "Screen"을 가진 컴포넌트들
-    └── Login/              # 폴더명은 접미사 제거
-        ├── Login.tsx
+    └── LoginScreen/        # 폴더명은 접미사 포함
+        ├── LoginScreen.tsx
         ├── useLoginScreen.ts
         └── index.ts
+```
 ```
 
 ---
@@ -664,11 +665,10 @@ components/
 
 | 상황 | 카테고리 폴더명 | 컴포넌트 폴더명 | 예시 |
 |------|----------------|----------------|------|
-| 공통 접미사 있음 (예: `Container`) | 접미사 제거한 소문자 단수형 | 접미사 제거한 PascalCase | `container/Screen/` |
-| 공통 접미사 있음 (예: `Screen`) | 접미사 제거한 소문자 복수형 | 접미사 제거한 PascalCase | `screens/Login/` |
-| 공통 규칙 없음 | 소문자 복수형 | 전체 이름 PascalCase | `forms/Login/`, `ui/Button/` |
+| 공통 접미사 있음 (예: `Screen`) | 접미사 포함한 소문자 복수형 | 접미사 포함한 PascalCase | `screens/LoginScreen/` |
+| 공통 규칙 없음 | 소문자 복수형 | 전체 이름 PascalCase | `forms/LoginForm/`, `ui/Button/` |
 
-**컴포넌트 파일명**: 항상 전체 이름 사용 (예: `ScreenContainer.tsx`, `LoginScreen.tsx`)
+**컴포넌트 파일명**: 항상 전체 이름 사용 (예: `LoginScreen.tsx`, `LoginForm.tsx`)
 
 ---
 
