@@ -1,10 +1,10 @@
-import { NativeStackHeaderProps } from "@react-navigation/native-stack";
-import React from "react";
-import { Platform, StyleSheet, View, ViewStyle } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { type Theme, useTheme } from "@/components/contexts/ThemeContext";
 import { Button } from "@/components/ui/Button";
 import { Text } from "@/components/ui/Text";
+import type { NativeStackHeaderProps } from "@react-navigation/native-stack";
+import type React from "react";
+import { Platform, StyleSheet, View, type ViewStyle } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export type HeaderVariant = "default" | "transparent" | "elevated";
 

@@ -1,5 +1,15 @@
+import { useTheme } from "@/components/contexts/ThemeContext";
+import {
+	baseContainerStyles,
+	labelStyles,
+	sizes,
+	styles,
+	variantStyles,
+} from "@/components/forms/Input/Input.styles";
+import { Text } from "@/components/ui/Text";
 import { Ionicons } from "@expo/vector-icons";
-import React, {
+import type React from "react";
+import {
 	forwardRef,
 	useCallback,
 	useEffect,
@@ -10,11 +20,11 @@ import React, {
 } from "react";
 import {
 	TextInput,
-	TextInputProps,
-	TextStyle,
+	type TextInputProps,
+	type TextStyle,
 	TouchableOpacity,
 	View,
-	ViewStyle,
+	type ViewStyle,
 } from "react-native";
 import Animated, {
 	interpolate,
@@ -22,15 +32,6 @@ import Animated, {
 	useSharedValue,
 	withTiming,
 } from "react-native-reanimated";
-import { useTheme } from "@/components/contexts/ThemeContext";
-import {
-	baseContainerStyles,
-	labelStyles,
-	sizes,
-	styles,
-	variantStyles,
-} from "@/components/forms/Input/Input.styles";
-import { Text } from "@/components/ui/Text";
 
 export type InputVariant = "flat" | "bordered" | "underlined" | "faded";
 export type InputColor =

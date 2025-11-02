@@ -1,7 +1,7 @@
-import React from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
 import { useTheme } from "@/components/contexts/ThemeContext";
 import { Text } from "@/components/ui/Text";
+import type React from "react";
+import { StyleSheet, View, type ViewStyle } from "react-native";
 
 export type DividerOrientation = "horizontal" | "vertical";
 export type DividerVariant = "default" | "subtle" | "strong";

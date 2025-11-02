@@ -1,3 +1,5 @@
+import { useFormField } from "@cocrepo/hooks";
+import type { MobxProps } from "@cocrepo/types";
 import { get } from "lodash-es";
 import { action } from "mobx";
 import { observer } from "mobx-react-lite";
@@ -15,7 +17,7 @@ export const Input = observer(<T extends object>(props: InputProps<T>) => {
 
 	const initialValue = get(state, path) as string;
 
-	const { localState } = useFormField<any, string>({
+	const { localState } = useFormField({
 		initialValue,
 		state,
 		path,
