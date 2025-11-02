@@ -11,7 +11,10 @@
 		"lint": "expo lint",
 		"storybook-generate": "sb-rn-get-stories",
 		"storybook": "storybook dev -p 6006",
-		"build-storybook": "storybook build"
+		"build-storybook": "storybook build",
+		"storybook:native": "EXPO_PUBLIC_STORYBOOK=true expo start",
+		"storybook:native:ios": "EXPO_PUBLIC_STORYBOOK=true expo run:ios",
+		"storybook:native:android": "EXPO_PUBLIC_STORYBOOK=true expo run:android"
 	},
 	"dependencies": {
 		"@cocrepo/hooks": "latest",
