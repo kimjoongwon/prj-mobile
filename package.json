@@ -1,20 +1,57 @@
 {
 	"name": "plate",
-	"main": "expo-router/entry",
+	"description": "운동 예약 및 클래스 관리 애플리케이션. iOS, Android, Web을 지원하는 크로스플랫폼 모바일 앱입니다.",
 	"version": "1.0.0",
+	"main": "expo-router/entry",
+	"license": "MIT",
+	"author": {
+		"name": "Joong Won Kim",
+		"email": "kimjoongwon@example.com"
+	},
+	"homepage": "https://github.com/kimjoongwon/prj-mobile",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/kimjoongwon/prj-mobile.git"
+	},
+	"bugs": {
+		"url": "https://github.com/kimjoongwon/prj-mobile/issues"
+	},
+	"keywords": [
+		"fitness",
+		"workout",
+		"booking",
+		"class-management",
+		"mobile-app",
+		"react-native",
+		"expo",
+		"cross-platform"
+	],
+	"engines": {
+		"node": ">=22.0.0",
+		"npm": ">=10.0.0"
+	},
 	"scripts": {
 		"start": "expo start",
-		"reset-project": "node ./scripts/reset-project.js",
-		"android": "expo run:android",
+		"start:clear": "expo start --clear",
 		"ios": "expo run:ios",
+		"android": "expo run:android",
 		"web": "expo start --web",
+		"web:clear": "rm -rf .vite && expo start --web",
+		"ios:clear": "expo start --clear && expo run:ios",
+		"android:clear": "expo start --clear && expo run:android",
 		"lint": "expo lint",
 		"storybook-generate": "sb-rn-get-stories",
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
 		"storybook:native": "EXPO_PUBLIC_STORYBOOK=true expo start",
 		"storybook:native:ios": "EXPO_PUBLIC_STORYBOOK=true expo run:ios",
-		"storybook:native:android": "EXPO_PUBLIC_STORYBOOK=true expo run:android"
+		"storybook:native:android": "EXPO_PUBLIC_STORYBOOK=true expo run:android",
+		"prebuild": "expo prebuild",
+		"prebuild:clean": "expo prebuild --clean",
+		"prebuild:ios": "expo prebuild --platform ios",
+		"prebuild:android": "expo prebuild --platform android",
+		"prebuild:ios:clean": "expo prebuild --platform ios --clean",
+		"prebuild:android:clean": "expo prebuild --platform android --clean"
 	},
 	"dependencies": {
 		"@cocrepo/hooks": "latest",
@@ -72,5 +109,17 @@
 		"typescript": "~5.9.2",
 		"vite": "^7.1.9"
 	},
-	"private": true
+	"private": true,
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	}
 }
