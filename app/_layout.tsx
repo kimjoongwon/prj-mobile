@@ -1,9 +1,7 @@
 import { Providers } from '@/components/providers';
 import { Stack } from 'expo-router';
-import 'react-native-reanimated';
-import "../global.css";
 import { Suspense, lazy } from 'react';
-import { Text } from '@/components';
+import 'react-native-reanimated';
 
 export const unstable_settings = {
   anchor: '(tabs)',

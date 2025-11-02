@@ -1,6 +1,5 @@
 // Learn more https://docs.expo.io/guides/customizing-metro
 const { getDefaultConfig } = require("expo/metro-config");
-const { withNativeWind } = require("nativewind/metro");
 
 /** @type {import('expo/metro-config').MetroConfig} */
 const config = getDefaultConfig(__dirname);
@@ -18,13 +17,12 @@ const config = getDefaultConfig(__dirname);
 const isStorybookMode = process.env.EXPO_PUBLIC_STORYBOOK === "true";
 
 // NativeWind 항상 적용 (CSS 처리 필요)
-const configWithNativeWind = withNativeWind(config, { input: "./global.css" });
 
 if (isStorybookMode) {
 	// Storybook 모드: NativeWind + Storybook 래퍼 모두 적용
 	const withStorybook = require("@storybook/react-native/metro/withStorybook");
-	module.exports = withStorybook(configWithNativeWind);
+	module.exports = withStorybook(config);
 } else {
 	// 일반 앱 모드: NativeWind만 적용
-	module.exports = configWithNativeWind;
+	module.exports = config;
 }
