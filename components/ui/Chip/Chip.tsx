@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, type ViewStyle } from 'react-native';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '@/hooks/useTheme';
 import { Text } from '../Text';
 import { radiusValues, sizes, styles } from './Chip.styles';
 

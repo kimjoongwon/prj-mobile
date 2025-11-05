@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ThemeProvider } from '../../providers/ThemeProvider';
+import { ThemeProvider } from '../../provider/ThemeProvider';
 import { DarkModeSwitch } from './DarkModeSwitch';
 
 const meta: Meta<typeof DarkModeSwitch> = {

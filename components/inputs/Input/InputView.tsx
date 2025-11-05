@@ -23,7 +23,7 @@ import Animated, {
 	useSharedValue,
 	withTiming,
 } from 'react-native-reanimated';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '@/hooks/useTheme';
 import { Text } from '../../ui/Text';
 import {
 	baseContainerStyles,

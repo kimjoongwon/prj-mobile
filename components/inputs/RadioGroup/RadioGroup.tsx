@@ -1,3 +1,4 @@
+import { useTheme } from '@/hooks/useTheme';
 import type { MobxProps } from '@cocrepo/types';
 import React, { useCallback, useMemo, useState } from 'react';
 import {
@@ -14,7 +15,6 @@ import Animated, {
 	useSharedValue,
 	withTiming,
 } from 'react-native-reanimated';
-import { useTheme } from '../../hooks/useTheme';
 import { Text } from '../../ui/Text';
 import {
 	baseGroupStyles,

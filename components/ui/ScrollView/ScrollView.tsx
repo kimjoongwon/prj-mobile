@@ -4,7 +4,7 @@ import {
 	ScrollViewProps as RNScrollViewProps,
 	ViewStyle,
 } from 'react-native';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '@/hooks/useTheme';
 
 export type ScrollViewVariant =
 	| 'default'

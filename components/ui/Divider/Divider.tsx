@@ -1,6 +1,6 @@
 import type React from 'react';
 import { StyleSheet, View, type ViewStyle } from 'react-native';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '@/hooks/useTheme';
 import { Text } from '../Text';
 
 export type DividerOrientation = 'horizontal' | 'vertical';

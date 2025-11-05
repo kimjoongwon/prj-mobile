@@ -1,6 +1,6 @@
 import type React from 'react';
 import { StatusBar, View, type ViewStyle } from 'react-native';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '@/hooks/useTheme';
 import { styles } from './ScreenContainer.styles';
 
 export interface ScreenContainerViewProps {

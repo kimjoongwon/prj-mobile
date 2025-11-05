@@ -1,4 +1,4 @@
-import { Providers } from '@/components/providers';
+import { Providers } from '@/components/provider';
 import { Stack } from 'expo-router';
 import { Suspense, lazy } from 'react';
 import 'react-native-reanimated';

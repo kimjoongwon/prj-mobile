@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import type { Meta, StoryObj } from '@storybook/react-native';
 import { useRef } from 'react';
 import { TouchableOpacity, View } from 'react-native';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '@/hooks/useTheme';
 import { Text } from '../../ui/Text';
 import { type InputProps, type InputRef, InputView } from './InputView';
 

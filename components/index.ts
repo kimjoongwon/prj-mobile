@@ -1,4 +1,4 @@
-export * from './forms';
-export * from './providers';
+export * from './form';
+export * from './provider';
 export * from './ui';
 
