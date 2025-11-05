@@ -1,16 +1,16 @@
 import type React from 'react';
 import { StatusBar, View, type ViewStyle } from 'react-native';
 import { useTheme } from '@/hooks/useTheme';
-import { styles } from './ScreenContainer.styles';
+import { styles } from './Screen.styles';
 
-export interface ScreenContainerViewProps {
+export interface ScreenViewProps {
 	children: React.ReactNode;
 	statusBarStyle?: 'light-content' | 'dark-content' | 'auto';
 	backgroundColor?: string;
 	style?: ViewStyle;
 }
 
-export const ScreenContainerView: React.FC<ScreenContainerViewProps> = ({
+export const ScreenView: React.FC<ScreenViewProps> = ({
 	children,
 	statusBarStyle = 'auto',
 	backgroundColor,
