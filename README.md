@@ -267,613 +267,280 @@ npm run storybook:native:android
 
 ## 🏗️ 프로젝트 구조 및 명명 규칙
 
-### 폴더 및 컴포넌트 명명 규칙
+이 프로젝트는 **MUI(Material UI) 표준 분류 체계**를 따르며, 컴포넌트를 카테고리별로 체계적으로 관리합니다.
 
-이 프로젝트는 일관된 폴더 구조와 명명 규칙을 따릅니다.
+### 📁 전체 폴더 구조
+
+```
+components/
+├── ui/                          # MUI 표준 재사용 가능 컴포넌트
+│   ├── inputs/                  # 사용자 입력 (6개 컴포넌트)
+│   │   ├── Button/
+│   │   ├── Chip/
+│   │   ├── DarkModeSwitch/
+│   │   ├── Input/
+│   │   ├── ListSelect/
+│   │   ├── RadioGroup/
+│   │   └── index.ts
+│   │
+│   ├── display/                 # 정보 표시 (5개 컴포넌트)
+│   │   ├── Text/
+│   │   ├── Divider/
+│   │   ├── Logo/
+│   │   ├── ScrollView/
+│   │   ├── View/
+│   │   └── index.ts
+│   │
+│   ├── surfaces/                # 컨테이너/레이아웃 (3개 컴포넌트)
+│   │   ├── Card/
+│   │   ├── List/
+│   │   ├── ListItem/
+│   │   └── index.ts
+│   │
+│   ├── feedback/                # 피드백 (향후 추가)
+│   │   └── index.ts
+│   │
+│   ├── layouts/                 # 레이아웃 컴포넌트
+│   │   ├── Content/             # Content (이전 Screen)
+│   │   ├── Header/
+│   │   └── index.ts
+│   │
+│   └── index.ts                 # UI 전체 export
+│
+├── features/                    # 프로젝트 특화 컴포넌트
+│   ├── SNSButtons/
+│   └── index.ts
+│
+├── form/                        # 폼 컴포넌트
+│   ├── LoginForm/
+│   └── index.ts
+│
+├── provider/                    # 프로바이더 (Context)
+│   ├── ThemeProvider/
+│   └── index.ts
+│
+├── screen/                      # 전체 화면 (페이지)
+│   ├── LoginScreen/
+│   ├── PasswordScreen/
+│   └── index.ts
+│
+└── index.ts                     # 최상위 export
+```
+
+---
+
+### 🎯 폴더 분류 가이드
+
+#### 1. **ui/** - MUI 표준 재사용 가능 컴포넌트
+
+**특징:**
+- 프로젝트에 독립적
+- 다른 프로젝트에서도 재사용 가능
+- 비즈니스 로직 포함 안 함
+- 순수 UI/UX만 담당
+
+**카테고리별 역할:**
+
+| 카테고리 | 역할 | 예시 |
+|---------|------|------|
+| **inputs/** | 사용자 입력을 받는 컴포넌트 | Button, Checkbox, Input, Toggle |
+| **display/** | 정보만 표시하는 컴포넌트 | Text, Avatar, Badge, Icon |
+| **surfaces/** | 콘텐츠 컨테이너 역할 | Card, Panel, Paper, List |
+| **feedback/** | 시스템이 사용자에게 알리는 컴포넌트 | Alert, Dialog, Snackbar, Skeleton |
+| **layouts/** | 페이지 레이아웃 구성 | Header, Footer, Sidebar, Content |
+
+#### 2. **features/** - 프로젝트 특화 컴포넌트
+
+**특징:**
+- 이 프로젝트에만 해당
+- 도메인 로직 포함
+- 외부 서비스 API 연동 가능
+- SNSButtons (소셜 로그인), 결제 폼 등
+
+#### 3. **form/** - 폼 컴포넌트
+
+**특징:**
+- LoginForm, SignupForm 등
+- Input, Select, Checkbox 등을 조합
+- 검증 로직 포함 가능
+
+#### 4. **provider/** - Context/프로바이더
+
+**특징:**
+- ThemeProvider, AuthProvider 등
+- 전역 상태 관리
+- 앱 전체에 영향
+
+#### 5. **screen/** - 페이지 단위 컴포넌트
+
+**특징:**
+- 완전한 페이지/화면
+- 여러 컴포넌트의 조합
+- 라우팅 가능
+
+---
+
+### 📝 명명 규칙
 
 #### 기본 원칙
 
-1. **카테고리 폴더**: 소문자 사용
-2. **컴포넌트 폴더**: PascalCase 사용
-3. **컴포넌트 파일**: 폴더명과 동일한 PascalCase 사용
+1. **카테고리 폴더 (ui 하위)**: 소문자 + 단수형
+   ```
+   ✅ ui/inputs/        ✅ ui/display/
+   ❌ ui/button/        ❌ ui/inputs/
+   ```
+
+2. **컴포넌트 폴더**: PascalCase
+   ```
+   ✅ Button/           ✅ LoginForm/
+   ❌ button/           ❌ login-form/
+   ```
+
+3. **파일명**: 폴더명과 동일
+   ```
+   components/ui/inputs/Button/
+   ├── Button.tsx       ← 파일명 = 폴더명
+   ├── Button.styles.ts
+   └── index.ts
+   ```
 
 ---
 
-### 폴더 명명 규칙
+### 🔄 파일 구조 및 내용
 
-#### 1. 공통 접미사를 가진 컴포넌트 폴더
-
-여러 컴포넌트가 공통된 접미사(예: `Screen`)를 공유하는 경우, **접미사를 포함한 소문자 복수형 폴더**를 생성하고 내부에 각 컴포넌트를 PascalCase 폴더(접미사 포함)로 배치합니다.
-
-**예시:**
-
-```
-components/
-└── screens/                ← 소문자 복수형 카테고리 폴더 (접미사 포함)
-    ├── LoginScreen/        ← PascalCase 컴포넌트 폴더 (접미사 포함)
-    │   ├── LoginScreen.tsx
-    │   ├── LoginScreen.styles.ts
-    │   ├── LoginScreen.stories.tsx
-    │   └── index.tsx
-    └── HomeScreen/         ← PascalCase 컴포넌트 폴더 (접미사 포함)
-        ├── HomeScreen.tsx
-        └── index.tsx
-```
-
-**규칙:**
-
-- `LoginScreen`, `HomeScreen` 등의 컴포넌트가 있다면
-- 카테고리 폴더명: `screens/` (소문자, 복수형, 접미사 포함)
-- 컴포넌트 폴더명: `LoginScreen/`, `HomeScreen/` (PascalCase, 접미사 포함)
-
----
-
-#### 2. 공통 규칙이 없는 컴포넌트 폴더
-
-여러 컴포넌트가 공통된 접미사나 명명 패턴이 없는 경우, **복수형 소문자 폴더**를 사용합니다.
-
-**예시:**
-
-```
-components/
-├── forms/                  ← 소문자 복수형 카테고리 폴더
-│   ├── Input/              ← PascalCase 컴포넌트 폴더
-│   │   ├── Input.tsx
-│   │   ├── Input.styles.ts
-│   │   └── index.tsx
-│   ├── RadioGroup/         ← PascalCase 컴포넌트 폴더
-│   │   ├── RadioGroup.tsx
-│   │   └── index.tsx
-│   └── LoginForm/          ← PascalCase 컴포넌트 폴더
-│       ├── LoginForm.tsx
-│       └── index.tsx
-└── ui/                     ← 소문자 복수형 카테고리 폴더
-    ├── Button/
-    ├── Card/
-    └── Text/
-```
-
-**규칙:**
-
-- `Input`, `RadioGroup`, `LoginForm` 등 공통 패턴이 없다면
-- 카테고리 폴더명: `forms/` (소문자, 복수형)
-- 컴포넌트 폴더명: `Input/`, `RadioGroup/` (PascalCase, 전체 이름)
-
----
-
-### 컴포넌트 폴더 구조 및 역할 분리
-
-각 컴포넌트는 **Custom Hooks를 활용한 로직 분리**를 통해 관심사를 명확히 구분합니다.
-
-#### 기본 구조
-
+#### 단일 파일 구조
 ```
 ComponentName/
-├── ComponentName.tsx           # 메인 컴포넌트 (UI + hooks 사용)
+├── ComponentName.tsx           # 메인 컴포넌트
+├── ComponentName.styles.ts     # 스타일 (선택)
+├── ComponentName.stories.tsx   # Storybook (선택)
+└── index.ts                    # Export
+```
+
+#### 복잡한 컴포넌트 구조 (로직 분리)
+```
+ComponentName/
+├── ComponentName.tsx           # UI 렌더링 + hooks 사용
 ├── useComponentName.ts         # 비즈니스 로직 (Custom Hook)
-├── ComponentName.styles.ts     # 스타일 정의 (선택)
-├── ComponentName.stories.tsx   # Storybook 스토리 (선택)
-└── index.ts                    # Export 진입점
+├── ComponentName.styles.ts     # 스타일
+├── ComponentName.stories.tsx   # Storybook
+├── ComponentName.types.ts      # 타입 정의 (선택)
+└── index.ts                    # Export
 ```
 
-#### 파일별 역할
-
-| 파일                        | 역할              | 포함 내용                                                                                                                             |
-| --------------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `ComponentName.tsx`         | **메인 컴포넌트** | - UI 렌더링<br>- Custom Hook 사용<br>- Props 정의<br>- JSX/TSX 구조                                                                   |
-| `useComponentName.ts`       | **로직 레이어**   | - 비즈니스 로직<br>- 상태 관리 (useState, useReducer)<br>- Side Effects (useEffect)<br>- API 호출<br>- 데이터 가공<br>- 이벤트 핸들러 |
-| `ComponentName.styles.ts`   | **스타일 정의**   | - StyleSheet 정의<br>- 테마 기반 스타일                                                                                               |
-| `ComponentName.stories.tsx` | **스토리북**      | - 컴포넌트 문서화<br>- 다양한 상태 시각화                                                                                             |
-| `index.ts`                  | **Export**        | - 모듈 진입점<br>- Re-export만 담당                                                                                                   |
-
----
-
-### 상세 예시: `screens/LoginScreen/` 구조
-
-#### 폴더 구조
-
-```
-components/
-└── screens/                      ← 카테고리 폴더 (소문자 복수형)
-    └── LoginScreen/              ← 컴포넌트 폴더 (PascalCase, 접미사 포함)
-        ├── LoginScreen.tsx       ← 메인 컴포넌트
-        ├── useLoginScreen.ts     ← 비즈니스 로직 (Custom Hook)
-        ├── LoginScreen.styles.ts ← 스타일
-        ├── LoginScreen.stories.tsx ← Storybook
-        └── index.ts              ← Export
-```
-
-**폴더명 규칙:**
-
-- 카테고리 폴더: `screens/` (소문자 복수형, 접미사 포함)
-- 컴포넌트 폴더명: `LoginScreen/` (PascalCase, 접미사 포함)
-- 실제 컴포넌트명: `LoginScreen` (전체 이름 사용)
-
-#### 코드 예시
-
-**`useLoginScreen.ts` (Custom Hook - 로직 레이어):**
-
+#### Export 규칙 (index.ts)
 ```typescript
-import { useState, useEffect } from 'react';
+// 기본 export
+export { Button } from './Button';
 
-export interface LoginScreenData {
-	title: string;
-	items: string[];
-}
+// 타입 export
+export type { ButtonProps, ButtonVariant } from './Button';
 
-/**
- * LoginScreen 컴포넌트의 비즈니스 로직을 담당하는 Custom Hook
- */
-export function useLoginScreen() {
-	// 상태 관리
-	const [data, setData] = useState<LoginScreenData | null>(null);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState<string | null>(null);
-
-	// 데이터 로드
-	useEffect(() => {
-		async function fetchData() {
-			try {
-				setLoading(true);
-				const response = await fetch('/api/login-screen-data');
-				const result = await response.json();
-				setData(result);
-			} catch (err) {
-				setError(err.message);
-			} finally {
-				setLoading(false);
-			}
-		}
-
-		fetchData();
-	}, []);
-
-	// 이벤트 핸들러
-	const handleRefresh = async () => {
-		setLoading(true);
-		// 새로고침 로직
-	};
-
-	const handleItemPress = (item: string) => {
-		console.log('Item pressed:', item);
-		// 네비게이션 또는 다른 비즈니스 로직
-	};
-
-	// Hook의 반환값 (컴포넌트에서 사용할 데이터와 함수)
-	return {
-		data,
-		loading,
-		error,
-		handleRefresh,
-		handleItemPress,
-	};
-}
-```
-
-**`LoginScreen.tsx` (메인 컴포넌트 - UI 레이어):**
-
-```typescript
-import React from 'react';
-import { View, Text, FlatList, ActivityIndicator } from 'react-native';
-import { useLoginScreen } from './useLoginScreen';
-import styles from './LoginScreen.styles';
-import { Button } from '@/components/ui/Button';
-
-export interface LoginScreenProps {
-  // 외부에서 주입받을 props (선택적)
-  title?: string;
-}
-
-/**
- * LoginScreen Component
- * Custom Hook(useLoginScreen)을 사용하여 로직을 분리
- */
-export default function LoginScreen({ title }: LoginScreenProps) {
-  // Custom Hook에서 로직 가져오기
-  const { data, loading, error, handleRefresh, handleItemPress } = useLoginScreen();
-
-  // 로딩 상태
-  if (loading) {
-    return (
-      <View style={styles.container}>
-        <ActivityIndicator size="large" />
-      </View>
-    );
-  }
-
-  // 에러 상태
-  if (error) {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.errorText}>{error}</Text>
-        <Button onPress={handleRefresh} title="Retry" />
-      </View>
-    );
-  }
-
-  // 정상 렌더링
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{title || data?.title}</Text>
-
-      <FlatList
-        data={data?.items}
-        renderItem={({ item }) => (
-          <Text
-            style={styles.item}
-            onPress={() => handleItemPress(item)}
-          >
-            {item}
-          </Text>
-        )}
-        keyExtractor={(item, index) => index.toString()}
-      />
-
-      <Button onPress={handleRefresh} title="Refresh" />
-    </View>
-  );
-}
-```
-
-**`LoginScreen.styles.ts` (스타일):**
-
-```typescript
-import { StyleSheet } from 'react-native';
-
-export default StyleSheet.create({
-	container: {
-		flex: 1,
-		padding: 16,
-	},
-	title: {
-		fontSize: 24,
-		fontWeight: 'bold',
-		marginBottom: 16,
-	},
-	item: {
-		padding: 12,
-		borderBottomWidth: 1,
-		borderBottomColor: '#e0e0e0',
-	},
-	errorText: {
-		color: 'red',
-		fontSize: 16,
-		marginBottom: 16,
-	},
-});
-```
-
-**`LoginScreen.stories.tsx` (Storybook):**
-
-```typescript
-import type { Meta, StoryObj } from '@storybook/react';
-import ScreenContainer from './Screen';
-
-const meta = {
-	title: 'Container/ScreenContainer',
-	component: ScreenContainer,
-	parameters: {
-		layout: 'fullscreen',
-	},
-} satisfies Meta<typeof ScreenContainer>;
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-// 완전한 컴포넌트를 스토리로 문서화
-export const Default: Story = {
-	args: {
-		title: 'My Screen',
-	},
-};
-
-export const CustomTitle: Story = {
-	args: {
-		title: 'Custom Title Override',
-	},
-};
-```
-
-**`index.ts` (Export 진입점):**
-
-```typescript
-// 단순 Re-export만 담당
-export { default } from './Screen';
-export { default as ScreenContainer } from './Screen';
-export * from './useScreen';
+// 전체 export (폴더의 모든 컴포넌트)
+export * from './Button';
+export * from './Chip';
 ```
 
 ---
 
-### 다른 카테고리 예시
+### 📌 컴포넌트 작성 예시
 
-#### `forms/Login/` 구조
-
+#### ui/inputs/Button 구조
 ```
-forms/
-└── Login/
-    ├── Login.tsx              # 로그인 폼 UI
-    ├── useLoginForm.ts        # 폼 상태, 유효성 검사, 제출 로직
-    ├── Login.styles.ts
-    └── index.ts
-```
-
-**`useLoginForm.ts`:**
-
-```typescript
-export function useLoginForm() {
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
-	const [errors, setErrors] = useState({});
-
-	const validate = () => {
-		// 유효성 검사 로직
-	};
-
-	const handleSubmit = async () => {
-		if (validate()) {
-			// API 호출
-		}
-	};
-
-	return { email, setEmail, password, setPassword, errors, handleSubmit };
-}
+ui/inputs/Button/
+├── Button.tsx
+│   └── React 컴포넌트 + props 정의
+├── Button.styles.ts
+│   └── StyleSheet 정의
+├── Button.stories.tsx
+│   └── Storybook 문서화
+└── index.ts
+    └── export { Button } from './Button';
 ```
 
-#### `screens/Login/` 구조
-
+#### features/SNSButtons 구조
 ```
-screens/
-└── Login/
-    ├── Login.tsx              # 로그인 스크린 UI
-    ├── useLoginScreen.ts      # 인증 처리, 네비게이션, 상태 관리
-    ├── Login.styles.ts
-    └── index.ts
-```
-
-**`useLoginScreen.ts`:**
-
-```typescript
-export function useLoginScreen() {
-	const navigation = useNavigation();
-	const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-	const handleLoginSuccess = () => {
-		setIsAuthenticated(true);
-		navigation.navigate('Home');
-	};
-
-	return { isAuthenticated, handleLoginSuccess };
-}
+features/SNSButtons/
+├── SNSButtons.tsx
+│   └── UI 렌더링 + useSNSButtons 사용
+├── useSNSButtons.ts
+│   └── OAuth 로직, API 호출 등
+├── SNSButtons.types.ts
+│   └── 타입 정의
+├── SNSButtons.styles.ts
+│   └── 스타일
+└── index.ts
+    └── export { SNSButtons }
 ```
 
 ---
 
-### 전체 구조 예시
+### ✅ 생산성 향상 가이드
 
-```
-components/
-├── container/              # 공통 접미사 "Container"를 가진 컴포넌트들 (현재 사용하지 않음)
-│   └── ScreenContainer/    # 폴더명은 접미사 포함
-│       ├── ScreenContainer.tsx
-│       ├── useScreenContainer.ts
-│       └── index.ts
-├── forms/                  # 폼 관련 컴포넌트들 (공통 규칙 없음)
-│   ├── Input/
-│   ├── RadioGroup/
-│   └── LoginForm/
-│       ├── LoginForm.tsx
-│       ├── useLoginForm.ts
-│       └── index.ts
-├── ui/                     # UI 컴포넌트들 (공통 규칙 없음)
-│   ├── Button/
-│   ├── Card/
-│   └── Text/
-└── screens/                # 공통 접미사 "Screen"을 가진 컴포넌트들
-    └── LoginScreen/        # 폴더명은 접미사 포함
-        ├── LoginScreen.tsx
-        ├── useLoginScreen.ts
-        └── index.ts
-```
+#### 새로운 컴포넌트 추가 시
 
-````
+1. **카테고리 결정**
+   - 재사용 가능한가? → `ui/`
+   - 프로젝트 특화? → `features/`
+   - 폼 관련? → `form/`
 
----
+2. **구체적 위치 결정**
+   ```
+   예: Button 컴포넌트
+   ✅ ui/inputs/Button/    (사용자 입력 받음)
+   
+   예: Alert 컴포넌트
+   ✅ ui/feedback/Alert/   (피드백 제공)
+   
+   예: PaymentForm
+   ✅ form/PaymentForm/    (폼 관련)
+   ```
 
-### 명명 규칙 요약
+3. **파일 생성**
+   ```bash
+   mkdir -p components/ui/inputs/NewComponent
+   touch components/ui/inputs/NewComponent/NewComponent.tsx
+   touch components/ui/inputs/NewComponent/index.ts
+   ```
 
-| 상황 | 카테고리 폴더명 | 컴포넌트 폴더명 | 예시 |
-|------|----------------|----------------|------|
-| 공통 접미사 있음 (예: `Screen`) | 접미사 포함한 소문자 복수형 | 접미사 포함한 PascalCase | `screens/LoginScreen/` |
-| 공통 규칙 없음 | 소문자 복수형 | 전체 이름 PascalCase | `forms/LoginForm/`, `ui/Button/` |
+#### 컴포넌트 찾기
 
-**컴포넌트 파일명**: 항상 전체 이름 사용 (예: `LoginScreen.tsx`, `LoginForm.tsx`)
+1. **재사용 가능 컴포넌트**: `ui/` 탐색
+   - 입력 필요? → `ui/inputs/`
+   - 정보만 표시? → `ui/display/`
 
----
+2. **프로젝트 특화**: `features/` 탐색
+   - SNS 연동? → `features/SNSButtons/`
+   - 결제? → `features/Payment/`
 
-### 이 패턴의 장점
-
-#### ✅ **1. 관심사 분리 (Separation of Concerns)**
-```typescript
-// 로직과 UI가 명확히 분리
-useScreen.ts  → 비즈니스 로직만
-Screen.tsx    → UI 렌더링만
-````
-
-#### ✅ **2. 로직 재사용성**
-
-```typescript
-// Custom Hook은 여러 컴포넌트에서 재사용 가능
-import { useScreen } from '@/components/container/Screen';
-
-function AnotherComponent() {
-	const { data, loading } = useScreen(); // 동일한 로직 재사용
-	// 다른 UI로 렌더링 가능
-}
-```
-
-#### ✅ **3. 테스트 용이성**
-
-```typescript
-// Hook 단위 테스트 (비즈니스 로직)
-import { renderHook } from '@testing-library/react-hooks';
-import { useScreen } from './useScreen';
-
-test('should fetch data on mount', () => {
-	const { result } = renderHook(() => useScreen());
-	expect(result.current.loading).toBe(true);
-});
-
-// 컴포넌트는 Storybook으로 시각적 테스트
-```
-
-#### ✅ **4. 현대 React 패턴**
-
-- React 공식 권장 패턴 (2019+)
-- Hooks 생태계와 자연스럽게 통합
-- 팀원들에게 익숙한 구조
-
-#### ✅ **5. 명확한 역할 구분**
-
-```
-View 파일:  순수 UI만 → Storybook 테스트 쉬움
-메인 파일:  상태 관리만 → 목 주입 쉬움
-useXXX 파일: 로직만 → 유닛 테스트 쉬움
-```
-
-#### ✅ **6. 확장성**
-
-```typescript
-// 다른 상태 관리 도구로 쉽게 전환
-// InputView.tsx는 그대로 유지
-// Input.tsx만 교체
-
-// MobX → Redux
-Input.tsx; // Redux 통합으로 변경
-InputView.tsx; // 변경 없음
-
-// 또는 동시 지원
-MobxInput.tsx; // MobX 버전
-ReduxInput.tsx; // Redux 버전
-InputView.tsx; // 공통 UI
-```
-
-#### ✅ **7. 점진적 복잡도**
-
-```
-단순 → 복잡
-Button.tsx (순수 UI만)
-  ↓
-InputView.tsx + Input.tsx (UI + 상태)
-  ↓
-ScreenView.tsx + Screen.tsx + useScreen.ts (UI + 상태 + 로직)
-```
+3. **폼 관련**: `form/` 탐색
+   - 로그인? → `form/LoginForm/`
 
 ---
 
-### useComponent Hook 생성 기준
+### 🎓 설계 철학
 
-#### 생성해야 할 때:
+이 구조는 다음 원칙을 따릅니다:
 
-✅ **복잡한 유효성 검사**
+1. **명확한 책임 분리**
+   - UI와 로직 분리
+   - 계층별 역할 명확
 
-```typescript
-// useEmailInput.ts
-export function useEmailInput() {
-	const validateEmail = (email: string) => {
-		if (!email.includes('@')) return 'Invalid format';
-		const domain = email.split('@')[1];
-		const blockedDomains = ['tempmail.com', 'throwaway.email'];
-		if (blockedDomains.includes(domain)) return 'Domain not allowed';
-		// ... 더 복잡한 검증
-	};
-}
-```
+2. **재사용성 극대화**
+   - 일반 컴포넌트와 특화 컴포넌트 구분
+   - 다른 프로젝트로 이식 가능
 
-✅ **값 변환/포매팅 로직**
+3. **확장성**
+   - 새 기능 추가 시 어디에 놓을지 명확
+   - 카테고리 추가 용이
 
-```typescript
-// usePhoneInput.ts
-export function usePhoneInput() {
-	const formatPhone = (value: string) => {
-		const numbers = value.replace(/\D/g, '');
-		if (numbers.length <= 3) return numbers;
-		if (numbers.length <= 7)
-			return `${numbers.slice(0, 3)}-${numbers.slice(3)}`;
-		return `${numbers.slice(0, 3)}-${numbers.slice(3, 7)}-${numbers.slice(7, 11)}`;
-	};
-}
-```
+4. **팀 협업 효율**
+   - 새로운 팀원이 빠르게 이해
+   - 코드 리뷰 시 의도 명확
 
-✅ **여러 컴포넌트에서 재사용할 로직**
-
-```typescript
-// useFormValidation.ts - 여러 폼에서 사용
-export function useFormValidation() {
-	const required = (value: any) => (!value ? 'Required field' : undefined);
-	const minLength = (min: number) => (value: string) =>
-		value.length < min ? `Minimum ${min} characters` : undefined;
-	// ...
-}
-```
-
-#### 생성하지 않아도 될 때:
-
-❌ **단순 상태 관리** (MobX가 담당)
-
-```typescript
-// ❌ 불필요한 Hook
-function useInput() {
-  const [value, setValue] = useState('');
-  return { value, setValue };
-}
-
-// ✅ MobX로 충분
-const Input = observer(({ state, path }) => {
-  return <InputView value={state[path]} onChangeText={...} />;
-});
-```
-
-❌ **간단한 onChange 핸들러**
-
-```typescript
-// ❌ 불필요한 Hook
-function useInput() {
-	const handleChange = (value: string) => {
-		console.log(value);
-	};
-}
-
-// ✅ 컴포넌트에 직접 작성
-const Input = observer(() => {
-	const handleChange = action((value: string) => {
-		localState.value = value;
-	});
-});
-```
-
-├── screens/ # 공통 접미사 "Screen"을 가진 컴포넌트들
-│ └── LoginScreen/
-│ ├── LoginScreen.tsx
-│ └── index.tsx
-└── providers/ # Provider 컴포넌트들
-└── ThemeProvider/
-├── ThemeProvider.tsx
-└── index.tsx
-
-````
-
----
-
-### 명명 규칙 요약
-
-| 상황 | 카테고리 폴더명 | 예시 |
-|------|----------------|------|
-| 공통 접미사 있음 (예: `Container`) | 접미사 제거한 소문자 단수형 | `container/` |
-| 공통 접미사 있음 (예: `Screen`) | 접미사 제거한 소문자 복수형 | `screens/` |
-| 공통 규칙 없음 | 소문자 복수형 | `forms/`, `ui/` |
-
-**컴포넌트 폴더명**: 항상 PascalCase 전체 이름 사용
+5. **MUI 표준 준수**
+   - 산업 표준 따름
+   - 커뮤니티와 호환
 
 ---
 
