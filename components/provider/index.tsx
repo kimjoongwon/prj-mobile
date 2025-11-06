@@ -1,7 +1,7 @@
 import type { PropsWithChildren, ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { DarkModeSwitch } from '../ui/DarkModeSwitch';
+import { DarkModeSwitch } from '../ui/inputs/DarkModeSwitch';
 import { ThemeProvider } from './ThemeProvider';
 
 export * from './ThemeProvider';

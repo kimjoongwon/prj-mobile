@@ -1,14 +1,5 @@
-export { Button } from './Button';
-export { Card } from './Card';
-export { Chip } from './Chip';
-export { DarkModeSwitch } from './DarkModeSwitch';
-export { Divider } from './Divider';
-export { Header } from './Header';
-export { List } from './List';
-export { ListItem } from './ListItem';
-export { Logo } from './Logo';
-export { ScrollView } from './ScrollView';
-export { SNSButtons } from './SNSButtons';
-export { Text } from './Text';
-export { View } from './View';
-
+// UI Components by Category
+export * from './inputs';
+export * from './display';
+export * from './surfaces';
+export * from './feedback';

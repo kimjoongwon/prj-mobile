@@ -1,12 +1,12 @@
 import type React from 'react';
 import { StyleSheet, type ViewStyle } from 'react-native';
 import { type Theme, useTheme } from '@/hooks/useTheme';
-import { Button } from '../../ui/Button';
-import { Divider } from '../../ui/Divider';
-import { Logo } from '../../ui/Logo';
-import { ScrollView } from '../../ui/ScrollView';
-import { Text } from '../../ui/Text';
-import { View } from '../../ui/View';
+import { Button } from '../../ui/inputs/Button';
+import { Divider } from '../../ui/display/Divider';
+import { Logo } from '../../ui/display/Logo';
+import { ScrollView } from '../../ui/display/ScrollView';
+import { Text } from '../../ui/display/Text';
+import { View } from '../../ui/display/View';
 
 export interface LoginScreenViewProps {
 	email: string;
