@@ -120,6 +120,5 @@ export type {
 	BaseListSelectMultipleProps,
 	BaseListSelectProps,
 	BaseListSelectSingleProps,
-	SelectionMode
+	SelectionMode,
 };
-

@@ -334,6 +334,7 @@ components/
 #### 1. **ui/** - MUI 표준 재사용 가능 컴포넌트
 
 **특징:**
+
 - 프로젝트에 독립적
 - 다른 프로젝트에서도 재사용 가능
 - 비즈니스 로직 포함 안 함
@@ -341,17 +342,18 @@ components/
 
 **카테고리별 역할:**
 
-| 카테고리 | 역할 | 예시 |
-|---------|------|------|
-| **inputs/** | 사용자 입력을 받는 컴포넌트 | Button, Checkbox, Input, Toggle |
-| **display/** | 정보만 표시하는 컴포넌트 | Text, Avatar, Badge, Icon |
-| **surfaces/** | 콘텐츠 컨테이너 역할 | Card, Panel, Paper, List |
+| 카테고리      | 역할                                | 예시                              |
+| ------------- | ----------------------------------- | --------------------------------- |
+| **inputs/**   | 사용자 입력을 받는 컴포넌트         | Button, Checkbox, Input, Toggle   |
+| **display/**  | 정보만 표시하는 컴포넌트            | Text, Avatar, Badge, Icon         |
+| **surfaces/** | 콘텐츠 컨테이너 역할                | Card, Panel, Paper, List          |
 | **feedback/** | 시스템이 사용자에게 알리는 컴포넌트 | Alert, Dialog, Snackbar, Skeleton |
-| **layouts/** | 페이지 레이아웃 구성 | Header, Footer, Sidebar, Content |
+| **layouts/**  | 페이지 레이아웃 구성                | Header, Footer, Sidebar, Content  |
 
 #### 2. **features/** - 프로젝트 특화 컴포넌트
 
 **특징:**
+
 - 이 프로젝트에만 해당
 - 도메인 로직 포함
 - 외부 서비스 API 연동 가능
@@ -360,6 +362,7 @@ components/
 #### 3. **form/** - 폼 컴포넌트
 
 **특징:**
+
 - LoginForm, SignupForm 등
 - Input, Select, Checkbox 등을 조합
 - 검증 로직 포함 가능
@@ -367,6 +370,7 @@ components/
 #### 4. **provider/** - Context/프로바이더
 
 **특징:**
+
 - ThemeProvider, AuthProvider 등
 - 전역 상태 관리
 - 앱 전체에 영향
@@ -374,6 +378,7 @@ components/
 #### 5. **screen/** - 페이지 단위 컴포넌트
 
 **특징:**
+
 - 완전한 페이지/화면
 - 여러 컴포넌트의 조합
 - 라우팅 가능
@@ -385,12 +390,14 @@ components/
 #### 기본 원칙
 
 1. **카테고리 폴더 (ui 하위)**: 소문자 + 단수형
+
    ```
    ✅ ui/inputs/        ✅ ui/display/
    ❌ ui/button/        ❌ ui/inputs/
    ```
 
 2. **컴포넌트 폴더**: PascalCase
+
    ```
    ✅ Button/           ✅ LoginForm/
    ❌ button/           ❌ login-form/
@@ -409,6 +416,7 @@ components/
 ### 🔄 파일 구조 및 내용
 
 #### 단일 파일 구조
+
 ```
 ComponentName/
 ├── ComponentName.tsx           # 메인 컴포넌트
@@ -418,6 +426,7 @@ ComponentName/
 ```
 
 #### 복잡한 컴포넌트 구조 (로직 분리)
+
 ```
 ComponentName/
 ├── ComponentName.tsx           # UI 렌더링 + hooks 사용
@@ -429,6 +438,7 @@ ComponentName/
 ```
 
 #### Export 규칙 (index.ts)
+
 ```typescript
 // 기본 export
 export { Button } from './Button';
@@ -446,6 +456,7 @@ export * from './Chip';
 ### 📌 컴포넌트 작성 예시
 
 #### ui/inputs/Button 구조
+
 ```
 ui/inputs/Button/
 ├── Button.tsx
@@ -459,6 +470,7 @@ ui/inputs/Button/
 ```
 
 #### features/SNSButtons 구조
+
 ```
 features/SNSButtons/
 ├── SNSButtons.tsx
@@ -485,13 +497,14 @@ features/SNSButtons/
    - 폼 관련? → `form/`
 
 2. **구체적 위치 결정**
+
    ```
    예: Button 컴포넌트
    ✅ ui/inputs/Button/    (사용자 입력 받음)
-   
+
    예: Alert 컴포넌트
    ✅ ui/feedback/Alert/   (피드백 제공)
-   
+
    예: PaymentForm
    ✅ form/PaymentForm/    (폼 관련)
    ```
@@ -548,43 +561,43 @@ features/SNSButtons/
 
 ### 개발 서버 (Dev Server)
 
-| 명령어 | 설명 |
-|--------|------|
-| `npm start` | 개발 서버 시작 (Metro bundler 캐시 유지) |
-| `npm run start:clear` | 개발 서버 시작 (Metro bundler 캐시 초기화) |
-| `npm run ios` | iOS Simulator에서 앱 실행 |
-| `npm run android` | Android Emulator에서 앱 실행 |
-| `npm run web` | 웹 브라우저에서 앱 실행 |
-| `npm run ios:clear` | 캐시 초기화 후 iOS 실행 |
-| `npm run android:clear` | 캐시 초기화 후 Android 실행 |
-| `npm run web:clear` | Vite 캐시 초기화 후 웹 실행 |
+| 명령어                  | 설명                                       |
+| ----------------------- | ------------------------------------------ |
+| `npm start`             | 개발 서버 시작 (Metro bundler 캐시 유지)   |
+| `npm run start:clear`   | 개발 서버 시작 (Metro bundler 캐시 초기화) |
+| `npm run ios`           | iOS Simulator에서 앱 실행                  |
+| `npm run android`       | Android Emulator에서 앱 실행               |
+| `npm run web`           | 웹 브라우저에서 앱 실행                    |
+| `npm run ios:clear`     | 캐시 초기화 후 iOS 실행                    |
+| `npm run android:clear` | 캐시 초기화 후 Android 실행                |
+| `npm run web:clear`     | Vite 캐시 초기화 후 웹 실행                |
 
 ### Prebuild (네이티브 빌드)
 
-| 명령어 | 설명 | 속도 |
-|--------|------|------|
-| `npm run prebuild` | iOS/Android 생성 (기존 유지) | ⚡ 빠름 |
-| `npm run prebuild:clean` | iOS/Android 완전 재생성 | 🐢 느림 |
-| `npm run prebuild:ios` | iOS만 생성 | ⚡ 빠름 |
-| `npm run prebuild:android` | Android만 생성 | ⚡ 빠름 |
-| `npm run prebuild:ios:clean` | iOS 완전 재생성 | 🐢 느림 |
-| `npm run prebuild:android:clean` | Android 완전 재생성 | 🐢 느림 |
+| 명령어                           | 설명                         | 속도    |
+| -------------------------------- | ---------------------------- | ------- |
+| `npm run prebuild`               | iOS/Android 생성 (기존 유지) | ⚡ 빠름 |
+| `npm run prebuild:clean`         | iOS/Android 완전 재생성      | 🐢 느림 |
+| `npm run prebuild:ios`           | iOS만 생성                   | ⚡ 빠름 |
+| `npm run prebuild:android`       | Android만 생성               | ⚡ 빠름 |
+| `npm run prebuild:ios:clean`     | iOS 완전 재생성              | 🐢 느림 |
+| `npm run prebuild:android:clean` | Android 완전 재생성          | 🐢 느림 |
 
 ### Storybook
 
-| 명령어 | 설명 |
-|--------|------|
-| `npm run storybook` | 웹 Storybook 개발 서버 |
-| `npm run build-storybook` | 웹 Storybook 정적 빌드 |
-| `npm run storybook-generate` | Storybook 스토리 자동 생성 |
-| `npm run storybook:native` | 네이티브 Storybook 시작 |
-| `npm run storybook:native:ios` | iOS에서 네이티브 Storybook 실행 |
+| 명령어                             | 설명                                |
+| ---------------------------------- | ----------------------------------- |
+| `npm run storybook`                | 웹 Storybook 개발 서버              |
+| `npm run build-storybook`          | 웹 Storybook 정적 빌드              |
+| `npm run storybook-generate`       | Storybook 스토리 자동 생성          |
+| `npm run storybook:native`         | 네이티브 Storybook 시작             |
+| `npm run storybook:native:ios`     | iOS에서 네이티브 Storybook 실행     |
 | `npm run storybook:native:android` | Android에서 네이티브 Storybook 실행 |
 
 ### 기타
 
-| 명령어 | 설명 |
-|--------|------|
+| 명령어         | 설명        |
+| -------------- | ----------- |
 | `npm run lint` | ESLint 실행 |
 
 ---
@@ -594,9 +607,10 @@ features/SNSButtons/
 ### 1. "Failed to create native project" 에러
 
 **해결책:**
+
 ```bash
 npm run prebuild:clean
-````
+```
 
 캐시 문제일 가능성이 높습니다. `--clean` 플래그로 완전 재생성합니다.
 

@@ -1,4 +1,8 @@
-import { Theme, ThemeContext, ThemeContextValue } from '@/components/provider/ThemeProvider/ThemeProvider';
+import {
+	Theme,
+	ThemeContext,
+	ThemeContextValue,
+} from '@/components/provider/ThemeProvider/ThemeProvider';
 import { useContext } from 'react';
 
 // Re-export Theme type for convenience
