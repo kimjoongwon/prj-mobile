@@ -32,45 +32,45 @@ export const createStyles = StyleSheet.create((theme: UnistyleTheme) => ({
 
 		// Color scheme determination INSIDE function
 		const colorTokens = theme.colors[color] || theme.colors.default;
-		let backgroundColor = 'transparent';
-		let borderColor = 'transparent';
-		let textColor = theme.colors.foreground;
+		let backgroundColor: string = 'transparent';
+		let borderColor: string = 'transparent';
+		let textColor: string = theme.colors.foreground;
 
 		switch (variant) {
 			case 'solid':
-				backgroundColor = colorTokens.DEFAULT;
-				borderColor = colorTokens.DEFAULT;
-				textColor = colorTokens.foreground;
+				backgroundColor = String(colorTokens.DEFAULT);
+				borderColor = String(colorTokens.DEFAULT);
+				textColor = String(colorTokens.foreground);
 				break;
 			case 'bordered':
 				backgroundColor = 'transparent';
-				borderColor = colorTokens.DEFAULT;
-				textColor = colorTokens.DEFAULT;
+				borderColor = String(colorTokens.DEFAULT);
+				textColor = String(colorTokens.DEFAULT);
 				break;
 			case 'light':
-				backgroundColor = colorTokens[100];
-				borderColor = colorTokens[200];
-				textColor = colorTokens[800];
+				backgroundColor = String(colorTokens[100]);
+				borderColor = String(colorTokens[200]);
+				textColor = String(colorTokens[800]);
 				break;
 			case 'flat':
-				backgroundColor = colorTokens[100];
+				backgroundColor = String(colorTokens[100]);
 				borderColor = 'transparent';
-				textColor = colorTokens[800];
+				textColor = String(colorTokens[800]);
 				break;
 			case 'faded':
-				backgroundColor = colorTokens[50];
-				borderColor = colorTokens[300];
-				textColor = colorTokens[700];
+				backgroundColor = String(colorTokens[50]);
+				borderColor = String(colorTokens[300]);
+				textColor = String(colorTokens[700]);
 				break;
 			case 'shadow':
-				backgroundColor = colorTokens.DEFAULT;
-				borderColor = colorTokens.DEFAULT;
-				textColor = colorTokens.foreground;
+				backgroundColor = String(colorTokens.DEFAULT);
+				borderColor = String(colorTokens.DEFAULT);
+				textColor = String(colorTokens.foreground);
 				break;
 			default:
-				backgroundColor = colorTokens.DEFAULT;
-				borderColor = colorTokens.DEFAULT;
-				textColor = colorTokens.foreground;
+				backgroundColor = String(colorTokens.DEFAULT);
+				borderColor = String(colorTokens.DEFAULT);
+				textColor = String(colorTokens.foreground);
 		}
 
 		// Opacity for disabled state
@@ -120,25 +120,25 @@ export const createStyles = StyleSheet.create((theme: UnistyleTheme) => ({
 		};
 
 		const colorTokens = theme.colors[color] || theme.colors.default;
-		let textColor = theme.colors.foreground;
+		let textColor: string = theme.colors.foreground;
 
 		switch (variant) {
 			case 'solid':
 			case 'shadow':
-				textColor = colorTokens.foreground;
+				textColor = String(colorTokens.foreground);
 				break;
 			case 'bordered':
-				textColor = colorTokens.DEFAULT;
+				textColor = String(colorTokens.DEFAULT);
 				break;
 			case 'light':
 			case 'flat':
-				textColor = colorTokens[800];
+				textColor = String(colorTokens[800]);
 				break;
 			case 'faded':
-				textColor = colorTokens[700];
+				textColor = String(colorTokens[700]);
 				break;
 			default:
-				textColor = colorTokens.foreground;
+				textColor = String(colorTokens.foreground);
 		}
 
 		return {

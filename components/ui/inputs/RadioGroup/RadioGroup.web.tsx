@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { useTheme } from '@/hooks/useTheme';
-import { sizes } from './RadioGroup.styles';
+import { createStyles } from './RadioGroup.styles';
 
 export type RadioGroupSize = 'sm' | 'md' | 'lg';
 export type RadioGroupColor =
@@ -86,20 +86,33 @@ export const RadioGroup = <T = any,>(
 	const selectedValue =
 		controlledValue !== undefined ? controlledValue : internalValue;
 
-	const sizeConfig = useMemo(() => sizes[size], [size]);
+	// ════════════════════════════════════════════════════════════════════════════
+	// STYLE SELECTION - Direct function calls, NO intermediate variables
+	// Pass state flags DIRECTLY to functions
+	// ════════════════════════════════════════════════════════════════════════════
 
-	const colorScheme = useMemo(() => {
-		const colorTokens =
-			theme.colors[isInvalid ? 'danger' : color] || theme.colors.default;
+	const containerStyle: React.CSSProperties = {
+		display: 'flex',
+		flexDirection: 'column',
+		opacity: isDisabled ? 0.5 : 1,
+		...style,
+	};
 
-		return {
-			label: colorTokens.DEFAULT,
-			text: theme.colors.foreground,
-			description: theme.colors.default[600],
-			error: theme.colors.danger.DEFAULT,
-			border: theme.colors.default[400],
-		};
-	}, [color, isInvalid, theme.colors]);
+	const groupContainerStyle: React.CSSProperties = {
+		display: 'flex',
+		flexDirection: orientation === 'horizontal' ? 'row' : 'column',
+		gap: orientation === 'horizontal' ? '16px' : orientation === 'vertical' && size === 'lg' ? '20px' : size === 'md' ? '16px' : '12px',
+		flexWrap: orientation === 'horizontal' ? 'wrap' : 'nowrap',
+		...groupStyle,
+	};
+
+	const labelStyleMemo: React.CSSProperties = {
+		fontWeight: '600',
+		marginBottom: '8px',
+		fontSize: size === 'lg' ? '18px' : size === 'md' ? '16px' : '14px',
+		color: theme.colors[isInvalid ? 'danger' : color].DEFAULT,
+		...labelStyle,
+	};
 
 	const handleValueChange = useCallback(
 		(newValue: any, selectedItem: T, selectedIndex: number) => {
@@ -111,37 +124,6 @@ export const RadioGroup = <T = any,>(
 		},
 		[controlledValue, onValueChange]
 	);
-
-	const containerStyle = useMemo((): React.CSSProperties => {
-		return {
-			display: 'flex',
-			flexDirection: 'column',
-			opacity: isDisabled ? 0.5 : 1,
-			...style,
-		};
-	}, [isDisabled, style]);
-
-	const groupContainerStyle = useMemo((): React.CSSProperties => {
-		const baseStyle: React.CSSProperties = {
-			display: 'flex',
-			flexDirection: orientation === 'horizontal' ? 'row' : 'column',
-			gap: `${sizeConfig.groupSpacing}px`,
-			flexWrap: orientation === 'horizontal' ? 'wrap' : 'nowrap',
-			...groupStyle,
-		};
-
-		return baseStyle;
-	}, [orientation, sizeConfig.groupSpacing, groupStyle]);
-
-	const labelStyleMemo = useMemo((): React.CSSProperties => {
-		return {
-			fontWeight: '600',
-			marginBottom: '8px',
-			fontSize: `${sizeConfig.fontSize + 2}px`,
-			color: colorScheme.label,
-			...labelStyle,
-		};
-	}, [sizeConfig.fontSize, colorScheme.label, labelStyle]);
 
 	// Radio option component
 	const RadioOption: React.FC<{
@@ -156,6 +138,21 @@ export const RadioGroup = <T = any,>(
 		const radioId = `radio-${name}-${index}`;
 		const itemLabel = labelExtractor(item, index);
 
+		// Size dimensions based on size prop
+		const sizeMap = {
+			sm: { radioSize: 16, iconSize: 6, fontSize: 12, spacing: 8 },
+			md: { radioSize: 20, iconSize: 8, fontSize: 14, spacing: 10 },
+			lg: { radioSize: 24, iconSize: 10, fontSize: 16, spacing: 12 },
+		};
+		const sizeDimensions = sizeMap[size];
+
+		// Color values for states
+		const colorTokens = theme.colors[isInvalid ? 'danger' : color] || theme.colors.default;
+		const labelColor = String(colorTokens.DEFAULT);
+		const borderColor = theme.colors.default[400];
+		const textColor = theme.colors.foreground;
+		const descriptionColor = theme.colors.default[600];
+
 		const radioContainerStyle: React.CSSProperties = {
 			display: 'flex',
 			alignItems: 'center',
@@ -168,10 +165,10 @@ export const RadioGroup = <T = any,>(
 			display: 'flex',
 			alignItems: 'center',
 			justifyContent: 'center',
-			width: `${sizeConfig.radioSize}px`,
-			height: `${sizeConfig.radioSize}px`,
+			width: `${sizeDimensions.radioSize}px`,
+			height: `${sizeDimensions.radioSize}px`,
 			borderRadius: '50%',
-			border: `2px solid ${isSelected ? colorScheme.label : colorScheme.border}`,
+			border: `2px solid ${isSelected ? labelColor : borderColor}`,
 			backgroundColor: 'transparent',
 			transition: 'all 0.2s ease',
 			flexShrink: 0,
@@ -179,36 +176,36 @@ export const RadioGroup = <T = any,>(
 
 		const innerRadioStyle: React.CSSProperties = isSelected
 			? {
-					width: `${sizeConfig.iconSize}px`,
-					height: `${sizeConfig.iconSize}px`,
+					width: `${sizeDimensions.iconSize}px`,
+					height: `${sizeDimensions.iconSize}px`,
 					borderRadius: '50%',
-					backgroundColor: colorScheme.label,
+					backgroundColor: labelColor,
 					transition: 'all 0.2s ease',
 				}
 			: {
 					width: 0,
 					height: 0,
-					backgroundColor: colorScheme.label,
+					backgroundColor: labelColor,
 					transition: 'all 0.2s ease',
 				};
 
 		const labelContainerStyle: React.CSSProperties = {
 			display: 'flex',
 			flexDirection: 'column',
-			marginLeft: `${sizeConfig.spacing}px`,
+			marginLeft: `${sizeDimensions.spacing}px`,
 			flex: 1,
 		};
 
 		const optionLabelStyleMemo: React.CSSProperties = {
-			fontSize: `${sizeConfig.fontSize}px`,
-			color: colorScheme.text,
+			fontSize: `${sizeDimensions.fontSize}px`,
+			color: textColor,
 			fontWeight: '400',
 			...optionLabelStyle,
 		};
 
 		const descriptionStyleMemo: React.CSSProperties = {
 			fontSize: '12px',
-			color: colorScheme.description,
+			color: descriptionColor,
 			marginTop: '4px',
 			opacity: 0.6,
 		};
@@ -253,11 +250,11 @@ export const RadioGroup = <T = any,>(
 			<label style={labelStyleMemo}>
 				{label}
 				{isRequired && (
-					<span style={{ color: colorScheme.error }}> *</span>
+					<span style={{ color: theme.colors.danger.DEFAULT }}> *</span>
 				)}
 			</label>
 		);
-	}, [label, labelStyleMemo, isRequired, colorScheme.error]);
+	}, [label, labelStyleMemo, isRequired, theme.colors.danger]);
 
 	const renderOptions = useCallback(() => {
 		return data.map((item, index) => {
@@ -280,14 +277,14 @@ export const RadioGroup = <T = any,>(
 
 	const descriptionStyle: React.CSSProperties = {
 		fontSize: '12px',
-		color: colorScheme.description,
+		color: theme.colors.default[600],
 		marginTop: '4px',
 		opacity: 0.6,
 	};
 
 	const errorMessageStyle: React.CSSProperties = {
 		fontSize: '12px',
-		color: colorScheme.error,
+		color: theme.colors.danger.DEFAULT,
 		marginTop: '4px',
 	};
 
