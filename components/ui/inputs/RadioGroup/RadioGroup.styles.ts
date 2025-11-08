@@ -1,147 +1,217 @@
-import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
-import { RadioGroupSize } from './RadioGroup';
+import { StyleSheet } from 'react-native-unistyles';
+import type { UnistyleTheme } from '@/unistyles';
 
-export const sizes: Record<
-	RadioGroupSize,
-	{
-		radioSize: number;
-		fontSize: number;
-		iconSize: number;
-		spacing: number;
-		groupSpacing: number;
-	}
-> = {
-	sm: {
-		radioSize: 16,
-		fontSize: 14,
-		iconSize: 6,
-		spacing: 8,
-		groupSpacing: 12,
-	},
-	md: {
-		radioSize: 20,
-		fontSize: 14,
-		iconSize: 8,
-		spacing: 10,
-		groupSpacing: 16,
-	},
-	lg: {
-		radioSize: 24,
-		fontSize: 16,
-		iconSize: 10,
-		spacing: 12,
-		groupSpacing: 20,
-	},
-};
-
-export const baseGroupStyles: Record<string, ViewStyle> = {
-	container: {
+export const createStyles = StyleSheet.create((theme: UnistyleTheme) => ({
+	// ════════════════════════════════════════════════════════════════════════════
+	// CONTAINER
+	// Orientation and disabled state parameters integrated
+	// ════════════════════════════════════════════════════════════════════════════
+	container: (isDisabled: boolean, customStyle?: Record<string, any>) => ({
 		flexDirection: 'column',
-	},
-	group: {
-		flexDirection: 'column',
-	},
-	horizontal: {
-		flexDirection: 'row',
-		flexWrap: 'wrap',
-	},
-	disabled: {
-		opacity: 0.5,
-	},
-};
+		opacity: isDisabled ? theme.opacity.disabled : 1,
+		...customStyle,
+	}),
 
-export const baseRadioStyles: Record<string, ViewStyle> = {
-	container: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		marginBottom: 8,
-	},
-	radio: {
-		alignItems: 'center',
-		justifyContent: 'center',
-		borderWidth: 2,
-		borderRadius: 50,
-		position: 'relative',
-	},
-	selected: {
-		borderWidth: 0,
-	},
-	disabled: {
-		opacity: 0.5,
-	},
-};
+	// ════════════════════════════════════════════════════════════════════════════
+	// GROUP CONTAINER
+	// Orientation and size parameters integrated
+	// ════════════════════════════════════════════════════════════════════════════
+	groupContainer: (
+		orientation: 'horizontal' | 'vertical',
+		size: 'sm' | 'md' | 'lg',
+		customStyle?: Record<string, any>
+	) => {
+		const sizeStyles = {
+			sm: { groupSpacing: 12 },
+			md: { groupSpacing: 16 },
+			lg: { groupSpacing: 20 },
+		};
 
-export const baseLabelStyles: Record<string, TextStyle> = {
-	groupLabel: {
-		fontWeight: '600',
-		marginBottom: 8,
+		const baseStyle = {
+			flexDirection: 'column' as const,
+		};
+
+		if (orientation === 'horizontal') {
+			return {
+				...baseStyle,
+				flexDirection: 'row' as const,
+				flexWrap: 'wrap' as const,
+				gap: sizeStyles[size].groupSpacing,
+				...customStyle,
+			};
+		}
+
+		return {
+			...baseStyle,
+			gap: sizeStyles[size].groupSpacing,
+			...customStyle,
+		};
 	},
-	radioLabel: {
-		fontWeight: '400',
-		lineHeight: 20,
+
+	// ════════════════════════════════════════════════════════════════════════════
+	// GROUP LABEL
+	// Color and size parameters integrated
+	// ════════════════════════════════════════════════════════════════════════════
+	groupLabel: (
+		size: 'sm' | 'md' | 'lg',
+		color: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger',
+		isInvalid: boolean,
+		customStyle?: Record<string, any>
+	) => {
+		const sizeStyles = {
+			sm: { fontSize: 14 },
+			md: { fontSize: 16 },
+			lg: { fontSize: 18 },
+		};
+
+		const colorTokens =
+			theme.colors[isInvalid ? 'danger' : color] || theme.colors.default;
+
+		return {
+			fontWeight: '600' as const,
+			marginBottom: theme.spacing[2],
+			color: colorTokens.DEFAULT,
+			...sizeStyles[size],
+			...customStyle,
+		};
 	},
-	description: {
+
+	// ════════════════════════════════════════════════════════════════════════════
+	// RADIO CONTAINER
+	// Orientation parameter integrated
+	// ════════════════════════════════════════════════════════════════════════════
+	radioContainer: (
+		orientation: 'horizontal' | 'vertical',
+		customStyle?: Record<string, any>
+	) => {
+		const baseStyle = {
+			flexDirection: 'row' as const,
+			alignItems: 'center' as const,
+			marginBottom: 8,
+		};
+
+		if (orientation === 'horizontal') {
+			return {
+				...baseStyle,
+				marginRight: 16,
+				marginBottom: 8,
+				...customStyle,
+			};
+		}
+
+		return {
+			...baseStyle,
+			...customStyle,
+		};
+	},
+
+	// ════════════════════════════════════════════════════════════════════════════
+	// RADIO BUTTON (OUTER CIRCLE)
+	// Size, selection state, and color parameters integrated
+	// ════════════════════════════════════════════════════════════════════════════
+	radio: (
+		size: 'sm' | 'md' | 'lg',
+		isSelected: boolean,
+		color: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger',
+		isInvalid: boolean,
+		isDisabled: boolean,
+		customStyle?: Record<string, any>
+	) => {
+		const sizeStyles = {
+			sm: { width: 16, height: 16 },
+			md: { width: 20, height: 20 },
+			lg: { width: 24, height: 24 },
+		};
+
+		const colorTokens =
+			theme.colors[isInvalid ? 'danger' : color] || theme.colors.default;
+		const borderColor = isSelected ? colorTokens.DEFAULT : theme.colors.default[400];
+
+		return {
+			alignItems: 'center' as const,
+			justifyContent: 'center' as const,
+			borderWidth: 2,
+			borderRadius: 50,
+			backgroundColor: 'transparent',
+			borderColor,
+			opacity: isDisabled ? theme.opacity.disabled : 1,
+			...sizeStyles[size],
+			...customStyle,
+		};
+	},
+
+	// ════════════════════════════════════════════════════════════════════════════
+	// RADIO INNER DOT
+	// Size and color parameters integrated
+	// ════════════════════════════════════════════════════════════════════════════
+	radioInner: (
+		size: 'sm' | 'md' | 'lg',
+		color: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger',
+		isInvalid: boolean,
+		customStyle?: Record<string, any>
+	) => {
+		const sizeStyles = {
+			sm: { width: 6, height: 6 },
+			md: { width: 8, height: 8 },
+			lg: { width: 10, height: 10 },
+		};
+
+		const colorTokens =
+			theme.colors[isInvalid ? 'danger' : color] || theme.colors.default;
+
+		return {
+			borderRadius: 50,
+			backgroundColor: colorTokens.DEFAULT,
+			...sizeStyles[size],
+			...customStyle,
+		};
+	},
+
+	// ════════════════════════════════════════════════════════════════════════════
+	// OPTION LABEL
+	// Size, disabled state, and color parameters integrated
+	// ════════════════════════════════════════════════════════════════════════════
+	optionLabel: (
+		size: 'sm' | 'md' | 'lg',
+		isDisabled: boolean,
+		customStyle?: Record<string, any>
+	) => {
+		const sizeStyles = {
+			sm: { fontSize: 12, spacing: 8 },
+			md: { fontSize: 14, spacing: 10 },
+			lg: { fontSize: 16, spacing: 12 },
+		};
+
+		return {
+			fontWeight: '400' as const,
+			marginLeft: sizeStyles[size].spacing,
+			opacity: isDisabled ? theme.opacity.disabled : 1,
+			...sizeStyles[size],
+			...customStyle,
+		};
+	},
+
+	// ════════════════════════════════════════════════════════════════════════════
+	// DESCRIPTION TEXT
+	// Color parameter integrated
+	// ════════════════════════════════════════════════════════════════════════════
+	descriptionText: (isError: boolean, customStyle?: Record<string, any>) => ({
 		fontSize: 12,
-		marginTop: 4,
-		opacity: 0.6,
-	},
-	disabled: {
-		opacity: 0.5,
-	},
-};
+		marginTop: theme.spacing[1],
+		color: isError ? theme.colors.danger.DEFAULT : theme.colors.default[600],
+		...customStyle,
+	}),
 
-export const styles = StyleSheet.create({
-	container: {
-		flexDirection: 'column',
-	},
-	group: {
-		flexDirection: 'column',
-	},
-	horizontal: {
-		flexDirection: 'row',
-		flexWrap: 'wrap',
-	},
-	radioContainer: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		marginBottom: 8,
-	},
-	horizontalRadioContainer: {
-		marginRight: 16,
-		marginBottom: 8,
-	},
-	radio: {
-		alignItems: 'center',
-		justifyContent: 'center',
-		borderWidth: 2,
-		borderRadius: 50,
-	},
-	radioInner: {
-		borderRadius: 50,
-	},
+	// ════════════════════════════════════════════════════════════════════════════
+	// STATIC STYLES (No parameters needed)
+	// ════════════════════════════════════════════════════════════════════════════
 	labelContainer: {
-		flexDirection: 'column',
+		flexDirection: 'column' as const,
 		flex: 1,
-		justifyContent: 'center',
+		justifyContent: 'center' as const,
 	},
-	groupLabel: {
-		fontWeight: '600',
-		marginBottom: 8,
-	},
-	radioLabel: {
-		fontWeight: '400',
-	},
-	description: {
-		fontSize: 12,
-		marginTop: 4,
-		opacity: 0.6,
-	},
-	errorMessage: {
-		fontSize: 12,
-		marginTop: 4,
-		// color는 컴포넌트에서 동적으로 설정
-	},
+
 	requiredStar: {
-		// color는 컴포넌트에서 동적으로 설정
+		fontWeight: '600' as const,
 	},
-});
+}));

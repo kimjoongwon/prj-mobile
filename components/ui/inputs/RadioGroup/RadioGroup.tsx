@@ -1,6 +1,6 @@
 import { useTheme } from '@/hooks/useTheme';
 import type { MobxProps } from '@cocrepo/types';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
 	Pressable,
 	type TextStyle,
@@ -16,13 +16,7 @@ import Animated, {
 	withTiming,
 } from 'react-native-reanimated';
 import { Text } from '../../display/Text';
-import {
-	baseGroupStyles,
-	baseLabelStyles,
-	baseRadioStyles,
-	sizes,
-	styles,
-} from './RadioGroup.styles';
+import { createStyles } from './RadioGroup.styles';
 
 export type RadioGroupSize = 'sm' | 'md' | 'lg';
 export type RadioGroupColor =
@@ -112,20 +106,16 @@ export const RadioGroup = <T = any,>({
 	const selectedValue =
 		controlledValue !== undefined ? controlledValue : internalValue;
 
-	const sizeConfig = useMemo(() => sizes[size], [size]);
+	// ════════════════════════════════════════════════════════════════════════════
+	// STYLE SELECTION - Direct function calls, NO intermediate variables
+	// Pass state flags DIRECTLY to functions
+	// ════════════════════════════════════════════════════════════════════════════
 
-	const colorScheme = useMemo(() => {
-		const colorTokens =
-			theme.colors[isInvalid ? 'danger' : color] || theme.colors.default;
-
-		return {
-			label: colorTokens.DEFAULT,
-			text: theme.colors.foreground,
-			description: theme.colors.default[600], // 더 진한 색상으로 가독성 향상
-			error: theme.colors.danger.DEFAULT,
-			border: theme.colors.default[400], // 다크모드에서도 보이는 테두리 색상
-		};
-	}, [color, isInvalid, theme.colors]);
+	const containerStyle = createStyles.container(isDisabled, style);
+	const groupContainerStyle = createStyles.groupContainer(orientation, size);
+	const groupLabelStyle = createStyles.groupLabel(size, color, isInvalid, labelStyle);
+	const descriptionStyle = createStyles.descriptionText(false);
+	const errorStyle = createStyles.descriptionText(true);
 
 	const handleValueChange = useCallback(
 		(newValue: any, selectedItem: T, selectedIndex: number) => {
@@ -137,37 +127,6 @@ export const RadioGroup = <T = any,>({
 		},
 		[controlledValue, onValueChange]
 	);
-
-	const containerStyle = useMemo((): ViewStyle => {
-		return {
-			...baseGroupStyles.container,
-			...(isDisabled ? baseGroupStyles.disabled : {}),
-		};
-	}, [isDisabled]);
-
-	const groupContainerStyle = useMemo((): ViewStyle => {
-		const baseStyle = {
-			...baseGroupStyles.group,
-			gap: sizeConfig.groupSpacing,
-		};
-
-		if (orientation === 'horizontal') {
-			return {
-				...baseStyle,
-				...baseGroupStyles.horizontal,
-			};
-		}
-
-		return baseStyle;
-	}, [orientation, sizeConfig.groupSpacing]);
-
-	const labelStyleMemo = useMemo(() => {
-		return {
-			...baseLabelStyles.groupLabel,
-			fontSize: sizeConfig.fontSize + 2,
-			color: colorScheme.label,
-		};
-	}, [sizeConfig.fontSize, colorScheme.label]);
 
 	// Radio option component
 	const RadioOption: React.FC<{
@@ -216,47 +175,19 @@ export const RadioGroup = <T = any,>({
 			};
 		});
 
-		const radioContainerStyle = useMemo((): ViewStyle => {
-			return {
-				...baseRadioStyles.radio,
-				width: sizeConfig.radioSize,
-				height: sizeConfig.radioSize,
-				backgroundColor: 'transparent',
-				borderColor: isSelected ? colorScheme.label : colorScheme.border,
-				...(isOptionDisabled ? baseRadioStyles.disabled : {}),
-			};
-		}, [isSelected, isOptionDisabled]);
+		// ════════════════════════════════════════════════════════════════════════════
+		// STYLE SELECTION - Direct function calls for RadioOption
+		// Pass state flags DIRECTLY to functions
+		// ════════════════════════════════════════════════════════════════════════════
 
-		const innerRadioStyle = useMemo((): ViewStyle => {
-			return {
-				width: sizeConfig.iconSize,
-				height: sizeConfig.iconSize,
-				backgroundColor: colorScheme.label,
-				borderRadius: sizeConfig.iconSize / 2,
-			};
-		}, []);
-
-		const optionLabelStyleMemo = useMemo(() => {
-			return {
-				fontSize: sizeConfig.fontSize,
-				color: colorScheme.text,
-				marginLeft: sizeConfig.spacing,
-				...(isOptionDisabled ? { opacity: 0.5 } : {}),
-			};
-		}, [isOptionDisabled]);
-
-		const containerStyleForOption = useMemo(() => {
-			const baseStyle = [styles.radioContainer];
-			if (orientation === 'horizontal') {
-				// @ts-ignore
-				baseStyle.push(styles.horizontalRadioContainer);
-			}
-			return baseStyle;
-		}, []);
+		const radioContainerStyle = createStyles.radioContainer(orientation);
+		const radioStyle = createStyles.radio(size, isSelected, color, isInvalid, isOptionDisabled);
+		const radioInnerStyle = createStyles.radioInner(size, color, isInvalid);
+		const optionLabelStyle_ = createStyles.optionLabel(size, isOptionDisabled, optionLabelStyle);
 
 		return (
 			<Pressable
-				style={containerStyleForOption}
+				style={radioContainerStyle}
 				onPress={handlePress}
 				disabled={isOptionDisabled}
 				accessibilityRole="radio"
@@ -266,24 +197,22 @@ export const RadioGroup = <T = any,>({
 				}}
 				accessibilityLabel={labelExtractor(item, index)}
 			>
-				<Animated.View style={[radioContainerStyle, radioAnimatedStyle]}>
-					<Animated.View style={[innerRadioStyle, innerRadioAnimatedStyle]} />
+				<Animated.View style={[radioStyle, radioAnimatedStyle]}>
+					<Animated.View style={[radioInnerStyle, innerRadioAnimatedStyle]} />
 				</Animated.View>
 
-				<View style={styles.labelContainer}>
+				<View style={createStyles.labelContainer}>
 					<Text
 						style={
 							optionLabelStyle
-								? [optionLabelStyleMemo, optionLabelStyle]
-								: optionLabelStyleMemo
+								? [optionLabelStyle_, optionLabelStyle]
+								: optionLabelStyle_
 						}
 					>
 						{labelExtractor(item, index)}
 					</Text>
 					{descriptionExtractor?.(item, index) && (
-						<Text
-							style={[styles.description, { color: colorScheme.description }]}
-						>
+						<Text style={createStyles.descriptionText(false)}>
 							{descriptionExtractor(item, index)}
 						</Text>
 					)}
@@ -296,17 +225,17 @@ export const RadioGroup = <T = any,>({
 		if (!label) return null;
 
 		return (
-			<Text style={labelStyle ? [labelStyleMemo, labelStyle] : labelStyleMemo}>
+			<Text style={groupLabelStyle}>
 				{label}
 				{isRequired && (
-					<Text style={[styles.requiredStar, { color: colorScheme.error }]}>
+					<Text style={[createStyles.requiredStar, { color: theme.colors.danger.DEFAULT }]}>
 						{' '}
 						*
 					</Text>
 				)}
 			</Text>
 		);
-	}, [label, labelStyleMemo, labelStyle, isRequired, colorScheme.error]);
+	}, [label, groupLabelStyle, isRequired]);
 
 	const renderOptions = useCallback(() => {
 		return data.map((item, index) => {
@@ -328,19 +257,19 @@ export const RadioGroup = <T = any,>({
 	}, [data, keyExtractor, valueExtractor, selectedValue, handleValueChange]);
 
 	return (
-		<View style={[styles.container, containerStyle, style]} {...restProps}>
+		<View style={containerStyle} {...restProps}>
 			{renderLabel()}
 
 			<View style={[groupContainerStyle, groupStyle]}>{renderOptions()}</View>
 
 			{description && !errorMessage && (
-				<Text style={[styles.description, { color: colorScheme.description }]}>
+				<Text style={descriptionStyle}>
 					{description}
 				</Text>
 			)}
 
 			{errorMessage && (
-				<Text style={[styles.errorMessage, { color: colorScheme.error }]}>
+				<Text style={errorStyle}>
 					{errorMessage}
 				</Text>
 			)}
