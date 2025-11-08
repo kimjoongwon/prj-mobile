@@ -65,13 +65,17 @@ const sizes = {
 	},
 };
 
-const radiusValues = {
-	none: 0,
-	sm: 4,
-	md: 6,
-	lg: 8,
-	full: 9999,
-};
+const styles = StyleSheet.create({
+	contentContainer: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	iconContainer: {
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+});
 
 export const Button: React.FC<ButtonProps> = ({
 	children,
@@ -149,7 +153,7 @@ export const Button: React.FC<ButtonProps> = ({
 
 	const colorScheme = getColorScheme(color, variant);
 	const sizeConfig = sizes[size];
-	const borderRadius = radiusValues[radius];
+	const borderRadius = theme.radius[radius];
 
 	// Enhanced button style with better disabled/loading state support
 	const getDisabledStyle = () => {
@@ -182,8 +186,7 @@ export const Button: React.FC<ButtonProps> = ({
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'center',
-		opacity:
-			isDisabled || isLoading ? parseFloat(theme.layout.disabledOpacity) : 1,
+		opacity: isDisabled || isLoading ? theme.opacity.disabled : 1,
 		// Add shadow for shadow variant with theme-aware shadow color
 		...(variant === 'shadow' &&
 			!isDisabled &&
@@ -264,17 +267,5 @@ export const Button: React.FC<ButtonProps> = ({
 		</TouchableOpacity>
 	);
 };
-
-const styles = StyleSheet.create({
-	contentContainer: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-	iconContainer: {
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-});
 
 export default Button;

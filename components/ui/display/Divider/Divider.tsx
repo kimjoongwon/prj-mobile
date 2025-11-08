@@ -16,6 +16,19 @@ export interface DividerProps {
 	margin?: number;
 }
 
+const styles = StyleSheet.create({
+	containerWithText: {
+		flexDirection: 'row',
+		alignItems: 'center',
+	},
+	lineWithText: {
+		flex: 1,
+	},
+	text: {
+		marginHorizontal: 16,
+	},
+});
+
 export const Divider: React.FC<DividerProps> = ({
 	orientation = 'horizontal',
 	thickness = 1,
@@ -90,18 +103,5 @@ export const Divider: React.FC<DividerProps> = ({
 
 	return <View style={[dividerStyle, style]} />;
 };
-
-const styles = StyleSheet.create({
-	containerWithText: {
-		flexDirection: 'row',
-		alignItems: 'center',
-	},
-	lineWithText: {
-		flex: 1,
-	},
-	text: {
-		marginHorizontal: 16,
-	},
-});
 
 export default Divider;

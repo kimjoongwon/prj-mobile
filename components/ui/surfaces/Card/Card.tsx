@@ -9,10 +9,10 @@ export interface CardProps extends Omit<ViewProps, 'style'> {
 }
 
 const paddingValues = {
-	sm: 8,
-	md: 16,
-	lg: 24,
-};
+	sm: 'sm',
+	md: 'md',
+	lg: 'lg',
+} as const;
 
 export const Card: React.FC<CardProps> = ({
 	children,
@@ -22,15 +22,21 @@ export const Card: React.FC<CardProps> = ({
 }) => {
 	const { theme } = useTheme();
 
-	// 패딩 값 계산
+	// 패딩 값 계산 (unistyles spacing tokens 활용)
 	const getPaddingValue = () => {
 		if (typeof padding === 'number') return padding;
-		return paddingValues[padding];
+		const spacingKey = paddingValues[padding];
+		const spacingMap: Record<string, number> = {
+			sm: theme.spacing[2], // 8
+			md: theme.spacing[4], // 16
+			lg: theme.spacing[6], // 24
+		};
+		return spacingMap[spacingKey];
 	};
 
 	const cardStyle: ViewStyle = {
 		backgroundColor: theme.colors.content1.DEFAULT,
-		borderRadius: 8,
+		borderRadius: theme.radius.md,
 		padding: getPaddingValue(),
 		borderWidth: 1,
 		borderColor: theme.colors.content3.DEFAULT,

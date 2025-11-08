@@ -34,62 +34,6 @@ export interface TextProps extends Omit<RNTextProps, 'style'> {
 	style?: TextStyle | TextStyle[];
 }
 
-// 타이포그래피 스타일 정의
-const variantStyles: Record<TextVariant, TextStyle> = {
-	h1: {
-		fontSize: 32,
-		fontFamily: 'Pretendard-Bold',
-		lineHeight: 40,
-	},
-	h2: {
-		fontSize: 28,
-		fontFamily: 'Pretendard-Bold',
-		lineHeight: 36,
-	},
-	h3: {
-		fontSize: 24,
-		fontFamily: 'Pretendard-SemiBold',
-		lineHeight: 32,
-	},
-	h4: {
-		fontSize: 20,
-		fontFamily: 'Pretendard-SemiBold',
-		lineHeight: 28,
-	},
-	h5: {
-		fontSize: 18,
-		fontFamily: 'Pretendard-SemiBold',
-		lineHeight: 24,
-	},
-	h6: {
-		fontSize: 16,
-		fontFamily: 'Pretendard-SemiBold',
-		lineHeight: 22,
-	},
-	body1: {
-		fontSize: 16,
-		fontFamily: 'Pretendard-Regular',
-		lineHeight: 24,
-	},
-	body2: {
-		fontSize: 14,
-		fontFamily: 'Pretendard-Regular',
-		lineHeight: 20,
-	},
-	caption: {
-		fontSize: 12,
-		fontFamily: 'Pretendard-Regular',
-		lineHeight: 16,
-	},
-	overline: {
-		fontSize: 10,
-		fontFamily: 'Pretendard-Medium',
-		lineHeight: 14,
-		textTransform: 'uppercase',
-		letterSpacing: 1.5,
-	},
-};
-
 export const Text: React.FC<TextProps> = ({
 	children,
 	variant = 'body1',
@@ -98,6 +42,11 @@ export const Text: React.FC<TextProps> = ({
 	...props
 }) => {
 	const { theme, isDark } = useTheme();
+
+	// Unistyles typography tokens 기반 타이포그래피
+	const getVariantStyle = () => {
+		return theme.typography[variant];
+	};
 
 	// 테마 기반 색상 가져오기
 	const getTextColor = () => {
@@ -122,7 +71,7 @@ export const Text: React.FC<TextProps> = ({
 	};
 
 	const textStyle: TextStyle = {
-		...variantStyles[variant],
+		...getVariantStyle(),
 		color: getTextColor(),
 	};
 

@@ -10,7 +10,6 @@ const preview: Preview = {
 				date: /Date$/i,
 			},
 		},
-		// Storybook 네이티브 다크모드 설정
 		docs: {
 			canvas: {
 				sourceState: 'shown',
@@ -19,7 +18,7 @@ const preview: Preview = {
 	},
 	decorators: [
 		(Story, { globals }) => {
-			// Storybook의 테마 설정을 감지하여 ThemeProvider에 전달
+			// Storybook 테마 설정을 감지하여 Unistyles 테마로 전달
 			const isDarkMode = globals.theme === 'dark';
 
 			return (

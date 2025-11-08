@@ -4,6 +4,9 @@ import { useTheme } from '@/hooks/useTheme';
 import { Text } from '../../display/Text';
 import { sizes, styles } from './ListItem.styles';
 
+// Note: ListItem.styles는 기존 StyleSheet 기반이므로 유지함
+// Unistyles로의 전체 마이그레이션은 별도 단계에서 진행
+
 export type ListItemVariant = 'default' | 'card' | 'simple';
 export type ListItemSize = 'sm' | 'md' | 'lg';
 
