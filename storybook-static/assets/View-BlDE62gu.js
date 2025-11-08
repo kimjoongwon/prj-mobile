@@ -1,0 +1,1 @@
+import{j as o,V as r}from"./iframe-DZiCWydc.js";const t=({children:e,...s})=>o.jsx(r,{...s,children:e});t.__docgenInfo={description:"",methods:[],displayName:"View",props:{children:{required:!1,tsType:{name:"ReactReactNode",raw:"React.ReactNode"},description:""}},composes:["RNViewProps"]};export{t as V};

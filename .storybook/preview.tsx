@@ -1,25 +1,20 @@
-import type { Preview } from '@storybook/react';
+import type { Preview } from '@storybook/react-native-web-vite';
 import { View } from 'react-native';
 import { ThemeProvider } from '../components/provider/ThemeProvider';
 
 const preview: Preview = {
 	parameters: {
 		controls: {
-			expanded: true,
 			matchers: {
 				color: /(background|color)$/i,
-				date: /Date$/,
+				date: /Date$/i,
 			},
 		},
-	},
-	argTypes: {
-		// 모든 스토리에 기본 argTypes 추가하여 Controls 탭 활성화
-		_theme: {
-			name: 'Theme',
-			description: 'Global theme for components',
-			options: ['light', 'dark'],
-			control: { type: 'radio' },
-			table: { disable: true },
+		// Storybook 네이티브 다크모드 설정
+		docs: {
+			canvas: {
+				sourceState: 'shown',
+			},
 		},
 	},
 	decorators: [
@@ -41,12 +36,13 @@ const preview: Preview = {
 			name: 'Theme',
 			description: 'Global theme for components',
 			defaultValue: 'light',
-			control: {
-				type: 'radio',
-				options: {
-					Light: 'light',
-					Dark: 'dark',
-				},
+			toolbar: {
+				icon: 'circlehollow',
+				items: [
+					{ value: 'light', icon: 'sun', title: '☀️ Light' },
+					{ value: 'dark', icon: 'moon', title: '🌙 Dark' },
+				],
+				dynamicTitle: true,
 			},
 		},
 	},
