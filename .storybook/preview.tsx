@@ -23,11 +23,11 @@ const preview: Preview = {
 			const isDarkMode = globals.theme === 'dark';
 
 			return (
-				<ThemeProvider initialTheme={isDarkMode ? 'dark' : 'light'}>
-					<View style={{ flex: 1 }}>
+				<View key={`theme-${globals.theme}`} style={{ flex: 1 }}>
+					<ThemeProvider initialTheme={isDarkMode ? 'dark' : 'light'}>
 						<Story />
-					</View>
-				</ThemeProvider>
+					</ThemeProvider>
+				</View>
 			);
 		},
 	],

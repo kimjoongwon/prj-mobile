@@ -1,6 +1,4 @@
 import type { Preview } from '@storybook/react';
-import { View } from 'react-native';
-import { ThemeProvider } from '../components/provider/ThemeProvider';
 
 const preview: Preview = {
 	parameters: {
@@ -12,44 +10,13 @@ const preview: Preview = {
 			},
 		},
 	},
-	argTypes: {
-		// 모든 스토리에 기본 argTypes 추가하여 Controls 탭 활성화
-		_theme: {
-			name: 'Theme',
-			description: 'Global theme for components',
-			options: ['light', 'dark'],
-			control: { type: 'radio' },
-			table: { disable: true },
-		},
-	},
 	decorators: [
-		(Story, { globals }) => {
-			// Storybook의 테마 설정을 감지하여 ThemeProvider에 전달
-			const isDarkMode = globals.theme === 'dark';
-
+		(Story) => {
 			return (
-				<ThemeProvider initialTheme={isDarkMode ? 'dark' : 'light'}>
-					<View style={{ flex: 1 }}>
-						<Story />
-					</View>
-				</ThemeProvider>
+				<Story />
 			);
 		},
 	],
-	globalTypes: {
-		theme: {
-			name: 'Theme',
-			description: 'Global theme for components',
-			defaultValue: 'light',
-			control: {
-				type: 'radio',
-				options: {
-					Light: 'light',
-					Dark: 'dark',
-				},
-			},
-		},
-	},
 };
 
 export default preview;

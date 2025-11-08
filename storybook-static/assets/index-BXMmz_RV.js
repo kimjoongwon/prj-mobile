@@ -1,1 +1,0 @@
-import{D as a}from"./index-DS8CYKj5.js";class t{static get(){return a.get("window").scale}static getFontScale(){return a.get("window").fontScale||t.get()}static getPixelSizeForLayoutSize(e){return Math.round(e*t.get())}static roundToNearestPixel(e){var r=t.get();return Math.round(e*r)/r}}export{t as P};

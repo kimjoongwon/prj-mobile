@@ -3,7 +3,7 @@ import {
 	ThemeProvider as RNNavThemeProvider,
 } from '@react-navigation/native';
 import { observer } from 'mobx-react-lite';
-import React, { ReactNode, useCallback, useState, createContext } from 'react';
+import React, { createContext, ReactNode, useCallback, useEffect, useState } from 'react';
 import { useColorScheme } from 'react-native';
 import { darkTheme, lightTheme } from './ThemeProvider.styles';
 
@@ -87,12 +87,18 @@ interface ThemeProviderProps {
 export const ThemeProvider: React.FC<ThemeProviderProps> = observer(
 	({ children, initialTheme }) => {
 		const systemColorScheme = useColorScheme();
-
 		// 초기 테마 설정: initialTheme이 있으면 사용, 없으면 시스템 설정을 따름
 		const [currentTheme, setCurrentTheme] = useState<ThemeMode>(() => {
 			if (initialTheme) return initialTheme;
 			return systemColorScheme === 'dark' ? 'dark' : 'light';
 		});
+
+		// initialTheme이 변경되면 currentTheme도 업데이트
+		useEffect(() => {
+			if (initialTheme) {
+				setCurrentTheme(initialTheme);
+			}
+		}, [initialTheme]);
 
 		const theme = currentTheme === 'dark' ? darkTheme : lightTheme;
 		const isDark = currentTheme === 'dark';
