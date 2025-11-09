@@ -18,11 +18,9 @@ export function Providers({
 	const renderWithDarkModeSwitch = (content: ReactNode) => (
 		<View style={styles.container}>
 			{content}
-			{__DEV__ && (
-				<View style={styles.darkModeSwitchContainer}>
-					<DarkModeSwitch />
-				</View>
-			)}
+			<View style={styles.darkModeSwitchContainer}>
+				<DarkModeSwitch />
+			</View>
 		</View>
 	);
 
