@@ -1,10 +1,10 @@
-import { Text, View } from '@/components';
+import { Screen, Text } from '@/components';
 
 export function HomeScreen() {
 	return (
-		<View>
+		<Screen>
 			<Text>ddd</Text>
-		</View>
+		</Screen>
 	);
 }
 

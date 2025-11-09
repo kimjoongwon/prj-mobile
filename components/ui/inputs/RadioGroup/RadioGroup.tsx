@@ -63,7 +63,7 @@ export interface RadioGroupProps<T = any> extends Omit<ViewProps, 'style'> {
 // MobX RadioGroup Props
 export interface MobxRadioGroupProps<T, D = any>
 	extends MobxProps<T>,
-		Omit<RadioGroupProps<D>, 'value' | 'onValueChange'> {}
+	Omit<RadioGroupProps<D>, 'value' | 'onValueChange'> { }
 
 export interface RadioGroupRef {
 	setValue: (value: string) => void;
@@ -72,7 +72,7 @@ export interface RadioGroupRef {
 	blur: () => void;
 }
 
-export const RadioGroup = <T = any,>({
+export const RadioGroup = <T extends any>({
 	data,
 	label,
 	name,

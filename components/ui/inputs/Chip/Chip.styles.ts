@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native-unistyles';
 import type { UnistyleTheme } from '@/unistyles';
+import { StyleSheet } from 'react-native-unistyles';
 
 export const createStyles = StyleSheet.create((theme: UnistyleTheme) => ({
 	// ════════════════════════════════════════════════════════════════════════════

@@ -3093,30 +3093,25 @@ const styles = StyleSheet.create((theme, rt) => ({
             },
             isPrimary: {
                 true: {
-                    color: theme.colors.primary
+                    color: theme.colors.primary.DEFAULT
                 },
-                default: {
-                    color: theme.colors.secondary
-                },
-                special: {
-                    color: theme.colors.special
+                false: {
+                    color: theme.colors.secondary.DEFAULT
                 }
             }
         }
     },
     text: {
         fontSize: rt.fontScale * 20,
-        color: {
-            sm: theme.colors.text,
-            md: theme.colors.textSecondary
-        }
-    })
+        color: theme.colors.foreground
+    }
 }))
 ```
 
 Will be eg. parsed to:
 
 ```ts
+
 {
     container: {
         backgroundColor: '#000',

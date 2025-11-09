@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native-unistyles';
 import type { UnistyleTheme } from '@/unistyles';
+import { StyleSheet } from 'react-native-unistyles';
 
 /**
  * Input Component Styles - Unistyles 3.0
@@ -32,7 +32,11 @@ export const createStyles = StyleSheet.create((theme: UnistyleTheme) => ({
 	// ════════════════════════════════════════════════════════════════════════════
 	// LABEL - Dynamic function with isInvalid, size, and custom style override
 	// ════════════════════════════════════════════════════════════════════════════
-	label: (isInvalid: boolean, size: 'sm' | 'md' | 'lg', customStyle?: Record<string, any>) => {
+	label: (
+		isInvalid: boolean,
+		size: 'sm' | 'md' | 'lg',
+		customStyle?: Record<string, any>
+	) => {
 		const sizeStyles = {
 			sm: { fontSize: 12 },
 			md: { fontSize: 13 },
@@ -43,7 +47,9 @@ export const createStyles = StyleSheet.create((theme: UnistyleTheme) => ({
 			fontWeight: '500',
 			fontFamily: 'Pretendard-Medium',
 			marginBottom: theme.spacing[1],
-			color: isInvalid ? theme.colors.danger.DEFAULT : theme.colors.default[600],
+			color: isInvalid
+				? theme.colors.danger.DEFAULT
+				: theme.colors.default[600],
 			...sizeStyles[size],
 			...customStyle,
 		};
@@ -91,7 +97,9 @@ export const createStyles = StyleSheet.create((theme: UnistyleTheme) => ({
 			flexDirection: 'row',
 			alignItems: 'center',
 			borderRadius: theme.radius.md,
-			backgroundColor: isOutlined ? theme.colors.background : theme.colors.content1.DEFAULT,
+			backgroundColor: isOutlined
+				? theme.colors.background
+				: theme.colors.content1.DEFAULT,
 			borderWidth: isOutlined ? 1 : 0,
 			borderColor,
 			opacity: isDisabled ? theme.opacity.disabled : 1,
@@ -104,7 +112,11 @@ export const createStyles = StyleSheet.create((theme: UnistyleTheme) => ({
 	// TEXT INPUT
 	// Dynamic function with isDisabled, size, and custom style override
 	// ════════════════════════════════════════════════════════════════════════════
-	textInput: (isDisabled: boolean, size: 'sm' | 'md' | 'lg', customStyle?: Record<string, any>) => {
+	textInput: (
+		isDisabled: boolean,
+		size: 'sm' | 'md' | 'lg',
+		customStyle?: Record<string, any>
+	) => {
 		const sizeStyles = {
 			sm: { fontSize: 14 },
 			md: { fontSize: 15 },

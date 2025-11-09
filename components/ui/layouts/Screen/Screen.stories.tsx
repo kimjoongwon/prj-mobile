@@ -2,17 +2,17 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { StyleSheet, View } from 'react-native';
 import { Text } from '../../display/Text';
 import { Button } from '../../inputs/Button';
-import { ContentView } from './ContentView';
+import { ScreenView } from './ScreenView';
 
-const meta: Meta<typeof ContentView> = {
-	title: 'components/ui/layouts/Content',
-	component: ContentView,
+const meta: Meta<typeof ScreenView> = {
+	title: 'components/ui/layouts/Screen',
+	component: ScreenView,
 	parameters: {
 		layout: 'fullscreen',
 		docs: {
 			description: {
 				component:
-					'Content 전체를 감싸는 컨테이너 컴포넌트입니다. 다크/라이트 모드에 따라 배경색이 자동으로 설정되며, SafeAreaView와 StatusBar를 제어할 수 있습니다.',
+					'Screen 전체를 감싸는 컨테이너 컴포넌트입니다. 다크/라이트 모드에 따라 배경색이 자동으로 설정되며, SafeAreaView와 StatusBar를 제어할 수 있습니다.',
 			},
 		},
 	},
@@ -35,10 +35,10 @@ const meta: Meta<typeof ContentView> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const DemoContent: React.FC = () => (
+const DemoScreen: React.FC = () => (
 	<View style={demoStyles.content}>
 		<Text variant="h2" style={demoStyles.title}>
-			Content 데모
+			Screen 데모
 		</Text>
 		<Text variant="body1" style={demoStyles.description}>
 			이 컨테이너는 테마에 따라 배경색이 자동으로 변경됩니다.
@@ -51,17 +51,17 @@ const DemoContent: React.FC = () => (
 
 export const Default: Story = {
 	render: args => (
-		<ContentView {...args}>
-			<DemoContent />
-		</ContentView>
+		<ScreenView {...args}>
+			<DemoScreen />
+		</ScreenView>
 	),
 };
 
 export const WithoutSafeArea: Story = {
 	render: args => (
-		<ContentView {...args}>
-			<DemoContent />
-		</ContentView>
+		<ScreenView {...args}>
+			<DemoScreen />
+		</ScreenView>
 	),
 	parameters: {
 		docs: {
@@ -77,9 +77,9 @@ export const LightStatusBar: Story = {
 		statusBarStyle: 'light-content',
 	},
 	render: args => (
-		<ContentView {...args}>
-			<DemoContent />
-		</ContentView>
+		<ScreenView {...args}>
+			<DemoScreen />
+		</ScreenView>
 	),
 	parameters: {
 		docs: {
@@ -95,9 +95,9 @@ export const DarkStatusBar: Story = {
 		statusBarStyle: 'dark-content',
 	},
 	render: args => (
-		<ContentView {...args}>
-			<DemoContent />
-		</ContentView>
+		<ScreenView {...args}>
+			<DemoScreen />
+		</ScreenView>
 	),
 	parameters: {
 		docs: {
@@ -113,9 +113,9 @@ export const CustomBackground: Story = {
 		backgroundColor: '#e3f2fd',
 	},
 	render: args => (
-		<ContentView {...args}>
-			<DemoContent />
-		</ContentView>
+		<ScreenView {...args}>
+			<DemoScreen />
+		</ScreenView>
 	),
 	parameters: {
 		docs: {
@@ -126,10 +126,10 @@ export const CustomBackground: Story = {
 	},
 };
 
-export const ScrollableContent: Story = {
+export const ScrollableScreen: Story = {
 	render: args => (
-		<ContentView {...args}>
-			<View style={demoStyles.scrollContent}>
+		<ScreenView {...args}>
+			<View style={demoStyles.scrollScreen}>
 				{Array.from({ length: 20 }, (_, index) => (
 					// biome-ignore lint/suspicious/noArrayIndexKey: demo content with static list
 					<View key={index} style={demoStyles.scrollItem}>
@@ -137,7 +137,7 @@ export const ScrollableContent: Story = {
 					</View>
 				))}
 			</View>
-		</ContentView>
+		</ScreenView>
 	),
 	parameters: {
 		docs: {
@@ -167,7 +167,7 @@ const demoStyles = StyleSheet.create({
 	button: {
 		marginTop: 16,
 	},
-	scrollContent: {
+	scrollScreen: {
 		padding: 20,
 	},
 	scrollItem: {

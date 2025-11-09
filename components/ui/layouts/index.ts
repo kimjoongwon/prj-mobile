@@ -1,1 +1,1 @@
-export * from './Content'; // Re-export from Screen/Content component
+export * from './Screen'; // Re-export from Screen/Content component

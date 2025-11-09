@@ -435,19 +435,24 @@ export const darkTheme: UnistyleTheme = {
 };
 
 /**
- * ============================================================================
- * UNISTYLES CONFIGURATION
- * ============================================================================
- *
- * Register themes with Unistyles and enable adaptive theme switching
- * (automatically switches between light/dark based on device settings)
+ * Initialize Unistyles with themes and settings
+ * This function should be called at app startup to ensure proper theme configuration
  */
+const appThemes = {
+	light: lightTheme,
+	dark: darkTheme,
+} as const;
+
+type Settings = {
+	initialTheme: 'light' | 'dark';
+};
+
+const settings: Settings = {
+	initialTheme: 'light',
+};
+
 StyleSheet.configure({
-	themes: {
-		light: lightTheme,
-		dark: darkTheme,
-	},
-	settings: {
-		adaptiveThemes: true,
-	},
+	themes: appThemes,
+	settings: settings as any,
+	// adaptiveThemes: true,
 });
