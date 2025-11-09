@@ -1,3 +1,4 @@
+import { HeroUINativeProvider } from 'heroui-native';
 import type { PropsWithChildren, ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -30,7 +31,9 @@ export function Providers({
 
 	return (
 		<SafeAreaProvider>
-			<ThemeProvider>{renderWithDarkModeSwitch(children)}</ThemeProvider>
+			<HeroUINativeProvider>
+				<ThemeProvider>{renderWithDarkModeSwitch(children)}</ThemeProvider>
+			</HeroUINativeProvider>
 		</SafeAreaProvider>
 	);
 }
