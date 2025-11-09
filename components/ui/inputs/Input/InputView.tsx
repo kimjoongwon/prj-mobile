@@ -167,7 +167,7 @@ export const InputView = forwardRef<InputRef, InputProps>(
 				{label && (
 					<Text style={labelStyle_}>
 						{label}
-						{isRequired && <Text style={createStyles.requiredIndicator}> *</Text>}
+						{isRequired && <Text style={createStyles.requiredIndicator()}> *</Text>}
 					</Text>
 				)}
 
@@ -184,7 +184,7 @@ export const InputView = forwardRef<InputRef, InputProps>(
 				>
 					{/* START CONTENT */}
 					{startContent && (
-						<View style={createStyles.startContentContainer}>{startContent}</View>
+						<View style={createStyles.startContentContainer()}>{startContent}</View>
 					)}
 
 					{/* TEXT INPUT */}
@@ -205,7 +205,7 @@ export const InputView = forwardRef<InputRef, InputProps>(
 					{isClearable && inputValue.length > 0 && (
 						<TouchableOpacity
 							onPress={handleClear}
-							style={createStyles.clearButtonContainer}
+							style={createStyles.clearButtonContainer()}
 							disabled={isDisabled || isReadOnly}
 						>
 							<Ionicons
@@ -218,16 +218,16 @@ export const InputView = forwardRef<InputRef, InputProps>(
 
 					{/* END CONTENT */}
 					{endContent && (
-						<View style={createStyles.endContentContainer}>{endContent}</View>
+						<View style={createStyles.endContentContainer()}>{endContent}</View>
 					)}
 				</TouchableOpacity>
 
 				{/* SUPPORT TEXT */}
 				{(description || errorMessage) && (
-					<View style={createStyles.supportTextContainer}>
-						{errorMessage && <Text style={createStyles.errorText}>{errorMessage}</Text>}
+					<View style={createStyles.supportTextContainer()}>
+						{errorMessage && <Text style={createStyles.errorText()}>{errorMessage}</Text>}
 						{!errorMessage && description && (
-							<Text style={createStyles.descriptionText}>{description}</Text>
+							<Text style={createStyles.descriptionText()}>{description}</Text>
 						)}
 					</View>
 				)}

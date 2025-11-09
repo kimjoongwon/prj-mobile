@@ -58,7 +58,7 @@ export const ScreenView: React.FC<ScreenViewProps> = ({
 	return (
 		<View
 			style={[
-				styles.container,
+				styles.container(),
 				{ backgroundColor: containerBackgroundColor },
 				safeAreaStyle,
 				style,

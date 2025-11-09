@@ -55,10 +55,10 @@ export const createStyles = StyleSheet.create((theme: UnistyleTheme) => ({
 		};
 	},
 
-	requiredIndicator: {
+	requiredIndicator: () => ({
 		fontWeight: '600',
 		color: theme.colors.danger.DEFAULT,
-	},
+	}),
 
 	// ════════════════════════════════════════════════════════════════════════════
 	// INPUT FIELD CONTAINER
@@ -135,43 +135,43 @@ export const createStyles = StyleSheet.create((theme: UnistyleTheme) => ({
 	// ════════════════════════════════════════════════════════════════════════════
 	// CONTENT CONTAINERS
 	// ════════════════════════════════════════════════════════════════════════════
-	startContentContainer: {
+	startContentContainer: () => ({
 		marginRight: theme.spacing[2],
 		justifyContent: 'center',
 		alignItems: 'center',
-	},
+	}),
 
-	clearButtonContainer: {
+	clearButtonContainer: () => ({
 		padding: theme.spacing[1],
 		justifyContent: 'center',
 		alignItems: 'center',
-	},
+	}),
 
-	endContentContainer: {
+	endContentContainer: () => ({
 		marginLeft: theme.spacing[2],
 		justifyContent: 'center',
 		alignItems: 'center',
-	},
+	}),
 
 	// ════════════════════════════════════════════════════════════════════════════
 	// SUPPORT TEXT
 	// ════════════════════════════════════════════════════════════════════════════
-	supportTextContainer: {
+	supportTextContainer: () => ({
 		marginTop: theme.spacing[1],
-	},
+	}),
 
-	descriptionText: {
+	descriptionText: () => ({
 		fontSize: 12,
 		lineHeight: 16,
 		fontFamily: 'Pretendard-Regular',
 		color: theme.colors.default[500],
-	},
+	}),
 
-	errorText: {
+	errorText: () => ({
 		fontSize: 12,
 		lineHeight: 16,
 		fontWeight: '500',
 		fontFamily: 'Pretendard-Medium',
 		color: theme.colors.danger.DEFAULT,
-	},
+	}),
 }));
