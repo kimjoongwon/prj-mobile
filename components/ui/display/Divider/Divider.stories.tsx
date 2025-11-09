@@ -4,7 +4,7 @@ import type { DividerProps } from './Divider';
 import { Divider } from './Divider';
 
 const meta: Meta<DividerProps> = {
-	title: 'components/ui/Divider',
+	title: 'components/ui/display/Divider',
 	component: Divider,
 	parameters: {
 		layout: 'centered',

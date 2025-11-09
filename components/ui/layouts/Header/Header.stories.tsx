@@ -4,7 +4,7 @@ import { Text } from '../../display/Text';
 import { Header } from './Header';
 
 const meta: Meta<typeof Header> = {
-	title: 'ui/Header',
+	title: 'components/ui/layouts/Header',
 	component: Header,
 	parameters: {
 		layout: 'fullscreen',

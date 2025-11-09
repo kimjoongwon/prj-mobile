@@ -5,7 +5,7 @@ import type { CardProps } from './Card';
 import { Card } from './Card';
 
 const meta: Meta<CardProps> = {
-	title: 'components/Card',
+	title: 'components/ui/surfaces/Card',
 	component: Card,
 	parameters: {
 		layout: 'centered',

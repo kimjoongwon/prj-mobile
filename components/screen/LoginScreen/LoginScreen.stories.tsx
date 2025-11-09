@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { LoginScreenView, type LoginScreenViewProps } from './LoginScreenView';
 
 const meta: Meta<LoginScreenViewProps> = {
-	title: 'screens/LoginScreen',
+	title: 'components/screen/LoginScreen',
 	component: LoginScreenView,
 	parameters: {
 		layout: 'fullscreen',

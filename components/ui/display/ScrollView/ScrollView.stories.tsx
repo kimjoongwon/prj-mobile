@@ -4,7 +4,7 @@ import { View } from '../View';
 import { ScrollView } from './ScrollView';
 
 const meta: Meta<typeof ScrollView> = {
-	title: 'ui/ScrollView',
+	title: 'components/ui/display/ScrollView',
 	component: ScrollView,
 	parameters: {
 		layout: 'fullscreen',

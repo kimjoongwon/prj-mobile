@@ -1,6 +1,5 @@
-import React, { useCallback, useMemo, useState } from 'react';
 import { useTheme } from '@/hooks/useTheme';
-import { createStyles } from './RadioGroup.styles';
+import React, { useCallback, useState } from 'react';
 
 export type RadioGroupSize = 'sm' | 'md' | 'lg';
 export type RadioGroupColor =
@@ -176,18 +175,18 @@ export const RadioGroup = <T = any,>(
 
 		const innerRadioStyle: React.CSSProperties = isSelected
 			? {
-					width: `${sizeDimensions.iconSize}px`,
-					height: `${sizeDimensions.iconSize}px`,
-					borderRadius: '50%',
-					backgroundColor: labelColor,
-					transition: 'all 0.2s ease',
-				}
+				width: `${sizeDimensions.iconSize}px`,
+				height: `${sizeDimensions.iconSize}px`,
+				borderRadius: '50%',
+				backgroundColor: labelColor,
+				transition: 'all 0.2s ease',
+			}
 			: {
-					width: 0,
-					height: 0,
-					backgroundColor: labelColor,
-					transition: 'all 0.2s ease',
-				};
+				width: 0,
+				height: 0,
+				backgroundColor: labelColor,
+				transition: 'all 0.2s ease',
+			};
 
 		const labelContainerStyle: React.CSSProperties = {
 			display: 'flex',
@@ -243,37 +242,6 @@ export const RadioGroup = <T = any,>(
 		);
 	};
 
-	const renderLabel = useCallback(() => {
-		if (!label) return null;
-
-		return (
-			<label style={labelStyleMemo}>
-				{label}
-				{isRequired && (
-					<span style={{ color: theme.colors.danger.DEFAULT }}> *</span>
-				)}
-			</label>
-		);
-	}, [label, labelStyleMemo, isRequired, theme.colors.danger]);
-
-	const renderOptions = useCallback(() => {
-		return data.map((item, index) => {
-			const itemKey = keyExtractor(item, index);
-			const itemValue = valueExtractor(item, index);
-			const isSelected = selectedValue === itemValue;
-
-			return (
-				<RadioOption
-					key={itemKey}
-					item={item}
-					index={index}
-					isSelected={isSelected}
-					onPress={() => handleValueChange(itemValue, item, index)}
-				/>
-			);
-		});
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [data, keyExtractor, valueExtractor, selectedValue, handleValueChange]);
 
 	const descriptionStyle: React.CSSProperties = {
 		fontSize: '12px',
@@ -318,9 +286,32 @@ export const RadioGroup = <T = any,>(
 
 	return (
 		<div style={containerStyle} className={className}>
-			{renderLabel()}
+			{label && (
+				<label style={labelStyleMemo}>
+					{label}
+					{isRequired && (
+						<span style={{ color: theme.colors.danger.DEFAULT }}> *</span>
+					)}
+				</label>
+			)}
 
-			<div style={groupContainerStyle}>{renderOptions()}</div>
+			<div style={groupContainerStyle}>
+				{data.map((item, index) => {
+					const itemKey = keyExtractor(item, index);
+					const itemValue = valueExtractor(item, index);
+					const isSelected = selectedValue === itemValue;
+
+					return (
+						<RadioOption
+							key={itemKey}
+							item={item}
+							index={index}
+							isSelected={isSelected}
+							onPress={() => handleValueChange(itemValue, item, index)}
+						/>
+					);
+				})}
+			</div>
 
 			{description && !errorMessage && <div style={descriptionStyle}>{description}</div>}
 

@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react';
 import { ThemeProvider } from '@/components/provider/ThemeProvider';
+import type { Meta, StoryObj } from '@storybook/react';
 import { DarkModeSwitch } from './DarkModeSwitch';
 
 const meta: Meta<typeof DarkModeSwitch> = {
-	title: 'UI/DarkModeSwitch',
+	title: 'components/ui/inputs/DarkModeSwitch',
 	component: DarkModeSwitch,
 	decorators: [
 		Story => (

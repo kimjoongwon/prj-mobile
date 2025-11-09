@@ -4,7 +4,7 @@ import type { SNSButtonsProps } from './SNSButtons';
 import { SNSButtons } from './SNSButtons';
 
 const meta: Meta<SNSButtonsProps> = {
-	title: 'components/ui/SNSButtons',
+	title: 'components/features/SNSButtons',
 	component: SNSButtons,
 	parameters: {
 		layout: 'centered',

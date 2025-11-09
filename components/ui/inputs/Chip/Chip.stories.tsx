@@ -6,7 +6,7 @@ import type { ChipProps } from './Chip';
 import { Chip } from './Chip';
 
 const meta: Meta<ChipProps> = {
-	title: 'components/Chip',
+	title: 'components/ui/inputs/Chip',
 	component: Chip,
 	parameters: {
 		layout: 'centered',

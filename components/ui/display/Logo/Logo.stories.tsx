@@ -3,7 +3,7 @@ import type { LogoProps } from './Logo';
 import { Logo } from './Logo';
 
 const meta: Meta<LogoProps> = {
-	title: 'components/ui/Logo',
+	title: 'components/ui/display/Logo',
 	component: Logo,
 	parameters: {
 		layout: 'centered',

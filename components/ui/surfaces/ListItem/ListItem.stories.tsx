@@ -4,7 +4,7 @@ import type { ListItemProps } from './ListItem';
 import { ListItem } from './ListItem';
 
 const meta: Meta<ListItemProps> = {
-	title: 'components/ListItem',
+	title: 'components/ui/surfaces/ListItem',
 	component: ListItem,
 	parameters: {
 		layout: 'centered',

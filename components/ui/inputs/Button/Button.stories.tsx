@@ -3,7 +3,7 @@ import type { ButtonProps } from './Button';
 import { Button } from './Button';
 
 const meta: Meta<ButtonProps> = {
-	title: 'components/Button',
+	title: 'components/ui/inputs/Button',
 	component: Button,
 	parameters: {
 		layout: 'centered',

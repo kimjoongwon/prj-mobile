@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-native';
 import { useState } from 'react';
 import { View } from 'react-native';
-import { ListItem } from '../../surfaces/ListItem';
 import { Text } from '../../display/Text';
+import { ListItem } from '../../surfaces/ListItem';
 import type { ListSelectProps } from './ListSelect';
 import { ListSelect } from './ListSelect';
 
@@ -10,7 +10,7 @@ import { ListSelect } from './ListSelect';
 type User = { id: number; name: string; email: string };
 
 const meta: Meta<ListSelectProps<User>> = {
-	title: 'forms/ListSelect',
+	title: 'components/ui/inputs/ListSelect',
 	component: ListSelect as any, // 오버로드된 컴포넌트를 위해 any로 캐스팅
 	parameters: {
 		layout: 'centered',

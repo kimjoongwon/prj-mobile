@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { StyleSheet, View } from 'react-native';
-import { Button } from '../../inputs/Button';
 import { Text } from '../../display/Text';
+import { Button } from '../../inputs/Button';
 import { ContentView } from './ContentView';
 
 const meta: Meta<typeof ContentView> = {
-	title: 'Container/Content',
+	title: 'components/ui/layouts/Content',
 	component: ContentView,
 	parameters: {
 		layout: 'fullscreen',

@@ -1,8 +1,8 @@
+import { useTheme } from '@/hooks/useTheme';
 import { Ionicons } from '@expo/vector-icons';
 import type { Meta, StoryObj } from '@storybook/react-native';
 import { useRef } from 'react';
 import { TouchableOpacity, View } from 'react-native';
-import { useTheme } from '@/hooks/useTheme';
 import { Text } from '../../display/Text';
 import { type InputProps, type InputRef, InputView } from './InputView';
 
@@ -23,7 +23,7 @@ const iconMapping = {
 };
 
 const meta: Meta<InputStoryArgs> = {
-	title: 'Forms/Input',
+	title: 'components/ui/inputs/Input',
 	component: InputView,
 	argTypes: {
 		variant: {

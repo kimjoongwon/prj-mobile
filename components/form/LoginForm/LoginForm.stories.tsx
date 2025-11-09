@@ -4,7 +4,7 @@ import type { LoginFormProps, LoginFormState } from './LoginForm';
 import { LoginForm } from './LoginForm';
 
 const meta: Meta<LoginFormProps> = {
-	title: 'forms/LoginForm',
+	title: 'components/form/LoginForm',
 	component: LoginForm,
 	parameters: {
 		layout: 'centered',

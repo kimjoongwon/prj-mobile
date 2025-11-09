@@ -5,7 +5,7 @@ import type { ListProps } from './List';
 import { List } from './List';
 
 const meta: Meta<ListProps<any>> = {
-	title: 'components/List',
+	title: 'components/ui/surfaces/List',
 	component: List,
 	parameters: {
 		layout: 'centered',

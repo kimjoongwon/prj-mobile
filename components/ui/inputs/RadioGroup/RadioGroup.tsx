@@ -221,46 +221,37 @@ export const RadioGroup = <T = any,>({
 		);
 	};
 
-	const renderLabel = useCallback(() => {
-		if (!label) return null;
-
-		return (
-			<Text style={groupLabelStyle}>
-				{label}
-				{isRequired && (
-					<Text style={[createStyles.requiredStar, { color: theme.colors.danger.DEFAULT }]}>
-						{' '}
-						*
-					</Text>
-				)}
-			</Text>
-		);
-	}, [label, groupLabelStyle, isRequired]);
-
-	const renderOptions = useCallback(() => {
-		return data.map((item, index) => {
-			const itemKey = keyExtractor(item, index);
-			const itemValue = valueExtractor(item, index);
-			const isSelected = selectedValue === itemValue;
-
-			return (
-				<RadioOption
-					key={itemKey}
-					item={item}
-					index={index}
-					isSelected={isSelected}
-					onPress={() => handleValueChange(itemValue, item, index)}
-				/>
-			);
-		});
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [data, keyExtractor, valueExtractor, selectedValue, handleValueChange]);
-
 	return (
 		<View style={containerStyle} {...restProps}>
-			{renderLabel()}
+			{label && (
+				<Text style={groupLabelStyle}>
+					{label}
+					{isRequired && (
+						<Text style={[createStyles.requiredStar, { color: theme.colors.danger.DEFAULT }]}>
+							{' '}
+							*
+						</Text>
+					)}
+				</Text>
+			)}
 
-			<View style={[groupContainerStyle, groupStyle]}>{renderOptions()}</View>
+			<View style={[groupContainerStyle, groupStyle]}>
+				{data.map((item, index) => {
+					const itemKey = keyExtractor(item, index);
+					const itemValue = valueExtractor(item, index);
+					const isSelected = selectedValue === itemValue;
+
+					return (
+						<RadioOption
+							key={itemKey}
+							item={item}
+							index={index}
+							isSelected={isSelected}
+							onPress={() => handleValueChange(itemValue, item, index)}
+						/>
+					);
+				})}
+			</View>
 
 			{description && !errorMessage && (
 				<Text style={descriptionStyle}>
