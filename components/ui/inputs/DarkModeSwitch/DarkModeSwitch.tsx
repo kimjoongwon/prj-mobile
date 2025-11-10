@@ -1,6 +1,5 @@
 import { useTheme } from '@/hooks/useTheme';
 import { Ionicons } from '@expo/vector-icons';
-import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native';
 
@@ -8,39 +7,31 @@ export interface DarkModeSwitchProps {
 	style?: ViewStyle;
 }
 
-export const DarkModeSwitch: React.FC<DarkModeSwitchProps> = observer(
-	({ style }) => {
-		const { isDark, toggleTheme, theme } = useTheme();
+export const DarkModeSwitch: React.FC<DarkModeSwitchProps> = ({ style }) => {
+	const { isDark, toggleTheme } = useTheme();
 
-		return (
-			<View style={[styles.container, style]}>
-				<TouchableOpacity
-					style={[
-						styles.button,
-						{
-							backgroundColor: isDark
-								? theme.colors.content2.DEFAULT
-								: theme.colors.content1.DEFAULT,
-							borderColor: theme.colors.default[300],
-						},
-					]}
-					onPress={toggleTheme}
-					activeOpacity={0.7}
-				>
-					<Ionicons
-						name={isDark ? 'sunny' : 'moon'}
-						size={20}
-						color={
-							isDark
-								? theme.colors.warning.DEFAULT
-								: theme.colors.primary.DEFAULT
-						}
-					/>
-				</TouchableOpacity>
-			</View>
-		);
-	}
-);
+	return (
+		<View style={[styles.container, style]}>
+			<TouchableOpacity
+				style={[
+					styles.button,
+					{
+						backgroundColor: isDark ? '#27272a' : '#ffffff',
+						borderColor: isDark ? '#323238' : '#ebebec',
+					},
+				]}
+				onPress={toggleTheme}
+				activeOpacity={0.7}
+			>
+				<Ionicons
+					name={isDark ? 'sunny' : 'moon'}
+					size={20}
+					color={isDark ? '#f5a524' : '#006fee'}
+				/>
+			</TouchableOpacity>
+		</View>
+	);
+};
 
 DarkModeSwitch.displayName = 'DarkModeSwitch';
 

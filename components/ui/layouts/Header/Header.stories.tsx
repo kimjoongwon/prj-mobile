@@ -91,7 +91,6 @@ export const WithRightAction: Story = {
 			title: '저장',
 			onPress: () => console.log('저장하기'),
 			variant: 'solid',
-			color: 'primary',
 		},
 	},
 };
@@ -117,7 +116,6 @@ export const WithBothActions: Story = {
 			title: '완료',
 			onPress: () => console.log('완료'),
 			variant: 'solid',
-			color: 'primary',
 		},
 	},
 };

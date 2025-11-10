@@ -1,9 +1,13 @@
-import { type UnistyleTheme } from '@/unistyles';
-import { useCallback } from 'react';
-import { UnistylesRuntime, useUnistyles } from 'react-native-unistyles';
+/**
+ * useTheme 훅 - 테마 및 CSS 변수 기반 테마 제공
+ *
+ * ThemeProvider의 Context를 사용하여 테마 정보 제공
+ * globals.css의 @variant light/dark를 기반으로 동작합니다.
+ */
 
-// Re-export Theme type for convenience
-export type Theme = UnistyleTheme;
+import { useContext } from 'react';
+import { appThemes, type UnistyleTheme } from '@/unistyles';
+import { ThemeContext } from '@/components/provider/ThemeProvider/ThemeProvider';
 
 export interface ThemeContextValue {
 	theme: UnistyleTheme;
@@ -12,21 +16,16 @@ export interface ThemeContextValue {
 	setTheme: (mode: 'light' | 'dark') => void;
 }
 
+export type Theme = UnistyleTheme;
+
 export const useTheme = (): ThemeContextValue => {
-	// useUnistyles automatically subscribes to theme changes
-	const { theme } = useUnistyles();
-	const isDark = UnistylesRuntime.themeName === 'dark';
+	const context = useContext(ThemeContext);
+	if (context === undefined) {
+		throw new Error('useTheme must be used within a ThemeProvider');
+	}
 
-	const toggleTheme = useCallback(() => {
-		// Get current theme at the time of toggle, not from closure
-		const currentTheme = UnistylesRuntime.themeName;
-		const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-		(UnistylesRuntime.setTheme as (theme: 'light' | 'dark') => void)(newTheme);
-	}, []);
-
-	const setTheme = useCallback((mode: 'light' | 'dark') => {
-		(UnistylesRuntime.setTheme as (theme: 'light' | 'dark') => void)(mode);
-	}, []);
+	const { isDark, toggleTheme, setTheme } = context;
+	const theme = isDark ? appThemes.dark : appThemes.light;
 
 	return {
 		theme,

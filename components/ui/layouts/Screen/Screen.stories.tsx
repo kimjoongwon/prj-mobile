@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { StyleSheet, View } from 'react-native';
 import { Text } from '../../display/Text';
-import { Button } from '../../inputs/Button';
+import { Button } from '../../inputs';
 import { ScreenView } from './ScreenView';
 
 const meta: Meta<typeof ScreenView> = {
@@ -43,7 +43,7 @@ const DemoScreen: React.FC = () => (
 		<Text variant="body1" style={demoStyles.description}>
 			이 컨테이너는 테마에 따라 배경색이 자동으로 변경됩니다.
 		</Text>
-		<Button variant="solid" color="primary" style={demoStyles.button}>
+		<Button variant="solid" style={demoStyles.button}>
 			버튼 예제
 		</Button>
 	</View>

@@ -1,5 +1,3 @@
-import { StyleSheet } from 'react-native-unistyles';
-
 // ============================================================================
 // COLOR SCALES
 // ============================================================================
@@ -435,24 +433,12 @@ export const darkTheme: UnistyleTheme = {
 };
 
 /**
- * Initialize Unistyles with themes and settings
- * This function should be called at app startup to ensure proper theme configuration
+ * Theme object exports for use in components
+ * Note: StyleSheet.configure() removed - using CSS variables instead
  */
-const appThemes = {
+export const appThemes = {
 	light: lightTheme,
 	dark: darkTheme,
 } as const;
 
-type Settings = {
-	initialTheme: 'light' | 'dark';
-};
-
-const settings: Settings = {
-	initialTheme: 'light',
-};
-
-StyleSheet.configure({
-	themes: appThemes,
-	settings: settings as any,
-	// adaptiveThemes: true,
-});
+export type Theme = UnistyleTheme;

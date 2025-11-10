@@ -1,217 +1,134 @@
-import { StyleSheet } from 'react-native-unistyles';
-import type { UnistyleTheme } from '@/unistyles';
+/**
+ * RadioGroup Styles using Uniwind
+ * Utilities-first approach with theme values
+ */
 
-export const createStyles = StyleSheet.create((theme: UnistyleTheme) => ({
-	// ════════════════════════════════════════════════════════════════════════════
-	// CONTAINER
-	// Orientation and disabled state parameters integrated
-	// ════════════════════════════════════════════════════════════════════════════
-	container: (isDisabled: boolean, customStyle?: Record<string, any>) => ({
-		flexDirection: 'column',
-		opacity: isDisabled ? theme.opacity.disabled : 1,
-		...customStyle,
-	}),
+// Helper function to get container class
+export const getContainerClass = (isDisabled: boolean) => {
+	return `flex flex-col ${isDisabled ? 'opacity-50' : 'opacity-100'}`;
+};
 
-	// ════════════════════════════════════════════════════════════════════════════
-	// GROUP CONTAINER
-	// Orientation and size parameters integrated
-	// ════════════════════════════════════════════════════════════════════════════
-	groupContainer: (
-		orientation: 'horizontal' | 'vertical',
-		size: 'sm' | 'md' | 'lg',
-		customStyle?: Record<string, any>
-	) => {
-		const sizeStyles = {
-			sm: { groupSpacing: 12 },
-			md: { groupSpacing: 16 },
-			lg: { groupSpacing: 20 },
-		};
+// Helper function to get group container class
+export const getGroupContainerClass = (
+	orientation: 'horizontal' | 'vertical',
+	size: 'sm' | 'md' | 'lg'
+) => {
+	const sizeClass = {
+		sm: 'gap-3',
+		md: 'gap-4',
+		lg: 'gap-5',
+	}[size];
 
-		const baseStyle = {
-			flexDirection: 'column' as const,
-		};
+	const directionClass = orientation === 'horizontal' ? 'flex-row flex-wrap' : 'flex-col';
 
-		if (orientation === 'horizontal') {
-			return {
-				...baseStyle,
-				flexDirection: 'row' as const,
-				flexWrap: 'wrap' as const,
-				gap: sizeStyles[size].groupSpacing,
-				...customStyle,
-			};
-		}
+	return `flex ${directionClass} ${sizeClass}`;
+};
 
-		return {
-			...baseStyle,
-			gap: sizeStyles[size].groupSpacing,
-			...customStyle,
-		};
-	},
+// Helper function to get group label class
+export const getGroupLabelClass = (
+	size: 'sm' | 'md' | 'lg',
+	color: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger',
+	isInvalid: boolean
+) => {
+	const sizeClass = {
+		sm: 'text-sm',
+		md: 'text-base',
+		lg: 'text-lg',
+	}[size];
 
-	// ════════════════════════════════════════════════════════════════════════════
-	// GROUP LABEL
-	// Color and size parameters integrated
-	// ════════════════════════════════════════════════════════════════════════════
-	groupLabel: (
-		size: 'sm' | 'md' | 'lg',
-		color: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger',
-		isInvalid: boolean,
-		customStyle?: Record<string, any>
-	) => {
-		const sizeStyles = {
-			sm: { fontSize: 14 },
-			md: { fontSize: 16 },
-			lg: { fontSize: 18 },
-		};
+	const colorClass = isInvalid ? 'text-danger' : `text-${color}`;
 
-		const colorTokens =
-			theme.colors[isInvalid ? 'danger' : color] || theme.colors.default;
+	return `font-semibold mb-2 ${colorClass} ${sizeClass}`;
+};
 
-		return {
-			fontWeight: '600' as const,
-			marginBottom: theme.spacing[2],
-			color: colorTokens.DEFAULT,
-			...sizeStyles[size],
-			...customStyle,
-		};
-	},
+// Helper function to get radio container class
+export const getRadioContainerClass = (
+	orientation: 'horizontal' | 'vertical'
+) => {
+	const marginClass = orientation === 'horizontal' ? 'mr-4' : '';
+	return `flex flex-row items-center mb-2 ${marginClass}`;
+};
 
-	// ════════════════════════════════════════════════════════════════════════════
-	// RADIO CONTAINER
-	// Orientation parameter integrated
-	// ════════════════════════════════════════════════════════════════════════════
-	radioContainer: (
-		orientation: 'horizontal' | 'vertical',
-		customStyle?: Record<string, any>
-	) => {
-		const baseStyle = {
-			flexDirection: 'row' as const,
-			alignItems: 'center' as const,
-			marginBottom: 8,
-		};
+// Helper function to get radio button class
+export const getRadioClass = (
+	size: 'sm' | 'md' | 'lg',
+	isSelected: boolean,
+	color: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger',
+	isInvalid: boolean,
+	isDisabled: boolean
+) => {
+	const sizeClass = {
+		sm: 'w-4 h-4',
+		md: 'w-5 h-5',
+		lg: 'w-6 h-6',
+	}[size];
 
-		if (orientation === 'horizontal') {
-			return {
-				...baseStyle,
-				marginRight: 16,
-				marginBottom: 8,
-				...customStyle,
-			};
-		}
+	const colorClass = isInvalid ? 'border-danger' : isSelected ? `border-${color}` : 'border-default-400';
 
-		return {
-			...baseStyle,
-			...customStyle,
-		};
-	},
+	const opacityClass = isDisabled ? 'opacity-50' : 'opacity-100';
 
-	// ════════════════════════════════════════════════════════════════════════════
-	// RADIO BUTTON (OUTER CIRCLE)
-	// Size, selection state, and color parameters integrated
-	// ════════════════════════════════════════════════════════════════════════════
-	radio: (
-		size: 'sm' | 'md' | 'lg',
-		isSelected: boolean,
-		color: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger',
-		isInvalid: boolean,
-		isDisabled: boolean,
-		customStyle?: Record<string, any>
-	) => {
-		const sizeStyles = {
-			sm: { width: 16, height: 16 },
-			md: { width: 20, height: 20 },
-			lg: { width: 24, height: 24 },
-		};
+	return `flex items-center justify-center border-2 rounded-full bg-transparent ${sizeClass} ${colorClass} ${opacityClass}`;
+};
 
-		const colorTokens =
-			theme.colors[isInvalid ? 'danger' : color] || theme.colors.default;
-		const borderColor = isSelected ? colorTokens.DEFAULT : theme.colors.default[400];
+// Helper function to get radio inner dot class
+export const getRadioInnerClass = (
+	size: 'sm' | 'md' | 'lg',
+	color: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger',
+	isInvalid: boolean
+) => {
+	const sizeClass = {
+		sm: 'w-1.5 h-1.5',
+		md: 'w-2 h-2',
+		lg: 'w-2.5 h-2.5',
+	}[size];
 
-		return {
-			alignItems: 'center' as const,
-			justifyContent: 'center' as const,
-			borderWidth: 2,
-			borderRadius: 50,
-			backgroundColor: 'transparent',
-			borderColor,
-			opacity: isDisabled ? theme.opacity.disabled : 1,
-			...sizeStyles[size],
-			...customStyle,
-		};
-	},
+	const colorClass = isInvalid ? 'bg-danger' : `bg-${color}`;
 
-	// ════════════════════════════════════════════════════════════════════════════
-	// RADIO INNER DOT
-	// Size and color parameters integrated
-	// ════════════════════════════════════════════════════════════════════════════
-	radioInner: (
-		size: 'sm' | 'md' | 'lg',
-		color: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger',
-		isInvalid: boolean,
-		customStyle?: Record<string, any>
-	) => {
-		const sizeStyles = {
-			sm: { width: 6, height: 6 },
-			md: { width: 8, height: 8 },
-			lg: { width: 10, height: 10 },
-		};
+	return `rounded-full ${colorClass} ${sizeClass}`;
+};
 
-		const colorTokens =
-			theme.colors[isInvalid ? 'danger' : color] || theme.colors.default;
+// Helper function to get option label class
+export const getOptionLabelClass = (
+	size: 'sm' | 'md' | 'lg',
+	isDisabled: boolean
+) => {
+	const sizeClass = {
+		sm: 'text-xs ml-2',
+		md: 'text-sm ml-2.5',
+		lg: 'text-base ml-3',
+	}[size];
 
-		return {
-			borderRadius: 50,
-			backgroundColor: colorTokens.DEFAULT,
-			...sizeStyles[size],
-			...customStyle,
-		};
-	},
+	const opacityClass = isDisabled ? 'opacity-50' : 'opacity-100';
 
-	// ════════════════════════════════════════════════════════════════════════════
-	// OPTION LABEL
-	// Size, disabled state, and color parameters integrated
-	// ════════════════════════════════════════════════════════════════════════════
-	optionLabel: (
-		size: 'sm' | 'md' | 'lg',
-		isDisabled: boolean,
-		customStyle?: Record<string, any>
-	) => {
-		const sizeStyles = {
-			sm: { fontSize: 12, spacing: 8 },
-			md: { fontSize: 14, spacing: 10 },
-			lg: { fontSize: 16, spacing: 12 },
-		};
+	return `font-normal ${sizeClass} ${opacityClass}`;
+};
 
-		return {
-			fontWeight: '400' as const,
-			marginLeft: sizeStyles[size].spacing,
-			opacity: isDisabled ? theme.opacity.disabled : 1,
-			...sizeStyles[size],
-			...customStyle,
-		};
-	},
+// Helper function to get description text class
+export const getDescriptionTextClass = (isError: boolean) => {
+	const colorClass = isError ? 'text-danger' : 'text-default-600';
+	return `text-xs mt-1 ${colorClass}`;
+};
 
-	// ════════════════════════════════════════════════════════════════════════════
-	// DESCRIPTION TEXT
-	// Color parameter integrated
-	// ════════════════════════════════════════════════════════════════════════════
-	descriptionText: (isError: boolean, customStyle?: Record<string, any>) => ({
-		fontSize: 12,
-		marginTop: theme.spacing[1],
-		color: isError ? theme.colors.danger.DEFAULT : theme.colors.default[600],
-		...customStyle,
-	}),
-
-	// ════════════════════════════════════════════════════════════════════════════
-	// STATIC STYLES (No parameters needed)
-	// ════════════════════════════════════════════════════════════════════════════
+// Inline styles for complex layout properties
+export const inlineStyles = {
 	labelContainer: {
 		flexDirection: 'column' as const,
 		flex: 1,
 		justifyContent: 'center' as const,
 	},
-
 	requiredStar: {
 		fontWeight: '600' as const,
 	},
-}));
+	radioContainer: {
+		flexDirection: 'row' as const,
+		alignItems: 'center' as const,
+	},
+	radio: {
+		flexDirection: 'row' as const,
+		alignItems: 'center' as const,
+		justifyContent: 'center' as const,
+	},
+	radioInner: {
+		borderRadius: 9999,
+	},
+};

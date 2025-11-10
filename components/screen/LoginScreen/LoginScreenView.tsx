@@ -1,7 +1,7 @@
 import type React from 'react';
 import { StyleSheet, type ViewStyle } from 'react-native';
 import { type Theme, useTheme } from '@/hooks/useTheme';
-import { Button } from '../../ui/inputs/Button';
+import { Button } from '../../ui/inputs';
 import { Divider } from '../../ui/display/Divider';
 import { Logo } from '../../ui/display/Logo';
 import { ScrollView } from '../../ui/display/ScrollView';
@@ -66,7 +66,6 @@ export const LoginScreenView: React.FC<LoginScreenViewProps> = ({
 					{/* 로그인 버튼 */}
 					<Button
 						variant="solid"
-						color="primary"
 						size="lg"
 						style={dynamicStyles.loginButton}
 						onPress={() => onLogin?.(email, password, false)}

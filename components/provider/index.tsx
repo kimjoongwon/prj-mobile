@@ -24,7 +24,8 @@ export function Providers({
 			</View>
 		</View>
 	);
-
+	console.log('--?')
+	console.log('--?')
 	if (disableSafeArea) {
 		return <ThemeProvider>{renderWithDarkModeSwitch(children)}</ThemeProvider>;
 	}

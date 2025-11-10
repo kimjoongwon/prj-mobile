@@ -45,7 +45,7 @@ const meta: Meta<ChipProps> = {
 			options: ['none', 'sm', 'md', 'lg', 'full'],
 			description: '모서리 둥글기',
 		},
-		isDisabled: {
+		disabled: {
 			control: { type: 'boolean' },
 			description: '비활성화 상태',
 		},
@@ -282,19 +282,19 @@ export const Disabled: Story = {
 		<View style={{ gap: 16 }}>
 			<Text style={{ fontSize: 18, fontWeight: 'bold' }}>Disabled States</Text>
 			<View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
-				<Chip isDisabled>Disabled</Chip>
-				<Chip isDisabled color="primary">
+				<Chip disabled>Disabled</Chip>
+				<Chip disabled color="primary">
 					Disabled Primary
 				</Chip>
 				<Chip
-					isDisabled
+					disabled
 					color="success"
 					endContent={<Ionicons name="close" size={14} color="#17c964" />}
 				>
 					Disabled with Icon
 				</Chip>
 				<Chip
-					isDisabled
+					disabled
 					color="danger"
 					startContent={<Ionicons name="close" size={14} color="#f31260" />}
 				>

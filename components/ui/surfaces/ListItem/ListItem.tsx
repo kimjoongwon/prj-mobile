@@ -1,7 +1,12 @@
 import React from 'react';
 import { Image, View, ViewStyle } from 'react-native';
 import { Text } from '../../display/Text';
-import { createStyles } from './ListItem.styles';
+import {
+	getContainerClass,
+	getTitleClass,
+	getDescriptionClass,
+	inlineStyles,
+} from './ListItem.styles';
 
 export type ListItemVariant = 'default' | 'card' | 'simple';
 export type ListItemSize = 'sm' | 'md' | 'lg';
@@ -34,50 +39,48 @@ export const ListItem: React.FC<ListItemProps> = props => {
 	} = props;
 
 	// ════════════════════════════════════════════════════════════════════════════
-	// STYLE SELECTION - Direct function calls, NO intermediate variables
-	// Pass state flags DIRECTLY to functions
+	// STYLE SELECTION - Using Uniwind helper functions
+	// Returns class strings that can be used with className or converted to inline styles
 	// ════════════════════════════════════════════════════════════════════════════
 
-	const containerStyle = createStyles.container(variant, size, isSelected, style);
-	const titleStyle = createStyles.title(size);
-	const descriptionStyle = createStyles.description(size);
-	const imageContainerStyle = createStyles.imageContainer(size);
+	// Get class strings from helper functions
+	const containerClassName = getContainerClass(variant, size, isSelected);
+	const titleClassName = getTitleClass(size);
+	const descriptionClassName = getDescriptionClass(size);
 
 	const renderImageOrPlaceholder = () => {
 		// showImage가 false이거나 imageUrl이 없으면 아무것도 렌더링하지 않음
 		if (!showImage || !imageUrl) return null;
 
 		return (
-			<View style={imageContainerStyle}>
-				<Image source={{ uri: imageUrl }} style={createStyles.image} />
+			<View style={inlineStyles.image}>
+				<Image source={{ uri: imageUrl }} style={inlineStyles.image} />
 			</View>
 		);
 	};
 
 	return (
-		<View style={containerStyle}>
-			<View style={createStyles.contentWrapper}>
+		<View style={[inlineStyles.contentWrapper, style]} className={containerClassName}>
+			<View style={inlineStyles.contentWrapper}>
 				{startContent && (
-					<View style={createStyles.startContent}>{startContent}</View>
+					<View style={inlineStyles.startContent}>{startContent}</View>
 				)}
 
 				{renderImageOrPlaceholder()}
 
-				<View style={createStyles.textContainer}>
+				<View style={inlineStyles.textContainer}>
 					<Text
-						style={[
-							titleStyle,
-							{
-								marginBottom: description ? 2 : 0, // description이 있을 때만 마진
-							},
-						]}
+						className={titleClassName}
+						style={{
+							marginBottom: description ? 2 : 0, // description이 있을 때만 마진
+						}}
 						numberOfLines={1}
 					>
 						{title}
 					</Text>
 					{description && (
 						<Text
-							style={descriptionStyle}
+							className={descriptionClassName}
 							numberOfLines={size === 'sm' ? 1 : 2}
 						>
 							{description}
@@ -85,7 +88,7 @@ export const ListItem: React.FC<ListItemProps> = props => {
 					)}
 				</View>
 
-				{endContent && <View style={createStyles.endContent}>{endContent}</View>}
+				{endContent && <View style={inlineStyles.endContent}>{endContent}</View>}
 			</View>
 		</View>
 	);

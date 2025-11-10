@@ -2,7 +2,7 @@
 	"name": "plate",
 	"description": "운동 예약 및 클래스 관리 애플리케이션. iOS, Android, Web을 지원하는 크로스플랫폼 모바일 앱입니다.",
 	"version": "1.0.0",
-	"main": "index.ts",
+	"main": "expo-router/entry",
 	"license": "MIT",
 	"author": {
 		"name": "Joong Won Kim",
@@ -96,7 +96,6 @@
 		"react-native-reanimated": "~4.1.0",
 		"react-native-safe-area-context": "^5.6.0",
 		"react-native-screens": "~4.16.0",
-		"react-native-unistyles": "^3.0.17",
 		"react-native-web": "~0.21.0",
 		"react-native-worklets": "^0.5.1",
 		"tailwind-merge": "^3.4.0",

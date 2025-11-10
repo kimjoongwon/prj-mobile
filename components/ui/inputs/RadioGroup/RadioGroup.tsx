@@ -16,7 +16,17 @@ import Animated, {
 	withTiming,
 } from 'react-native-reanimated';
 import { Text } from '../../display/Text';
-import { createStyles } from './RadioGroup.styles';
+import {
+	getContainerClass,
+	getGroupContainerClass,
+	getGroupLabelClass,
+	getRadioContainerClass,
+	getRadioClass,
+	getRadioInnerClass,
+	getOptionLabelClass,
+	getDescriptionTextClass,
+	inlineStyles,
+} from './RadioGroup.styles';
 
 export type RadioGroupSize = 'sm' | 'md' | 'lg';
 export type RadioGroupColor =
@@ -107,15 +117,15 @@ export const RadioGroup = <T extends any>({
 		controlledValue !== undefined ? controlledValue : internalValue;
 
 	// ════════════════════════════════════════════════════════════════════════════
-	// STYLE SELECTION - Direct function calls, NO intermediate variables
-	// Pass state flags DIRECTLY to functions
+	// STYLE SELECTION - Using Uniwind helper functions
+	// Returns class strings that can be used with className
 	// ════════════════════════════════════════════════════════════════════════════
 
-	const containerStyle = createStyles.container(isDisabled, style);
-	const groupContainerStyle = createStyles.groupContainer(orientation, size);
-	const groupLabelStyle = createStyles.groupLabel(size, color, isInvalid, labelStyle);
-	const descriptionStyle = createStyles.descriptionText(false);
-	const errorStyle = createStyles.descriptionText(true);
+	const containerClassName = getContainerClass(isDisabled);
+	const groupContainerClassName = getGroupContainerClass(orientation, size);
+	const groupLabelClassName = getGroupLabelClass(size, color, isInvalid);
+	const descriptionClassName = getDescriptionTextClass(false);
+	const errorClassName = getDescriptionTextClass(true);
 
 	const handleValueChange = useCallback(
 		(newValue: any, selectedItem: T, selectedIndex: number) => {
@@ -180,14 +190,15 @@ export const RadioGroup = <T extends any>({
 		// Pass state flags DIRECTLY to functions
 		// ════════════════════════════════════════════════════════════════════════════
 
-		const radioContainerStyle = createStyles.radioContainer(orientation);
-		const radioStyle = createStyles.radio(size, isSelected, color, isInvalid, isOptionDisabled);
-		const radioInnerStyle = createStyles.radioInner(size, color, isInvalid);
-		const optionLabelStyle_ = createStyles.optionLabel(size, isOptionDisabled, optionLabelStyle);
+		const radioContainerClassName = getRadioContainerClass(orientation);
+		const radioClassName = getRadioClass(size, isSelected, color, isInvalid, isOptionDisabled);
+		const radioInnerClassName = getRadioInnerClass(size, color, isInvalid);
+		const optionLabelClassName = getOptionLabelClass(size, isOptionDisabled);
 
 		return (
 			<Pressable
-				style={radioContainerStyle}
+				className={radioContainerClassName}
+				style={inlineStyles.radioContainer}
 				onPress={handlePress}
 				disabled={isOptionDisabled}
 				accessibilityRole="radio"
@@ -197,22 +208,19 @@ export const RadioGroup = <T extends any>({
 				}}
 				accessibilityLabel={labelExtractor(item, index)}
 			>
-				<Animated.View style={[radioStyle, radioAnimatedStyle]}>
-					<Animated.View style={[radioInnerStyle, innerRadioAnimatedStyle]} />
+				<Animated.View className={radioClassName} style={[inlineStyles.radio, radioAnimatedStyle]}>
+					<Animated.View className={radioInnerClassName} style={[inlineStyles.radioInner, innerRadioAnimatedStyle]} />
 				</Animated.View>
 
-				<View style={createStyles.labelContainer}>
+				<View style={inlineStyles.labelContainer}>
 					<Text
-						style={
-							optionLabelStyle
-								? [optionLabelStyle_, optionLabelStyle]
-								: optionLabelStyle_
-						}
+						className={optionLabelClassName}
+						style={optionLabelStyle}
 					>
 						{labelExtractor(item, index)}
 					</Text>
 					{descriptionExtractor?.(item, index) && (
-						<Text style={createStyles.descriptionText(false)}>
+						<Text className={getDescriptionTextClass(false)}>
 							{descriptionExtractor(item, index)}
 						</Text>
 					)}
@@ -222,12 +230,12 @@ export const RadioGroup = <T extends any>({
 	};
 
 	return (
-		<View style={containerStyle} {...restProps}>
+		<View className={containerClassName} style={style} {...restProps}>
 			{label && (
-				<Text style={groupLabelStyle}>
+				<Text className={groupLabelClassName} style={labelStyle}>
 					{label}
 					{isRequired && (
-						<Text style={[createStyles.requiredStar, { color: theme.colors.danger.DEFAULT }]}>
+						<Text style={[inlineStyles.requiredStar, { color: theme.colors.danger.DEFAULT }]}>
 							{' '}
 							*
 						</Text>
@@ -235,7 +243,7 @@ export const RadioGroup = <T extends any>({
 				</Text>
 			)}
 
-			<View style={[groupContainerStyle, groupStyle]}>
+			<View className={groupContainerClassName} style={groupStyle}>
 				{data.map((item, index) => {
 					const itemKey = keyExtractor(item, index);
 					const itemValue = valueExtractor(item, index);
@@ -254,13 +262,13 @@ export const RadioGroup = <T extends any>({
 			</View>
 
 			{description && !errorMessage && (
-				<Text style={descriptionStyle}>
+				<Text className={descriptionClassName}>
 					{description}
 				</Text>
 			)}
 
 			{errorMessage && (
-				<Text style={errorStyle}>
+				<Text className={errorClassName}>
 					{errorMessage}
 				</Text>
 			)}

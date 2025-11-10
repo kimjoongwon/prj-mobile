@@ -3,7 +3,7 @@ import type React from 'react';
 import { Platform, StyleSheet, View, type ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { type Theme, useTheme } from '@/hooks/useTheme';
-import { Button } from '../../inputs/Button';
+import { Button } from '../../inputs';
 import { Text } from '../../display/Text';
 
 export type HeaderVariant = 'default' | 'transparent' | 'elevated';
@@ -11,8 +11,7 @@ export type HeaderVariant = 'default' | 'transparent' | 'elevated';
 export interface HeaderAction {
 	title: string;
 	onPress: () => void;
-	variant?: 'ghost' | 'solid' | 'light';
-	color?: 'primary' | 'secondary' | 'default';
+	variant?: 'solid' | 'bordered' | 'light' | 'flat' | 'faded' | 'shadow' | 'ghost';
 }
 
 export interface HeaderProps extends NativeStackHeaderProps {
@@ -55,7 +54,6 @@ export const Header: React.FC<HeaderProps> = ({
 					{leftAction && (
 						<Button
 							variant={leftAction.variant || 'ghost'}
-							color={leftAction.color || 'default'}
 							size="sm"
 							onPress={leftAction.onPress}
 						>
@@ -98,7 +96,6 @@ export const Header: React.FC<HeaderProps> = ({
 					{rightAction && (
 						<Button
 							variant={rightAction.variant || 'ghost'}
-							color={rightAction.color || 'default'}
 							size="sm"
 							onPress={rightAction.onPress}
 						>

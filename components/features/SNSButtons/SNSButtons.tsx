@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, ViewStyle } from 'react-native';
-import { Button } from '../../ui/inputs/Button';
+import { Button } from '../../ui/inputs';
 import { View } from '../../ui/display/View';
 
 export interface SNSButtonsProps {
@@ -38,7 +38,6 @@ export const SNSButtons: React.FC<SNSButtonsProps> = ({
 			{showApple && (
 				<Button
 					variant="solid"
-					color="default"
 					size="lg"
 					onPress={onApplePress}
 					style={styles.appleButton}

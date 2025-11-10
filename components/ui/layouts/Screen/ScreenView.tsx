@@ -1,9 +1,7 @@
-import { type UnistyleTheme } from '@/unistyles';
 import type React from 'react';
 import { StatusBar, View, type ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useUnistyles } from 'react-native-unistyles';
-import { styles } from './Screen.styles';
+import { useTheme } from '@/hooks/useTheme';
 
 export interface ScreenViewProps {
 	children: React.ReactNode;
@@ -30,13 +28,11 @@ export const ScreenView: React.FC<ScreenViewProps> = ({
 	safeAreaEdges = { top: true, bottom: true, left: true, right: true },
 	...props
 }) => {
-	const { theme } = useUnistyles();
-	const typedTheme = theme as UnistyleTheme;
+	const { isDark } = useTheme();
 	const insets = useSafeAreaInsets();
-	const isDark = typedTheme.colors.background === '#000000';
 
 	const containerBackgroundColor =
-		backgroundColor || typedTheme.colors.background;
+		backgroundColor || (isDark ? '#000000' : '#ffffff');
 
 	const getStatusBarStyle = () => {
 		if (statusBarStyle === 'auto') {
@@ -58,7 +54,7 @@ export const ScreenView: React.FC<ScreenViewProps> = ({
 	return (
 		<View
 			style={[
-				styles.container(),
+				{ flex: 1 },
 				{ backgroundColor: containerBackgroundColor },
 				safeAreaStyle,
 				style,

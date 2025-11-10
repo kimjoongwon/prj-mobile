@@ -512,8 +512,206 @@ When refactoring other components, use this checklist:
 
 ---
 
+---
+
+## TextField Component Architecture
+
+### Overview
+
+TextField 컴포넌트는 **두 가지 레이어**로 구성됩니다:
+
+1. **TextFieldView** - UI 컴포넌트 (heroui-native의 TextField를 감싼 실제 화면 구성)
+2. **TextField** - MobX wrapper (form 상태 관리를 추가)
+
+### Layer 1: TextFieldView (UI Component)
+
+`TextFieldView`는 heroui-native의 TextField를 감싸서 레이아웃을 구성하는 **실제 UI 컴포넌트**입니다.
+
+**특징:**
+- heroui-native의 `TextFieldRootProps` 확장
+- `description`, `errorMessage` props로 자동 렌더링
+- 서브컴포넌트로 `Label`, `Input`, `Description`, `ErrorMessage` 제공
+- 커스텀 variant/size 타입 지원
+
+**Props:**
+```typescript
+export interface TextFieldViewProps extends TextFieldRootProps {
+  variant?: 'default' | 'outlined';
+  size?: 'sm' | 'md' | 'lg';
+  description?: React.ReactNode;          // 자동 렌더링
+  descriptionProps?: TextFieldDescriptionProps;  // 속성 커스터마이징
+  errorMessage?: React.ReactNode;         // 자동 렌더링
+  errorMessageProps?: TextFieldErrorMessageProps; // 속성 커스터마이징
+}
+```
+
+**사용 예제 1: Props로 description/errorMessage 전달**
+```tsx
+<TextFieldView
+  description="We'll never share your email"
+  errorMessage="Invalid email format"
+  isInvalid={hasError}
+>
+  <TextFieldView.Label>Email</TextFieldView.Label>
+  <TextFieldView.Input placeholder="Enter email" />
+</TextFieldView>
+```
+
+**사용 예제 2: 자식 컴포넌트로 완전 제어**
+```tsx
+<TextFieldView>
+  <TextFieldView.Label>Email</TextFieldView.Label>
+  <TextFieldView.Input placeholder="Enter email" />
+  <TextFieldView.Description>We'll never share your email</TextFieldView.Description>
+  <TextFieldView.ErrorMessage>Invalid email</TextFieldView.ErrorMessage>
+</TextFieldView>
+```
+
+### Layer 2: TextField (MobX Wrapper)
+
+`TextField`는 TextFieldView를 감싸서 **MobX 상태 관리**를 추가합니다.
+
+**특징:**
+- MobX form state 자동 관리
+- `state`와 `path` props로 상태 연결
+- 자동 `value` 및 `onChangeText` 처리
+- TextFieldView의 모든 props 지원
+
+**Props:**
+```typescript
+export interface TextFieldProps<T>
+  extends MobxProps<T>,
+    Omit<TextFieldViewProps, 'children'> {
+  label?: React.ReactNode;  // 자동으로 Label에 렌더링
+  inputProps?: TextFieldInputProps; // Input에 전달할 props
+}
+```
+
+**사용 예제: MobX와 함께 사용**
+```tsx
+import { TextField } from '@/components/ui/inputs';
+
+interface LoginFormState {
+  email: string;
+  password: string;
+}
+
+export function LoginForm() {
+  const [state] = useState<LoginFormState>({
+    email: '',
+    password: '',
+  });
+
+  return (
+    <>
+      <TextField
+        state={state}
+        path="email"
+        label="Email Address"
+        description="We'll never share your email"
+        inputProps={{
+          placeholder: "Enter your email",
+          keyboardType: "email-address"
+        }}
+      />
+
+      <TextField
+        state={state}
+        path="password"
+        label="Password"
+        inputProps={{
+          placeholder: "Enter password",
+          secureTextEntry: true
+        }}
+      />
+    </>
+  );
+}
+```
+
+### UI-Only Usage (TextFieldView)
+
+MobX 없이 순수 UI 컴포넌트로만 사용:
+
+```tsx
+import { TextFieldView } from '@/components/ui/inputs/TextField';
+
+export function SimpleForm() {
+  const [email, setEmail] = useState('');
+
+  return (
+    <TextFieldView
+      description="We'll never share your email"
+    >
+      <TextFieldView.Label>Email</TextFieldView.Label>
+      <TextFieldView.Input
+        value={email}
+        onChangeText={setEmail}
+        placeholder="Enter email"
+      />
+    </TextFieldView>
+  );
+}
+```
+
+### Component Structure
+
+```
+components/ui/inputs/TextField/
+├── TextFieldView.tsx          # UI component (wraps heroui-native)
+├── TextField.tsx              # MobX wrapper
+├── TextFieldView.stories.tsx  # Storybook examples
+└── index.ts                   # Exports
+```
+
+### Export 가이드
+
+**기본 export (MobX wrapper):**
+```typescript
+import TextField from '@/components/ui/inputs/TextField';
+// 또는
+import { TextField } from '@/components/ui/inputs/TextField';
+```
+
+**UI-only 컴포넌트:**
+```typescript
+import { TextFieldView } from '@/components/ui/inputs/TextField';
+import type { TextFieldViewProps } from '@/components/ui/inputs/TextField';
+```
+
+**서브컴포넌트:**
+```typescript
+import {
+  TextFieldLabel,
+  TextFieldInput,
+  TextFieldDescription,
+  TextFieldErrorMessage
+} from '@/components/ui/inputs/TextField';
+```
+
+### 설계 원칙
+
+1. **Composition over Inheritance**: 서브컴포넌트로 조합 가능
+2. **Props First**: children보다 props 우선 (더 간편)
+3. **Library Props 활용**: heroui-native의 props를 그대로 확장
+4. **선택적 자동화**: description/errorMessage는 선택사항
+5. **Stateless UI**: TextFieldView는 상태 없음 (UI 전담)
+6. **MobX 분리**: 상태관리는 TextField로 분리
+
+### Hero UI Native 타입 활용
+
+라이브러리에서 제공하는 모든 타입을 활용:
+- `TextFieldRootProps` - 루트 컨테이너
+- `TextFieldInputProps` - input 필드
+- `TextFieldLabelProps` - label
+- `TextFieldDescriptionProps` - 설명 텍스트
+- `TextFieldErrorMessageProps` - 에러 메시지
+
+---
+
 ## References
 
 - **Unistyles 3.0 Docs**: https://www.unistyl.es/
 - **Dynamic Functions**: https://www.unistyl.es/v3/references/dynamic-functions
 - **Theming Guide**: https://www.unistyl.es/v3/guides/theming
+- **Hero UI Native**: https://github.com/MasterBirch/heroui-native

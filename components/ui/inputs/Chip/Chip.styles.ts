@@ -1,187 +1,127 @@
-import type { UnistyleTheme } from '@/unistyles';
-import { StyleSheet } from 'react-native-unistyles';
+/**
+ * Chip Styles using Uniwind
+ * Utilities-first approach with theme values
+ */
 
-export const createStyles = StyleSheet.create((theme: UnistyleTheme) => ({
-	// ════════════════════════════════════════════════════════════════════════════
-	// CHIP CONTAINER
-	// Accepts all state-affecting parameters directly
-	// ════════════════════════════════════════════════════════════════════════════
-	chip: (
-		variant: 'solid' | 'bordered' | 'light' | 'flat' | 'faded' | 'shadow',
-		color: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger',
-		size: 'sm' | 'md' | 'lg',
-		radius: 'none' | 'sm' | 'md' | 'lg' | 'full',
-		isDisabled: boolean,
-		customStyle?: Record<string, any>
-	) => {
-		// Size configuration INSIDE function
-		const sizeStyles = {
-			sm: { height: 24, paddingHorizontal: 8, fontSize: 12, gap: 4, avatarSize: 16 },
-			md: { height: 32, paddingHorizontal: 12, fontSize: 14, gap: 6, avatarSize: 20 },
-			lg: { height: 40, paddingHorizontal: 16, fontSize: 16, gap: 8, avatarSize: 24 },
-		};
+// Size configuration
+export const sizes = {
+	sm: { height: 24, px: 2, fontSize: 12, gap: 1, avatarSize: 16 },
+	md: { height: 32, px: 3, fontSize: 14, gap: 1.5, avatarSize: 20 },
+	lg: { height: 40, px: 4, fontSize: 16, gap: 2, avatarSize: 24 },
+} as const;
 
-		// Radius configuration INSIDE function
-		const radiusValues = {
-			none: 0,
-			sm: 4,
-			md: 6,
-			lg: 8,
-			full: 999,
-		};
+// Radius configuration
+export const radiusMap = {
+	none: 'rounded-none',
+	sm: 'rounded-sm',
+	md: 'rounded',
+	lg: 'rounded-lg',
+	full: 'rounded-full',
+} as const;
 
-		// Color scheme determination INSIDE function
-		const colorTokens = theme.colors[color] || theme.colors.default;
-		let backgroundColor: string = 'transparent';
-		let borderColor: string = 'transparent';
-		let textColor: string = theme.colors.foreground;
+// Helper function to get chip container class
+export const getChipClass = (
+	variant: 'solid' | 'bordered' | 'light' | 'flat' | 'faded' | 'shadow',
+	color: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger',
+	size: 'sm' | 'md' | 'lg',
+	radius: 'none' | 'sm' | 'md' | 'lg' | 'full',
+	isDisabled: boolean
+) => {
+	const sizeClass = {
+		sm: 'h-6 px-2 gap-1',
+		md: 'h-8 px-3 gap-1.5',
+		lg: 'h-10 px-4 gap-2',
+	}[size];
 
-		switch (variant) {
-			case 'solid':
-				backgroundColor = String(colorTokens.DEFAULT);
-				borderColor = String(colorTokens.DEFAULT);
-				textColor = String(colorTokens.foreground);
-				break;
-			case 'bordered':
-				backgroundColor = 'transparent';
-				borderColor = String(colorTokens.DEFAULT);
-				textColor = String(colorTokens.DEFAULT);
-				break;
-			case 'light':
-				backgroundColor = String(colorTokens[100]);
-				borderColor = String(colorTokens[200]);
-				textColor = String(colorTokens[800]);
-				break;
-			case 'flat':
-				backgroundColor = String(colorTokens[100]);
-				borderColor = 'transparent';
-				textColor = String(colorTokens[800]);
-				break;
-			case 'faded':
-				backgroundColor = String(colorTokens[50]);
-				borderColor = String(colorTokens[300]);
-				textColor = String(colorTokens[700]);
-				break;
-			case 'shadow':
-				backgroundColor = String(colorTokens.DEFAULT);
-				borderColor = String(colorTokens.DEFAULT);
-				textColor = String(colorTokens.foreground);
-				break;
-			default:
-				backgroundColor = String(colorTokens.DEFAULT);
-				borderColor = String(colorTokens.DEFAULT);
-				textColor = String(colorTokens.foreground);
-		}
+	const radiusClass = radiusMap[radius];
+	const disabledClass = isDisabled ? 'opacity-50' : '';
+	const shadowClass = variant === 'shadow' ? 'shadow-md' : '';
 
-		// Opacity for disabled state
-		const opacity = isDisabled ? theme.opacity.disabled : 1;
+	// Variant and color combination
+	let variantColorClass = '';
+	switch (variant) {
+		case 'solid':
+			variantColorClass = `bg-${color} text-${color}-foreground border-${color}`;
+			break;
+		case 'bordered':
+			variantColorClass = `bg-transparent border-${color} text-${color}`;
+			break;
+		case 'light':
+			variantColorClass = `bg-${color}-100 border-${color}-200 text-${color}-800`;
+			break;
+		case 'flat':
+			variantColorClass = `bg-${color}-100 border-transparent text-${color}-800`;
+			break;
+		case 'faded':
+			variantColorClass = `bg-${color}-50 border-${color}-300 text-${color}-700`;
+			break;
+		case 'shadow':
+			variantColorClass = `bg-${color} text-${color}-foreground border-${color}`;
+			break;
+		default:
+			variantColorClass = `bg-${color} text-${color}-foreground border-${color}`;
+	}
 
-		// Shadow for shadow variant
-		const shadowStyles = variant === 'shadow'
-			? {
-					shadowOffset: { width: 0, height: 2 },
-					shadowOpacity: 0.1,
-					shadowRadius: 4,
-					elevation: 2,
-				}
-			: {};
+	return `flex flex-row items-center border overflow-hidden self-start ${sizeClass} ${radiusClass} ${variantColorClass} ${disabledClass} ${shadowClass}`;
+};
 
-		return {
-			flexDirection: 'row',
-			alignItems: 'center',
-			borderWidth: 1,
-			overflow: 'hidden',
-			alignSelf: 'flex-start',
-			height: sizeStyles[size].height,
-			paddingHorizontal: sizeStyles[size].paddingHorizontal,
-			borderRadius: radiusValues[radius],
-			backgroundColor,
-			borderColor,
-			opacity,
-			...shadowStyles,
-			...customStyle,
-		};
-	},
+// Helper function to get chip text class
+export const getChipTextClass = (
+	color: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger',
+	variant: 'solid' | 'bordered' | 'light' | 'flat' | 'faded' | 'shadow',
+	size: 'sm' | 'md' | 'lg'
+) => {
+	const sizeClass = {
+		sm: 'text-xs',
+		md: 'text-sm',
+		lg: 'text-base',
+	}[size];
 
-	// ════════════════════════════════════════════════════════════════════════════
-	// CHIP TEXT
-	// Size and color parameters integrated
-	// ════════════════════════════════════════════════════════════════════════════
-	chipText: (
-		color: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger',
-		variant: 'solid' | 'bordered' | 'light' | 'flat' | 'faded' | 'shadow',
-		size: 'sm' | 'md' | 'lg',
-		customStyle?: Record<string, any>
-	) => {
-		const sizeStyles = {
-			sm: { fontSize: 12 },
-			md: { fontSize: 14 },
-			lg: { fontSize: 16 },
-		};
+	// Text color depends on variant
+	let textColorClass = '';
+	switch (variant) {
+		case 'solid':
+		case 'shadow':
+			textColorClass = `text-${color}-foreground`;
+			break;
+		case 'bordered':
+			textColorClass = `text-${color}`;
+			break;
+		case 'light':
+		case 'flat':
+			textColorClass = `text-${color}-800`;
+			break;
+		case 'faded':
+			textColorClass = `text-${color}-700`;
+			break;
+		default:
+			textColorClass = `text-${color}-foreground`;
+	}
 
-		const colorTokens = theme.colors[color] || theme.colors.default;
-		let textColor: string = theme.colors.foreground;
+	return `font-medium ${textColorClass} ${sizeClass}`;
+};
 
-		switch (variant) {
-			case 'solid':
-			case 'shadow':
-				textColor = String(colorTokens.foreground);
-				break;
-			case 'bordered':
-				textColor = String(colorTokens.DEFAULT);
-				break;
-			case 'light':
-			case 'flat':
-				textColor = String(colorTokens[800]);
-				break;
-			case 'faded':
-				textColor = String(colorTokens[700]);
-				break;
-			default:
-				textColor = String(colorTokens.foreground);
-		}
+// Helper function to get avatar class
+export const getAvatarClass = (size: 'sm' | 'md' | 'lg') => {
+	const sizeClass = {
+		sm: 'w-4 h-4',
+		md: 'w-5 h-5',
+		lg: 'w-6 h-6',
+	}[size];
 
-		return {
-			fontWeight: '500',
-			color: textColor,
-			...sizeStyles[size],
-			...customStyle,
-		};
-	},
+	return `rounded-full overflow-hidden mr-1.5 ${sizeClass}`;
+};
 
-	// ════════════════════════════════════════════════════════════════════════════
-	// AVATAR
-	// Size parameter integrated
-	// ════════════════════════════════════════════════════════════════════════════
-	avatar: (size: 'sm' | 'md' | 'lg', customStyle?: Record<string, any>) => {
-		const sizeStyles = {
-			sm: { width: 16, height: 16 },
-			md: { width: 20, height: 20 },
-			lg: { width: 24, height: 24 },
-		};
-
-		return {
-			borderRadius: 999,
-			overflow: 'hidden',
-			marginRight: 6,
-			...sizeStyles[size],
-			...customStyle,
-		};
-	},
-
-	// ════════════════════════════════════════════════════════════════════════════
-	// STATIC STYLES (No parameters needed)
-	// ════════════════════════════════════════════════════════════════════════════
+// Inline styles for properties that can't be expressed in Tailwind
+export const inlineStyles = {
 	chipContent: {
-		flexDirection: 'row',
-		alignItems: 'center',
+		flexDirection: 'row' as const,
+		alignItems: 'center' as const,
 	},
-
 	startContent: {
 		marginRight: 6,
 	},
-
 	endContent: {
 		marginLeft: 6,
 	},
-}));
+};
