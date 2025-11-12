@@ -1,4 +1,4 @@
-import { Providers, Screen } from '@/components';
+import { DarkModeSwitch, Providers, Screen } from '@/components';
 import { Stack } from 'expo-router';
 import { Suspense, lazy } from 'react';
 import 'react-native-reanimated';
@@ -15,13 +15,14 @@ export default function RootLayout() {
 		// Storybook 모드: 동적 import로 로드하여 Node.js 모듈 에러 방지
 		const StorybookView = lazy(() => import('../../.rnstorybook'));
 		return (
-			<Providers>
-				<Suspense fallback={<></>}>
+			<Suspense fallback={<></>}>
+				<Providers>
 					<Screen>
 						<StorybookView />
 					</Screen>
-				</Suspense>
-			</Providers>
+					<DarkModeSwitch />
+				</Providers>
+			</Suspense>
 		);
 	}
 

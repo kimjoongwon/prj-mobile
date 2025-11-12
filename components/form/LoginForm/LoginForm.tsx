@@ -15,7 +15,11 @@ export interface LoginFormProps {
 	onPasswordChange?: (password: string) => void;
 }
 
-export const LoginForm: React.FC<LoginFormProps> = ({ state, onEmailChange, onPasswordChange }) => {
+export const LoginForm: React.FC<LoginFormProps> = ({
+	state,
+	onEmailChange,
+	onPasswordChange,
+}) => {
 	return (
 		<Card style={styles.container}>
 			<TextField>

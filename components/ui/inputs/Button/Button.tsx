@@ -92,8 +92,13 @@ const styles = StyleSheet.create({
 });
 
 // Map custom variants to heroui-native variants
-const mapVariantToHero = (variant: ButtonVariant): 'primary' | 'secondary' | 'tertiary' | 'ghost' => {
-	const variantMap: Record<ButtonVariant, 'primary' | 'secondary' | 'tertiary' | 'ghost'> = {
+const mapVariantToHero = (
+	variant: ButtonVariant
+): 'primary' | 'secondary' | 'tertiary' | 'ghost' => {
+	const variantMap: Record<
+		ButtonVariant,
+		'primary' | 'secondary' | 'tertiary' | 'ghost'
+	> = {
 		solid: 'primary',
 		bordered: 'tertiary',
 		light: 'tertiary',
@@ -149,7 +154,10 @@ export const Button: React.FC<ButtonProps> = ({
 				)}
 
 				{children && !isIconOnly && (
-					<Text style={[{ fontSize: sizeConfig.fontSize }, textStyle || {}]} numberOfLines={1}>
+					<Text
+						style={[{ fontSize: sizeConfig.fontSize }, textStyle || {}]}
+						numberOfLines={1}
+					>
 						{children}
 					</Text>
 				)}

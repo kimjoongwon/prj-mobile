@@ -13,14 +13,23 @@ Guidelines for building consistent, maintainable components with Unistyles 3.0 d
 ## Anti-Patterns (What NOT to Do)
 
 ### ❌ Static Variant + State Pattern
+
 ```typescript
 // DON'T: Pre-computing all combinations
-export const createStyles = StyleSheet.create((theme) => ({
-  fieldContainerDefaultBase: { /* ... */ },
-  fieldContainerDefaultFocused: { /* ... */ },
-  fieldContainerOutlinedBase: { /* ... */ },
-  fieldContainerOutlinedFocused: { /* ... */ },
-  // ... combinatorial explosion
+export const createStyles = StyleSheet.create(theme => ({
+	fieldContainerDefaultBase: {
+		/* ... */
+	},
+	fieldContainerDefaultFocused: {
+		/* ... */
+	},
+	fieldContainerOutlinedBase: {
+		/* ... */
+	},
+	fieldContainerOutlinedFocused: {
+		/* ... */
+	},
+	// ... combinatorial explosion
 }));
 
 // DON'T: String concatenation to select styles
@@ -28,6 +37,7 @@ const style = createStyles[`fieldContainer${variant}${state}`];
 ```
 
 ### ❌ Intermediate State Variables
+
 ```typescript
 // DON'T: Create intermediate state variables
 const fieldState = isDisabled ? 'disabled' : isFocused ? 'focused' : 'base';
@@ -35,44 +45,46 @@ const containerStyle = createStyles.fieldContainer(variant, fieldState, size);
 ```
 
 ### ❌ Type Casting
+
 ```typescript
 // DON'T: Use type casting to bypass type safety
 const style = [createStyles.field, customStyle] as any;
 ```
 
 ### ❌ Helper Functions
+
 ```typescript
 // DON'T: Create wrapper functions
 const getFieldStyle = (variant, disabled) => {
-  return createStyles[`field${variant}${disabled ? 'Disabled' : 'Base'}`];
+	return createStyles[`field${variant}${disabled ? 'Disabled' : 'Base'}`];
 };
 ```
 
 ### ❌ Size Lookup Objects
+
 ```typescript
 // DON'T: Maintain separate size config objects
 export const sizes = {
-  sm: { height: 44, fontSize: 14 },
-  md: { height: 48, fontSize: 15 },
+	sm: { height: 44, fontSize: 14 },
+	md: { height: 48, fontSize: 15 },
 };
 const sizeConfig = sizes[size];
 ```
 
 ### ❌ Array Spreading with Type Casting
+
 ```typescript
 // DON'T: Spread styles into arrays then cast
-const style = [
-  createStyles.field,
-  customStyle,
-] as any;
+const style = [createStyles.field, customStyle] as any;
 ```
 
 ### ❌ Unnecessary useMemo
+
 ```typescript
 // DON'T: Memoize simple function calls
 const style = useMemo(
-  () => createStyles.field(isDisabled, size),
-  [isDisabled, size]
+	() => createStyles.field(isDisabled, size),
+	[isDisabled, size]
 );
 ```
 
@@ -83,160 +95,166 @@ const style = useMemo(
 ### ✅ Dynamic Functions with Direct Parameters
 
 **Input.styles.ts:**
+
 ```typescript
 import { StyleSheet } from 'react-native-unistyles';
 import type { UnistyleTheme } from '@/unistyles';
 
 export const createStyles = StyleSheet.create((theme: UnistyleTheme) => ({
-  // ════════════════════════════════════════════════════════════════════════════
-  // FIELD CONTAINER
-  // Accepts ALL state-affecting parameters directly
-  // ════════════════════════════════════════════════════════════════════════════
-  fieldContainer: (
-    variant: 'default' | 'outlined',
-    isDisabled: boolean,        // State flags - NOT intermediate variable
-    isFocused: boolean,         // directly from component state
-    isInvalid: boolean,         // directly from component props
-    size: 'sm' | 'md' | 'lg',   // Size directly as parameter
-    customStyle?: Record<string, any>  // Custom style override
-  ) => {
-    // Size configuration INSIDE function
-    const sizeStyles = {
-      sm: { height: 44, paddingHorizontal: 12 },
-      md: { height: 48, paddingHorizontal: 12 },
-      lg: { height: 52, paddingHorizontal: 16 },
-    };
+	// ════════════════════════════════════════════════════════════════════════════
+	// FIELD CONTAINER
+	// Accepts ALL state-affecting parameters directly
+	// ════════════════════════════════════════════════════════════════════════════
+	fieldContainer: (
+		variant: 'default' | 'outlined',
+		isDisabled: boolean, // State flags - NOT intermediate variable
+		isFocused: boolean, // directly from component state
+		isInvalid: boolean, // directly from component props
+		size: 'sm' | 'md' | 'lg', // Size directly as parameter
+		customStyle?: Record<string, any> // Custom style override
+	) => {
+		// Size configuration INSIDE function
+		const sizeStyles = {
+			sm: { height: 44, paddingHorizontal: 12 },
+			md: { height: 48, paddingHorizontal: 12 },
+			lg: { height: 52, paddingHorizontal: 16 },
+		};
 
-    // State determination INSIDE function
-    const isOutlined = variant === 'outlined';
-    let borderColor = 'transparent';
-    if (isOutlined) {
-      if (isFocused) {
-        borderColor = theme.colors.primary.DEFAULT;
-      } else if (isInvalid) {
-        borderColor = theme.colors.danger.DEFAULT;
-      } else {
-        borderColor = theme.colors.default[200];
-      }
-    }
+		// State determination INSIDE function
+		const isOutlined = variant === 'outlined';
+		let borderColor = 'transparent';
+		if (isOutlined) {
+			if (isFocused) {
+				borderColor = theme.colors.primary.DEFAULT;
+			} else if (isInvalid) {
+				borderColor = theme.colors.danger.DEFAULT;
+			} else {
+				borderColor = theme.colors.default[200];
+			}
+		}
 
-    // Opacity based on disabled state
-    const opacity = isDisabled ? theme.opacity.disabled : 1;
+		// Opacity based on disabled state
+		const opacity = isDisabled ? theme.opacity.disabled : 1;
 
-    return {
-      flexDirection: 'row',
-      alignItems: 'center',
-      borderRadius: theme.radius.md,
-      backgroundColor: isOutlined ? theme.colors.background : theme.colors.content1.DEFAULT,
-      borderWidth: isOutlined ? 1 : 0,
-      borderColor,
-      opacity,
-      ...sizeStyles[size],
-      ...customStyle,
-    };
-  },
+		return {
+			flexDirection: 'row',
+			alignItems: 'center',
+			borderRadius: theme.radius.md,
+			backgroundColor: isOutlined
+				? theme.colors.background
+				: theme.colors.content1.DEFAULT,
+			borderWidth: isOutlined ? 1 : 0,
+			borderColor,
+			opacity,
+			...sizeStyles[size],
+			...customStyle,
+		};
+	},
 
-  // ════════════════════════════════════════════════════════════════════════════
-  // TEXT INPUT
-  // Size parameter integrated
-  // ════════════════════════════════════════════════════════════════════════════
-  textInput: (
-    isDisabled: boolean,
-    size: 'sm' | 'md' | 'lg',
-    customStyle?: Record<string, any>
-  ) => {
-    const sizeStyles = {
-      sm: { fontSize: 14 },
-      md: { fontSize: 15 },
-      lg: { fontSize: 16 },
-    };
+	// ════════════════════════════════════════════════════════════════════════════
+	// TEXT INPUT
+	// Size parameter integrated
+	// ════════════════════════════════════════════════════════════════════════════
+	textInput: (
+		isDisabled: boolean,
+		size: 'sm' | 'md' | 'lg',
+		customStyle?: Record<string, any>
+	) => {
+		const sizeStyles = {
+			sm: { fontSize: 14 },
+			md: { fontSize: 15 },
+			lg: { fontSize: 16 },
+		};
 
-    return {
-      flex: 1,
-      fontFamily: 'Pretendard-Regular',
-      color: isDisabled ? theme.colors.default[400] : theme.colors.foreground,
-      ...sizeStyles[size],
-      ...customStyle,
-    };
-  },
+		return {
+			flex: 1,
+			fontFamily: 'Pretendard-Regular',
+			color: isDisabled ? theme.colors.default[400] : theme.colors.foreground,
+			...sizeStyles[size],
+			...customStyle,
+		};
+	},
 
-  // ════════════════════════════════════════════════════════════════════════════
-  // LABEL
-  // Size parameter integrated
-  // ════════════════════════════════════════════════════════════════════════════
-  label: (
-    isInvalid: boolean,
-    size: 'sm' | 'md' | 'lg',
-    customStyle?: Record<string, any>
-  ) => {
-    const sizeStyles = {
-      sm: { fontSize: 12 },
-      md: { fontSize: 13 },
-      lg: { fontSize: 14 },
-    };
+	// ════════════════════════════════════════════════════════════════════════════
+	// LABEL
+	// Size parameter integrated
+	// ════════════════════════════════════════════════════════════════════════════
+	label: (
+		isInvalid: boolean,
+		size: 'sm' | 'md' | 'lg',
+		customStyle?: Record<string, any>
+	) => {
+		const sizeStyles = {
+			sm: { fontSize: 12 },
+			md: { fontSize: 13 },
+			lg: { fontSize: 14 },
+		};
 
-    return {
-      fontWeight: '500',
-      fontFamily: 'Pretendard-Medium',
-      marginBottom: theme.spacing[1],
-      color: isInvalid ? theme.colors.danger.DEFAULT : theme.colors.default[600],
-      ...sizeStyles[size],
-      ...customStyle,
-    };
-  },
+		return {
+			fontWeight: '500',
+			fontFamily: 'Pretendard-Medium',
+			marginBottom: theme.spacing[1],
+			color: isInvalid
+				? theme.colors.danger.DEFAULT
+				: theme.colors.default[600],
+			...sizeStyles[size],
+			...customStyle,
+		};
+	},
 
-  // ════════════════════════════════════════════════════════════════════════════
-  // STATIC STYLES (No parameters needed)
-  // ════════════════════════════════════════════════════════════════════════════
-  rootContainer: {
-    width: '100%',
-  },
+	// ════════════════════════════════════════════════════════════════════════════
+	// STATIC STYLES (No parameters needed)
+	// ════════════════════════════════════════════════════════════════════════════
+	rootContainer: {
+		width: '100%',
+	},
 
-  requiredIndicator: {
-    fontWeight: '600',
-    color: theme.colors.danger.DEFAULT,
-  },
+	requiredIndicator: {
+		fontWeight: '600',
+		color: theme.colors.danger.DEFAULT,
+	},
 
-  startContentContainer: {
-    marginRight: theme.spacing[2],
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+	startContentContainer: {
+		marginRight: theme.spacing[2],
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
 
-  clearButtonContainer: {
-    padding: theme.spacing[1],
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+	clearButtonContainer: {
+		padding: theme.spacing[1],
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
 
-  endContentContainer: {
-    marginLeft: theme.spacing[2],
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+	endContentContainer: {
+		marginLeft: theme.spacing[2],
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
 
-  supportTextContainer: {
-    marginTop: theme.spacing[1],
-  },
+	supportTextContainer: {
+		marginTop: theme.spacing[1],
+	},
 
-  descriptionText: {
-    fontSize: 12,
-    lineHeight: 16,
-    fontFamily: 'Pretendard-Regular',
-    color: theme.colors.default[500],
-  },
+	descriptionText: {
+		fontSize: 12,
+		lineHeight: 16,
+		fontFamily: 'Pretendard-Regular',
+		color: theme.colors.default[500],
+	},
 
-  errorText: {
-    fontSize: 12,
-    lineHeight: 16,
-    fontWeight: '500',
-    fontFamily: 'Pretendard-Medium',
-    color: theme.colors.danger.DEFAULT,
-  },
+	errorText: {
+		fontSize: 12,
+		lineHeight: 16,
+		fontWeight: '500',
+		fontFamily: 'Pretendard-Medium',
+		color: theme.colors.danger.DEFAULT,
+	},
 }));
 ```
 
 **InputView.tsx (Native):**
+
 ```typescript
 export const InputView = forwardRef<InputRef, InputProps>(
   ({
@@ -286,6 +304,7 @@ export const InputView = forwardRef<InputRef, InputProps>(
 ```
 
 **InputView.web.tsx (Web):**
+
 ```typescript
 export const InputView = forwardRef<InputRef, InputProps>(
   ({
@@ -528,42 +547,48 @@ TextField 컴포넌트는 **두 가지 레이어**로 구성됩니다:
 `TextFieldView`는 heroui-native의 TextField를 감싸서 레이아웃을 구성하는 **실제 UI 컴포넌트**입니다.
 
 **특징:**
+
 - heroui-native의 `TextFieldRootProps` 확장
 - `description`, `errorMessage` props로 자동 렌더링
 - 서브컴포넌트로 `Label`, `Input`, `Description`, `ErrorMessage` 제공
 - 커스텀 variant/size 타입 지원
 
 **Props:**
+
 ```typescript
 export interface TextFieldViewProps extends TextFieldRootProps {
-  variant?: 'default' | 'outlined';
-  size?: 'sm' | 'md' | 'lg';
-  description?: React.ReactNode;          // 자동 렌더링
-  descriptionProps?: TextFieldDescriptionProps;  // 속성 커스터마이징
-  errorMessage?: React.ReactNode;         // 자동 렌더링
-  errorMessageProps?: TextFieldErrorMessageProps; // 속성 커스터마이징
+	variant?: 'default' | 'outlined';
+	size?: 'sm' | 'md' | 'lg';
+	description?: React.ReactNode; // 자동 렌더링
+	descriptionProps?: TextFieldDescriptionProps; // 속성 커스터마이징
+	errorMessage?: React.ReactNode; // 자동 렌더링
+	errorMessageProps?: TextFieldErrorMessageProps; // 속성 커스터마이징
 }
 ```
 
 **사용 예제 1: Props로 description/errorMessage 전달**
+
 ```tsx
 <TextFieldView
-  description="We'll never share your email"
-  errorMessage="Invalid email format"
-  isInvalid={hasError}
+	description="We'll never share your email"
+	errorMessage="Invalid email format"
+	isInvalid={hasError}
 >
-  <TextFieldView.Label>Email</TextFieldView.Label>
-  <TextFieldView.Input placeholder="Enter email" />
+	<TextFieldView.Label>Email</TextFieldView.Label>
+	<TextFieldView.Input placeholder="Enter email" />
 </TextFieldView>
 ```
 
 **사용 예제 2: 자식 컴포넌트로 완전 제어**
+
 ```tsx
 <TextFieldView>
-  <TextFieldView.Label>Email</TextFieldView.Label>
-  <TextFieldView.Input placeholder="Enter email" />
-  <TextFieldView.Description>We'll never share your email</TextFieldView.Description>
-  <TextFieldView.ErrorMessage>Invalid email</TextFieldView.ErrorMessage>
+	<TextFieldView.Label>Email</TextFieldView.Label>
+	<TextFieldView.Input placeholder="Enter email" />
+	<TextFieldView.Description>
+		We'll never share your email
+	</TextFieldView.Description>
+	<TextFieldView.ErrorMessage>Invalid email</TextFieldView.ErrorMessage>
 </TextFieldView>
 ```
 
@@ -572,60 +597,63 @@ export interface TextFieldViewProps extends TextFieldRootProps {
 `TextField`는 TextFieldView를 감싸서 **MobX 상태 관리**를 추가합니다.
 
 **특징:**
+
 - MobX form state 자동 관리
 - `state`와 `path` props로 상태 연결
 - 자동 `value` 및 `onChangeText` 처리
 - TextFieldView의 모든 props 지원
 
 **Props:**
+
 ```typescript
 export interface TextFieldProps<T>
-  extends MobxProps<T>,
-    Omit<TextFieldViewProps, 'children'> {
-  label?: React.ReactNode;  // 자동으로 Label에 렌더링
-  inputProps?: TextFieldInputProps; // Input에 전달할 props
+	extends MobxProps<T>,
+		Omit<TextFieldViewProps, 'children'> {
+	label?: React.ReactNode; // 자동으로 Label에 렌더링
+	inputProps?: TextFieldInputProps; // Input에 전달할 props
 }
 ```
 
 **사용 예제: MobX와 함께 사용**
+
 ```tsx
 import { TextField } from '@/components/ui/inputs';
 
 interface LoginFormState {
-  email: string;
-  password: string;
+	email: string;
+	password: string;
 }
 
 export function LoginForm() {
-  const [state] = useState<LoginFormState>({
-    email: '',
-    password: '',
-  });
+	const [state] = useState<LoginFormState>({
+		email: '',
+		password: '',
+	});
 
-  return (
-    <>
-      <TextField
-        state={state}
-        path="email"
-        label="Email Address"
-        description="We'll never share your email"
-        inputProps={{
-          placeholder: "Enter your email",
-          keyboardType: "email-address"
-        }}
-      />
+	return (
+		<>
+			<TextField
+				state={state}
+				path="email"
+				label="Email Address"
+				description="We'll never share your email"
+				inputProps={{
+					placeholder: 'Enter your email',
+					keyboardType: 'email-address',
+				}}
+			/>
 
-      <TextField
-        state={state}
-        path="password"
-        label="Password"
-        inputProps={{
-          placeholder: "Enter password",
-          secureTextEntry: true
-        }}
-      />
-    </>
-  );
+			<TextField
+				state={state}
+				path="password"
+				label="Password"
+				inputProps={{
+					placeholder: 'Enter password',
+					secureTextEntry: true,
+				}}
+			/>
+		</>
+	);
 }
 ```
 
@@ -637,20 +665,18 @@ MobX 없이 순수 UI 컴포넌트로만 사용:
 import { TextFieldView } from '@/components/ui/inputs/TextField';
 
 export function SimpleForm() {
-  const [email, setEmail] = useState('');
+	const [email, setEmail] = useState('');
 
-  return (
-    <TextFieldView
-      description="We'll never share your email"
-    >
-      <TextFieldView.Label>Email</TextFieldView.Label>
-      <TextFieldView.Input
-        value={email}
-        onChangeText={setEmail}
-        placeholder="Enter email"
-      />
-    </TextFieldView>
-  );
+	return (
+		<TextFieldView description="We'll never share your email">
+			<TextFieldView.Label>Email</TextFieldView.Label>
+			<TextFieldView.Input
+				value={email}
+				onChangeText={setEmail}
+				placeholder="Enter email"
+			/>
+		</TextFieldView>
+	);
 }
 ```
 
@@ -667,6 +693,7 @@ components/ui/inputs/TextField/
 ### Export 가이드
 
 **기본 export (MobX wrapper):**
+
 ```typescript
 import TextField from '@/components/ui/inputs/TextField';
 // 또는
@@ -674,18 +701,20 @@ import { TextField } from '@/components/ui/inputs/TextField';
 ```
 
 **UI-only 컴포넌트:**
+
 ```typescript
 import { TextFieldView } from '@/components/ui/inputs/TextField';
 import type { TextFieldViewProps } from '@/components/ui/inputs/TextField';
 ```
 
 **서브컴포넌트:**
+
 ```typescript
 import {
-  TextFieldLabel,
-  TextFieldInput,
-  TextFieldDescription,
-  TextFieldErrorMessage
+	TextFieldLabel,
+	TextFieldInput,
+	TextFieldDescription,
+	TextFieldErrorMessage,
 } from '@/components/ui/inputs/TextField';
 ```
 
@@ -701,6 +730,7 @@ import {
 ### Hero UI Native 타입 활용
 
 라이브러리에서 제공하는 모든 타입을 활용:
+
 - `TextFieldRootProps` - 루트 컨테이너
 - `TextFieldInputProps` - input 필드
 - `TextFieldLabelProps` - label

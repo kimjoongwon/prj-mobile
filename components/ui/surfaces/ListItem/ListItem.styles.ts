@@ -5,9 +5,30 @@
 
 // Size configuration
 export const sizes = {
-	sm: { height: 56, px: 3, py: 2, imageSize: 32, titleFontSize: 14, descriptionFontSize: 12 },
-	md: { height: 72, px: 4, py: 3, imageSize: 48, titleFontSize: 16, descriptionFontSize: 14 },
-	lg: { height: 88, px: 5, py: 4, imageSize: 64, titleFontSize: 18, descriptionFontSize: 15 },
+	sm: {
+		height: 56,
+		px: 3,
+		py: 2,
+		imageSize: 32,
+		titleFontSize: 14,
+		descriptionFontSize: 12,
+	},
+	md: {
+		height: 72,
+		px: 4,
+		py: 3,
+		imageSize: 48,
+		titleFontSize: 16,
+		descriptionFontSize: 14,
+	},
+	lg: {
+		height: 88,
+		px: 5,
+		py: 4,
+		imageSize: 64,
+		titleFontSize: 18,
+		descriptionFontSize: 15,
+	},
 } as const;
 
 // Helper function to get container styles
@@ -16,7 +37,13 @@ export const getContainerClass = (
 	size: 'sm' | 'md' | 'lg',
 	isSelected: boolean
 ) => {
-	const baseClasses = ['flex', 'flex-row', 'items-center', 'rounded-lg', 'bg-content1'];
+	const baseClasses = [
+		'flex',
+		'flex-row',
+		'items-center',
+		'rounded-lg',
+		'bg-content1',
+	];
 
 	// Size classes
 	const sizeClass = {
@@ -26,7 +53,9 @@ export const getContainerClass = (
 	}[size];
 
 	// Border classes
-	const borderClass = isSelected ? 'border-2 border-primary' : 'border-1.5 border-content3';
+	const borderClass = isSelected
+		? 'border-2 border-primary'
+		: 'border-1.5 border-content3';
 
 	// Variant classes
 	const variantClass = {

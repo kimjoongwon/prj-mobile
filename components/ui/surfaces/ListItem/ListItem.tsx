@@ -60,7 +60,10 @@ export const ListItem: React.FC<ListItemProps> = props => {
 	};
 
 	return (
-		<View style={[inlineStyles.contentWrapper, style]} className={containerClassName}>
+		<View
+			style={[inlineStyles.contentWrapper, style]}
+			className={containerClassName}
+		>
 			<View style={inlineStyles.contentWrapper}>
 				{startContent && (
 					<View style={inlineStyles.startContent}>{startContent}</View>
@@ -88,7 +91,9 @@ export const ListItem: React.FC<ListItemProps> = props => {
 					)}
 				</View>
 
-				{endContent && <View style={inlineStyles.endContent}>{endContent}</View>}
+				{endContent && (
+					<View style={inlineStyles.endContent}>{endContent}</View>
+				)}
 			</View>
 		</View>
 	);

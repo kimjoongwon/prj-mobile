@@ -38,15 +38,18 @@ export interface ChipProps {
 }
 
 // Map custom variants to heroui-native variants
-const mapVariantToHero = (variant: ChipVariant): 'primary' | 'secondary' | 'tertiary' => {
-	const variantMap: Record<ChipVariant, 'primary' | 'secondary' | 'tertiary'> = {
-		solid: 'primary',
-		bordered: 'tertiary',
-		light: 'tertiary',
-		flat: 'tertiary',
-		faded: 'tertiary',
-		shadow: 'primary',
-	};
+const mapVariantToHero = (
+	variant: ChipVariant
+): 'primary' | 'secondary' | 'tertiary' => {
+	const variantMap: Record<ChipVariant, 'primary' | 'secondary' | 'tertiary'> =
+		{
+			solid: 'primary',
+			bordered: 'tertiary',
+			light: 'tertiary',
+			flat: 'tertiary',
+			faded: 'tertiary',
+			shadow: 'primary',
+		};
 	return variantMap[variant] || 'primary';
 };
 

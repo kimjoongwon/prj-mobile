@@ -100,7 +100,14 @@ export const RadioGroup = <T = any,>(
 	const groupContainerStyle: React.CSSProperties = {
 		display: 'flex',
 		flexDirection: orientation === 'horizontal' ? 'row' : 'column',
-		gap: orientation === 'horizontal' ? '16px' : orientation === 'vertical' && size === 'lg' ? '20px' : size === 'md' ? '16px' : '12px',
+		gap:
+			orientation === 'horizontal'
+				? '16px'
+				: orientation === 'vertical' && size === 'lg'
+					? '20px'
+					: size === 'md'
+						? '16px'
+						: '12px',
 		flexWrap: orientation === 'horizontal' ? 'wrap' : 'nowrap',
 		...groupStyle,
 	};
@@ -146,7 +153,8 @@ export const RadioGroup = <T = any,>(
 		const sizeDimensions = sizeMap[size];
 
 		// Color values for states
-		const colorTokens = theme.colors[isInvalid ? 'danger' : color] || theme.colors.default;
+		const colorTokens =
+			theme.colors[isInvalid ? 'danger' : color] || theme.colors.default;
 		const labelColor = String(colorTokens.DEFAULT);
 		const borderColor = theme.colors.default[400];
 		const textColor = theme.colors.foreground;
@@ -175,18 +183,18 @@ export const RadioGroup = <T = any,>(
 
 		const innerRadioStyle: React.CSSProperties = isSelected
 			? {
-				width: `${sizeDimensions.iconSize}px`,
-				height: `${sizeDimensions.iconSize}px`,
-				borderRadius: '50%',
-				backgroundColor: labelColor,
-				transition: 'all 0.2s ease',
-			}
+					width: `${sizeDimensions.iconSize}px`,
+					height: `${sizeDimensions.iconSize}px`,
+					borderRadius: '50%',
+					backgroundColor: labelColor,
+					transition: 'all 0.2s ease',
+				}
 			: {
-				width: 0,
-				height: 0,
-				backgroundColor: labelColor,
-				transition: 'all 0.2s ease',
-			};
+					width: 0,
+					height: 0,
+					backgroundColor: labelColor,
+					transition: 'all 0.2s ease',
+				};
 
 		const labelContainerStyle: React.CSSProperties = {
 			display: 'flex',
@@ -241,7 +249,6 @@ export const RadioGroup = <T = any,>(
 			</label>
 		);
 	};
-
 
 	const descriptionStyle: React.CSSProperties = {
 		fontSize: '12px',
@@ -313,7 +320,9 @@ export const RadioGroup = <T = any,>(
 				})}
 			</div>
 
-			{description && !errorMessage && <div style={descriptionStyle}>{description}</div>}
+			{description && !errorMessage && (
+				<div style={descriptionStyle}>{description}</div>
+			)}
 
 			{errorMessage && <div style={errorMessageStyle}>{errorMessage}</div>}
 		</div>

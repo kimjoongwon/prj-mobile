@@ -73,7 +73,7 @@ export interface RadioGroupProps<T = any> extends Omit<ViewProps, 'style'> {
 // MobX RadioGroup Props
 export interface MobxRadioGroupProps<T, D = any>
 	extends MobxProps<T>,
-	Omit<RadioGroupProps<D>, 'value' | 'onValueChange'> { }
+		Omit<RadioGroupProps<D>, 'value' | 'onValueChange'> {}
 
 export interface RadioGroupRef {
 	setValue: (value: string) => void;
@@ -191,7 +191,13 @@ export const RadioGroup = <T extends any>({
 		// ════════════════════════════════════════════════════════════════════════════
 
 		const radioContainerClassName = getRadioContainerClass(orientation);
-		const radioClassName = getRadioClass(size, isSelected, color, isInvalid, isOptionDisabled);
+		const radioClassName = getRadioClass(
+			size,
+			isSelected,
+			color,
+			isInvalid,
+			isOptionDisabled
+		);
 		const radioInnerClassName = getRadioInnerClass(size, color, isInvalid);
 		const optionLabelClassName = getOptionLabelClass(size, isOptionDisabled);
 
@@ -208,15 +214,18 @@ export const RadioGroup = <T extends any>({
 				}}
 				accessibilityLabel={labelExtractor(item, index)}
 			>
-				<Animated.View className={radioClassName} style={[inlineStyles.radio, radioAnimatedStyle]}>
-					<Animated.View className={radioInnerClassName} style={[inlineStyles.radioInner, innerRadioAnimatedStyle]} />
+				<Animated.View
+					className={radioClassName}
+					style={[inlineStyles.radio, radioAnimatedStyle]}
+				>
+					<Animated.View
+						className={radioInnerClassName}
+						style={[inlineStyles.radioInner, innerRadioAnimatedStyle]}
+					/>
 				</Animated.View>
 
 				<View style={inlineStyles.labelContainer}>
-					<Text
-						className={optionLabelClassName}
-						style={optionLabelStyle}
-					>
+					<Text className={optionLabelClassName} style={optionLabelStyle}>
 						{labelExtractor(item, index)}
 					</Text>
 					{descriptionExtractor?.(item, index) && (
@@ -235,7 +244,12 @@ export const RadioGroup = <T extends any>({
 				<Text className={groupLabelClassName} style={labelStyle}>
 					{label}
 					{isRequired && (
-						<Text style={[inlineStyles.requiredStar, { color: theme.colors.danger.DEFAULT }]}>
+						<Text
+							style={[
+								inlineStyles.requiredStar,
+								{ color: theme.colors.danger.DEFAULT },
+							]}
+						>
 							{' '}
 							*
 						</Text>
@@ -262,16 +276,10 @@ export const RadioGroup = <T extends any>({
 			</View>
 
 			{description && !errorMessage && (
-				<Text className={descriptionClassName}>
-					{description}
-				</Text>
+				<Text className={descriptionClassName}>{description}</Text>
 			)}
 
-			{errorMessage && (
-				<Text className={errorClassName}>
-					{errorMessage}
-				</Text>
-			)}
+			{errorMessage && <Text className={errorClassName}>{errorMessage}</Text>}
 		</View>
 	);
 };

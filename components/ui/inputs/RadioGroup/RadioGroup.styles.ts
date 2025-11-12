@@ -19,7 +19,8 @@ export const getGroupContainerClass = (
 		lg: 'gap-5',
 	}[size];
 
-	const directionClass = orientation === 'horizontal' ? 'flex-row flex-wrap' : 'flex-col';
+	const directionClass =
+		orientation === 'horizontal' ? 'flex-row flex-wrap' : 'flex-col';
 
 	return `flex ${directionClass} ${sizeClass}`;
 };
@@ -63,7 +64,11 @@ export const getRadioClass = (
 		lg: 'w-6 h-6',
 	}[size];
 
-	const colorClass = isInvalid ? 'border-danger' : isSelected ? `border-${color}` : 'border-default-400';
+	const colorClass = isInvalid
+		? 'border-danger'
+		: isSelected
+			? `border-${color}`
+			: 'border-default-400';
 
 	const opacityClass = isDisabled ? 'opacity-50' : 'opacity-100';
 

@@ -1,8 +1,10 @@
-import {
-	DefaultTheme,
-	ThemeProvider as RNNavThemeProvider,
-} from '@react-navigation/native';
-import React, { ReactNode, createContext, useContext, useEffect, useState } from 'react';
+import React, {
+	ReactNode,
+	createContext,
+	useContext,
+	useEffect,
+	useState,
+} from 'react';
 import { useColorScheme } from 'react-native';
 
 export interface ThemeContextType {
@@ -11,7 +13,9 @@ export interface ThemeContextType {
 	setTheme: (mode: 'light' | 'dark') => void;
 }
 
-export const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+export const ThemeContext = createContext<ThemeContextType | undefined>(
+	undefined
+);
 
 interface ThemeProviderProps {
 	children: ReactNode;
@@ -55,7 +59,7 @@ const ThemeProviderContent: React.FC<ThemeProviderProps> = ({
 	}, [initialTheme, systemColorScheme]);
 
 	const toggleTheme = () => {
-		setIsDark((prev) => {
+		setIsDark(prev => {
 			const newIsDark = !prev;
 
 			// Web 환경에서만 DOM 조작
@@ -88,31 +92,29 @@ const ThemeProviderContent: React.FC<ThemeProviderProps> = ({
 		}
 	};
 
-	// React Navigation 테마 (CSS 변수 참조)
-	const navTheme: typeof DefaultTheme = {
-		...DefaultTheme,
-		dark: isDark,
-		colors: {
-			...DefaultTheme.colors,
-			primary: isDark ? '#006fee' : '#006fee',
-			background: isDark ? '#000000' : '#ffffff',
-			card: isDark ? '#18181b' : '#ffffff',
-			text: isDark ? '#ffffff' : '#000000',
-			border: isDark ? '#323238' : '#ebebec',
-			notification: isDark ? '#f31260' : '#f31260',
-		},
-	};
+	// // React Navigation 테마 (CSS 변수 참조)
+	// const navTheme: typeof DefaultTheme = {
+	// 	...DefaultTheme,
+	// 	dark: isDark,
+	// 	colors: {
+	// 		...DefaultTheme.colors,
+	// 		primary: isDark ? '#006fee' : '#006fee',
+	// 		background: isDark ? '#000000' : '#ffffff',
+	// 		card: isDark ? '#18181b' : '#ffffff',
+	// 		text: isDark ? '#ffffff' : '#000000',
+	// 		border: isDark ? '#323238' : '#ebebec',
+	// 		notification: isDark ? '#f31260' : '#f31260',
+	// 	},
+	// };
 
 	return (
 		<ThemeContext.Provider value={{ isDark, toggleTheme, setTheme }}>
-			<RNNavThemeProvider value={navTheme}>
-				{children}
-			</RNNavThemeProvider>
+			{children}
 		</ThemeContext.Provider>
 	);
 };
 
-export const ThemeProvider: React.FC<ThemeProviderProps> = (props) => {
+export const ThemeProvider: React.FC<ThemeProviderProps> = props => {
 	return <ThemeProviderContent {...props} />;
 };
 

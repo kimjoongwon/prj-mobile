@@ -36,32 +36,34 @@ export interface TextFieldProps<T>
  * />
  * ```
  */
-export const TextField = observer(<T extends object>(props: TextFieldProps<T>) => {
-	const { state, path, label, inputProps, ...viewProps } = props;
+export const TextField = observer(
+	<T extends object>(props: TextFieldProps<T>) => {
+		const { state, path, label, inputProps, ...viewProps } = props;
 
-	const initialValue = get(state, path) as string;
+		const initialValue = get(state, path) as string;
 
-	const { localState } = useFormField({
-		initialValue,
-		state,
-		path,
-	});
+		const { localState } = useFormField({
+			initialValue,
+			state,
+			path,
+		});
 
-	const handleChange = action((value: string) => {
-		localState.value = value;
-	});
+		const handleChange = action((value: string) => {
+			localState.value = value;
+		});
 
-	return (
-		<TextFieldView {...viewProps} variant='outlined'>
-			{label && <TextFieldView.Label>{label}</TextFieldView.Label>}
-			<TextFieldView.Input
-				{...inputProps}
-				value={localState.value}
-				onChangeText={handleChange}
-			/>
-		</TextFieldView>
-	);
-});
+		return (
+			<TextFieldView {...viewProps} variant="outlined">
+				{label && <TextFieldView.Label>{label}</TextFieldView.Label>}
+				<TextFieldView.Input
+					{...inputProps}
+					value={localState.value}
+					onChangeText={handleChange}
+				/>
+			</TextFieldView>
+		);
+	}
+);
 
 TextField.displayName = 'TextField';
 

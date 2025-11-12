@@ -11,7 +11,14 @@ export type HeaderVariant = 'default' | 'transparent' | 'elevated';
 export interface HeaderAction {
 	title: string;
 	onPress: () => void;
-	variant?: 'solid' | 'bordered' | 'light' | 'flat' | 'faded' | 'shadow' | 'ghost';
+	variant?:
+		| 'solid'
+		| 'bordered'
+		| 'light'
+		| 'flat'
+		| 'faded'
+		| 'shadow'
+		| 'ghost';
 }
 
 export interface HeaderProps extends NativeStackHeaderProps {

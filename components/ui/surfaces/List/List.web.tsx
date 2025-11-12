@@ -43,8 +43,14 @@ export const List = <T extends object>(props: ListProps<T>) => {
 		overflow: horizontal ? 'auto' : 'auto',
 		overflowX: horizontal ? 'auto' : 'hidden',
 		overflowY: horizontal ? 'hidden' : 'auto',
-		msOverflowStyle: showsHorizontalScrollIndicator || showsVerticalScrollIndicator ? 'auto' : 'none',
-		scrollbarWidth: showsHorizontalScrollIndicator || showsVerticalScrollIndicator ? 'auto' : 'none',
+		msOverflowStyle:
+			showsHorizontalScrollIndicator || showsVerticalScrollIndicator
+				? 'auto'
+				: 'none',
+		scrollbarWidth:
+			showsHorizontalScrollIndicator || showsVerticalScrollIndicator
+				? 'auto'
+				: 'none',
 	};
 
 	return (

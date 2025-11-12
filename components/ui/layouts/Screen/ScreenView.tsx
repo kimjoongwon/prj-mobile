@@ -1,7 +1,7 @@
+import { useTheme } from '@/hooks/useTheme';
 import type React from 'react';
 import { StatusBar, View, type ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useTheme } from '@/hooks/useTheme';
 
 export interface ScreenViewProps {
 	children: React.ReactNode;
@@ -31,9 +31,6 @@ export const ScreenView: React.FC<ScreenViewProps> = ({
 	const { isDark } = useTheme();
 	const insets = useSafeAreaInsets();
 
-	const containerBackgroundColor =
-		backgroundColor || (isDark ? '#000000' : '#ffffff');
-
 	const getStatusBarStyle = () => {
 		if (statusBarStyle === 'auto') {
 			return isDark ? 'light-content' : 'dark-content';
@@ -52,20 +49,9 @@ export const ScreenView: React.FC<ScreenViewProps> = ({
 		: {};
 
 	return (
-		<View
-			style={[
-				{ flex: 1 },
-				{ backgroundColor: containerBackgroundColor },
-				safeAreaStyle,
-				style,
-			]}
-			{...props}
-		>
-			<StatusBar
-				barStyle={getStatusBarStyle()}
-				backgroundColor={containerBackgroundColor}
-			/>
-			{children}
+		<View className="flex-1 bg-background" style={safeAreaStyle} {...props}>
+			<StatusBar barStyle={getStatusBarStyle()} />
+			<View className="flex-1 bg-background">{children}</View>
 		</View>
 	);
 };

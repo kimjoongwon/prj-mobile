@@ -7,7 +7,7 @@ export default function TabTwoScreen() {
 			<Text>dd</Text>
 			<View className="flex-1 justify-center items-center bg-background">
 				<Button onPress={() => console.log('Pressed!')}>Get Started</Button>
-			</View>			
+			</View>
 		</View>
 	);
 }
