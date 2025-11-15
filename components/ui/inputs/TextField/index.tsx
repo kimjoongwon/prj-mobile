@@ -1,18 +1,18 @@
-import { observer } from 'mobx-react-lite';
-import { action } from 'mobx';
 import { useFormField } from '@cocrepo/hooks';
 import type { MobxProps } from '@cocrepo/types';
 import get from 'lodash-es/get';
+import { action } from 'mobx';
+import { observer } from 'mobx-react-lite';
 import React from 'react';
 import {
-	TextField as TextFieldUI,
-	type TextFieldProps as TextFieldUIProps,
-	TextFieldLabel,
-	TextFieldInput,
-	TextFieldInputStartContent,
-	TextFieldInputEndContent,
 	TextFieldDescription,
 	TextFieldErrorMessage,
+	TextFieldInput,
+	TextFieldInputEndContent,
+	TextFieldInputStartContent,
+	TextFieldLabel,
+	TextField as TextFieldUI,
+	type TextFieldProps as TextFieldUIProps,
 } from './TextField';
 
 /**
@@ -83,23 +83,15 @@ export { TextFieldUI };
 export type { TextFieldUIProps };
 
 // Re-export subcomponents
-export {
-	TextFieldLabel,
-	TextFieldInput,
-	TextFieldInputStartContent,
-	TextFieldInputEndContent,
-	TextFieldDescription,
-	TextFieldErrorMessage,
-};
+	export {
+		TextFieldDescription,
+		TextFieldErrorMessage, TextFieldInput, TextFieldInputEndContent, TextFieldInputStartContent, TextFieldLabel
+	};
 
 // Re-export types
-export type {
-	TextFieldVariant,
-	TextFieldSize,
-	TextFieldRootProps,
-	TextFieldLabelProps,
-	TextFieldDescriptionProps,
-	TextFieldErrorMessageProps,
-} from './TextField';
+	export type {
+		TextFieldDescriptionProps,
+		TextFieldErrorMessageProps, TextFieldLabelProps, TextFieldRootProps, TextFieldSize, TextFieldVariant
+	} from './TextField';
 
 export default TextField;

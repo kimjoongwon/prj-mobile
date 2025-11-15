@@ -1,7 +1,7 @@
-import { ComponentShowcase } from '../../data-display/ComponentShowcase';
 import type { Meta, StoryObj } from '@storybook/react-native';
 import React from 'react';
 import { View } from 'react-native';
+import { ComponentShowcase } from '../../data-display/ComponentShowcase';
 import { Text } from '../../data-display/Text';
 import { Surface } from './Surface';
 
