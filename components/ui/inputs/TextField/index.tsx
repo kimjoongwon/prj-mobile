@@ -64,9 +64,19 @@ export const TextField = observer(
 
 		return <TextFieldUI {...rest}>{enhancedChildren}</TextFieldUI>;
 	}
-);
+) as typeof TextFieldUI & {
+	<T extends object>(props: TextFieldProps<T>): React.ReactElement;
+};
 
 TextField.displayName = 'MobxTextField';
+
+// Attach compound components
+TextField.Label = TextFieldLabel;
+TextField.Input = TextFieldInput;
+TextField.InputStartContent = TextFieldInputStartContent;
+TextField.InputEndContent = TextFieldInputEndContent;
+TextField.Description = TextFieldDescription;
+TextField.ErrorMessage = TextFieldErrorMessage;
 
 // Export alias for UI component (stateless)
 export { TextFieldUI };

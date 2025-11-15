@@ -1,7 +1,6 @@
-import { TextField } from 'heroui-native';
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Text } from '../../ui/data-display/Text';
+import { TextField } from '../../ui/inputs/TextField';
 import { Card } from '../../ui/surfaces/Card';
 
 export interface LoginFormState {
@@ -11,41 +10,27 @@ export interface LoginFormState {
 
 export interface LoginFormProps {
 	state: LoginFormState;
-	onEmailChange?: (email: string) => void;
-	onPasswordChange?: (password: string) => void;
 }
 
-export const LoginForm: React.FC<LoginFormProps> = ({
-	state,
-	onEmailChange,
-	onPasswordChange,
-}) => {
+export const LoginForm: React.FC<LoginFormProps> = ({ state }) => {
 	return (
 		<Card style={styles.container}>
-			<TextField>
-				<TextField.Label>
-					<Text>이메일</Text>
-				</TextField.Label>
+			<TextField state={state} path="email">
+				<TextField.Label>이메일</TextField.Label>
 				<TextField.Input
 					placeholder="이메일을 입력하세요"
 					keyboardType="email-address"
 					autoCapitalize="none"
 					autoComplete="email"
-					value={state.email}
-					onChangeText={onEmailChange}
 				/>
 			</TextField>
 
-			<TextField>
-				<TextField.Label>
-					<Text>비밀번호</Text>
-				</TextField.Label>
+			<TextField state={state} path="password">
+				<TextField.Label>비밀번호</TextField.Label>
 				<TextField.Input
 					placeholder="비밀번호를 입력하세요"
 					secureTextEntry
 					autoComplete="password"
-					value={state.password}
-					onChangeText={onPasswordChange}
 				/>
 			</TextField>
 		</Card>
