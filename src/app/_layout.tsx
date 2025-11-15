@@ -13,7 +13,7 @@ function StorybookLayout() {
 
 	return (
 		<Suspense fallback={<></>}>
-			<SafeAreaView className="flex-1 bg-background">
+			<SafeAreaView className="flex-1 bg-background" edges={['top']}>
 				<StorybookView />
 			</SafeAreaView>
 		</Suspense>
