@@ -1,6 +1,5 @@
-import { ThemeProvider } from '@/components/provider/ThemeProvider';
+import { ComponentShowcase } from '@/components';
 import type { Meta, StoryObj } from '@storybook/react-native';
-import { View } from 'react-native';
 import { DarkModeSwitch } from './DarkModeSwitch';
 
 const meta: Meta<typeof DarkModeSwitch> = {
@@ -8,21 +7,20 @@ const meta: Meta<typeof DarkModeSwitch> = {
 	component: DarkModeSwitch,
 	decorators: [
 		Story => (
-			<ThemeProvider>
-				<View className="flex-1 justify-center items-center bg-white dark:bg-default-900">
-					<Story />
-				</View>
-			</ThemeProvider>
+			<ComponentShowcase
+				title="DarkModeSwitch"
+				description={[
+					'다크/라이트 모드를 전환할 수 있는 토글 스위치 컴포넌트입니다.',
+					'HeroUI Button과 Tailwind className을 이용한 테마 기반 스타일링을 지원합니다.',
+				]}
+			>
+				<Story />
+			</ComponentShowcase>
 		),
 	],
 	parameters: {
 		layout: 'centered',
-		docs: {
-			description: {
-				component:
-					'다크/라이트 모드를 전환할 수 있는 토글 스위치 컴포넌트입니다. Uniwind className을 이용한 테마 기반 스타일링을 지원합니다.',
-			},
-		},
+		notes: '다크/라이트 모드를 전환할 수 있는 토글 스위치 컴포넌트입니다.',
 	},
 	argTypes: {
 		className: {
@@ -35,26 +33,6 @@ const meta: Meta<typeof DarkModeSwitch> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-/**
- * Default DarkModeSwitch
- */
-export const Default: Story = {
+export const 기본: Story = {
 	args: {},
-};
-
-/**
- * With Custom Class
- */
-export const WithCustomClass: Story = {
-	args: {
-		className: 'absolute top-5 right-5',
-	},
-	parameters: {
-		docs: {
-			description: {
-				story:
-					'className을 이용한 커스텀 스타일을 적용한 DarkModeSwitch입니다.',
-			},
-		},
-	},
 };

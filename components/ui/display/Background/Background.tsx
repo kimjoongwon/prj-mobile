@@ -1,4 +1,3 @@
-import { useTheme } from '@/hooks/useTheme';
 import React from 'react';
 import { View as RNView, ViewProps as RNViewProps } from 'react-native';
 
@@ -8,11 +7,12 @@ import { View as RNView, ViewProps as RNViewProps } from 'react-native';
  */
 export interface BackgroundProps extends RNViewProps {
 	children?: React.ReactNode;
+	className?: string;
 }
 
 /**
  * Background Component
- * A themed container component that applies background color from the current theme
+ * A themed container component that applies background color from Uniwind theme
  *
  * Usage:
  * ```tsx
@@ -23,16 +23,11 @@ export interface BackgroundProps extends RNViewProps {
  */
 export const Background: React.FC<BackgroundProps> = ({
 	children,
-	style,
+	className = '',
 	...props
 }) => {
-	const { theme } = useTheme();
-
 	return (
-		<RNView
-			style={[{ backgroundColor: theme.colors.background }, style]}
-			{...props}
-		>
+		<RNView className={`bg-background ${className}`} {...props}>
 			{children}
 		</RNView>
 	);

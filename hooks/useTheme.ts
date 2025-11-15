@@ -4,8 +4,8 @@
  * Uniwind의 useUniwind hook을 래핑하여 테마 제공
  */
 
-import { useUniwind, Uniwind } from 'uniwind';
 import { appThemes, type UnistyleTheme } from '@/unistyles';
+import { Uniwind, useUniwind } from 'uniwind';
 
 export interface ThemeContextValue {
 	theme: UnistyleTheme;

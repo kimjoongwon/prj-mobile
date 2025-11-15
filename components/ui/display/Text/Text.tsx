@@ -1,10 +1,6 @@
-import { useTheme } from '@/hooks/useTheme';
 import React from 'react';
-import {
-	Text as RNText,
-	TextProps as RNTextProps,
-	TextStyle,
-} from 'react-native';
+import { Text as RNText, TextProps as RNTextProps } from 'react-native';
+import { tv } from 'tailwind-variants';
 
 export type TextVariant =
 	| 'h1'
@@ -16,7 +12,8 @@ export type TextVariant =
 	| 'body1'
 	| 'body2'
 	| 'caption'
-	| 'overline';
+	| 'overline'
+	| 'label';
 
 export type TextColor =
 	| 'foreground'
@@ -27,56 +24,54 @@ export type TextColor =
 	| 'danger'
 	| 'default';
 
-export interface TextProps extends Omit<RNTextProps, 'style'> {
+const textVariants = tv({
+	base: 'text-foreground',
+	variants: {
+		variant: {
+			h1: 'text-5xl font-bold',
+			h2: 'text-4xl font-bold',
+			h3: 'text-3xl font-semibold',
+			h4: 'text-2xl font-semibold',
+			h5: 'text-xl font-medium',
+			h6: 'text-lg font-medium',
+			body1: 'text-base',
+			body2: 'text-sm',
+			caption: 'text-xs',
+			overline: 'text-xs uppercase tracking-wider',
+			label: 'text-xs font-medium',
+		},
+		color: {
+			foreground: 'text-foreground',
+			primary: 'text-primary',
+			secondary: 'text-secondary',
+			success: 'text-success',
+			warning: 'text-warning',
+			danger: 'text-danger',
+			default: 'text-default-700',
+		},
+	},
+	defaultVariants: {
+		variant: 'body1',
+		color: 'foreground',
+	},
+});
+
+export interface TextProps extends RNTextProps {
 	children?: React.ReactNode;
 	variant?: TextVariant;
 	color?: TextColor;
-	style?: TextStyle | TextStyle[];
+	className?: string;
 }
 
 export const Text: React.FC<TextProps> = ({
 	children,
 	variant = 'body1',
 	color = 'foreground',
-	style,
+	className = '',
 	...props
 }) => {
-	const { theme, isDark } = useTheme();
-
-	// Unistyles typography tokens 기반 타이포그래피
-	const getVariantStyle = () => {
-		return theme.typography[variant];
-	};
-
-	// 테마 기반 색상 가져오기
-	const getTextColor = () => {
-		switch (color) {
-			case 'foreground':
-				return theme.colors.foreground;
-			case 'primary':
-				return theme.colors.primary.DEFAULT;
-			case 'secondary':
-				return theme.colors.secondary.DEFAULT;
-			case 'success':
-				return theme.colors.success.DEFAULT;
-			case 'warning':
-				return theme.colors.warning.DEFAULT;
-			case 'danger':
-				return theme.colors.danger.DEFAULT;
-			case 'default':
-				return isDark ? theme.colors.default[400] : theme.colors.default[600];
-			default:
-				return theme.colors.foreground;
-		}
-	};
-
-	const textStyle: TextStyle = {
-		...getVariantStyle(),
-		color: getTextColor(),
-	};
-
 	return (
-		<RNText style={[textStyle, style]} {...props}>
+		<RNText className={textVariants({ variant, color, className })} {...props}>
 			{children}
 		</RNText>
 	);
