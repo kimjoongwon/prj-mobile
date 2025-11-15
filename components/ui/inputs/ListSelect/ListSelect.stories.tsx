@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-native';
 import { useState } from 'react';
 import { View } from 'react-native';
-import { Text } from '../../display/Text';
-import { ListItem } from '../../surfaces/ListItem';
+import { ListItem } from '../../data-display/ListItem';
+import { Text } from '../../data-display/Text';
 import type { ListSelectProps } from './ListSelect';
 import { ListSelect } from './ListSelect';
 

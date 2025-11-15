@@ -10,6 +10,7 @@
 </cite>
 
 ## Table of Contents
+
 1. [Introduction](#introduction)
 2. [Metro Configuration Overview](#metro-configuration-overview)
 3. [Core Configuration Components](#core-configuration-components)
@@ -22,9 +23,11 @@
 10. [Conclusion](#conclusion)
 
 ## Introduction
+
 The Metro bundler configuration in the Plate application serves as the foundation for efficient code compilation, module resolution, and asset processing. This document provides a comprehensive analysis of the `metro.config.js` file and its role in supporting the application's development workflow. The configuration enables critical features such as TypeScript compilation, CSS module processing, and custom file resolution, while integrating with tools like Uniwind for styling and Expo Router for navigation. Understanding this configuration is essential for maintaining optimal build performance, resolving module dependencies correctly, and ensuring consistent behavior across iOS, Android, and web platforms.
 
 **Section sources**
+
 - [metro.config.js](file://metro.config.js#L1-L24)
 
 ## Metro Configuration Overview
@@ -45,10 +48,12 @@ I[uniwind-types.d.ts] --> C
 ```
 
 **Diagram sources**
+
 - [metro.config.js](file://metro.config.js#L2-L24)
 - [globals.css](file://globals.css#L1-L7)
 
 **Section sources**
+
 - [metro.config.js](file://metro.config.js#L1-L24)
 - [package.json](file://package.json#L104)
 
@@ -78,10 +83,12 @@ Environment --> MetroConfig : "determines mode"
 ```
 
 **Diagram sources**
+
 - [metro.config.js](file://metro.config.js#L2-L24)
 - [package.json](file://package.json#L104)
 
 **Section sources**
+
 - [metro.config.js](file://metro.config.js#L1-L24)
 
 ## TypeScript Integration
@@ -102,10 +109,12 @@ C --> H[Bundle]
 ```
 
 **Diagram sources**
+
 - [tsconfig.json](file://tsconfig.json#L1-L17)
 - [metro.config.js](file://metro.config.js#L2-L6)
 
 **Section sources**
+
 - [tsconfig.json](file://tsconfig.json#L1-L17)
 
 ## CSS and Styling Configuration
@@ -125,10 +134,12 @@ B --> G[Final CSS Bundle]
 ```
 
 **Diagram sources**
+
 - [globals.css](file://globals.css#L1-L7)
 - [metro.config.js](file://metro.config.js#L10-L16)
 
 **Section sources**
+
 - [globals.css](file://globals.css#L1-L7)
 - [metro.config.js](file://metro.config.js#L10-L16)
 
@@ -139,6 +150,7 @@ The Metro configuration supports platform-specific file resolution through Expo'
 This capability is demonstrated in components such as `ListSelect.web.tsx` and `RadioGroup.web.tsx`, which provide web-specific implementations while sharing core functionality with their cross-platform counterparts. The bundler automatically selects the appropriate file based on the target platform, enabling optimized rendering and behavior for each environment.
 
 **Section sources**
+
 - [components/ui/inputs/ListSelect/ListSelect.web.tsx](file://components/ui/inputs/ListSelect/ListSelect.web.tsx)
 - [components/ui/inputs/RadioGroup/RadioGroup.web.tsx](file://components/ui/inputs/RadioGroup/RadioGroup.web.tsx)
 
@@ -149,6 +161,7 @@ The Metro configuration includes several performance optimizations to ensure fas
 For optimal performance, developers should leverage the provided npm scripts such as `start:clear` and `web:clear` which clear the Metro cache before starting the development server. This helps resolve issues related to stale cache entries and ensures that the latest code changes are properly reflected.
 
 **Section sources**
+
 - [package.json](file://package.json#L34-L63)
 
 ## Common Issues and Troubleshooting
@@ -160,8 +173,9 @@ Cache-related problems, such as outdated code or missing imports, can be address
 Styling inconsistencies, particularly with Uniwind classes, may require regenerating the type definitions by restarting the development server or manually triggering the Uniwind processor. Ensuring that `globals.css` is properly imported in the root layout file also helps maintain consistent styling across the application.
 
 **Section sources**
+
 - [metro.config.js](file://metro.config.js#L8-L24)
-- [src/app/_layout.tsx](file://src/app/_layout.tsx#L5)
+- [src/app/\_layout.tsx](file://src/app/_layout.tsx#L5)
 
 ## Integration with Expo Router
 
@@ -183,11 +197,14 @@ App->>App : Render appropriate layout
 ```
 
 **Diagram sources**
-- [src/app/_layout.tsx](file://src/app/_layout.tsx#L1-L44)
+
+- [src/app/\_layout.tsx](file://src/app/_layout.tsx#L1-L44)
 - [metro.config.js](file://metro.config.js#L6)
 
 **Section sources**
-- [src/app/_layout.tsx](file://src/app/_layout.tsx#L1-L44)
+
+- [src/app/\_layout.tsx](file://src/app/_layout.tsx#L1-L44)
 
 ## Conclusion
+
 The Metro bundler configuration in the Plate application provides a robust foundation for development, supporting TypeScript, CSS modules, and platform-specific file resolution through a well-structured configuration. By extending Expo's default configuration with Uniwind integration and Storybook support, the setup enables efficient development workflows across multiple environments. Understanding the configuration's components and their interactions is crucial for maintaining optimal performance and resolving common development issues. The integration with Expo Router further enhances the development experience by providing a seamless connection between bundling and routing functionality.

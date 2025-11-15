@@ -10,6 +10,7 @@
 </cite>
 
 ## Table of Contents
+
 1. [Current Status of Feedback Components](#current-status-of-feedback-components)
 2. [External Library Integration](#external-library-integration)
 3. [Theming Infrastructure](#theming-infrastructure)
@@ -24,6 +25,7 @@ The feedback component category currently exists as a placeholder in the codebas
 No concrete feedback components (Toast, Snackbar, LoadingSpinner, ActivityIndicator) have been implemented within the local codebase. The directory structure shows the intentional organization of components by atomic design principles, with the feedback category already established in the component hierarchy despite lacking actual implementations.
 
 **Section sources**
+
 - [index.ts](file://components/ui/feedback/index.ts#L1-L2)
 
 ## External Library Integration
@@ -35,6 +37,7 @@ The `package.json` file confirms `heroui-native` as a dependency, and the `globa
 This architectural approach suggests that feedback components should follow the same pattern: utilizing `heroui-native`'s native feedback components while potentially extending them with application-specific functionality or styling when necessary.
 
 **Section sources**
+
 - [package.json](file://package.json#L86)
 - [globals.css](file://globals.css#L4)
 - [Button.tsx](file://components/ui/inputs/Button/Button.tsx#L1)
@@ -65,9 +68,11 @@ Theme --> ColorScale : contains
 ```
 
 **Diagram sources**
+
 - [unistyles.ts](file://unistyles.ts#L5-L445)
 
 **Section sources**
+
 - [unistyles.ts](file://unistyles.ts#L5-L445)
 
 ## Potential Use Cases
@@ -108,5 +113,6 @@ Any future feedback components must align with the established atomic design sys
 New feedback components should follow these same principles to ensure visual and functional consistency across the application. The existing design tokens in `unistyles.ts` provide all necessary styling primitives, eliminating the need for custom styling and ensuring coherence with the overall design language.
 
 **Section sources**
+
 - [unistyles.ts](file://unistyles.ts#L5-L445)
 - [Button.tsx](file://components/ui/inputs/Button/Button.tsx#L1-L91)

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-native';
 import { View } from 'react-native';
-import { Text } from '../../display/Text';
+import { Text } from '../../data-display/Text';
 import type { CardProps } from './Card';
 import { Card } from './Card';
 

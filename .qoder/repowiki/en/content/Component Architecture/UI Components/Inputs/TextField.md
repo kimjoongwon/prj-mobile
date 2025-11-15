@@ -9,6 +9,7 @@
 </cite>
 
 ## Table of Contents
+
 1. [Introduction](#introduction)
 2. [Core Functionality](#core-functionality)
 3. [TextFieldProps Interface](#textfieldprops-interface)
@@ -27,6 +28,7 @@ The TextField component in the Plate application serves as a UI container that e
 The TextField component is part of a larger ecosystem of UI components and follows the compound component pattern, where the main component is assigned subcomponents like Label, Input, Description, and ErrorMessage from the HeroTextField. This design enables a clean and intuitive API for building complex input fields with minimal boilerplate code.
 
 **Section sources**
+
 - [TextField.tsx](file://components/ui/inputs/TextField/TextField.tsx#L1-L178)
 
 ## Core Functionality
@@ -51,6 +53,7 @@ A --> I[MobX State Management Integration]
 ```
 
 **Diagram sources**
+
 - [TextField.tsx](file://components/ui/inputs/TextField/TextField.tsx#L44-L45)
 
 ## TextFieldProps Interface
@@ -73,6 +76,7 @@ The interface includes the following custom props:
 The TextFieldProps interface also extends MobxProps<T>, enabling integration with MobX state management for seamless form handling.
 
 **Section sources**
+
 - [TextField.tsx](file://components/ui/inputs/TextField/TextField.tsx#L22-L37)
 - [index.tsx](file://components/ui/inputs/TextField/index.tsx#L21-L23)
 
@@ -86,13 +90,13 @@ The prop-based convenience pattern allows developers to pass description and err
 
 ```tsx
 <TextField
-  inputStartContent={<Icon />}
-  inputEndContent={<Button />}
-  description="We'll never share your email"
-  errorMessage="Invalid email address"
+	inputStartContent={<Icon />}
+	inputEndContent={<Button />}
+	description="We'll never share your email"
+	errorMessage="Invalid email address"
 >
-  <TextField.Label>Email</TextField.Label>
-  <TextField.Input placeholder="Enter email" />
+	<TextField.Label>Email</TextField.Label>
+	<TextField.Input placeholder="Enter email" />
 </TextField>
 ```
 
@@ -104,13 +108,17 @@ The direct children pattern provides complete control over the component's struc
 
 ```tsx
 <TextField>
-  <TextField.Label>Email</TextField.Label>
-  <TextField.Input placeholder="Enter email">
-    <TextField.InputStartContent><Icon /></TextField.InputStartContent>
-    <TextField.InputEndContent><Button /></TextField.InputEndContent>
-  </TextField.Input>
-  <TextField.Description>We'll never share your email</TextField.Description>
-  <TextField.ErrorMessage>Invalid email</TextField.ErrorMessage>
+	<TextField.Label>Email</TextField.Label>
+	<TextField.Input placeholder="Enter email">
+		<TextField.InputStartContent>
+			<Icon />
+		</TextField.InputStartContent>
+		<TextField.InputEndContent>
+			<Button />
+		</TextField.InputEndContent>
+	</TextField.Input>
+	<TextField.Description>We'll never share your email</TextField.Description>
+	<TextField.ErrorMessage>Invalid email</TextField.ErrorMessage>
 </TextField>
 ```
 
@@ -119,6 +127,7 @@ This pattern allows developers to customize each part of the input field indepen
 The choice between these two patterns depends on the specific use case and the level of customization required. For simple forms, the prop-based pattern is often sufficient, while more complex scenarios may benefit from the direct children approach.
 
 **Section sources**
+
 - [TextField.tsx](file://components/ui/inputs/TextField/TextField.tsx#L47-L75)
 
 ## Component Composition and Rendering Logic
@@ -146,6 +155,7 @@ G --> K[Inject input end content]
 ```
 
 **Diagram sources**
+
 - [TextField.tsx](file://components/ui/inputs/TextField/TextField.tsx#L97-L137)
 
 ## Compound Component Implementation
@@ -156,12 +166,12 @@ The compound component implementation is achieved through the Object.assign meth
 
 ```typescript
 export const TextField = Object.assign(TextFieldComponent, {
-  Label: HeroTextField.Label,
-  Input: HeroTextField.Input,
-  InputStartContent: HeroTextField.InputStartContent,
-  InputEndContent: HeroTextField.InputEndContent,
-  Description: HeroTextField.Description,
-  ErrorMessage: HeroTextField.ErrorMessage,
+	Label: HeroTextField.Label,
+	Input: HeroTextField.Input,
+	InputStartContent: HeroTextField.InputStartContent,
+	InputEndContent: HeroTextField.InputEndContent,
+	Description: HeroTextField.Description,
+	ErrorMessage: HeroTextField.ErrorMessage,
 });
 ```
 
@@ -191,6 +201,7 @@ TextField --> HeroTextField : "assigns subcomponents"
 ```
 
 **Diagram sources**
+
 - [TextField.tsx](file://components/ui/inputs/TextField/TextField.tsx#L149-L156)
 
 ## Integration with LoginForm
@@ -233,6 +244,7 @@ Here's an example of how the TextField component is used in the LoginForm:
 This integration demonstrates the TextField component's ability to handle common form input scenarios, such as email and password fields, with minimal configuration. The use of the Text component within the Label subcomponent also showcases the component's compatibility with other UI elements in the application.
 
 **Section sources**
+
 - [LoginForm.tsx](file://components/form/LoginForm/LoginForm.tsx#L25-L50)
 
 ## Accessibility and Theming
@@ -262,6 +274,7 @@ D --> M[Desktop Adaptation]
 ```
 
 **Diagram sources**
+
 - [TextField.tsx](file://components/ui/inputs/TextField/TextField.tsx#L1-L178)
 - [unistyle.txt](file://unistyle.txt#L1926-L8338)
 
@@ -280,6 +293,7 @@ Additionally, developers should consider using responsive design techniques to a
 Validation state management is crucial for providing feedback to users when they enter invalid data. The TextField component supports error message display through the errorMessage prop and the isInvalid state. Developers should ensure that the validation logic is properly implemented and that error messages are clear and concise.
 
 Best practices for validation state management include:
+
 - Providing real-time validation feedback as the user types
 - Using clear and specific error messages that explain what went wrong and how to fix it
 - Highlighting the input field with a visual indicator when in an invalid state
@@ -288,6 +302,7 @@ Best practices for validation state management include:
 ### Best Practices for Form Integration
 
 When integrating the TextField component with MobX state management, developers should follow these best practices:
+
 - Use the useFormField hook to manage form state and synchronize it with the component's value
 - Implement proper error handling and validation logic to ensure data integrity
 - Use the path prop to specify the location of the form field value in the state tree
@@ -296,6 +311,7 @@ When integrating the TextField component with MobX state management, developers 
 By following these best practices, developers can create robust and user-friendly forms that provide a seamless experience for users.
 
 **Section sources**
+
 - [TextField.tsx](file://components/ui/inputs/TextField/TextField.tsx#L1-L178)
 - [index.tsx](file://components/ui/inputs/TextField/index.tsx#L1-L95)
 
@@ -326,4 +342,5 @@ F --> K[Optimize component performance]
 ```
 
 **Diagram sources**
+
 - [index.tsx](file://components/ui/inputs/TextField/index.tsx#L38-L66)

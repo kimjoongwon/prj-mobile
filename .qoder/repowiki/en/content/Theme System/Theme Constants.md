@@ -12,6 +12,7 @@
 </cite>
 
 ## Table of Contents
+
 1. [Introduction](#introduction)
 2. [Theme Structure](#theme-structure)
 3. [Color System](#color-system)
@@ -33,6 +34,7 @@ The Plate application implements a comprehensive theme system that provides a co
 The theme system in the Plate application is organized into several key categories: colors, spacing, border radius, shadows, typography, fonts, and opacity. These design tokens are defined in the `unistyles.ts` file and are structured to provide a consistent and scalable design system. The theme follows a modular approach where each category contains specific tokens that can be referenced throughout the application. The system is designed to be platform-agnostic, working seamlessly across web and native environments through the uniwind integration.
 
 **Section sources**
+
 - [unistyles.ts](file://unistyles.ts#L245-L399)
 
 ## Color System
@@ -80,9 +82,11 @@ CONTENT_COLOR ||--o{ THEME : "content4"
 ```
 
 **Diagram sources**
+
 - [unistyles.ts](file://unistyles.ts#L25-L239)
 
 **Section sources**
+
 - [unistyles.ts](file://unistyles.ts#L25-L239)
 - [constants/theme.ts](file://constants/theme.ts#L6-L22)
 
@@ -93,6 +97,7 @@ The spacing system in the Plate application follows a base-4 scale, providing a 
 The system also includes predefined border radius values (none, sm, md, lg, xl, 2xl, 3xl, full) that correspond to common design patterns. Shadow definitions are provided for different elevation levels (none, sm, md, lg, xl), with appropriate shadow properties for both iOS and Android platforms. These design tokens enable developers to create visually consistent UI elements without hardcoding pixel values, promoting design system adherence and making future design updates easier to implement.
 
 **Section sources**
+
 - [unistyles.ts](file://unistyles.ts#L245-L277)
 
 ## Typography System
@@ -133,9 +138,11 @@ Typography <|-- overline
 ```
 
 **Diagram sources**
+
 - [unistyles.ts](file://unistyles.ts#L318-L393)
 
 **Section sources**
+
 - [unistyles.ts](file://unistyles.ts#L318-L393)
 
 ## CSS Variables and Tailwind Integration
@@ -160,11 +167,13 @@ J --> B
 ```
 
 **Diagram sources**
+
 - [globals.css](file://globals.css#L1-L7)
 - [uniwind-types.d.ts](file://uniwind-types.d.ts#L1-L10)
 - [unistyles.ts](file://unistyles.ts#L405-L444)
 
 **Section sources**
+
 - [globals.css](file://globals.css#L1-L7)
 - [uniwind-types.d.ts](file://uniwind-types.d.ts#L1-L10)
 - [unistyles.ts](file://unistyles.ts#L405-L444)
@@ -191,10 +200,12 @@ useTheme-->>App : Return theme, isDark, toggleTheme, setTheme
 ```
 
 **Diagram sources**
+
 - [components/provider/ThemeProvider/ThemeProvider.tsx](file://components/provider/ThemeProvider/ThemeProvider.tsx#L1-L59)
 - [hooks/useTheme.ts](file://hooks/useTheme.ts#L1-L41)
 
 **Section sources**
+
 - [components/provider/ThemeProvider/ThemeProvider.tsx](file://components/provider/ThemeProvider/ThemeProvider.tsx#L1-L59)
 - [hooks/useTheme.ts](file://hooks/useTheme.ts#L1-L41)
 
@@ -207,6 +218,7 @@ The Text component demonstrates how design tokens are applied through Tailwind c
 The component's implementation shows how semantic naming is used to connect component props with design tokens. The color prop maps to text color classes (text-foreground, text-primary, etc.) that reference the theme's color palette. This approach allows for consistent text styling across the application while maintaining flexibility for different use cases.
 
 **Section sources**
+
 - [components/ui/display/Text/Text.tsx](file://components/ui/display/Text/Text.tsx#L1-L79)
 
 ### Card Component
@@ -230,9 +242,11 @@ G --> K[padding: calculated value]
 ```
 
 **Diagram sources**
+
 - [components/ui/surfaces/Card/Card.tsx](file://components/ui/surfaces/Card/Card.tsx#L1-L51)
 
 **Section sources**
+
 - [components/ui/surfaces/Card/Card.tsx](file://components/ui/surfaces/Card/Card.tsx#L1-L51)
 
 ## Extending the Theme
@@ -244,6 +258,7 @@ When adding new properties, it's important to maintain consistency with the exis
 The theme extension process should also consider the impact on existing components and perform thorough testing to ensure that the new tokens work correctly in all contexts. Documentation should be updated to reflect the new tokens and their intended usage.
 
 **Section sources**
+
 - [unistyles.ts](file://unistyles.ts#L245-L399)
 
 ## Accessibility and Best Practices
@@ -251,6 +266,7 @@ The theme extension process should also consider the impact on existing componen
 The theme system in the Plate application prioritizes accessibility through careful color selection and contrast ratios. The color palettes for both light and dark modes are designed to meet WCAG 2.1 AA standards for text contrast, ensuring readability for users with visual impairments. The system uses semantic color names that indicate the purpose of each color, making it easier to use colors appropriately and maintain accessibility standards.
 
 Best practices for using the theme include:
+
 - Using semantic color names (primary, success, warning) rather than literal color names (blue, green, yellow)
 - Leveraging the predefined spacing tokens instead of hardcoding pixel values
 - Using the typography variants consistently for different text hierarchies
@@ -260,6 +276,7 @@ Best practices for using the theme include:
 The system also includes opacity tokens for common states like disabled (0.5) and hover (0.8), promoting consistency in interactive element behavior. These tokens help maintain a cohesive user experience across different components and interactions.
 
 **Section sources**
+
 - [unistyles.ts](file://unistyles.ts#L395-L399)
 - [constants/theme.ts](file://constants/theme.ts#L6-L22)
 
@@ -268,6 +285,7 @@ The system also includes opacity tokens for common states like disabled (0.5) an
 ### Missing Theme Variables
 
 If theme variables are not being applied correctly, check the following:
+
 1. Ensure the ThemeProvider is properly wrapped around the application or component tree
 2. Verify that the HTML root element has the correct class ('dark' for dark mode, no class for light mode)
 3. Check that the CSS variables are properly generated in the stylesheet
@@ -276,6 +294,7 @@ If theme variables are not being applied correctly, check the following:
 ### Inconsistent Styling Across Components
 
 Inconsistent styling typically occurs when components bypass the design system tokens. To resolve this:
+
 1. Audit components to ensure they use theme tokens through Tailwind classes or the useTheme hook
 2. Verify that all components use the same variant names for similar elements
 3. Check for hardcoded colors, spacing, or typography values that don't align with the theme
@@ -284,6 +303,7 @@ Inconsistent styling typically occurs when components bypass the design system t
 ### Theme Versioning and Updates
 
 When updating design tokens, follow these guidelines:
+
 1. Maintain backward compatibility by not removing existing tokens without a deprecation period
 2. Update both light and dark theme definitions consistently
 3. Test all components that use the updated tokens in both themes
@@ -292,6 +312,7 @@ When updating design tokens, follow these guidelines:
 6. Use version control to track changes to the theme files and coordinate updates across the team
 
 **Section sources**
+
 - [components/provider/ThemeProvider/ThemeProvider.tsx](file://components/provider/ThemeProvider/ThemeProvider.tsx#L1-L59)
 - [unistyles.ts](file://unistyles.ts#L245-L444)
 - [hooks/useTheme.ts](file://hooks/useTheme.ts#L1-L41)

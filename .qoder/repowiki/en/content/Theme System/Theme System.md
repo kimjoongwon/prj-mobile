@@ -16,6 +16,7 @@
 </cite>
 
 ## Table of Contents
+
 1. [Introduction](#introduction)
 2. [Theme Architecture Overview](#theme-architecture-overview)
 3. [ThemeProvider Implementation](#themeprovider-implementation)
@@ -28,6 +29,7 @@
 10. [Troubleshooting Common Issues](#troubleshooting-common-issues)
 
 ## Introduction
+
 The Plate application implements a comprehensive theme system that supports both light and dark modes with seamless integration across web and native platforms. The system leverages CSS variables, React Context, and Uniwind for efficient theme management and rendering. This documentation details the architecture, implementation, and usage patterns of the theme system, providing developers with the knowledge needed to work effectively with and extend the theming capabilities.
 
 ## Theme Architecture Overview
@@ -50,6 +52,7 @@ D --> N[DarkModeSwitch]
 ```
 
 **Diagram sources**
+
 - [ThemeProvider.tsx](file://components/provider/ThemeProvider/ThemeProvider.tsx#L10-L119)
 - [useTheme.ts](file://hooks/useTheme.ts#L18-L40)
 - [unistyles.ts](file://unistyles.ts#L405-L444)
@@ -59,6 +62,7 @@ D --> N[DarkModeSwitch]
 The ThemeProvider component serves as the central state management system for theme state in the Plate application. It uses React Context to provide theme information and control functions to all components in the application tree. The provider initializes theme state based on either an explicit initial theme or the system's color scheme preference.
 
 The implementation includes three primary functions:
+
 - `isDark`: Boolean state indicating the current theme mode
 - `toggleTheme`: Function to switch between light and dark modes
 - `setTheme`: Function to explicitly set the theme mode
@@ -66,6 +70,7 @@ The implementation includes three primary functions:
 On web platforms, the provider manipulates the DOM by adding or removing the 'dark' class from the documentElement, which integrates with Tailwind's @variant directive for conditional styling.
 
 **Section sources**
+
 - [ThemeProvider.tsx](file://components/provider/ThemeProvider/ThemeProvider.tsx#L30-L119)
 
 ## useTheme Hook
@@ -73,6 +78,7 @@ On web platforms, the provider manipulates the DOM by adding or removing the 'da
 The useTheme hook provides a convenient interface for components to access theme state and control functions. There are two implementations of this hook in the codebase, with the version in `/hooks/useTheme.ts` taking precedence due to its Uniwind integration.
 
 The hook returns an object containing:
+
 - `theme`: The current theme object with all design tokens
 - `isDark`: Boolean indicating if dark mode is active
 - `toggleTheme`: Function to toggle between themes
@@ -100,10 +106,12 @@ DOM-->>Rendering : Apply new styles
 ```
 
 **Diagram sources**
+
 - [useTheme.ts](file://hooks/useTheme.ts#L18-L40)
 - [ThemeProvider.tsx](file://components/provider/ThemeProvider/ThemeProvider.tsx#L124-L130)
 
 **Section sources**
+
 - [useTheme.ts](file://hooks/useTheme.ts#L18-L40)
 
 ## CSS Variable Integration
@@ -115,6 +123,7 @@ For web platforms, the system adds or removes the 'dark' class from the document
 The CSS variable approach is particularly effective for properties that can be expressed as CSS values, such as colors, spacing, and typography. Design tokens defined in `unistyles.ts` are automatically converted to CSS variables, making them available for use in Tailwind classes.
 
 **Section sources**
+
 - [ThemeProvider.tsx](file://components/provider/ThemeProvider/ThemeProvider.tsx#L50-L58)
 - [unistyles.ts](file://unistyles.ts#L245-L444)
 - [globals.css](file://globals.css#L1-L7)
@@ -142,10 +151,12 @@ H --> I[Apply Theme]
 ```
 
 **Diagram sources**
+
 - [ThemeProvider.tsx](file://components/provider/ThemeProvider/ThemeProvider.tsx#L38-L59)
 - [useColorScheme.ts](file://hooks/useColorScheme.ts#L3-L5)
 
 **Section sources**
+
 - [ThemeProvider.tsx](file://components/provider/ThemeProvider/ThemeProvider.tsx#L38-L59)
 - [useColorScheme.ts](file://hooks/useColorScheme.ts#L3-L5)
 
@@ -154,12 +165,15 @@ H --> I[Apply Theme]
 UI components in the Plate application consume theme information through the useTheme hook or directly via CSS classes that reference design tokens. Several patterns are used across the component library:
 
 ### Background Component
+
 The Background component uses a simple CSS class approach with `bg-background` to apply the theme's background color. This leverages Tailwind's theme configuration to automatically use the appropriate color based on the current theme.
 
 ### Text Component
+
 The Text component uses tailwind-variants (tv) to define different typography styles based on the variant and color props. The component maps these variants to appropriate font sizes, weights, and colors from the theme.
 
 ### Card Component
+
 The Card component demonstrates a more complex pattern by directly accessing theme tokens through the useTheme hook. It uses spacing, radius, and color tokens from the theme to style the component, allowing for consistent design language across the application.
 
 ```mermaid
@@ -200,11 +214,13 @@ Card --> useTheme : "calls hook"
 ```
 
 **Diagram sources**
+
 - [Background.tsx](file://components/ui/display/Background/Background.tsx#L24-L34)
 - [Text.tsx](file://components/ui/display/Text/Text.tsx#L27-L57)
 - [Card.tsx](file://components/ui/surfaces/Card/Card.tsx#L23-L43)
 
 **Section sources**
+
 - [Background.tsx](file://components/ui/display/Background/Background.tsx#L24-L34)
 - [Text.tsx](file://components/ui/display/Text/Text.tsx#L27-L78)
 - [Card.tsx](file://components/ui/surfaces/Card/Card.tsx#L17-L50)
@@ -214,6 +230,7 @@ Card --> useTheme : "calls hook"
 The theme system addresses both persistence and performance considerations through its integration with Uniwind. Theme state is persisted across sessions using Uniwind's theme management system, ensuring that user preferences are maintained between application launches.
 
 Performance is optimized through several mechanisms:
+
 - CSS variable usage minimizes re-renders during theme switching
 - DOM manipulation is limited to web platforms only
 - Theme state is managed at the root level, reducing prop drilling
@@ -222,6 +239,7 @@ Performance is optimized through several mechanisms:
 The system avoids unnecessary re-renders by using CSS variables for style changes rather than React state updates for individual components. This approach ensures smooth theme transitions even in complex component trees.
 
 **Section sources**
+
 - [useTheme.ts](file://hooks/useTheme.ts#L27-L33)
 - [ThemeProvider.tsx](file://components/provider/ThemeProvider/ThemeProvider.tsx#L61-L77)
 
@@ -234,24 +252,30 @@ When creating new components that need theme awareness, use the useTheme hook to
 The system supports both CSS-in-JS and utility-first approaches, allowing developers to choose the pattern that best fits their component's needs.
 
 **Section sources**
+
 - [unistyles.ts](file://unistyles.ts#L25-L239)
 - [useTheme.ts](file://hooks/useTheme.ts#L18-L40)
 
 ## Troubleshooting Common Issues
 
 ### Theme Not Persisting
+
 Ensure that Uniwind is properly configured and that the theme is being set through Uniwind.setTheme rather than local state updates. Check that the unistyles configuration is correctly set up in the application.
 
 ### Incorrect Initial Theme
+
 Verify that the systemColorScheme is being detected correctly and that the initialTheme prop (if provided) takes precedence over system preferences. Check that the useEffect dependency array includes both initialTheme and systemColorScheme.
 
 ### Web-Specific Styling Issues
+
 Confirm that the 'dark' class is being properly added to the documentElement on theme change. Verify that Tailwind's @variant directive is correctly configured in globals.css to handle the dark class.
 
 ### Performance Problems During Theme Switching
+
 Ensure that components are not unnecessarily re-rendering when the theme changes. Prefer CSS variable-based styling over inline styles that require re-renders. Use React.memo for components that are sensitive to theme changes.
 
 **Section sources**
+
 - [ThemeProvider.tsx](file://components/provider/ThemeProvider/ThemeProvider.tsx#L50-L58)
 - [useTheme.ts](file://hooks/useTheme.ts#L27-L33)
 - [globals.css](file://globals.css#L1-L7)

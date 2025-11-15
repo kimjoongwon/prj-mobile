@@ -27,6 +27,7 @@
 </cite>
 
 ## Table of Contents
+
 1. [Component Architecture Overview](#component-architecture-overview)
 2. [Component Categories and Roles](#component-categories-and-roles)
 3. [Architectural Patterns](#architectural-patterns)
@@ -39,6 +40,7 @@
 The Plate application implements an atomic design structure inspired by Material UI (MUI) standards, organizing components into a hierarchical system that promotes reusability, maintainability, and clear responsibility separation. The architecture follows MUI's categorization system while adapting it to the specific needs of the application. Components are organized into five main categories: ui, features, form, provider, and screen, each serving distinct purposes in the application ecosystem. This structure enables developers to quickly locate components based on their function and promotes consistency across the codebase. The design philosophy emphasizes clear separation between presentation and logic, with container components managing state and presentation components focusing solely on rendering UI elements.
 
 **Section sources**
+
 - [README.md](file://README.md#L268-L559)
 - [components/index.ts](file://components/index.ts#L1-L5)
 
@@ -74,10 +76,12 @@ F --> LoginScreen
 ```
 
 **Diagram sources**
+
 - [README.md](file://README.md#L274-L328)
 - [components/index.ts](file://components/index.ts#L1-L5)
 
 **Section sources**
+
 - [README.md](file://README.md#L332-L385)
 - [components/index.ts](file://components/index.ts#L1-L5)
 
@@ -102,11 +106,13 @@ LoginScreenView->>LoginScreenView : Render UI components
 ```
 
 **Diagram sources**
-- [src/app/_layout.tsx](file://src/app/_layout.tsx#L35-L43)
+
+- [src/app/\_layout.tsx](file://src/app/_layout.tsx#L35-L43)
 - [components/provider/ThemeProvider/ThemeProvider.tsx](file://components/provider/ThemeProvider/ThemeProvider.tsx#L31-L115)
 - [components/screen/LoginScreen/LoginScreen.tsx](file://components/screen/LoginScreen/LoginScreen.tsx#L12-L27)
 
 **Section sources**
+
 - [components/provider/ThemeProvider/ThemeProvider.tsx](file://components/provider/ThemeProvider/ThemeProvider.tsx#L16-L132)
 - [components/screen/LoginScreen/LoginScreen.tsx](file://components/screen/LoginScreen/LoginScreen.tsx#L12-L30)
 - [components/features/SNSButtons/SNSButtons.tsx](file://components/features/SNSButtons/SNSButtons.tsx#L16-L61)
@@ -132,10 +138,12 @@ H --> N[index.ts]
 ```
 
 **Diagram sources**
+
 - [README.md](file://README.md#L416-L438)
 - [components/ui/inputs/Button/Button.tsx](file://components/ui/inputs/Button/Button.tsx#L1-L91)
 
 **Section sources**
+
 - [README.md](file://README.md#L388-L413)
 - [components/ui/inputs/index.ts](file://components/ui/inputs/index.ts#L1-L6)
 
@@ -161,11 +169,13 @@ L --> N[export { TextField } from './TextField']
 ```
 
 **Diagram sources**
+
 - [components/index.ts](file://components/index.ts#L1-L5)
 - [components/ui/index.ts](file://components/ui/index.ts#L1-L5)
 - [components/ui/inputs/index.ts](file://components/ui/inputs/index.ts#L1-L6)
 
 **Section sources**
+
 - [components/index.ts](file://components/index.ts#L1-L5)
 - [components/ui/index.ts](file://components/ui/index.ts#L1-L5)
 - [components/form/LoginForm/LoginForm.tsx](file://components/form/LoginForm/LoginForm.tsx#L18-L53)
@@ -175,5 +185,6 @@ L --> N[export { TextField } from './TextField']
 When working with the component architecture, several common issues may arise that developers should be aware of. One frequent challenge is determining the appropriate category for a new component, which can be resolved by following the decision tree outlined in the documentation: reusable components belong in ui, project-specific features go in features, form-related components belong in form, global state providers go in provider, and complete pages go in screen. Another common issue is improper component composition, such as creating overly complex components that violate the single responsibility principle. Best practices include keeping components focused on a single purpose, using the container/presentation pattern to separate concerns, and leveraging the existing category structure rather than creating new categories. When adding new components, developers should follow the established naming conventions and file structure patterns, create appropriate Storybook documentation, and ensure proper type definitions are exported. The architecture is designed to be extensible, allowing for new categories to be added when necessary, but existing categories should be utilized whenever possible to maintain consistency.
 
 **Section sources**
+
 - [README.md](file://README.md#L490-L531)
 - [components/ui/display/ComponentShowcase/ComponentShowcase.tsx](file://components/ui/display/ComponentShowcase/ComponentShowcase.tsx#L36-L100)

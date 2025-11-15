@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Text } from '../Text';
-import { View } from '../View';
+import { Text } from '../../data-display/Text';
+import { View } from '../../data-display/View';
 import { ScrollView } from './ScrollView';
 
 const meta: Meta<typeof ScrollView> = {
-	title: 'components/ui/display/ScrollView',
+	title: 'components/ui/surfaces/ScrollView',
 	component: ScrollView,
 	parameters: {
 		layout: 'fullscreen',

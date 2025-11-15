@@ -105,7 +105,9 @@ export const 전체_시나리오: Story = {
 					<Chip
 						variant="secondary"
 						color="success"
-						startContent={<Ionicons name="checkmark" size={14} color="#10B981" />}
+						startContent={
+							<Ionicons name="checkmark" size={14} color="#10B981" />
+						}
 					>
 						Verified
 					</Chip>

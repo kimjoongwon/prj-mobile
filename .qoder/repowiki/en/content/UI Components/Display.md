@@ -14,6 +14,7 @@
 </cite>
 
 ## Table of Contents
+
 1. [Introduction](#introduction)
 2. [Core Components](#core-components)
 3. [Typography System with Text Component](#typography-system-with-text-component)
@@ -25,9 +26,11 @@
 9. [Conclusion](#conclusion)
 
 ## Introduction
+
 The Display category in the Plate application encompasses UI components designed for presenting information and structuring visual layouts. These components—Text, Logo, Divider, ScrollView, Background, View, and ComponentShowcase—serve as foundational building blocks for creating consistent, accessible, and visually coherent user interfaces. They are part of the `ui/display` module, which follows the Material UI (MUI) standard for reusable components, ensuring cross-project compatibility and adherence to design system principles.
 
 **Section sources**
+
 - [README.md](file://README.md#L286-L292)
 
 ## Core Components
@@ -56,6 +59,7 @@ ComponentShowcase --> View
 ```
 
 **Diagram sources**
+
 - [Text.tsx](file://components/ui/display/Text/Text.tsx#L65-L77)
 - [Logo.tsx](file://components/ui/display/Logo/Logo.tsx#L16-L26)
 - [Divider.tsx](file://components/ui/display/Divider/Divider.tsx#L31-L104)
@@ -65,6 +69,7 @@ ComponentShowcase --> View
 - [ComponentShowcase.tsx](file://components/ui/display/ComponentShowcase/ComponentShowcase.tsx#L35-L207)
 
 **Section sources**
+
 - [index.ts](file://components/ui/display/index.ts)
 
 ## Typography System with Text Component
@@ -113,11 +118,13 @@ Text --> "tailwind-variants"
 ```
 
 **Diagram sources**
+
 - [Text.tsx](file://components/ui/display/Text/Text.tsx#L4-L15)
 - [Text.tsx](file://components/ui/display/Text/Text.tsx#L17-L24)
 - [Text.tsx](file://components/ui/display/Text/Text.tsx#L58-L63)
 
 **Section sources**
+
 - [Text.tsx](file://components/ui/display/Text/Text.tsx#L65-L77)
 
 ## Branding with Logo Component
@@ -153,11 +160,13 @@ end note
 ```
 
 **Diagram sources**
+
 - [Logo.tsx](file://components/ui/display/Logo/Logo.tsx#L4-L4)
 - [Logo.tsx](file://components/ui/display/Logo/Logo.tsx#L6-L8)
 - [Logo.tsx](file://components/ui/display/Logo/Logo.tsx#L16-L26)
 
 **Section sources**
+
 - [Logo.tsx](file://components/ui/display/Logo/Logo.tsx#L16-L26)
 
 ## Visual Hierarchy with Divider and Background
@@ -202,6 +211,7 @@ Background --> useTheme
 ```
 
 **Diagram sources**
+
 - [Divider.tsx](file://components/ui/display/Divider/Divider.tsx#L5-L6)
 - [Divider.tsx](file://components/ui/display/Divider/Divider.tsx#L8-L16)
 - [Divider.tsx](file://components/ui/display/Divider/Divider.tsx#L31-L104)
@@ -209,6 +219,7 @@ Background --> useTheme
 - [Background.tsx](file://components/ui/display/Background/Background.tsx#L23-L33)
 
 **Section sources**
+
 - [Divider.tsx](file://components/ui/display/Divider/Divider.tsx#L31-L104)
 - [Background.tsx](file://components/ui/display/Background/Background.tsx#L23-L33)
 
@@ -246,6 +257,7 @@ ScrollView --> ScrollViewVariant
 ```
 
 **Diagram sources**
+
 - [View.tsx](file://components/ui/display/View/View.tsx#L3-L5)
 - [View.tsx](file://components/ui/display/View/View.tsx#L7-L9)
 - [ScrollView.tsx](file://components/ui/display/ScrollView/ScrollView.tsx#L6-L11)
@@ -253,6 +265,7 @@ ScrollView --> ScrollViewVariant
 - [ScrollView.tsx](file://components/ui/display/ScrollView/ScrollView.tsx#L19-L32)
 
 **Section sources**
+
 - [View.tsx](file://components/ui/display/View/View.tsx#L7-L9)
 - [ScrollView.tsx](file://components/ui/display/ScrollView/ScrollView.tsx#L19-L32)
 
@@ -281,10 +294,12 @@ style End fill:#4CAF50,stroke:#388E3C
 ```
 
 **Diagram sources**
+
 - [ComponentShowcase.tsx](file://components/ui/display/ComponentShowcase/ComponentShowcase.tsx#L10-L33)
 - [ComponentShowcase.tsx](file://components/ui/display/ComponentShowcase/ComponentShowcase.tsx#L35-L207)
 
 **Section sources**
+
 - [ComponentShowcase.tsx](file://components/ui/display/ComponentShowcase/ComponentShowcase.tsx#L35-L207)
 
 ## Accessibility Features
@@ -296,6 +311,7 @@ Semantic variants (e.g., `h1`–`h6`, `caption`, `label`) provide meaningful str
 These components work in conjunction with the `useTheme` hook and Uniwind's theming system to ensure accessible color combinations across different modes and user preferences.
 
 **Section sources**
+
 - [Text.tsx](file://components/ui/display/Text/Text.tsx#L65-L77)
 - [useTheme.ts](file://hooks/useTheme.ts#L19-L41)
 - [theme.ts](file://constants/theme.ts#L6-L22)

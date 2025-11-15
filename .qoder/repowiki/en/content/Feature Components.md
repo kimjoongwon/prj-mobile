@@ -15,6 +15,7 @@ The SNSButtons component is a feature-level UI component designed to provide soc
 The component is implemented as a React functional component with TypeScript, accepting a well-defined interface of props that control both behavior and visibility. It leverages the Button component from the UI library to maintain consistent styling and interaction patterns across the application.
 
 **Section sources**
+
 - [SNSButtons.tsx](file://components/features/SNSButtons/SNSButtons.tsx#L1-L81)
 - [SNSButtons.stories.tsx](file://components/features/SNSButtons/SNSButtons.stories.tsx#L1-L108)
 
@@ -47,9 +48,11 @@ SNSButtons --> SNSButtonsProps : "implements"
 ```
 
 **Diagram sources**
+
 - [SNSButtons.tsx](file://components/features/SNSButtons/SNSButtons.tsx#L6-L13)
 
 **Section sources**
+
 - [SNSButtons.tsx](file://components/features/SNSButtons/SNSButtons.tsx#L6-L13)
 
 ## Implementation Details
@@ -83,9 +86,11 @@ SkipKakao --> End
 ```
 
 **Diagram sources**
+
 - [SNSButtons.tsx](file://components/features/SNSButtons/SNSButtons.tsx#L25-L60)
 
 **Section sources**
+
 - [SNSButtons.tsx](file://components/features/SNSButtons/SNSButtons.tsx#L25-L60)
 
 ## Integration with LoginScreen
@@ -110,10 +115,12 @@ LoginScreenView->>LoginScreen : Trigger authentication flow
 ```
 
 **Diagram sources**
+
 - [LoginScreen.tsx](file://components/screen/LoginScreen/LoginScreen.tsx#L12-L27)
 - [LoginScreenView.tsx](file://components/screen/LoginScreen/LoginScreenView.tsx#L24-L34)
 
 **Section sources**
+
 - [LoginScreen.tsx](file://components/screen/LoginScreen/LoginScreen.tsx#L12-L27)
 - [LoginScreenView.tsx](file://components/screen/LoginScreen/LoginScreenView.tsx#L11-L22)
 
@@ -128,6 +135,7 @@ The default behavior displays all three social login options, but this can be cu
 This flexible visibility system enables the application to adapt the social login interface based on various factors such as user location, device capabilities, or business requirements without requiring changes to the underlying component implementation.
 
 **Section sources**
+
 - [SNSButtons.stories.tsx](file://components/features/SNSButtons/SNSButtons.stories.tsx#L36-L108)
 
 ## Styling and Common Issues
@@ -141,5 +149,6 @@ To address potential styling issues, the component could be enhanced to support 
 Another consideration is the handling of localization, as the button labels are currently hardcoded in Korean ("Google로 로그인", "Apple로 로그인", "카카오로 로그인"). For international applications, these labels should be externalized to a localization system to support multiple languages.
 
 **Section sources**
+
 - [SNSButtons.tsx](file://components/features/SNSButtons/SNSButtons.tsx#L63-L79)
 - [SNSButtons.stories.tsx](file://components/features/SNSButtons/SNSButtons.stories.tsx#L1-L108)

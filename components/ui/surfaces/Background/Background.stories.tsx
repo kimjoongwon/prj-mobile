@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-native';
-import { Text } from '../Text';
+import { Text } from '../../data-display/Text';
 import { Background } from './Background';
 
 const meta: Meta<typeof Background> = {
-	title: 'components/ui/display/Background',
+	title: 'components/ui/surfaces/Background',
 	component: Background,
 };
 

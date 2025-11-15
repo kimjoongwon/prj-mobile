@@ -4,21 +4,16 @@ import { get } from 'lodash-es';
 import { action } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import {
+	RadioGroup as BaseRadioGroup,
 	type RadioGroupProps as BaseRadioGroupProps,
-	type MobxRadioGroupProps,
-	type RadioGroupColor,
-	RadioGroup as RadioGroupComponent,
-	type RadioGroupOrientation,
-	type RadioGroupRef,
-	type RadioGroupSize,
 } from './RadioGroup';
 
-export interface RadioGroupProps<T, D = any>
+export interface RadioGroupProps<T = any>
 	extends MobxProps<T>,
-		Omit<BaseRadioGroupProps<D>, 'value' | 'onValueChange'> {}
+		Omit<BaseRadioGroupProps, 'value' | 'onValueChange'> {}
 
 export const RadioGroup = observer(
-	<T extends object, D = any>(props: RadioGroupProps<T, D>) => {
+	<T extends object>(props: RadioGroupProps<T>) => {
 		const { state, path, ...rest } = props;
 
 		const initialValue = get(state, path);
@@ -29,28 +24,30 @@ export const RadioGroup = observer(
 			path,
 		});
 
-		const handleValueChange = action((value: any) => {
-			localState.value = value;
+		const handleValueChange = action((value: string) => {
+			localState.value = value as any;
 		});
 
 		return (
-			<RadioGroupComponent
+			<BaseRadioGroup
 				{...rest}
-				value={localState.value}
+				value={localState.value as string | undefined}
 				onValueChange={handleValueChange}
 			/>
 		);
 	}
-);
+) as typeof BaseRadioGroup & {
+	<T extends object>(props: RadioGroupProps<T>): React.ReactElement;
+};
 
 RadioGroup.displayName = 'MobxRadioGroup';
 
-export { RadioGroupComponent };
-export type {
-	BaseRadioGroupProps,
-	MobxRadioGroupProps,
-	RadioGroupColor,
-	RadioGroupOrientation,
-	RadioGroupRef,
-	RadioGroupSize,
-};
+// Compound components
+RadioGroup.Item = BaseRadioGroup.Item;
+RadioGroup.Label = BaseRadioGroup.Label;
+RadioGroup.Description = BaseRadioGroup.Description;
+RadioGroup.Indicator = BaseRadioGroup.Indicator;
+RadioGroup.IndicatorThumb = BaseRadioGroup.IndicatorThumb;
+RadioGroup.ErrorMessage = BaseRadioGroup.ErrorMessage;
+
+export { BaseRadioGroup as RadioGroupComponent };

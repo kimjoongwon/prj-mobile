@@ -19,6 +19,7 @@
 </cite>
 
 ## Table of Contents
+
 1. [Component Categorization](#component-categorization)
 2. [Implementation Details](#implementation-details)
 3. [Practical Examples](#practical-examples)
@@ -60,9 +61,11 @@ E --> E3[Screen]
 ```
 
 **Diagram sources**
+
 - [README.md](file://README.md#L270-L352)
 
 **Section sources**
+
 - [README.md](file://README.md#L270-L352)
 
 ## Implementation Details
@@ -72,6 +75,7 @@ E --> E3[Screen]
 The Button component is implemented as a stateless wrapper around the heroui-native Button component, extending its functionality with additional convenience props. It supports the compound component pattern through the Button.Label subcomponent, allowing for flexible composition.
 
 Key implementation features include:
+
 - Automatic wrapping of string children with Button.Label
 - Support for startIcon and endIcon props for convenient icon placement
 - ForwardRef usage for DOM access
@@ -97,6 +101,7 @@ Button --> ButtonLabel : "compound component"
 ```
 
 **Diagram sources**
+
 - [Button.tsx](file://components/ui/inputs/Button/Button.tsx#L7-L12)
 - [Button.tsx](file://components/ui/inputs/Button/Button.tsx#L48-L87)
 
@@ -105,6 +110,7 @@ Button --> ButtonLabel : "compound component"
 The TextField component implements a stateful pattern with a clear separation between UI presentation and state management. The implementation consists of two parts: TextField.tsx (pure UI) and index.ts (MobX integration).
 
 Key implementation features include:
+
 - Support for variant ('default' | 'outlined') and size ('sm' | 'md' | 'lg') props
 - Subcomponents for structured composition: Label, Input, InputStartContent, InputEndContent, Description, ErrorMessage
 - Flexible content ordering with guaranteed sequence: Label → Input → Description → ErrorMessage
@@ -150,6 +156,7 @@ TextField --> TextFieldErrorMessage
 ```
 
 **Diagram sources**
+
 - [TextField.tsx](file://components/ui/inputs/TextField/TextField.tsx#L15-L37)
 - [TextField.tsx](file://components/ui/inputs/TextField/TextField.tsx#L76-L141)
 
@@ -158,6 +165,7 @@ TextField --> TextFieldErrorMessage
 The Card component serves as a surface component providing a container with consistent styling and spacing. It implements responsive padding options and follows the design token system for consistent visual hierarchy.
 
 Key implementation features include:
+
 - Configurable padding options: 'sm' (8px), 'md' (16px), 'lg' (24px)
 - Background color from theme.colors.content1.DEFAULT
 - Border with color from theme.colors.content3.DEFAULT
@@ -180,6 +188,7 @@ Theme --> Colors : "provides"
 ```
 
 **Diagram sources**
+
 - [Card.tsx](file://components/ui/surfaces/Card/Card.tsx#L5-L9)
 - [Card.tsx](file://components/ui/surfaces/Card/Card.tsx#L17-L49)
 
@@ -188,6 +197,7 @@ Theme --> Colors : "provides"
 The Screen component serves as a layout component that wraps the entire screen content, handling safe area insets and status bar styling. It follows a pattern where Screen.tsx provides the MobX-integrated version while ScreenView.tsx contains the pure UI implementation.
 
 Key implementation features include:
+
 - Automatic safe area handling with configurable edges
 - Dynamic status bar style based on theme (auto mode)
 - Support for custom background color
@@ -220,6 +230,7 @@ ScreenView --> useTheme : "uses"
 ```
 
 **Diagram sources**
+
 - [Screen.tsx](file://components/ui/layouts/Screen/Screen.tsx#L4-L4)
 - [ScreenView.tsx](file://components/ui/layouts/Screen/ScreenView.tsx#L5-L19)
 - [Screen.tsx](file://components/ui/layouts/Screen/Screen.tsx#L11-L12)
@@ -247,6 +258,7 @@ D --> D2["<Button variant='primary' isLoading>Loading</Button>"]
 ```
 
 **Diagram sources**
+
 - [Button.stories.tsx](file://components/ui/inputs/Button/Button.stories.tsx#L29-L74)
 - [Button.stories.tsx](file://components/ui/inputs/Button/Button.stories.tsx#L141-L196)
 
@@ -267,6 +279,7 @@ E --> E1["<TextField><TextField.Label>Password</TextField.Label><TextField.Input
 ```
 
 **Diagram sources**
+
 - [TextField.stories.tsx](file://components/ui/inputs/TextField/TextField.stories.tsx#L28-L82)
 
 ### Card Usage
@@ -286,6 +299,7 @@ E --> E1["<Card><Text variant='h6'>Card Title</Text><Text variant='body2'>Card c
 ```
 
 **Diagram sources**
+
 - [Card.stories.tsx](file://components/ui/surfaces/Card/Card.stories.tsx#L38-L102)
 
 ### Screen Usage
@@ -305,6 +319,7 @@ E --> E1["<Screen><ScrollView>{content}</ScrollView></Screen>"]
 ```
 
 **Diagram sources**
+
 - [Screen.stories.tsx](file://components/ui/layouts/Screen/Screen.stories.tsx#L52-L148)
 
 ## Accessibility and Responsive Design
@@ -338,6 +353,7 @@ G --> G1["Focus indicators, trap focus"]
 ```
 
 **Diagram sources**
+
 - [unistyles.txt](file://unistyle.txt#L2226-L2265)
 - [Text.tsx](file://components/ui/display/Text/Text.tsx#L5-L16)
 
@@ -368,6 +384,7 @@ F --> F1["dp units, scalable text"]
 ```
 
 **Diagram sources**
+
 - [ScreenView.tsx](file://components/ui/layouts/Screen/ScreenView.tsx#L31-L49)
 - [unistyles.txt](file://unistyle.txt#L2291-L2331)
 
@@ -439,6 +456,7 @@ Theme --> Opacity
 ```
 
 **Diagram sources**
+
 - [unistyles.ts](file://unistyles.ts#L5-L444)
 
 ### Dark Mode Implementation
@@ -468,6 +486,7 @@ DarkTheme : Primary : #006fee
 ```
 
 **Diagram sources**
+
 - [unistyles.ts](file://unistyles.ts#L25-L239)
 - [theme.ts](file://constants/theme.ts#L6-L23)
 
@@ -497,6 +516,7 @@ E --> E1["Clone children with additional props"]
 ```
 
 **Diagram sources**
+
 - [Button.tsx](file://components/ui/inputs/Button/Button.tsx#L85-L87)
 - [TextField.tsx](file://components/ui/inputs/TextField/TextField.tsx#L149-L156)
 
@@ -527,5 +547,6 @@ F --> F1["Add documentation in Storybook"]
 ```
 
 **Section sources**
+
 - [README.md](file://README.md#L490-L557)
 - [unistyles.ts](file://unistyles.ts#L245-L444)

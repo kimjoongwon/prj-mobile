@@ -23,7 +23,8 @@ export const ScrollView: React.FC<ScrollViewProps> = ({
 	className = '',
 	...props
 }) => {
-	const variantClass = variant === 'default' ? 'bg-background' : `bg-${variant}`;
+	const variantClass =
+		variant === 'default' ? 'bg-background' : `bg-${variant}`;
 
 	return (
 		<RNScrollView className={`${variantClass} ${className}`} {...props}>

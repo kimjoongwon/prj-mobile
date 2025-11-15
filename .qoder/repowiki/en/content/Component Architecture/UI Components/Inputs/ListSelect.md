@@ -12,6 +12,7 @@
 </cite>
 
 ## Table of Contents
+
 1. [Introduction](#introduction)
 2. [Core Type System](#core-type-system)
 3. [Selection Mode Implementation](#selection-mode-implementation)
@@ -28,6 +29,7 @@
 The ListSelect component in the Plate application provides a flexible selection interface for choosing items from a list. It supports both single and multiple selection modes, making it suitable for various use cases such as form inputs, filters, and navigation menus. The component is built on top of the List surface component and uses Pressable for item interaction on native platforms, while using button elements for web implementation. It offers comprehensive control over selection behavior, rendering, and state management, with support for both controlled and uncontrolled usage patterns.
 
 **Section sources**
+
 - [ListSelect.stories.tsx](file://components/ui/inputs/ListSelect/ListSelect.stories.tsx#L1-L189)
 
 ## Core Type System
@@ -75,10 +77,12 @@ ListSelectProps <|-- ListSelectMultipleProps
 ```
 
 **Diagram sources**
+
 - [ListSelect.tsx](file://components/ui/inputs/ListSelect/ListSelect.tsx#L6-L34)
 - [ListSelect.web.tsx](file://components/ui/inputs/ListSelect/ListSelect.web.tsx#L5-L33)
 
 **Section sources**
+
 - [ListSelect.tsx](file://components/ui/inputs/ListSelect/ListSelect.tsx#L6-L34)
 
 ## Selection Mode Implementation
@@ -105,10 +109,12 @@ TriggerCallback --> End([Selection Complete])
 ```
 
 **Diagram sources**
+
 - [ListSelect.tsx](file://components/ui/inputs/ListSelect/ListSelect.tsx#L42-L186)
 - [ListSelect.web.tsx](file://components/ui/inputs/ListSelect/ListSelect.web.tsx#L41-L193)
 
 **Section sources**
+
 - [ListSelect.tsx](file://components/ui/inputs/ListSelect/ListSelect.tsx#L42-L186)
 
 ## State Management
@@ -135,10 +141,12 @@ WaitForNextInteraction --> HandleSelection
 ```
 
 **Diagram sources**
+
 - [ListSelect.tsx](file://components/ui/inputs/ListSelect/ListSelect.tsx#L59-L186)
 - [ListSelect.web.tsx](file://components/ui/inputs/ListSelect/ListSelect.web.tsx#L58-L193)
 
 **Section sources**
+
 - [ListSelect.tsx](file://components/ui/inputs/ListSelect/ListSelect.tsx#L59-L186)
 
 ## Key Management with keyExtractor
@@ -165,10 +173,12 @@ IsSelected --> End([Selection status determined])
 ```
 
 **Diagram sources**
+
 - [ListSelect.tsx](file://components/ui/inputs/ListSelect/ListSelect.tsx#L82-L102)
 - [ListSelect.web.tsx](file://components/ui/inputs/ListSelect/ListSelect.web.tsx#L81-L101)
 
 **Section sources**
+
 - [ListSelect.tsx](file://components/ui/inputs/ListSelect/ListSelect.tsx#L82-L102)
 
 ## Integration with List Surface
@@ -226,11 +236,13 @@ ListSelect ..> Button : "adds onClick, disabled"
 ```
 
 **Diagram sources**
+
 - [ListSelect.tsx](file://components/ui/inputs/ListSelect/ListSelect.tsx#L171-L186)
 - [ListSelect.web.tsx](file://components/ui/inputs/ListSelect/ListSelect.web.tsx#L170-L193)
 - [List.tsx](file://components/ui/surfaces/List/List.tsx#L17-L57)
 
 **Section sources**
+
 - [ListSelect.tsx](file://components/ui/inputs/ListSelect/ListSelect.tsx#L171-L186)
 
 ## Platform-Specific Implementation
@@ -276,10 +288,12 @@ I --> J
 ```
 
 **Diagram sources**
+
 - [ListSelect.tsx](file://components/ui/inputs/ListSelect/ListSelect.tsx)
 - [ListSelect.web.tsx](file://components/ui/inputs/ListSelect/ListSelect.web.tsx)
 
 **Section sources**
+
 - [ListSelect.tsx](file://components/ui/inputs/ListSelect/ListSelect.tsx)
 - [ListSelect.web.tsx](file://components/ui/inputs/ListSelect/ListSelect.web.tsx)
 
@@ -294,6 +308,7 @@ The component supports theming through integration with the application's stylin
 The component also respects platform conventions for selection indicators. Selected items are visually distinguished through styling applied by the renderItem function, typically using the isSelected boolean parameter to conditionally apply styles. This allows developers to implement theme-aware selection visuals that match the application's design language.
 
 **Section sources**
+
 - [ListItem.tsx](file://components/ui/surfaces/ListItem/ListItem.tsx#L11-L25)
 
 ## Usage Examples
@@ -323,9 +338,11 @@ Component->>User : Visual feedback for selected item
 ```
 
 **Diagram sources**
+
 - [ListSelect.stories.tsx](file://components/ui/inputs/ListSelect/ListSelect.stories.tsx#L44-L188)
 
 **Section sources**
+
 - [ListSelect.stories.tsx](file://components/ui/inputs/ListSelect/ListSelect.stories.tsx#L44-L188)
 
 ## Common Issues and Best Practices
@@ -343,5 +360,6 @@ When rendering complex items, optimize the renderItem function to avoid unnecess
 For form integration, the MobX-enhanced version of ListSelect (ObservedListSelect) provides seamless integration with form state management systems. It automatically synchronizes selection state with MobX observables, reducing boilerplate code for form handling.
 
 **Section sources**
+
 - [index.tsx](file://components/ui/inputs/ListSelect/index.tsx#L44-L110)
 - [useFormField.ts](file://hooks/useFormField.ts#L12-L45)

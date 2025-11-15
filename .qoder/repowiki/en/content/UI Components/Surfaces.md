@@ -15,6 +15,7 @@
 </cite>
 
 ## Table of Contents
+
 1. [Card](#card)
 2. [List](#list)
 3. [ListItem](#listitem)
@@ -28,6 +29,7 @@ The Card component provides a visual container with elevation and rounded corner
 The Card's background color is set to `content1.DEFAULT` from the theme, with a border using `content3.DEFAULT`. The component automatically applies `theme.radius.md` for rounded corners and uses the theme's spacing tokens to determine padding values. The `padding` prop accepts 'sm', 'md', or 'lg' values, which map to theme spacing values of 8, 16, and 24 pixels respectively.
 
 **Section sources**
+
 - [Card.tsx](file://components/ui/surfaces/Card/Card.tsx#L1-L50)
 - [unistyles.ts](file://unistyles.ts#L112-L115)
 - [useTheme.ts](file://hooks/useTheme.ts#L18-L40)
@@ -54,10 +56,12 @@ H --> I[Return Scroll Container]
 ```
 
 **Diagram sources**
+
 - [List.tsx](file://components/ui/surfaces/List/List.tsx#L16-L56)
 - [List.web.tsx](file://components/ui/surfaces/List/List.web.tsx#L15-L66)
 
 **Section sources**
+
 - [List.tsx](file://components/ui/surfaces/List/List.tsx#L1-L58)
 - [List.web.tsx](file://components/ui/surfaces/List/List.web.tsx#L1-L67)
 
@@ -94,10 +98,12 @@ ListItem --> ListItemStyles : "uses"
 ```
 
 **Diagram sources**
+
 - [ListItem.tsx](file://components/ui/surfaces/ListItem/ListItem.tsx#L13-L24)
 - [ListItem.styles.ts](file://components/ui/surfaces/ListItem/ListItem.styles.ts#L34-L91)
 
 **Section sources**
+
 - [ListItem.tsx](file://components/ui/surfaces/ListItem/ListItem.tsx#L1-L101)
 - [ListItem.styles.ts](file://components/ui/surfaces/ListItem/ListItem.styles.ts#L1-L133)
 
@@ -110,6 +116,7 @@ The ListItem component uses Pressable on native platforms and button elements on
 For navigation integration, ListItems can be wrapped in Touchable components or use navigation hooks to handle route changes. The consistent spacing and alignment provided by these components ensure a cohesive user experience across different screen sizes and orientations.
 
 **Section sources**
+
 - [List.tsx](file://components/ui/surfaces/List/List.tsx#L16-L56)
 - [ListItem.tsx](file://components/ui/surfaces/ListItem/ListItem.tsx#L27-L99)
 - [Card.tsx](file://components/ui/surfaces/Card/Card.tsx#L17-L49)
@@ -123,6 +130,7 @@ On web platforms, the List component uses div elements for containers and button
 The components follow platform-specific accessibility guidelines, with native implementations using React Native's accessibility props and web implementations using proper HTML semantics. Focus management and keyboard navigation are handled appropriately for each platform.
 
 **Section sources**
+
 - [List.web.tsx](file://components/ui/surfaces/List/List.web.tsx#L15-L66)
 - [ListItem.tsx](file://components/ui/surfaces/ListItem/ListItem.tsx#L27-L99)
 - [unistyle.txt](file://unistyle.txt#L932-L991)

@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-native';
 import { View } from 'react-native';
-import { Text } from '../../display/Text';
+import { Text } from '../Text';
 import type { ListProps } from './List';
 import { List } from './List';
 
 const meta: Meta<ListProps<any>> = {
-	title: 'components/ui/surfaces/List',
+	title: 'components/ui/data-display/List',
 	component: List,
 	parameters: {
 		layout: 'centered',

@@ -1,9 +1,9 @@
-import { useTheme } from '@/hooks/useTheme';
 import { Button } from 'heroui-native';
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { Background } from '../Background';
-import { ScrollView } from '../ScrollView';
+import { useTheme } from '../../../../hooks/useTheme';
+import { Background } from '../../surfaces/Background';
+import { ScrollView } from '../../surfaces/ScrollView';
 import { Text } from '../Text';
 
 export type ContainerSize = 'small' | 'medium' | 'large' | 'full';

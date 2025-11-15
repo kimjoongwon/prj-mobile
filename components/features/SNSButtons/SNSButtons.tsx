@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, ViewStyle } from 'react-native';
+import { View } from '../../ui/data-display/View';
 import { Button } from '../../ui/inputs';
-import { View } from '../../ui/display/View';
 
 export interface SNSButtonsProps {
 	onGooglePress?: () => void;
@@ -26,7 +26,7 @@ export const SNSButtons: React.FC<SNSButtonsProps> = ({
 		<View style={[styles.container, style]}>
 			{showGoogle && (
 				<Button
-					variant="bordered"
+					variant="secondary"
 					size="lg"
 					onPress={onGooglePress}
 					style={styles.button}
@@ -37,7 +37,7 @@ export const SNSButtons: React.FC<SNSButtonsProps> = ({
 
 			{showApple && (
 				<Button
-					variant="solid"
+					variant="primary"
 					size="lg"
 					onPress={onApplePress}
 					style={styles.appleButton}
@@ -48,7 +48,7 @@ export const SNSButtons: React.FC<SNSButtonsProps> = ({
 
 			{showKakao && (
 				<Button
-					variant="solid"
+					variant="primary"
 					size="lg"
 					onPress={onKakaoPress}
 					style={styles.kakaoButton}

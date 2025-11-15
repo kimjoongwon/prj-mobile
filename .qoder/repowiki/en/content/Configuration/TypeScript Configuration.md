@@ -13,6 +13,7 @@
 </cite>
 
 ## Table of Contents
+
 1. [Introduction](#introduction)
 2. [Core TypeScript Configuration](#core-typescript-configuration)
 3. [Path Aliases and Module Resolution](#path-aliases-and-module-resolution)
@@ -29,6 +30,7 @@
 The TypeScript configuration in the Plate application is designed to provide a robust type system that enhances code quality, improves developer experience, and ensures type safety across the codebase. The configuration leverages modern TypeScript features and integrates seamlessly with Expo and React Native to support cross-platform development. This document provides a comprehensive analysis of the TypeScript configuration, focusing on key aspects such as compiler options, path aliases, module resolution, and strict type checking.
 
 **Section sources**
+
 - [tsconfig.json](file://tsconfig.json)
 
 ## Core TypeScript Configuration
@@ -57,6 +59,7 @@ The core TypeScript configuration is defined in the `tsconfig.json` file, which 
 The configuration extends `expo/tsconfig.base`, which provides a solid foundation for Expo projects. The `compilerOptions` section includes key settings that enhance type safety and developer productivity. The `include` array specifies the files and directories that should be included in the TypeScript compilation process, ensuring that all relevant TypeScript and TypeScript React files are processed.
 
 **Section sources**
+
 - [tsconfig.json](file://tsconfig.json)
 
 ## Path Aliases and Module Resolution
@@ -74,6 +77,7 @@ This path alias simplifies imports by allowing developers to reference modules f
 The module resolution process is further enhanced by the integration with ESLint, which enforces consistent import patterns and prevents the use of restricted imports within the components folder.
 
 **Section sources**
+
 - [tsconfig.json](file://tsconfig.json)
 - [eslint.config.js](file://eslint.config.js)
 
@@ -90,6 +94,7 @@ Enabling strict mode activates several sub-options, including `noImplicitAny`, `
 The configuration also includes other compiler options that enhance the development experience, such as support for modern JavaScript features and compatibility with React Native's module system.
 
 **Section sources**
+
 - [tsconfig.json](file://tsconfig.json)
 
 ## Integration with Expo and React Native
@@ -101,6 +106,7 @@ The `extends` field in the `tsconfig.json` file specifies the base configuration
 Additionally, the configuration includes type definitions for Expo-specific features, such as `.expo/types/**/*.ts`, which provides type information for Expo's internal APIs and ensures that developers can use these features with full type safety.
 
 **Section sources**
+
 - [tsconfig.json](file://tsconfig.json)
 - [babel.config.js](file://babel.config.js)
 
@@ -113,8 +119,9 @@ The use of path aliases and module resolution settings ensures that imports are 
 The integration with Expo further enhances cross-platform development by providing a unified development environment that abstracts away many of the complexities of native development. This allows developers to focus on building features rather than managing platform-specific configurations.
 
 **Section sources**
+
 - [tsconfig.json](file://tsconfig.json)
-- [src/app/_layout.tsx](file://src/app/_layout.tsx)
+- [src/app/\_layout.tsx](file://src/app/_layout.tsx)
 
 ## Relationship with UI Components and Hooks
 
@@ -149,6 +156,7 @@ export const useTheme = (): ThemeContextValue => {
 The configuration also supports the use of path aliases in component imports, making it easier to organize and maintain the UI components. For example, the `components/index.ts` and `components/ui/index.ts` files use path aliases to export components, which simplifies imports in other parts of the application.
 
 **Section sources**
+
 - [unistyles.ts](file://unistyles.ts)
 - [useTheme.ts](file://hooks/useTheme.ts)
 - [components/index.ts](file://components/index.ts)
@@ -171,6 +179,7 @@ Type definition conflicts can arise when multiple versions of the same library a
 IDE integration problems can occur when the IDE is not properly configured to work with the TypeScript configuration. To resolve these issues, ensure that the IDE is using the correct `tsconfig.json` file and that the TypeScript plugin is up to date.
 
 **Section sources**
+
 - [tsconfig.json](file://tsconfig.json)
 - [eslint.config.js](file://eslint.config.js)
 
@@ -187,6 +196,7 @@ To maintain an optimal TypeScript configuration, follow these best practices:
 Following these best practices will help ensure that the TypeScript configuration remains effective and easy to maintain.
 
 **Section sources**
+
 - [tsconfig.json](file://tsconfig.json)
 - [eslint.config.js](file://eslint.config.js)
 

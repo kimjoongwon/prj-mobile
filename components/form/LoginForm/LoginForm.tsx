@@ -1,8 +1,8 @@
+import { TextField } from 'heroui-native';
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { TextField } from 'heroui-native';
+import { Text } from '../../ui/data-display/Text';
 import { Card } from '../../ui/surfaces/Card';
-import { Text } from '../../ui/display/Text';
 
 export interface LoginFormState {
 	email: string;

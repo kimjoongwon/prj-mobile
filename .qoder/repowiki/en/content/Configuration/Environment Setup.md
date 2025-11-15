@@ -11,6 +11,7 @@
 </cite>
 
 ## Table of Contents
+
 1. [Introduction](#introduction)
 2. [Project Dependencies and Scripts](#project-dependencies-and-scripts)
 3. [Development Environment Initialization](#development-environment-initialization)
@@ -24,6 +25,7 @@
 This document provides comprehensive guidance on setting up the development environment for the Plate application, a cross-platform mobile application supporting iOS, Android, and web platforms. The setup process leverages Expo, a framework and platform for universal React applications, to streamline development across multiple platforms. The environment configuration is primarily defined through package.json, which specifies project dependencies, development scripts, and runtime configurations. This guide details the step-by-step initialization process, platform-specific requirements, common development workflows, and troubleshooting strategies for common setup issues.
 
 **Section sources**
+
 - [package.json](file://package.json#L1-L147)
 - [README.md](file://README.md#L1-L674)
 
@@ -36,6 +38,7 @@ The dependencies section includes essential packages such as Expo (~54.0.13), Re
 The scripts section defines a comprehensive set of commands for various development tasks. Key scripts include "start" for launching the development server, platform-specific scripts like "ios" and "android" for running on respective platforms, and specialized scripts for tasks like linting, type checking, formatting, and Storybook integration. The configuration also specifies required engine versions, mandating Node.js >=22.0.0 and npm >=10.0.0, ensuring consistency across development environments.
 
 **Section sources**
+
 - [package.json](file://package.json#L1-L147)
 
 ## Development Environment Initialization
@@ -47,6 +50,7 @@ After dependency installation, developers can start the development server using
 The app.json file contains essential application configuration, including the app name, version, orientation settings, icon paths, and platform-specific configurations for iOS, Android, and web. It also defines plugins such as expo-router for navigation and expo-splash-screen for splash screen management, along with experimental features like typed routes and React compiler optimization.
 
 **Section sources**
+
 - [package.json](file://package.json#L33-L63)
 - [README.md](file://README.md#L18-L44)
 - [app.json](file://app.json#L1-L52)
@@ -60,6 +64,7 @@ The project uses Expo's prebuild functionality to generate native iOS and Androi
 The metro.config.js file configures the Metro bundler with Uniwind integration for styling, while babel.config.js sets up Babel with the expo-preset-expo preset. The tsconfig.json file configures TypeScript with strict mode enabled and path aliases for easier imports. These configuration files ensure consistent build processes across platforms and enable advanced features like type safety and optimized styling.
 
 **Section sources**
+
 - [README.md](file://README.md#L143-L221)
 - [app.json](file://app.json#L1-L52)
 - [babel.config.js](file://babel.config.js#L1-L8)
@@ -93,10 +98,12 @@ O --> R["npm run format"]
 ```
 
 **Diagram sources**
+
 - [package.json](file://package.json#L33-L63)
 - [README.md](file://README.md#L18-L44)
 
 **Section sources**
+
 - [package.json](file://package.json#L33-L63)
 - [README.md](file://README.md#L46-L139)
 
@@ -109,6 +116,7 @@ Another common issue is failure to create native projects, often occurring after
 Dependency conflicts and version mismatches are mitigated by the specified engine requirements in package.json, which enforce minimum Node.js and npm versions. When adding new native dependencies via npx expo install, running npm run prebuild:clean ensures proper integration of the new native modules. The comprehensive script reference table in the README provides quick access to all troubleshooting commands.
 
 **Section sources**
+
 - [README.md](file://README.md#L605-L652)
 
 ## Best Practices for Dependency Management
@@ -120,5 +128,6 @@ When adding new dependencies, particularly those with native components, develop
 The project maintains a clear separation between production and development dependencies, with tools like ESLint, Prettier, and Storybook properly scoped to development. Regular updates should be performed carefully, with prebuild:clean executed after any dependency version changes to ensure native configurations remain synchronized. The use of package-lock.json ensures consistent dependency versions across all development environments.
 
 **Section sources**
+
 - [package.json](file://package.json#L29-L32)
 - [README.md](file://README.md#L148-L156)

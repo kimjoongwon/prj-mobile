@@ -18,6 +18,7 @@
 </cite>
 
 ## Table of Contents
+
 1. [Introduction](#introduction)
 2. [Architecture Overview](#architecture-overview)
 3. [Core Components](#core-components)
@@ -40,6 +41,7 @@ Plate's architecture is structured around Expo's file-based routing system, wher
 State management is handled using MobX, a reactive state management library that enables observable data structures and automatic UI updates. Components like `LoginScreen` use MobX's `observable` and `observer` to manage form state efficiently, reducing boilerplate and improving performance. The application's styling is powered by Tailwind CSS through the uniwind library, which extends Tailwind's capabilities with dynamic theme support and CSS variable integration.
 
 The component hierarchy is organized into five main categories within the `components/` directory:
+
 - **ui/**: Reusable, project-agnostic UI components following MUI guidelines
 - **features/**: Project-specific components with domain logic, such as SNS login buttons
 - **form/**: Composite components for user input forms
@@ -70,7 +72,8 @@ P --> A
 ```
 
 **Diagram sources**
-- [src/app/_layout.tsx](file://src/app/_layout.tsx#L1-L44)
+
+- [src/app/\_layout.tsx](file://src/app/_layout.tsx#L1-L44)
 - [package.json](file://package.json#L80-L104)
 
 ## Core Components
@@ -118,6 +121,7 @@ class SNSButtons {
 ```
 
 **Diagram sources**
+
 - [components/provider/ThemeProvider/ThemeProvider.tsx](file://components/provider/ThemeProvider/ThemeProvider.tsx#L10-L132)
 - [components/ui/inputs/DarkModeSwitch/DarkModeSwitch.tsx](file://components/ui/inputs/DarkModeSwitch/DarkModeSwitch.tsx#L1-L33)
 - [components/form/LoginForm/LoginForm.tsx](file://components/form/LoginForm/LoginForm.tsx#L7-L63)
@@ -125,6 +129,7 @@ class SNSButtons {
 - [components/features/SNSButtons/SNSButtons.tsx](file://components/features/SNSButtons/SNSButtons.tsx#L6-L82)
 
 **Section sources**
+
 - [components/provider/ThemeProvider/ThemeProvider.tsx](file://components/provider/ThemeProvider/ThemeProvider.tsx#L1-L132)
 - [components/ui/inputs/Button/Button.tsx](file://components/ui/inputs/Button/Button.tsx#L1-L91)
 - [components/form/LoginForm/LoginForm.tsx](file://components/form/LoginForm/LoginForm.tsx#L1-L63)
@@ -153,6 +158,7 @@ I --> J[Review & Iterate]
 ```
 
 **Diagram sources**
+
 - [components/ui/inputs/Button/Button.stories.tsx](file://components/ui/inputs/Button/Button.stories.tsx)
 - [components/features/SNSButtons/SNSButtons.stories.tsx](file://components/features/SNSButtons/SNSButtons.stories.tsx)
 - [components/form/LoginForm/LoginForm.stories.tsx](file://components/form/LoginForm/LoginForm.stories.tsx)
@@ -183,6 +189,7 @@ SNSButtons->>LoginScreen : Trigger onGooglePress callback
 ```
 
 **Diagram sources**
+
 - [components/screen/LoginScreen/LoginScreen.tsx](file://components/screen/LoginScreen/LoginScreen.tsx#L1-L30)
 - [components/form/LoginForm/LoginForm.tsx](file://components/form/LoginForm/LoginForm.tsx#L1-L63)
 - [components/features/SNSButtons/SNSButtons.tsx](file://components/features/SNSButtons/SNSButtons.tsx#L1-L82)
@@ -207,6 +214,7 @@ G --> H[Components re-render with new theme]
 ```
 
 **Diagram sources**
+
 - [components/provider/ThemeProvider/ThemeProvider.tsx](file://components/provider/ThemeProvider/ThemeProvider.tsx#L30-L114)
 - [hooks/useTheme.ts](file://hooks/useTheme.ts#L19-L41)
 - [components/ui/inputs/DarkModeSwitch/DarkModeSwitch.tsx](file://components/ui/inputs/DarkModeSwitch/DarkModeSwitch.tsx#L1-L33)

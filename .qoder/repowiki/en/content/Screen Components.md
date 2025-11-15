@@ -10,6 +10,7 @@
 </cite>
 
 ## Table of Contents
+
 1. [LoginScreen Component Architecture](#loginscreen-component-architecture)
 2. [Component Composition and Relationships](#component-composition-and-relationships)
 3. [State Management with MobX](#state-management-with-mobx)
@@ -22,6 +23,7 @@
 The LoginScreen component follows a separation of concerns pattern by dividing responsibilities between state management and presentation. The architecture consists of two main components: LoginScreen (stateful) and LoginScreenView (stateless). This separation allows for better testability, reusability, and maintainability of the codebase. The LoginScreen component serves as the container that manages the state using MobX, while LoginScreenView handles the visual presentation and layout of the login interface.
 
 **Section sources**
+
 - [LoginScreen.tsx](file://components/screen/LoginScreen/LoginScreen.tsx#L1-L29)
 - [LoginScreenView.tsx](file://components/screen/LoginScreen/LoginScreenView.tsx#L1-L150)
 
@@ -49,12 +51,14 @@ style D fill:#6f9,stroke:#333
 ```
 
 **Diagram sources**
+
 - [LoginScreen.tsx](file://components/screen/LoginScreen/LoginScreen.tsx#L1-L29)
 - [LoginScreenView.tsx](file://components/screen/LoginScreen/LoginScreenView.tsx#L1-L150)
 - [LoginForm.tsx](file://components/form/LoginForm/LoginForm.tsx#L1-L62)
 - [SNSButtons.tsx](file://components/features/SNSButtons/SNSButtons.tsx#L1-L81)
 
 **Section sources**
+
 - [LoginScreen.tsx](file://components/screen/LoginScreen/LoginScreen.tsx#L1-L29)
 - [LoginScreenView.tsx](file://components/screen/LoginScreen/LoginScreenView.tsx#L1-L150)
 - [LoginForm.tsx](file://components/form/LoginForm/LoginForm.tsx#L1-L62)
@@ -107,12 +111,14 @@ class SNSButtons {
 ```
 
 **Diagram sources**
+
 - [LoginScreen.tsx](file://components/screen/LoginScreen/LoginScreen.tsx#L1-L29)
 - [LoginScreenView.tsx](file://components/screen/LoginScreen/LoginScreenView.tsx#L1-L150)
 - [LoginForm.tsx](file://components/form/LoginForm/LoginForm.tsx#L1-L62)
 - [SNSButtons.tsx](file://components/features/SNSButtons/SNSButtons.tsx#L1-L81)
 
 **Section sources**
+
 - [LoginScreen.tsx](file://components/screen/LoginScreen/LoginScreen.tsx#L1-L29)
 - [LoginScreenView.tsx](file://components/screen/LoginScreen/LoginScreenView.tsx#L1-L150)
 
@@ -140,9 +146,11 @@ style LinksSection fill:#bbf,stroke:#333
 ```
 
 **Diagram sources**
+
 - [LoginScreenView.tsx](file://components/screen/LoginScreen/LoginScreenView.tsx#L1-L150)
 
 **Section sources**
+
 - [LoginScreenView.tsx](file://components/screen/LoginScreen/LoginScreenView.tsx#L1-L150)
 
 ## Navigation and Authentication Integration
@@ -152,6 +160,7 @@ The LoginScreen component integrates with the application's navigation system th
 The LoginScreen component is designed to work within the Expo Router navigation structure, as evidenced by the root layout configuration in the app directory. When authentication events occur, the component triggers the appropriate callback, which typically navigates to different routes or initiates authentication flows. This decoupled approach allows the LoginScreen to remain focused on presentation and state management while delegating navigation and authentication concerns to higher-level components.
 
 **Section sources**
+
 - [LoginScreen.tsx](file://components/screen/LoginScreen/LoginScreen.tsx#L1-L29)
 - [LoginScreenView.tsx](file://components/screen/LoginScreen/LoginScreenView.tsx#L1-L150)
 - [index.ts](file://components/screen/LoginScreen/index.ts#L1-L7)
@@ -171,6 +180,7 @@ Several common issues may arise when implementing and using the LoginScreen comp
 5. **Form Input Management**: The LoginForm component properly handles input validation attributes like autoComplete, autoCapitalize, and secureTextEntry, improving the user experience across different platforms and devices.
 
 **Section sources**
+
 - [LoginScreen.tsx](file://components/screen/LoginScreen/LoginScreen.tsx#L1-L29)
 - [LoginScreenView.tsx](file://components/screen/LoginScreen/LoginScreenView.tsx#L1-L150)
 - [LoginForm.tsx](file://components/form/LoginForm/LoginForm.tsx#L1-L62)

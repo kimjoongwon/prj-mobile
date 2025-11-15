@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { List } from '../../surfaces/List';
+import { List } from '../../data-display/List';
 
 export type SelectionMode = 'single' | 'multiple';
 

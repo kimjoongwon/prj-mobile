@@ -9,6 +9,7 @@
 </cite>
 
 ## Table of Contents
+
 1. [LoginForm Component Overview](#loginform-component-overview)
 2. [State Management with MobX](#state-management-with-mobx)
 3. [Interface and Domain Model](#interface-and-domain-model)
@@ -21,6 +22,7 @@
 The LoginForm component is a dedicated form container for handling user authentication through email and password inputs. It serves as a reusable, self-contained unit within the application's authentication flow, specifically designed to collect login credentials in a structured and accessible manner. The component renders two TextField instances wrapped in a Card container for visual grouping and styling consistency. Each TextField is configured with appropriate accessibility features, keyboard types, and input behaviors tailored to its specific purpose - email address entry and password entry respectively. The component maintains a clean separation of concerns by focusing solely on the presentation and interaction aspects of the login form without incorporating business logic or authentication processing.
 
 **Section sources**
+
 - [LoginForm.tsx](file://components/form/LoginForm/LoginForm.tsx#L1-L63)
 
 ## State Management with MobX
@@ -44,10 +46,12 @@ LoginForm ..> LoginScreen : "calls onChange callbacks"
 ```
 
 **Diagram sources**
+
 - [LoginScreen.tsx](file://components/screen/LoginScreen/LoginScreen.tsx#L1-L30)
 - [LoginForm.tsx](file://components/form/LoginForm/LoginForm.tsx#L1-L63)
 
 **Section sources**
+
 - [LoginScreen.tsx](file://components/screen/LoginScreen/LoginScreen.tsx#L1-L30)
 - [LoginForm.tsx](file://components/form/LoginForm/LoginForm.tsx#L1-L63)
 
@@ -74,9 +78,11 @@ LoginForm --> LoginFormState : "contains"
 ```
 
 **Diagram sources**
+
 - [LoginForm.tsx](file://components/form/LoginForm/LoginForm.tsx#L6-L15)
 
 **Section sources**
+
 - [LoginForm.tsx](file://components/form/LoginForm/LoginForm.tsx#L6-L15)
 
 ## Integration with TextField Components
@@ -100,10 +106,12 @@ G --> M["secureTextEntry: true"]
 ```
 
 **Diagram sources**
+
 - [LoginForm.tsx](file://components/form/LoginForm/LoginForm.tsx#L24-L51)
 - [TextField.tsx](file://components/ui/inputs/TextField/TextField.tsx#L1-L179)
 
 **Section sources**
+
 - [LoginForm.tsx](file://components/form/LoginForm/LoginForm.tsx#L24-L51)
 - [TextField.tsx](file://components/ui/inputs/TextField/TextField.tsx#L1-L179)
 
@@ -130,11 +138,13 @@ LoginScreen->>AuthService : Authenticate credentials
 ```
 
 **Diagram sources**
+
 - [LoginScreen.tsx](file://components/screen/LoginScreen/LoginScreen.tsx#L1-L30)
 - [LoginScreenView.tsx](file://components/screen/LoginScreen/LoginScreenView.tsx#L1-L151)
 - [LoginForm.tsx](file://components/form/LoginForm/LoginForm.tsx#L1-L63)
 
 **Section sources**
+
 - [LoginScreen.tsx](file://components/screen/LoginScreen/LoginScreen.tsx#L1-L30)
 - [LoginScreenView.tsx](file://components/screen/LoginScreen/LoginScreenView.tsx#L1-L151)
 
@@ -143,5 +153,6 @@ LoginScreen->>AuthService : Authenticate credentials
 The LoginForm component addresses form validation and input handling through its integration with the parent LoginScreen's state management system and the underlying TextField components. While the LoginForm itself does not implement validation logic, it provides the necessary infrastructure for validation to occur at higher levels of the component hierarchy. The component handles input through the onChangeText callbacks, which are triggered by user interactions with the TextField components. These callbacks allow the parent component to validate input in real-time or upon form submission. The TextField components from heroui-native provide built-in accessibility features and input behavior optimizations, such as appropriate keyboard layouts and autocomplete functionality, which enhance the user experience. Common issues like input masking for passwords and proper email formatting are handled through the TextField configuration properties, ensuring consistent behavior across different devices and platforms.
 
 **Section sources**
+
 - [LoginForm.tsx](file://components/form/LoginForm/LoginForm.tsx#L24-L51)
 - [TextField.tsx](file://components/ui/inputs/TextField/TextField.tsx#L1-L179)

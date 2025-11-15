@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { View } from 'react-native';
-import { Text } from '../../display/Text';
+import { Text } from '../../data-display/Text';
 import { Header } from './Header';
 
 const meta: Meta<typeof Header> = {
@@ -90,7 +90,7 @@ export const WithRightAction: Story = {
 		rightAction: {
 			title: '저장',
 			onPress: () => console.log('저장하기'),
-			variant: 'solid',
+			variant: 'primary',
 		},
 	},
 };
@@ -115,7 +115,7 @@ export const WithBothActions: Story = {
 		rightAction: {
 			title: '완료',
 			onPress: () => console.log('완료'),
-			variant: 'solid',
+			variant: 'primary',
 		},
 	},
 };

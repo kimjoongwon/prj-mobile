@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { Pressable, type ViewStyle } from 'react-native';
-import { List } from '../../surfaces/List';
+import { List } from '../../data-display/List';
 
 export type SelectionMode = 'single' | 'multiple';
 

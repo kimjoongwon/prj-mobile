@@ -1,10 +1,10 @@
+import { type Theme, useTheme } from '@/hooks/useTheme';
 import type { NativeStackHeaderProps } from '@react-navigation/native-stack';
 import type React from 'react';
 import { Platform, StyleSheet, View, type ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { type Theme, useTheme } from '@/hooks/useTheme';
+import { Text } from '../../data-display/Text';
 import { Button } from '../../inputs';
-import { Text } from '../../display/Text';
 
 export type HeaderVariant = 'default' | 'transparent' | 'elevated';
 
@@ -12,13 +12,12 @@ export interface HeaderAction {
 	title: string;
 	onPress: () => void;
 	variant?:
-		| 'solid'
-		| 'bordered'
-		| 'light'
-		| 'flat'
-		| 'faded'
-		| 'shadow'
-		| 'ghost';
+		| 'primary'
+		| 'secondary'
+		| 'tertiary'
+		| 'ghost'
+		| 'destructive'
+		| 'destructive-soft';
 }
 
 export interface HeaderProps extends NativeStackHeaderProps {
