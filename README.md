@@ -347,13 +347,13 @@ components/
 
 **카테고리별 역할:**
 
-| 카테고리           | 역할                                | 예시                              |
-| ------------------ | ----------------------------------- | --------------------------------- |
-| **inputs/**        | 사용자 입력을 받는 컴포넌트         | Button, Checkbox, Input, Toggle   |
+| 카테고리          | 역할                                | 예시                              |
+| ----------------- | ----------------------------------- | --------------------------------- |
+| **inputs/**       | 사용자 입력을 받는 컴포넌트         | Button, Checkbox, Input, Toggle   |
 | **data-display/** | 데이터와 정보를 표시하는 컴포넌트   | Text, Avatar, List, Table, Icon   |
-| **surfaces/**      | 콘텐츠를 담는 컨테이너 역할         | Card, Paper, Background           |
-| **feedback/**      | 시스템이 사용자에게 알리는 컴포넌트 | Alert, Dialog, Snackbar, Skeleton |
-| **layouts/**       | 페이지 레이아웃 구성                | Header, Footer, Sidebar, Screen   |
+| **surfaces/**     | 콘텐츠를 담는 컨테이너 역할         | Card, Paper, Background           |
+| **feedback/**     | 시스템이 사용자에게 알리는 컴포넌트 | Alert, Dialog, Snackbar, Skeleton |
+| **layouts/**      | 페이지 레이아웃 구성                | Header, Footer, Sidebar, Screen   |
 
 #### 2. **widgets/** - 재사용 가능한 복합 UI 컴포넌트
 
@@ -400,7 +400,7 @@ components/
 <StatCard value={sales} label="Total Sales" />
 
 // ✅ features - 도메인 특화
-<SNSButtons 
+<SNSButtons
   onGoogleLogin={handleGoogleLogin}  // 비즈니스 로직
   onKakaoLogin={handleKakaoLogin}    // 특정 서비스
 />

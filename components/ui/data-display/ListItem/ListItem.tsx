@@ -2,10 +2,10 @@ import React from 'react';
 import { Image, View, ViewStyle } from 'react-native';
 import { Text } from '../Text';
 import {
-    getContainerClass,
-    getDescriptionClass,
-    getTitleClass,
-    inlineStyles,
+	getContainerClass,
+	getDescriptionClass,
+	getTitleClass,
+	inlineStyles,
 } from './ListItem.styles';
 
 export type ListItemVariant = 'default' | 'card' | 'simple';
