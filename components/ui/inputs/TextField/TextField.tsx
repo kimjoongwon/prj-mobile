@@ -1,70 +1,178 @@
-import { useFormField } from '@cocrepo/hooks';
-import type { MobxProps } from '@cocrepo/types';
-import type { TextFieldInputProps } from 'heroui-native';
-import { get } from 'lodash-es';
-import { action } from 'mobx';
-import { observer } from 'mobx-react-lite';
-import type React from 'react';
-import type { TextFieldViewProps } from './TextFieldView';
-import { TextFieldView } from './TextFieldView';
+import type {
+	TextFieldDescriptionProps,
+	TextFieldErrorMessageProps,
+	TextFieldInputEndContentProps,
+	TextFieldInputProps,
+	TextFieldInputStartContentProps,
+	TextFieldLabelProps,
+	TextFieldRootProps,
+} from 'heroui-native';
+import { TextField as HeroTextField } from 'heroui-native';
+import React from 'react';
 
 /**
- * TextField Props - MobX integrated
- * Combines MobX form state with TextFieldView UI properties
+ * Custom variant and size types for TextField
  */
-export interface TextFieldProps<T>
-	extends MobxProps<T>,
-		Omit<TextFieldViewProps, 'children'> {
-	// Label text
-	label?: React.ReactNode;
-	// Props for TextFieldView.Input (placeholder, keyboardType, etc.)
-	inputProps?: Omit<TextFieldInputProps, 'children' | 'value' | 'onChangeText'>;
+export type TextFieldVariant = 'default' | 'outlined';
+export type TextFieldSize = 'sm' | 'md' | 'lg';
+
+/**
+ * TextField Props
+ * Extends TextFieldRootProps with custom variant, size, description, and errorMessage props
+ */
+export interface TextFieldProps extends TextFieldRootProps {
+	variant?: TextFieldVariant;
+	size?: TextFieldSize;
+	// InputStartContent props
+	inputStartContent?: React.ReactNode;
+	inputStartContentProps?: Omit<TextFieldInputStartContentProps, 'children'>;
+	// InputEndContent props
+	inputEndContent?: React.ReactNode;
+	inputEndContentProps?: Omit<TextFieldInputEndContentProps, 'children'>;
+	// Description props
+	description?: React.ReactNode;
+	descriptionProps?: Omit<TextFieldDescriptionProps, 'children'>;
+	// ErrorMessage props
+	errorMessage?: React.ReactNode;
+	errorMessageProps?: Omit<TextFieldErrorMessageProps, 'children'>;
 }
 
 /**
- * TextField - MobX Integrated Component
- * Wraps TextFieldView with MobX state management for form input handling
+ * TextField Component
+ * UI container component that wraps HeroTextField with description and errorMessage support
  *
- * Usage:
+ * Component order is guaranteed: Label → Input → Description → ErrorMessage
+ * This follows the heroui-native standard structure
+ *
+ * Props can be passed either through:
+ * 1. Props - for convenience (inputStartContent, inputEndContent, description, errorMessage)
+ * 2. Direct children - for complete control
+ *
+ * Usage (with props):
  * ```tsx
  * <TextField
- *   state={formState}
- *   path="email"
- *   label="Email Address"
+ *   inputStartContent={<Icon />}
+ *   inputEndContent={<Button />}
  *   description="We'll never share your email"
- *   inputProps={{ placeholder: "Enter your email" }}
- * />
+ *   errorMessage="Invalid email address"
+ * >
+ *   <TextField.Label>Email</TextField.Label>
+ *   <TextField.Input placeholder="Enter email" />
+ * </TextField>
+ * ```
+ *
+ * Usage (with children):
+ * ```tsx
+ * <TextField>
+ *   <TextField.Label>Email</TextField.Label>
+ *   <TextField.Input placeholder="Enter email">
+ *     <TextField.InputStartContent><Icon /></TextField.InputStartContent>
+ *     <TextField.InputEndContent><Button /></TextField.InputEndContent>
+ *   </TextField.Input>
+ *   <TextField.Description>We'll never share your email</TextField.Description>
+ *   <TextField.ErrorMessage>Invalid email</TextField.ErrorMessage>
+ * </TextField>
  * ```
  */
-export const TextField = observer(
-	<T extends object>(props: TextFieldProps<T>) => {
-		const { state, path, label, inputProps, ...viewProps } = props;
+const TextFieldComponent: React.FC<TextFieldProps> = ({
+	variant,
+	size,
+	inputStartContent,
+	inputStartContentProps,
+	inputEndContent,
+	inputEndContentProps,
+	description,
+	descriptionProps,
+	errorMessage,
+	errorMessageProps,
+	children,
+	...props
+}) => {
+	// Helper function to check if a child is TextField.Input
+	const isInputComponent = (child: React.ReactNode): boolean => {
+		return React.isValidElement(child) && child.type === HeroTextField.Input;
+	};
 
-		const initialValue = get(state, path) as string;
-
-		const { localState } = useFormField({
-			initialValue,
-			state,
-			path,
-		});
-
-		const handleChange = action((value: string) => {
-			localState.value = value;
-		});
+	// Helper function to render children in correct order
+	const renderChildren = () => {
+		const childArray = React.Children.toArray(children);
+		const inputChild = childArray.find(isInputComponent) as
+			| React.ReactElement<TextFieldInputProps>
+			| undefined;
+		const otherChildren = childArray.filter(child => !isInputComponent(child));
 
 		return (
-			<TextFieldView {...viewProps} variant="outlined">
-				{label && <TextFieldView.Label>{label}</TextFieldView.Label>}
-				<TextFieldView.Input
-					{...inputProps}
-					value={localState.value}
-					onChangeText={handleChange}
-				/>
-			</TextFieldView>
+			<>
+				{otherChildren}
+				{inputChild &&
+					React.cloneElement(inputChild, {}, [
+						inputStartContent && (
+							<HeroTextField.InputStartContent
+								key="start"
+								{...inputStartContentProps}
+							>
+								{inputStartContent}
+							</HeroTextField.InputStartContent>
+						),
+						...(React.Children.toArray(inputChild.props.children) || []),
+						inputEndContent && (
+							<HeroTextField.InputEndContent
+								key="end"
+								{...inputEndContentProps}
+							>
+								{inputEndContent}
+							</HeroTextField.InputEndContent>
+						),
+					])}
+				{description && (
+					<HeroTextField.Description key="description" {...descriptionProps}>
+						{description}
+					</HeroTextField.Description>
+				)}
+				{errorMessage && (
+					<HeroTextField.ErrorMessage key="error" {...errorMessageProps}>
+						{errorMessage}
+					</HeroTextField.ErrorMessage>
+				)}
+			</>
 		);
-	}
-);
+	};
 
-TextField.displayName = 'TextField';
+	return <HeroTextField {...props}>{renderChildren()}</HeroTextField>;
+};
+
+TextFieldComponent.displayName = 'TextField';
+
+/**
+ * TextField - Composite component with subcomponents
+ * Provides both container and subcomponents for flexible composition
+ */
+export const TextField = Object.assign(TextFieldComponent, {
+	Label: HeroTextField.Label,
+	Input: HeroTextField.Input,
+	InputStartContent: HeroTextField.InputStartContent,
+	InputEndContent: HeroTextField.InputEndContent,
+	Description: HeroTextField.Description,
+	ErrorMessage: HeroTextField.ErrorMessage,
+});
+
+// Re-export subcomponents for convenience
+export const TextFieldLabel = HeroTextField.Label;
+export const TextFieldInput = HeroTextField.Input;
+export const TextFieldInputStartContent = HeroTextField.InputStartContent;
+export const TextFieldInputEndContent = HeroTextField.InputEndContent;
+export const TextFieldDescription = HeroTextField.Description;
+export const TextFieldErrorMessage = HeroTextField.ErrorMessage;
+
+// Re-export types
+export type {
+	TextFieldDescriptionProps,
+	TextFieldErrorMessageProps,
+	TextFieldInputEndContentProps,
+	TextFieldInputProps,
+	TextFieldInputStartContentProps,
+	TextFieldLabelProps,
+	TextFieldRootProps,
+};
 
 export default TextField;

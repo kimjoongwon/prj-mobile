@@ -1,127 +1,90 @@
-import React from 'react';
-import { View, type ViewStyle } from 'react-native';
 import { Chip as HeroChip } from 'heroui-native';
-import { Text } from '../../display/Text';
+import type { ComponentProps } from 'react';
+import React from 'react';
 
-export type ChipVariant =
-	| 'solid'
-	| 'bordered'
-	| 'light'
-	| 'flat'
-	| 'faded'
-	| 'shadow';
+type HeroChipProps = ComponentProps<typeof HeroChip>;
 
-export type ChipColor =
-	| 'default'
-	| 'primary'
-	| 'secondary'
-	| 'success'
-	| 'warning'
-	| 'danger';
-
-export type ChipSize = 'sm' | 'md' | 'lg';
-export type ChipRadius = 'none' | 'sm' | 'md' | 'lg' | 'full';
-
-export interface ChipProps {
+export interface ChipProps extends Omit<HeroChipProps, 'children'> {
 	children?: React.ReactNode;
-	variant?: ChipVariant;
-	color?: ChipColor;
-	size?: ChipSize;
-	radius?: ChipRadius;
-	disabled?: boolean;
+	/** Icon or content to display before the label */
 	startContent?: React.ReactNode;
+	/** Icon or content to display after the label */
 	endContent?: React.ReactNode;
-	avatar?: React.ReactNode;
-	style?: ViewStyle;
-	id?: string;
-	onLayout?: (event: any) => void;
 }
 
-// Map custom variants to heroui-native variants
-const mapVariantToHero = (
-	variant: ChipVariant
-): 'primary' | 'secondary' | 'tertiary' => {
-	const variantMap: Record<ChipVariant, 'primary' | 'secondary' | 'tertiary'> =
-		{
-			solid: 'primary',
-			bordered: 'tertiary',
-			light: 'tertiary',
-			flat: 'tertiary',
-			faded: 'tertiary',
-			shadow: 'primary',
-		};
-	return variantMap[variant] || 'primary';
-};
-
-// Map custom sizes to heroui-native sizes
-const mapSizeToHero = (size: ChipSize): 'sm' | 'md' | 'lg' => {
-	const sizeMap: Record<ChipSize, 'sm' | 'md' | 'lg'> = {
-		sm: 'sm',
-		md: 'md',
-		lg: 'lg',
-	};
-	return sizeMap[size] || 'md';
-};
-
-export const Chip: React.FC<ChipProps> = ({
-	children,
-	variant = 'solid',
-	color = 'default',
-	size = 'md',
-	radius = 'full',
-	disabled = false,
-	startContent,
-	endContent,
-	avatar,
-	style,
-}) => {
-	const heroVariant = mapVariantToHero(variant);
-	const heroSize = mapSizeToHero(size);
-
-	const renderStartContent = () => {
-		if (avatar) {
-			return <View style={{ marginRight: 8 }}>{avatar}</View>;
+/**
+ * Chip Component
+ * Enhanced wrapper around heroui-native Chip with icon support
+ *
+ * @see https://github.com/heroui-inc/heroui-native/blob/beta/src/components/chip/chip.md
+ *
+ * Features:
+ * - Automatic Chip.Label wrapping for string children
+ * - startContent/endContent props for convenient icon placement
+ * - Full heroui-native Chip.Label compound component support
+ *
+ * Usage:
+ * ```tsx
+ * // Simple text (auto-wrapped with Chip.Label)
+ * <Chip variant="primary">Featured</Chip>
+ *
+ * // With startContent
+ * <Chip variant="primary" startContent={<Icon name="star" />}>
+ *   Featured
+ * </Chip>
+ *
+ * // With endContent
+ * <Chip variant="secondary" endContent={<Icon name="close" />}>
+ *   Remove
+ * </Chip>
+ *
+ * // Manual composition (advanced)
+ * <Chip variant="primary">
+ *   <Icon name="star" size={12} />
+ *   <Chip.Label>Featured</Chip.Label>
+ * </Chip>
+ * ```
+ */
+const ChipComponent = React.forwardRef<any, ChipProps>(
+	({ startContent, endContent, children, ...props }, ref) => {
+		// Case 1: startContent or endContent props provided
+		if (startContent || endContent) {
+			return (
+				<HeroChip ref={ref} {...props}>
+					{startContent}
+					{typeof children === 'string' ? (
+						<HeroChip.Label>{children}</HeroChip.Label>
+					) : (
+						children
+					)}
+					{endContent}
+				</HeroChip>
+			);
 		}
 
-		if (startContent) {
-			return <View style={{ marginRight: 8 }}>{startContent}</View>;
+		// Case 2: String children - auto-wrap with Chip.Label
+		if (typeof children === 'string') {
+			return (
+				<HeroChip ref={ref} {...props}>
+					<HeroChip.Label>{children}</HeroChip.Label>
+				</HeroChip>
+			);
 		}
 
-		return null;
-	};
-
-	const renderEndContent = () => {
-		if (endContent) {
-			return <View style={{ marginLeft: 8 }}>{endContent}</View>;
-		}
-
-		return null;
-	};
-
-	const renderContent = () => {
+		// Case 3: Manual composition - pass through as-is
 		return (
-			<View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-				{renderStartContent()}
-				{children && typeof children === 'string' ? (
-					<Text>{children}</Text>
-				) : (
-					children
-				)}
-				{renderEndContent()}
-			</View>
+			<HeroChip ref={ref} {...props}>
+				{children}
+			</HeroChip>
 		);
-	};
+	}
+);
 
-	return (
-		<HeroChip
-			variant={heroVariant}
-			size={heroSize}
-			disabled={disabled}
-			style={style}
-		>
-			{renderContent()}
-		</HeroChip>
-	);
-};
+ChipComponent.displayName = 'Chip';
+
+// Create compound component with Label
+export const Chip = Object.assign(ChipComponent, {
+	Label: HeroChip.Label,
+});
 
 export default Chip;

@@ -1,229 +1,196 @@
+import { ComponentShowcase, Text } from '@/components';
 import type { Meta, StoryObj } from '@storybook/react-native';
+import { View } from 'react-native';
 import type { ButtonProps } from './Button';
 import { Button } from './Button';
 
 const meta: Meta<ButtonProps> = {
 	title: 'components/ui/inputs/Button',
 	component: Button,
-	parameters: {
-		layout: 'centered',
-		docs: {
-			description: {
-				component: '테마를 지원하는 커스터마이즈 가능한 버튼 컴포넌트입니다.',
-			},
-		},
-	},
-	argTypes: {
-		variant: {
-			control: { type: 'select' },
-			options: [
-				'solid',
-				'bordered',
-				'light',
-				'flat',
-				'faded',
-				'shadow',
-				'ghost',
-			],
-			description: '버튼의 시각적 스타일 변형',
-		},
-		color: {
-			control: { type: 'select' },
-			options: [
-				'default',
-				'primary',
-				'secondary',
-				'success',
-				'warning',
-				'danger',
-			],
-			description: '버튼의 색상 테마',
-		},
-		size: {
-			control: { type: 'select' },
-			options: ['sm', 'md', 'lg'],
-			description: '버튼의 크기',
-		},
-		radius: {
-			control: { type: 'select' },
-			options: ['none', 'sm', 'md', 'lg', 'full'],
-			description: '버튼의 모서리 반지름',
-		},
-		isDisabled: {
-			control: { type: 'boolean' },
-			description: '버튼 비활성화 여부',
-		},
-		isLoading: {
-			control: { type: 'boolean' },
-			description: '버튼 로딩 상태 여부',
-		},
-		isIconOnly: {
-			control: { type: 'boolean' },
-			description: '아이콘만 표시 여부',
-		},
-	},
+	decorators: [
+		Story => (
+			<ComponentShowcase
+				title="Button"
+				description={[
+					'heroui-native Button 컴포넌트를 확장한 버튼입니다.',
+					'startIcon/endIcon props로 아이콘을 쉽게 추가할 수 있습니다.',
+					'Button.Label을 사용한 수동 조합도 지원합니다.',
+				]}
+			>
+				<Story />
+			</ComponentShowcase>
+		),
+	],
 };
 
 export default meta;
 type Story = StoryObj<ButtonProps>;
 
-export const 기본: Story = {
-	args: {
-		children: '버튼',
-	},
-	render: args => <Button {...args} />,
+export const 변형_전체: Story = {
+	render: () => (
+		<View className="gap-4 w-full">
+			<View className="gap-2">
+				<Text variant="label" color="default">
+					Primary
+				</Text>
+				<Button variant="primary">Primary Button</Button>
+			</View>
+
+			<View className="gap-2">
+				<Text variant="label" color="default">
+					Secondary
+				</Text>
+				<Button variant="secondary">Secondary Button</Button>
+			</View>
+
+			<View className="gap-2">
+				<Text variant="label" color="default">
+					Tertiary
+				</Text>
+				<Button variant="tertiary">Tertiary Button</Button>
+			</View>
+
+			<View className="gap-2">
+				<Text variant="label" color="default">
+					Ghost
+				</Text>
+				<Button variant="ghost">Ghost Button</Button>
+			</View>
+
+			<View className="gap-2">
+				<Text variant="label" color="default">
+					Destructive
+				</Text>
+				<Button variant="destructive">Destructive Button</Button>
+			</View>
+
+			<View className="gap-2">
+				<Text variant="label" color="default">
+					Destructive Soft
+				</Text>
+				<Button variant="destructive-soft">Destructive Soft Button</Button>
+			</View>
+		</View>
+	),
 };
 
-export const 주요: Story = {
-	args: {
-		children: '주요 버튼',
-		color: 'primary',
-	},
-	render: args => <Button {...args} />,
+export const 크기_전체: Story = {
+	render: () => (
+		<View className="gap-4 w-full items-center">
+			<View className="gap-2 items-center">
+				<Text variant="label" color="default">
+					Small
+				</Text>
+				<Button size="sm" variant="primary">
+					Small Button
+				</Button>
+			</View>
+
+			<View className="gap-2 items-center">
+				<Text variant="label" color="default">
+					Medium
+				</Text>
+				<Button size="md" variant="primary">
+					Medium Button
+				</Button>
+			</View>
+
+			<View className="gap-2 items-center">
+				<Text variant="label" color="default">
+					Large
+				</Text>
+				<Button size="lg" variant="primary">
+					Large Button
+				</Button>
+			</View>
+		</View>
+	),
 };
 
-export const 보조: Story = {
-	args: {
-		children: '보조 버튼',
-		color: 'secondary',
-		variant: 'bordered',
-	},
-	render: args => <Button {...args} />,
+export const 상태_전체: Story = {
+	render: () => (
+		<View className="gap-4 w-full">
+			<View className="gap-2">
+				<Text variant="label" color="default">
+					기본 상태
+				</Text>
+				<Button variant="primary">기본 버튼</Button>
+			</View>
+
+			<View className="gap-2">
+				<Text variant="label" color="default">
+					비활성화 상태
+				</Text>
+				<Button variant="primary" isDisabled>
+					비활성화된 버튼
+				</Button>
+			</View>
+
+			<View className="gap-2">
+				<Text variant="label" color="default">
+					아이콘 전용
+				</Text>
+				<Button variant="destructive" isIconOnly>
+					❤️
+				</Button>
+			</View>
+		</View>
+	),
 };
 
-export const 위험: Story = {
-	args: {
-		children: '삭제',
-		color: 'danger',
-	},
-	render: args => <Button {...args} />,
-};
+export const 아이콘_조합: Story = {
+	render: () => (
+		<View className="gap-4 w-full">
+			<View className="gap-2">
+				<Text variant="label" color="default">
+					startIcon 사용
+				</Text>
+				<Button variant="primary" startIcon={<Text>➕</Text>}>
+					Add Item
+				</Button>
+			</View>
 
-export const 성공: Story = {
-	args: {
-		children: '저장',
-		color: 'success',
-	},
-	render: args => <Button {...args} />,
-};
+			<View className="gap-2">
+				<Text variant="label" color="default">
+					endIcon 사용
+				</Text>
+				<Button variant="secondary" endIcon={<Text>→</Text>}>
+					Next
+				</Button>
+			</View>
 
-export const 경고: Story = {
-	args: {
-		children: '주의',
-		color: 'warning',
-	},
-	render: args => <Button {...args} />,
-};
+			<View className="gap-2">
+				<Text variant="label" color="default">
+					양쪽 아이콘
+				</Text>
+				<Button
+					variant="tertiary"
+					startIcon={<Text>⬅</Text>}
+					endIcon={<Text>➡</Text>}
+				>
+					Navigate
+				</Button>
+			</View>
 
-export const 로딩: Story = {
-	args: {
-		children: '로딩 중...',
-		isLoading: true,
-		color: 'primary',
-	},
-	render: args => <Button {...args} />,
-};
+			<View className="gap-2">
+				<Text variant="label" color="default">
+					수동 조합 (Button.Label)
+				</Text>
+				<Button variant="primary">
+					<Text>🔍</Text>
+					<Button.Label>Search</Button.Label>
+				</Button>
+			</View>
 
-export const 비활성화: Story = {
-	args: {
-		children: '비활성화된 버튼',
-		isDisabled: true,
-	},
-	render: args => <Button {...args} />,
-};
-
-export const 작은크기: Story = {
-	args: {
-		children: '작은 버튼',
-		size: 'sm',
-		color: 'primary',
-	},
-	render: args => <Button {...args} />,
-};
-
-export const 큰크기: Story = {
-	args: {
-		children: '큰 버튼',
-		size: 'lg',
-		color: 'primary',
-	},
-	render: args => <Button {...args} />,
-};
-
-export const 경계선: Story = {
-	args: {
-		children: '경계선 버튼',
-		variant: 'bordered',
-		color: 'primary',
-	},
-	render: args => <Button {...args} />,
-};
-
-export const 밝은색: Story = {
-	args: {
-		children: '밝은색 버튼',
-		variant: 'light',
-		color: 'primary',
-	},
-	render: args => <Button {...args} />,
-};
-
-export const 플랫: Story = {
-	args: {
-		children: '플랫 버튼',
-		variant: 'flat',
-		color: 'primary',
-	},
-	render: args => <Button {...args} />,
-};
-
-export const 페이드: Story = {
-	args: {
-		children: '페이드 버튼',
-		variant: 'faded',
-		color: 'primary',
-	},
-	render: args => <Button {...args} />,
-};
-
-export const 그림자: Story = {
-	args: {
-		children: '그림자 버튼',
-		variant: 'shadow',
-		color: 'primary',
-	},
-	render: args => <Button {...args} />,
-};
-
-export const 고스트: Story = {
-	args: {
-		children: '고스트 버튼',
-		variant: 'ghost',
-		color: 'primary',
-	},
-	render: args => <Button {...args} />,
-};
-
-export const 아이콘만: Story = {
-	args: {
-		children: '❤️',
-		isIconOnly: true,
-		color: 'danger',
-		variant: 'light',
-	},
-	render: args => <Button {...args} />,
-};
-
-export const 플레이그라운드: Story = {
-	args: {
-		children: '플레이그라운드 버튼',
-		color: 'primary',
-		variant: 'solid',
-		size: 'md',
-		radius: 'md',
-		isDisabled: false,
-		isLoading: false,
-		isIconOnly: false,
-	},
-	render: args => <Button {...args} />,
+			<View className="gap-2">
+				<Text variant="label" color="default">
+					수동 조합 - 아이콘 뒤
+				</Text>
+				<Button variant="ghost">
+					<Button.Label>Download</Button.Label>
+					<Text>⬇</Text>
+				</Button>
+			</View>
+		</View>
+	),
 };

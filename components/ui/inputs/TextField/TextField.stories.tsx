@@ -1,11 +1,11 @@
 import { ComponentShowcase, Text } from '@/components';
 import type { Meta, StoryObj } from '@storybook/react-native';
 import { View } from 'react-native';
-import { TextFieldView } from './TextFieldView';
+import { TextField } from './TextField';
 
-const meta: Meta<typeof TextFieldView> = {
+const meta: Meta<typeof TextField> = {
 	title: 'components/ui/inputs/TextField',
-	component: TextFieldView,
+	component: TextField,
 	decorators: [
 		Story => (
 			<ComponentShowcase
@@ -23,7 +23,7 @@ const meta: Meta<typeof TextFieldView> = {
 
 export default meta;
 
-type Story = StoryObj<typeof TextFieldView>;
+type Story = StoryObj<typeof TextField>;
 
 export const 전체_시나리오: Story = {
 	render: () => (
@@ -33,10 +33,10 @@ export const 전체_시나리오: Story = {
 				<Text variant="label" color="default">
 					기본
 				</Text>
-				<TextFieldView>
-					<TextFieldView.Label>이메일</TextFieldView.Label>
-					<TextFieldView.Input placeholder="Enter email" />
-				</TextFieldView>
+				<TextField>
+					<TextField.Label>이메일</TextField.Label>
+					<TextField.Input placeholder="Enter email" />
+				</TextField>
 			</View>
 
 			{/* 설명 포함 */}
@@ -44,10 +44,10 @@ export const 전체_시나리오: Story = {
 				<Text variant="label" color="default">
 					설명 포함
 				</Text>
-				<TextFieldView description="We'll never share your email">
-					<TextFieldView.Label>이메일</TextFieldView.Label>
-					<TextFieldView.Input placeholder="Enter email" />
-				</TextFieldView>
+				<TextField description="We'll never share your email">
+					<TextField.Label>이메일</TextField.Label>
+					<TextField.Input placeholder="Enter email" />
+				</TextField>
 			</View>
 
 			{/* 에러 상태 */}
@@ -55,10 +55,10 @@ export const 전체_시나리오: Story = {
 				<Text variant="label" color="default">
 					에러 상태
 				</Text>
-				<TextFieldView isInvalid errorMessage="Invalid email address">
-					<TextFieldView.Label>이메일</TextFieldView.Label>
-					<TextFieldView.Input placeholder="Enter email" />
-				</TextFieldView>
+				<TextField isInvalid errorMessage="Invalid email address">
+					<TextField.Label>이메일</TextField.Label>
+					<TextField.Input placeholder="Enter email" />
+				</TextField>
 			</View>
 
 			{/* 완전한 예제 */}
@@ -66,16 +66,16 @@ export const 전체_시나리오: Story = {
 				<Text variant="label" color="default">
 					완전한 예제
 				</Text>
-				<TextFieldView isInvalid>
-					<TextFieldView.Label>비밀번호</TextFieldView.Label>
-					<TextFieldView.Input placeholder="Enter password" secureTextEntry />
-					<TextFieldView.Description>
+				<TextField isInvalid>
+					<TextField.Label>비밀번호</TextField.Label>
+					<TextField.Input placeholder="Enter password" secureTextEntry />
+					<TextField.Description>
 						최소 8자의 숫자, 문자, 특수문자 포함
-					</TextFieldView.Description>
-					<TextFieldView.ErrorMessage>
+					</TextField.Description>
+					<TextField.ErrorMessage>
 						비밀번호는 8자 이상이어야 합니다
-					</TextFieldView.ErrorMessage>
-				</TextFieldView>
+					</TextField.ErrorMessage>
+				</TextField>
 			</View>
 		</View>
 	),

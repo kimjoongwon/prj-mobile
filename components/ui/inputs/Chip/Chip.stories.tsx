@@ -1,383 +1,200 @@
+import { ComponentShowcase, Text } from '@/components';
 import { Ionicons } from '@expo/vector-icons';
 import type { Meta, StoryObj } from '@storybook/react-native';
-import { Image, View } from 'react-native';
-import { Text } from '../../display/Text';
-import type { ChipProps } from './Chip';
+import { View } from 'react-native';
 import { Chip } from './Chip';
 
-const meta: Meta<ChipProps> = {
+const meta: Meta<typeof Chip> = {
 	title: 'components/ui/inputs/Chip',
 	component: Chip,
-	parameters: {
-		layout: 'centered',
-		docs: {
-			description: {
-				component:
-					'모던한 디자인의 정적 Chip 컴포넌트입니다. 다양한 변형, 색상, 크기를 지원하며 UI 표시 역할만 합니다.',
-			},
-		},
-	},
-	argTypes: {
-		variant: {
-			control: { type: 'select' },
-			options: ['solid', 'bordered', 'light', 'flat', 'faded', 'shadow'],
-			description: '칩 변형',
-		},
-		color: {
-			control: { type: 'select' },
-			options: [
-				'default',
-				'primary',
-				'secondary',
-				'success',
-				'warning',
-				'danger',
-			],
-			description: '칩 색상',
-		},
-		size: {
-			control: { type: 'select' },
-			options: ['sm', 'md', 'lg'],
-			description: '칩 크기',
-		},
-		radius: {
-			control: { type: 'select' },
-			options: ['none', 'sm', 'md', 'lg', 'full'],
-			description: '모서리 둥글기',
-		},
-		disabled: {
-			control: { type: 'boolean' },
-			description: '비활성화 상태',
-		},
-		children: {
-			control: { type: 'text' },
-			description: '칩 내용',
-		},
-	},
 	decorators: [
 		Story => (
-			<View style={{ padding: 16, alignItems: 'flex-start' }}>
+			<ComponentShowcase
+				title="Chip"
+				description={[
+					'heroui-native 기반 Chip 컴포넌트입니다.',
+					'Chip.Label compound component와 startContent/endContent props를 지원합니다.',
+				]}
+			>
 				<Story />
-			</View>
+			</ComponentShowcase>
 		),
 	],
 };
 
 export default meta;
-type Story = StoryObj<ChipProps>;
 
-export const Default: Story = {
-	args: {
-		children: 'Default Chip',
-	},
-};
+type Story = StoryObj<typeof Chip>;
 
-export const WithEndContent: Story = {
-	render: args => (
-		<Chip
-			{...args}
-			variant="bordered"
-			color="danger"
-			endContent={<Ionicons name="close" size={14} color="#f31260" />}
-		>
-			With End Content
-		</Chip>
-	),
-	args: {},
-};
-
-export const WithStartIcon: Story = {
-	render: args => (
-		<Chip
-			{...args}
-			variant="solid"
-			color="primary"
-			startContent={<Ionicons name="star" size={16} color="white" />}
-		>
-			With Icon
-		</Chip>
-	),
-	args: {},
-};
-
-export const WithEndIcon: Story = {
-	render: args => (
-		<Chip
-			{...args}
-			variant="bordered"
-			color="secondary"
-			endContent={<Ionicons name="arrow-forward" size={14} color="#7828c8" />}
-		>
-			With End Icon
-		</Chip>
-	),
-	args: {},
-};
-
-export const WithAvatar: Story = {
-	render: args => (
-		<Chip
-			{...args}
-			variant="light"
-			color="success"
-			avatar={
-				<Image
-					source={{ uri: 'https://i.pravatar.cc/40?img=1' }}
-					style={{ width: 20, height: 20, borderRadius: 10 }}
-				/>
-			}
-		>
-			John Doe
-		</Chip>
-	),
-	args: {},
-};
-
-export const AllVariants: Story = {
+export const 전체_시나리오: Story = {
 	render: () => (
-		<View style={{ gap: 16 }}>
-			<Text style={{ fontSize: 18, fontWeight: 'bold' }}>All Variants</Text>
-			<View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
-				<Chip variant="solid" color="primary">
-					Solid
-				</Chip>
-				<Chip variant="bordered" color="primary">
-					Bordered
-				</Chip>
-				<Chip variant="light" color="primary">
-					Light
-				</Chip>
-				<Chip variant="flat" color="primary">
-					Flat
-				</Chip>
-				<Chip variant="faded" color="primary">
-					Faded
-				</Chip>
-				<Chip variant="shadow" color="primary">
-					Shadow
-				</Chip>
+		<View className="gap-6 w-full">
+			{/* 기본 사용 */}
+			<View className="gap-2">
+				<Text variant="label" color="default">
+					기본 사용
+				</Text>
+				<View className="flex-row flex-wrap gap-2">
+					<Chip>Default Chip</Chip>
+					<Chip color="accent">Accent</Chip>
+					<Chip color="success">Success</Chip>
+					<Chip color="warning">Warning</Chip>
+					<Chip color="danger">Danger</Chip>
+				</View>
 			</View>
-		</View>
-	),
-	args: {},
-};
 
-export const AllColors: Story = {
-	render: () => (
-		<View style={{ gap: 16 }}>
-			<Text style={{ fontSize: 18, fontWeight: 'bold' }}>All Colors</Text>
-			<View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
-				<Chip color="default">Default</Chip>
-				<Chip color="primary">Primary</Chip>
-				<Chip color="secondary">Secondary</Chip>
-				<Chip color="success">Success</Chip>
-				<Chip color="warning">Warning</Chip>
-				<Chip color="danger">Danger</Chip>
+			{/* 변형 (Variants) */}
+			<View className="gap-2">
+				<Text variant="label" color="default">
+					변형 (Variants)
+				</Text>
+				<View className="flex-row flex-wrap gap-2">
+					<Chip variant="primary" color="accent">
+						Primary
+					</Chip>
+					<Chip variant="secondary" color="accent">
+						Secondary
+					</Chip>
+					<Chip variant="tertiary" color="accent">
+						Tertiary
+					</Chip>
+					<Chip variant="soft" color="accent">
+						Soft
+					</Chip>
+				</View>
 			</View>
-		</View>
-	),
-	args: {},
-};
 
-export const AllSizes: Story = {
-	render: () => (
-		<View style={{ gap: 16 }}>
-			<Text style={{ fontSize: 18, fontWeight: 'bold' }}>All Sizes</Text>
-			<View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-				<Chip size="sm" color="primary">
-					Small
-				</Chip>
-				<Chip size="md" color="primary">
-					Medium
-				</Chip>
-				<Chip size="lg" color="primary">
-					Large
-				</Chip>
+			{/* 크기 */}
+			<View className="gap-2">
+				<Text variant="label" color="default">
+					크기
+				</Text>
+				<View className="flex-row items-center gap-2">
+					<Chip size="sm" color="accent">
+						Small
+					</Chip>
+					<Chip size="md" color="accent">
+						Medium
+					</Chip>
+					<Chip size="lg" color="accent">
+						Large
+					</Chip>
+				</View>
 			</View>
-		</View>
-	),
-	args: {},
-};
 
-export const AllRadius: Story = {
-	render: () => (
-		<View style={{ gap: 16 }}>
-			<Text style={{ fontSize: 18, fontWeight: 'bold' }}>All Radius</Text>
-			<View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
-				<Chip radius="none" color="primary">
-					None
-				</Chip>
-				<Chip radius="sm" color="primary">
-					Small
-				</Chip>
-				<Chip radius="md" color="primary">
-					Medium
-				</Chip>
-				<Chip radius="lg" color="primary">
-					Large
-				</Chip>
-				<Chip radius="full" color="primary">
-					Full
-				</Chip>
+			{/* 아이콘 포함 */}
+			<View className="gap-2">
+				<Text variant="label" color="default">
+					아이콘 포함
+				</Text>
+				<View className="flex-row flex-wrap gap-2">
+					<Chip
+						variant="primary"
+						color="accent"
+						startContent={<Ionicons name="star" size={16} color="white" />}
+					>
+						Featured
+					</Chip>
+					<Chip
+						variant="secondary"
+						color="danger"
+						endContent={<Ionicons name="close" size={14} color="#EF4444" />}
+					>
+						Remove
+					</Chip>
+					<Chip
+						variant="secondary"
+						color="success"
+						startContent={<Ionicons name="checkmark" size={14} color="#10B981" />}
+					>
+						Verified
+					</Chip>
+				</View>
 			</View>
-		</View>
-	),
-	args: {},
-};
 
-export const WithContentExamples: Story = {
-	render: () => (
-		<View style={{ gap: 16 }}>
-			<Text style={{ fontSize: 18, fontWeight: 'bold' }}>Content Examples</Text>
-			<View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
-				<Chip variant="solid" color="primary">
-					Solid Chip
-				</Chip>
-				<Chip
-					variant="bordered"
-					color="danger"
-					endContent={<Ionicons name="close" size={14} color="#f31260" />}
-				>
-					With Close Icon
-				</Chip>
-				<Chip
-					variant="light"
-					color="success"
-					startContent={<Ionicons name="checkmark" size={14} color="#17c964" />}
-				>
-					Success Status
-				</Chip>
-				<Chip
-					variant="flat"
-					color="warning"
-					avatar={
+			{/* Compound Component 사용 */}
+			<View className="gap-2">
+				<Text variant="label" color="default">
+					Compound Component 사용
+				</Text>
+				<View className="flex-row flex-wrap gap-2">
+					<Chip variant="secondary" color="success">
 						<View
 							style={{
-								width: 16,
-								height: 16,
-								backgroundColor: '#f5a524',
-								borderRadius: 8,
-								justifyContent: 'center',
-								alignItems: 'center',
+								width: 6,
+								height: 6,
+								backgroundColor: '#10B981',
+								borderRadius: 3,
+								marginRight: 6,
 							}}
-						>
-							<Text
-								style={{ color: 'white', fontSize: 10, fontWeight: 'bold' }}
-							>
-								!
-							</Text>
-						</View>
-					}
-				>
-					Warning
-				</Chip>
+						/>
+						<Chip.Label>Active</Chip.Label>
+					</Chip>
+					<Chip variant="soft" color="warning">
+						<View
+							style={{
+								width: 6,
+								height: 6,
+								backgroundColor: '#F59E0B',
+								borderRadius: 3,
+								marginRight: 6,
+							}}
+						/>
+						<Chip.Label>Pending</Chip.Label>
+					</Chip>
+				</View>
 			</View>
-		</View>
-	),
-	args: {},
-};
 
-export const Disabled: Story = {
-	render: () => (
-		<View style={{ gap: 16 }}>
-			<Text style={{ fontSize: 18, fontWeight: 'bold' }}>Disabled States</Text>
-			<View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
-				<Chip disabled>Disabled</Chip>
-				<Chip disabled color="primary">
-					Disabled Primary
-				</Chip>
-				<Chip
-					disabled
-					color="success"
-					endContent={<Ionicons name="close" size={14} color="#17c964" />}
-				>
-					Disabled with Icon
-				</Chip>
-				<Chip
-					disabled
-					color="danger"
-					startContent={<Ionicons name="close" size={14} color="#f31260" />}
-				>
-					Disabled Icon
-				</Chip>
-			</View>
-		</View>
-	),
-	args: {},
-};
-
-export const RealWorldExamples: Story = {
-	render: () => (
-		<View style={{ gap: 24 }}>
-			<View>
-				<Text style={{ fontSize: 16, fontWeight: '600', marginBottom: 8 }}>
-					기술 스택
+			{/* 실사용 예제 */}
+			<View className="gap-2">
+				<Text variant="label" color="default">
+					실사용 예제 - 기술 스택
 				</Text>
-				<View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
-					<Chip size="sm" variant="flat" color="primary">
+				<View className="flex-row flex-wrap gap-1.5">
+					<Chip size="sm" variant="soft" color="accent">
 						React Native
 					</Chip>
-					<Chip size="sm" variant="flat" color="secondary">
+					<Chip size="sm" variant="soft" color="accent">
 						TypeScript
 					</Chip>
-					<Chip size="sm" variant="flat" color="success">
+					<Chip size="sm" variant="soft" color="success">
 						Node.js
 					</Chip>
-					<Chip size="sm" variant="flat" color="warning">
+					<Chip size="sm" variant="soft" color="warning">
 						Expo
 					</Chip>
 				</View>
 			</View>
 
-			<View>
-				<Text style={{ fontSize: 16, fontWeight: '600', marginBottom: 8 }}>
-					선택된 필터
+			{/* 실사용 예제 - 필터 */}
+			<View className="gap-2">
+				<Text variant="label" color="default">
+					실사용 예제 - 선택된 필터
 				</Text>
-				<View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
+				<View className="flex-row flex-wrap gap-2">
 					<Chip
-						variant="solid"
-						color="primary"
+						variant="primary"
+						color="accent"
 						endContent={<Ionicons name="close" size={14} color="white" />}
 					>
 						React
 					</Chip>
 					<Chip
-						variant="solid"
-						color="primary"
+						variant="primary"
+						color="accent"
 						endContent={<Ionicons name="close" size={14} color="white" />}
 					>
 						Mobile
 					</Chip>
 					<Chip
-						variant="solid"
-						color="primary"
+						variant="primary"
+						color="accent"
 						endContent={<Ionicons name="close" size={14} color="white" />}
 					>
 						UI/UX
 					</Chip>
 				</View>
 			</View>
-
-			<View>
-				<Text style={{ fontSize: 16, fontWeight: '600', marginBottom: 8 }}>
-					상태 표시
-				</Text>
-				<View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
-					<Chip variant="light" color="success">
-						<Text>● </Text>Active
-					</Chip>
-					<Chip variant="light" color="warning">
-						<Text>● </Text>Pending
-					</Chip>
-					<Chip variant="light" color="danger">
-						<Text>● </Text>Inactive
-					</Chip>
-					<Chip variant="light" color="default">
-						<Text>● </Text>Unknown
-					</Chip>
-				</View>
-			</View>
 		</View>
 	),
-	args: {},
 };

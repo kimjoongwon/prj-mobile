@@ -278,16 +278,18 @@ components/
 │   │   ├── Button/
 │   │   ├── Chip/
 │   │   ├── DarkModeSwitch/
-│   │   ├── Input/
 │   │   ├── ListSelect/
 │   │   ├── RadioGroup/
+│   │   ├── TextField/
 │   │   └── index.ts
 │   │
-│   ├── display/                 # 정보 표시 (5개 컴포넌트)
-│   │   ├── Text/
+│   ├── display/                 # 정보 표시 (7개 컴포넌트)
+│   │   ├── Background/
+│   │   ├── ComponentShowcase/
 │   │   ├── Divider/
 │   │   ├── Logo/
 │   │   ├── ScrollView/
+│   │   ├── Text/
 │   │   ├── View/
 │   │   └── index.ts
 │   │
@@ -300,9 +302,10 @@ components/
 │   ├── feedback/                # 피드백 (향후 추가)
 │   │   └── index.ts
 │   │
-│   ├── layouts/                 # 레이아웃 컴포넌트
-│   │   ├── Content/             # Content (이전 Screen)
+│   ├── layouts/                 # 레이아웃 컴포넌트 (3개 컴포넌트)
 │   │   ├── Header/
+│   │   ├── SafeAreaView/
+│   │   ├── Screen/
 │   │   └── index.ts
 │   │
 │   └── index.ts                 # UI 전체 export
@@ -321,7 +324,6 @@ components/
 │
 ├── screen/                      # 전체 화면 (페이지)
 │   ├── LoginScreen/
-│   ├── PasswordScreen/
 │   └── index.ts
 │
 └── index.ts                     # 최상위 export
