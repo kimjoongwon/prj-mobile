@@ -1,19 +1,19 @@
-import { ComponentShowcase } from '@/components';
-import type { Meta, StoryObj } from '@storybook/react-native';
-import { View } from 'react-native';
-import type { TextProps } from './Text';
-import { Text } from './Text';
+import { ComponentShowcase } from "@/components";
+import type { Meta, StoryObj } from "@storybook/react-native";
+import { View } from "react-native";
+import type { TextProps } from "./Text";
+import { Text } from "./Text";
 
 const meta: Meta<TextProps> = {
-	title: 'components/ui/display/Text',
+	title: "components/ui/display/Text",
 	component: Text,
 	decorators: [
-		Story => (
+		(Story) => (
 			<ComponentShowcase
 				title="Text"
 				description={[
-					'tailwind-variants를 사용한 타이포그래피 컴포넌트입니다.',
-					'다양한 variant와 color 옵션을 지원합니다.',
+					"tailwind-variants를 사용한 타이포그래피 컴포넌트입니다.",
+					"다양한 variant와 color 옵션을 지원합니다.",
 				]}
 			>
 				<Story />
@@ -21,37 +21,37 @@ const meta: Meta<TextProps> = {
 		),
 	],
 	parameters: {
-		layout: 'centered',
+		layout: "centered",
 	},
 	argTypes: {
 		variant: {
-			control: { type: 'select' },
+			control: { type: "select" },
 			options: [
-				'h1',
-				'h2',
-				'h3',
-				'h4',
-				'h5',
-				'h6',
-				'body1',
-				'body2',
-				'caption',
-				'overline',
+				"h1",
+				"h2",
+				"h3",
+				"h4",
+				"h5",
+				"h6",
+				"body1",
+				"body2",
+				"caption",
+				"overline",
 			],
-			description: 'Text의 타이포그래피 스타일',
+			description: "Text의 타이포그래피 스타일",
 		},
 		color: {
-			control: { type: 'select' },
+			control: { type: "select" },
 			options: [
-				'foreground',
-				'primary',
-				'secondary',
-				'success',
-				'warning',
-				'danger',
-				'default',
+				"foreground",
+				"primary",
+				"secondary",
+				"success",
+				"warning",
+				"danger",
+				"default",
 			],
-			description: 'Text의 색상',
+			description: "Text의 색상",
 		},
 	},
 };
@@ -61,7 +61,7 @@ type Story = StoryObj<TextProps>;
 
 export const 기본: Story = {
 	args: {
-		children: '기본 텍스트입니다',
+		children: "기본 텍스트입니다",
 	},
 };
 
@@ -69,9 +69,7 @@ export const 타이포그래피_전체: Story = {
 	render: () => (
 		<View className="gap-4 w-full">
 			<View className="gap-2">
-				<Text variant="caption" color="default">
-					Headings
-				</Text>
+				<Text variant="caption">Headings</Text>
 				<View className="gap-1">
 					<Text variant="h1">Heading 1</Text>
 					<Text variant="h2">Heading 2</Text>
@@ -83,9 +81,7 @@ export const 타이포그래피_전체: Story = {
 			</View>
 
 			<View className="gap-2">
-				<Text variant="caption" color="default">
-					Body Text
-				</Text>
+				<Text variant="caption">Body Text</Text>
 				<View className="gap-1">
 					<Text variant="body1">Body 1 - 일반 본문 텍스트</Text>
 					<Text variant="body2">Body 2 - 보조 본문 텍스트</Text>
@@ -106,7 +102,6 @@ export const 색상_전체: Story = {
 			<Text color="success">Success - 성공 색상</Text>
 			<Text color="warning">Warning - 경고 색상</Text>
 			<Text color="danger">Danger - 위험 색상</Text>
-			<Text color="default">Default - 기본 색상</Text>
 		</View>
 	),
 };

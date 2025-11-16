@@ -1,6 +1,6 @@
 import { Providers, SafeAreaView } from '@/components';
 import { Stack } from 'expo-router';
-import { Suspense, lazy } from 'react';
+import { lazy, Suspense } from 'react';
 import 'react-native-reanimated';
 import '../../globals.css';
 

@@ -1,6 +1,6 @@
+import { useTheme } from '@/hooks/useTheme';
 import type React from 'react';
 import { StyleSheet, View, type ViewStyle } from 'react-native';
-import { useTheme } from '@/hooks/useTheme';
 import { Text } from '../Text';
 
 export type DividerOrientation = 'horizontal' | 'vertical';
@@ -70,7 +70,7 @@ export const Divider: React.FC<DividerProps> = ({
 						},
 					]}
 				/>
-				<Text variant="body2" color="default" style={styles.text}>
+				<Text variant="body2" style={styles.text}>
 					{children}
 				</Text>
 				<View

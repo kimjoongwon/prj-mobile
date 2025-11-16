@@ -191,7 +191,7 @@ export const WithCustomCenter: Story = {
 						<Text variant="h6" style={{ color: '#4a90e2' }}>
 							커스텀 제목
 						</Text>
-						<Text variant="caption" color="default">
+						<Text variant="caption">
 							특별한 스타일
 						</Text>
 					</View>
@@ -227,7 +227,7 @@ export const DarkModeTest: Story = {
 				<Text variant="body1" style={{ textAlign: 'center', marginBottom: 16 }}>
 					다크모드 토글을 사용해서 테마 변경을 테스트해보세요.
 				</Text>
-				<Text variant="caption" color="default" style={{ textAlign: 'center' }}>
+				<Text variant="caption" style={{ textAlign: 'center' }}>
 					헤더의 배경, 텍스트, 그림자가 자동으로 변경됩니다.
 				</Text>
 			</View>

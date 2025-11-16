@@ -1,5 +1,5 @@
-import React from 'react';
-import { Text as RNText, TextProps as RNTextProps } from 'react-native';
+import type React from 'react';
+import { Text as RNText, type TextProps as RNTextProps } from 'react-native';
 import { tv } from 'tailwind-variants';
 
 export type TextVariant =

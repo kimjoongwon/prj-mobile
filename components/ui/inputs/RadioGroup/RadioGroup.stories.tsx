@@ -30,7 +30,7 @@ export const 전체_시나리오: Story = {
 		<View className="gap-6 w-full">
 			{/* 기본 사용 */}
 			<View className="gap-2">
-				<Text variant="label" color="default">
+				<Text variant="label">
 					기본 사용
 				</Text>
 				<BasicExample />
@@ -38,7 +38,7 @@ export const 전체_시나리오: Story = {
 
 			{/* 설명 포함 */}
 			<View className="gap-2">
-				<Text variant="label" color="default">
+				<Text variant="label">
 					설명 포함
 				</Text>
 				<DescriptionExample />
@@ -46,18 +46,18 @@ export const 전체_시나리오: Story = {
 
 			{/* 상태 */}
 			<View className="gap-2">
-				<Text variant="label" color="default">
+				<Text variant="label">
 					상태 (States)
 				</Text>
 				<View className="gap-4">
 					<View className="gap-2">
-						<Text variant="body1" color="default">
+						<Text variant="body1">
 							비활성화된 그룹
 						</Text>
 						<DisabledExample />
 					</View>
 					<View className="gap-2">
-						<Text variant="body1" color="default">
+						<Text variant="body1">
 							개별 비활성화
 						</Text>
 						<IndividualDisabledExample />
@@ -67,7 +67,7 @@ export const 전체_시나리오: Story = {
 
 			{/* 유효성 검사 */}
 			<View className="gap-2">
-				<Text variant="label" color="default">
+				<Text variant="label">
 					유효성 검사
 				</Text>
 				<InvalidExample />
@@ -75,7 +75,7 @@ export const 전체_시나리오: Story = {
 
 			{/* 실사용 예제 */}
 			<View className="gap-2">
-				<Text variant="label" color="default">
+				<Text variant="label">
 					실사용 예제
 				</Text>
 				<ControlledExample />
@@ -202,7 +202,7 @@ const ControlledExample: React.FC = () => {
 					<RadioGroup.Indicator />
 				</RadioGroup.Item>
 			</RadioGroup>
-			<Text variant="body1" color="default">
+			<Text variant="body1">
 				선택된 값: {value || '없음'}
 			</Text>
 		</View>

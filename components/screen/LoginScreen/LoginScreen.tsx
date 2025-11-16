@@ -81,7 +81,6 @@ export const LoginScreen: React.FC<LoginScreenProps> = observer(
 						</Text>
 						<Text
 							variant="body1"
-							color="default"
 							style={dynamicStyles.subtitle}
 						>
 							계정에 로그인하세요

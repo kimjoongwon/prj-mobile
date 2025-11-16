@@ -1,19 +1,19 @@
-import { ComponentShowcase, Text } from '@/components';
-import { Ionicons } from '@expo/vector-icons';
-import type { Meta, StoryObj } from '@storybook/react-native';
-import { View } from 'react-native';
-import { Chip } from './Chip';
+import { ComponentShowcase, Text } from "@/components";
+import { Ionicons } from "@expo/vector-icons";
+import type { Meta, StoryObj } from "@storybook/react-native";
+import { View } from "react-native";
+import { Chip } from "./Chip";
 
 const meta: Meta<typeof Chip> = {
-	title: 'components/ui/inputs/Chip',
+	title: "components/ui/inputs/Chip",
 	component: Chip,
 	decorators: [
-		Story => (
+		(Story) => (
 			<ComponentShowcase
 				title="Chip"
 				description={[
-					'heroui-native 기반 Chip 컴포넌트입니다.',
-					'Chip.Label compound component와 startContent/endContent props를 지원합니다.',
+					"heroui-native 기반 Chip 컴포넌트입니다.",
+					"Chip.Label compound component와 startContent/endContent props를 지원합니다.",
 				]}
 			>
 				<Story />
@@ -31,9 +31,7 @@ export const 전체_시나리오: Story = {
 		<View className="gap-6 w-full">
 			{/* 기본 사용 */}
 			<View className="gap-2">
-				<Text variant="label" color="default">
-					기본 사용
-				</Text>
+				<Text variant="label">기본 사용</Text>
 				<View className="flex-row flex-wrap gap-2">
 					<Chip>Default Chip</Chip>
 					<Chip color="accent">Accent</Chip>
@@ -45,9 +43,7 @@ export const 전체_시나리오: Story = {
 
 			{/* 변형 (Variants) */}
 			<View className="gap-2">
-				<Text variant="label" color="default">
-					변형 (Variants)
-				</Text>
+				<Text variant="label">변형 (Variants)</Text>
 				<View className="flex-row flex-wrap gap-2">
 					<Chip variant="primary" color="accent">
 						Primary
@@ -66,9 +62,7 @@ export const 전체_시나리오: Story = {
 
 			{/* 크기 */}
 			<View className="gap-2">
-				<Text variant="label" color="default">
-					크기
-				</Text>
+				<Text variant="label">크기</Text>
 				<View className="flex-row items-center gap-2">
 					<Chip size="sm" color="accent">
 						Small
@@ -84,9 +78,7 @@ export const 전체_시나리오: Story = {
 
 			{/* 아이콘 포함 */}
 			<View className="gap-2">
-				<Text variant="label" color="default">
-					아이콘 포함
-				</Text>
+				<Text variant="label">아이콘 포함</Text>
 				<View className="flex-row flex-wrap gap-2">
 					<Chip
 						variant="primary"
@@ -116,16 +108,14 @@ export const 전체_시나리오: Story = {
 
 			{/* Compound Component 사용 */}
 			<View className="gap-2">
-				<Text variant="label" color="default">
-					Compound Component 사용
-				</Text>
+				<Text variant="label">Compound Component 사용</Text>
 				<View className="flex-row flex-wrap gap-2">
 					<Chip variant="secondary" color="success">
 						<View
 							style={{
 								width: 6,
 								height: 6,
-								backgroundColor: '#10B981',
+								backgroundColor: "#10B981",
 								borderRadius: 3,
 								marginRight: 6,
 							}}
@@ -137,7 +127,7 @@ export const 전체_시나리오: Story = {
 							style={{
 								width: 6,
 								height: 6,
-								backgroundColor: '#F59E0B',
+								backgroundColor: "#F59E0B",
 								borderRadius: 3,
 								marginRight: 6,
 							}}
@@ -149,9 +139,7 @@ export const 전체_시나리오: Story = {
 
 			{/* 실사용 예제 */}
 			<View className="gap-2">
-				<Text variant="label" color="default">
-					실사용 예제 - 기술 스택
-				</Text>
+				<Text variant="label">실사용 예제 - 기술 스택</Text>
 				<View className="flex-row flex-wrap gap-1.5">
 					<Chip size="sm" variant="soft" color="accent">
 						React Native
@@ -170,9 +158,7 @@ export const 전체_시나리오: Story = {
 
 			{/* 실사용 예제 - 필터 */}
 			<View className="gap-2">
-				<Text variant="label" color="default">
-					실사용 예제 - 선택된 필터
-				</Text>
+				<Text variant="label">실사용 예제 - 선택된 필터</Text>
 				<View className="flex-row flex-wrap gap-2">
 					<Chip
 						variant="primary"

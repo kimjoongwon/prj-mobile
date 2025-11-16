@@ -34,7 +34,7 @@ const DemoContent = () => (
 				}}
 			>
 				<Text variant="h6">Item {index + 1}</Text>
-				<Text variant="body2" color="default">
+				<Text variant="body2">
 					This is a demo content item to show the ScrollView component. It has
 					enough content to demonstrate scrolling behavior.
 				</Text>
@@ -119,7 +119,7 @@ export const WithHorizontalScrolling: Story = {
 					}}
 				>
 					<Text variant="h6">Card {index + 1}</Text>
-					<Text variant="body2" color="default">
+					<Text variant="body2">
 						Horizontal scrolling card content
 					</Text>
 				</View>

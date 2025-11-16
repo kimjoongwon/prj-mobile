@@ -1,12 +1,13 @@
-import { Button } from 'heroui-native';
-import React, { useState } from 'react';
-import { View } from 'react-native';
-import { useTheme } from '../../../../hooks/useTheme';
-import { Background } from '../../surfaces/Background';
-import { ScrollView } from '../../surfaces/ScrollView';
-import { Text } from '../Text';
+import { useTheme } from "@/hooks/useTheme";
+import { Button } from "heroui-native";
+import type React from "react";
+import { useState } from "react";
+import { View } from "react-native";
+import { Background } from "../../surfaces/Background";
+import { ScrollView } from "../../surfaces/ScrollView";
+import { Text } from "../Text";
 
-export type ContainerSize = 'small' | 'medium' | 'large' | 'full';
+export type ContainerSize = "small" | "medium" | "large" | "full";
 
 export interface ComponentShowcaseProps {
 	/** 컴포넌트 이름 */
@@ -16,7 +17,7 @@ export interface ComponentShowcaseProps {
 	/** 표시할 컴포넌트 */
 	children: React.ReactNode;
 	/** 정렬 방향 */
-	align?: 'center' | 'left' | 'right';
+	align?: "center" | "left" | "right";
 	/** 제목 표시 여부 */
 	showTitle?: boolean;
 	/** 간격 조정 (기본: 16) */
@@ -24,7 +25,7 @@ export interface ComponentShowcaseProps {
 	/** Actions 섹션 표시 여부 */
 	showActions?: boolean;
 	/** Actions 섹션 정렬 */
-	actionsAlign?: 'center' | 'left' | 'right';
+	actionsAlign?: "center" | "left" | "right";
 	/** 테마 전환 버튼 표시 */
 	showThemeSwitch?: boolean;
 	/** 컨테이너 크기 조절 표시 */
@@ -37,54 +38,54 @@ export const ComponentShowcase: React.FC<ComponentShowcaseProps> = ({
 	title,
 	description,
 	children,
-	align = 'center',
+	align = "center",
 	showTitle = true,
 	spacing = 16,
 	showActions = true,
-	actionsAlign = 'center',
+	actionsAlign = "center",
 	showThemeSwitch = true,
 	showContainerResize = true,
-	defaultContainerSize = 'full',
+	defaultContainerSize = "full",
 }) => {
 	const { isDark, setTheme } = useTheme();
 	const [containerSize, setContainerSize] =
 		useState<ContainerSize>(defaultContainerSize);
 
 	const alignmentClass =
-		align === 'center'
-			? 'items-center'
-			: align === 'left'
-				? 'items-start'
-				: 'items-end';
+		align === "center"
+			? "items-center"
+			: align === "left"
+				? "items-start"
+				: "items-end";
 
 	const actionsAlignClass =
-		actionsAlign === 'center'
-			? 'items-center'
-			: actionsAlign === 'left'
-				? 'items-start'
-				: 'items-end';
+		actionsAlign === "center"
+			? "items-center"
+			: actionsAlign === "left"
+				? "items-start"
+				: "items-end";
 
 	const textAlignStyle =
-		align === 'center' ? 'center' : align === 'left' ? 'left' : 'right';
+		align === "center" ? "center" : align === "left" ? "left" : "right";
 
 	const descriptions = Array.isArray(description) ? description : [description];
 
 	const getContainerWidth = () => {
 		switch (containerSize) {
-			case 'small':
+			case "small":
 				return 320;
-			case 'medium':
+			case "medium":
 				return 768;
-			case 'large':
+			case "large":
 				return 1024;
-			case 'full':
+			case "full":
 			default:
-				return '100%';
+				return "100%";
 		}
 	};
 
 	const containerWidth = getContainerWidth();
-	const isFullWidth = containerSize === 'full';
+	const isFullWidth = containerSize === "full";
 
 	return (
 		<Background className="flex-1 w-full" style={{ gap: spacing }}>
@@ -105,22 +106,20 @@ export const ComponentShowcase: React.FC<ComponentShowcaseProps> = ({
 						{/* Theme Switch */}
 						{showThemeSwitch && (
 							<View className="gap-2">
-								<Text variant="caption" color="default">
-									테마
-								</Text>
+								<Text variant="caption">테마</Text>
 								<View className="flex-row gap-2">
 									<Button
 										size="sm"
-										variant={isDark ? 'ghost' : 'primary'}
-										onPress={() => setTheme('light')}
+										variant={isDark ? "ghost" : "primary"}
+										onPress={() => setTheme("light")}
 										className="min-w-[60px] h-7"
 									>
 										☀️
 									</Button>
 									<Button
 										size="sm"
-										variant={isDark ? 'primary' : 'ghost'}
-										onPress={() => setTheme('dark')}
+										variant={isDark ? "primary" : "ghost"}
+										onPress={() => setTheme("dark")}
 										className="min-w-[60px] h-7"
 									>
 										🌙
@@ -132,38 +131,36 @@ export const ComponentShowcase: React.FC<ComponentShowcaseProps> = ({
 						{/* Container Resize */}
 						{showContainerResize && (
 							<View className="gap-2">
-								<Text variant="caption" color="default">
-									크기
-								</Text>
+								<Text variant="caption">크기</Text>
 								<View className="flex-row gap-2 flex-wrap">
 									<Button
 										size="sm"
-										variant={containerSize === 'small' ? 'primary' : 'ghost'}
-										onPress={() => setContainerSize('small')}
+										variant={containerSize === "small" ? "primary" : "ghost"}
+										onPress={() => setContainerSize("small")}
 										className="min-w-[50px] h-7"
 									>
 										📱
 									</Button>
 									<Button
 										size="sm"
-										variant={containerSize === 'medium' ? 'primary' : 'ghost'}
-										onPress={() => setContainerSize('medium')}
+										variant={containerSize === "medium" ? "primary" : "ghost"}
+										onPress={() => setContainerSize("medium")}
 										className="min-w-[50px] h-7"
 									>
 										📐
 									</Button>
 									<Button
 										size="sm"
-										variant={containerSize === 'large' ? 'primary' : 'ghost'}
-										onPress={() => setContainerSize('large')}
+										variant={containerSize === "large" ? "primary" : "ghost"}
+										onPress={() => setContainerSize("large")}
 										className="min-w-[50px] h-7"
 									>
 										🖥️
 									</Button>
 									<Button
 										size="sm"
-										variant={containerSize === 'full' ? 'primary' : 'ghost'}
-										onPress={() => setContainerSize('full')}
+										variant={containerSize === "full" ? "primary" : "ghost"}
+										onPress={() => setContainerSize("full")}
 										className="min-w-[50px] h-7"
 									>
 										⬜
@@ -178,7 +175,6 @@ export const ComponentShowcase: React.FC<ComponentShowcaseProps> = ({
 					<Text
 						key={index}
 						variant="body2"
-						color="default"
 						style={{ textAlign: textAlignStyle }}
 					>
 						{desc}
@@ -197,7 +193,7 @@ export const ComponentShowcase: React.FC<ComponentShowcaseProps> = ({
 						{/* Container Size Label */}
 						<View className="absolute top-1 right-1 bg-primary/10 px-2 py-1 rounded">
 							<Text variant="caption" color="primary" className="font-mono">
-								{isFullWidth ? '100%' : `${containerWidth}px`}
+								{isFullWidth ? "100%" : `${containerWidth}px`}
 							</Text>
 						</View>
 					</View>
@@ -207,4 +203,4 @@ export const ComponentShowcase: React.FC<ComponentShowcaseProps> = ({
 	);
 };
 
-ComponentShowcase.displayName = 'ComponentShowcase';
+ComponentShowcase.displayName = "ComponentShowcase";

@@ -1,6 +1,7 @@
 import { Select as HeroSelect } from 'heroui-native';
+import type React from 'react';
 import type { ComponentProps } from 'react';
-import React from 'react';
+import { StyleSheet } from 'react-native';
 
 type HeroSelectProps = ComponentProps<typeof HeroSelect>;
 
@@ -69,17 +70,31 @@ export interface SelectProps extends HeroSelectProps {
  * </Select>
  * ```
  */
-const SelectComponent = React.forwardRef<any, SelectProps>(
-	({ children, ...props }, ref) => {
-		return (
-			<HeroSelect ref={ref} {...props}>
-				{children}
-			</HeroSelect>
-		);
-	}
-);
+const SelectComponent: React.FC<SelectProps> = ({ children, ...props }) => {
+	return <HeroSelect {...props}>{children}</HeroSelect>;
+};
 
 SelectComponent.displayName = 'Select';
+
+// Custom Select.Item with minimum width to prevent layout issues
+type SelectItemProps = ComponentProps<typeof HeroSelect.Item>;
+
+const SelectItem: React.FC<SelectItemProps> = ({ style, ...props }) => {
+	const combinedStyle =
+		typeof style === 'function'
+			? (state: any) => [styles.item, style(state)]
+			: [styles.item, style];
+
+	return <HeroSelect.Item {...props} style={combinedStyle} />;
+};
+
+SelectItem.displayName = 'SelectItem';
+
+const styles = StyleSheet.create({
+	item: {
+		minWidth: 200,
+	},
+});
 
 // Create compound component with all subcomponents
 export const Select = Object.assign(SelectComponent, {
@@ -90,7 +105,7 @@ export const Select = Object.assign(SelectComponent, {
 	Content: HeroSelect.Content,
 	Close: HeroSelect.Close,
 	ListLabel: HeroSelect.ListLabel,
-	Item: HeroSelect.Item,
+	Item: SelectItem,
 	ItemLabel: HeroSelect.ItemLabel,
 	ItemDescription: HeroSelect.ItemDescription,
 	ItemIndicator: HeroSelect.ItemIndicator,
