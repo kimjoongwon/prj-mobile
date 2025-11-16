@@ -1,7 +1,6 @@
 import { useFormField } from '@cocrepo/hooks';
 import type { MobxProps } from '@cocrepo/types';
 import { get } from 'lodash-es';
-import { action } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import {
 	RadioGroup as BaseRadioGroup,
@@ -18,27 +17,22 @@ export const RadioGroup = observer(
 
 		const initialValue = get(state, path);
 
-		const { localState } = useFormField({
-			initialValue,
+		const formField = useFormField<T, string>({
+			value: initialValue as string,
 			state,
 			path,
-		});
-
-		const handleValueChange = action((value: string) => {
-			localState.value = value as any;
 		});
 
 		return (
 			<BaseRadioGroup
 				{...rest}
-				value={localState.value as string | undefined}
-				onValueChange={handleValueChange}
+				value={formField.state.value}
+				onValueChange={formField.setValue}
 			/>
 		);
 	}
-) as typeof BaseRadioGroup & {
-	<T extends object>(props: RadioGroupProps<T>): React.ReactElement;
-};
+) as typeof BaseRadioGroup &
+	(<T extends object>(props: RadioGroupProps<T>) => React.ReactElement);
 
 RadioGroup.displayName = 'MobxRadioGroup';
 

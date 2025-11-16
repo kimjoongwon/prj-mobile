@@ -1,7 +1,6 @@
 import { useFormField } from '@cocrepo/hooks';
 import type { MobxProps } from '@cocrepo/types';
 import get from 'lodash-es/get';
-import { action } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import {
@@ -41,22 +40,18 @@ export const TextField = observer(
 
 		const initialValue = (get(state, path) as string) || '';
 
-		const { localState } = useFormField({
-			initialValue,
+		const formField = useFormField<T, string>({
+			value: initialValue,
 			state,
 			path,
-		});
-
-		const handleValueChange = action((value: string) => {
-			localState.value = value;
 		});
 
 		// Clone TextField.Input children to inject value and onChangeText
 		const enhancedChildren = React.Children.map(children, child => {
 			if (React.isValidElement(child) && child.type === TextFieldInput) {
 				return React.cloneElement(child as any, {
-					value: localState.value,
-					onChangeText: handleValueChange,
+					value: formField.state.value,
+					onChangeText: formField.setValue,
 				});
 			}
 			return child;
@@ -64,9 +59,8 @@ export const TextField = observer(
 
 		return <TextFieldUI {...rest}>{enhancedChildren}</TextFieldUI>;
 	}
-) as typeof TextFieldUI & {
-	<T extends object>(props: TextFieldProps<T>): React.ReactElement;
-};
+) as typeof TextFieldUI &
+	(<T extends object>(props: TextFieldProps<T>) => React.ReactElement);
 
 TextField.displayName = 'MobxTextField';
 
@@ -85,13 +79,21 @@ export type { TextFieldUIProps };
 // Re-export subcomponents
 	export {
 		TextFieldDescription,
-		TextFieldErrorMessage, TextFieldInput, TextFieldInputEndContent, TextFieldInputStartContent, TextFieldLabel
+		TextFieldErrorMessage,
+		TextFieldInput,
+		TextFieldInputEndContent,
+		TextFieldInputStartContent,
+		TextFieldLabel
 	};
 
 // Re-export types
 	export type {
 		TextFieldDescriptionProps,
-		TextFieldErrorMessageProps, TextFieldLabelProps, TextFieldRootProps, TextFieldSize, TextFieldVariant
+		TextFieldErrorMessageProps,
+		TextFieldLabelProps,
+		TextFieldRootProps,
+		TextFieldSize,
+		TextFieldVariant
 	} from './TextField';
 
 export default TextField;

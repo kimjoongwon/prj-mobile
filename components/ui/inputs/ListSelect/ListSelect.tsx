@@ -1,4 +1,5 @@
-import React, { useCallback, useState } from 'react';
+import type React from 'react';
+import { useCallback, useState } from 'react';
 import { Pressable, type ViewStyle } from 'react-native';
 import { List } from '../../data-display/List';
 

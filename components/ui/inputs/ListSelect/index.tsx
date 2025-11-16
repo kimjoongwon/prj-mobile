@@ -1,7 +1,6 @@
 import { useFormField } from '@cocrepo/hooks';
 import type { MobxProps } from '@cocrepo/types';
 import { get } from 'lodash-es';
-import { action } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import type React from 'react';
 import { useCallback } from 'react';
@@ -56,34 +55,30 @@ export function ListSelect<T extends object, D extends object>(
 	const singleInitialValue = get(state, path || '', null) as D | null;
 	const multipleInitialValue = get(state, path || '', []) as D[];
 
-	const { localState: singleLocalState } = useFormField<T, D | null>({
-		initialValue: singleInitialValue,
+	const singleFormField = useFormField<T, D | null>({
+		value: singleInitialValue,
 		state,
 		path,
 	});
 
-	const { localState: multipleLocalState } = useFormField<T, D[]>({
-		initialValue: multipleInitialValue,
+	const multipleFormField = useFormField<T, D[]>({
+		value: multipleInitialValue,
 		state,
 		path,
 	});
 
 	const handleSingleChange = useCallback(
 		(selectedData: D | null) => {
-			action(() => {
-				singleLocalState.value = selectedData;
-			})();
+			singleFormField.setValue(selectedData);
 		},
-		[singleLocalState]
+		[singleFormField]
 	);
 
 	const handleMultipleChange = useCallback(
 		(selectedData: D[]) => {
-			action(() => {
-				multipleLocalState.value = selectedData;
-			})();
+			multipleFormField.setValue(selectedData);
 		},
-		[multipleLocalState]
+		[multipleFormField]
 	);
 
 	// Render based on selectionMode
@@ -92,7 +87,7 @@ export function ListSelect<T extends object, D extends object>(
 			<ListSelectComponent
 				{...rest}
 				selectionMode="single"
-				selectedItems={singleLocalState.value}
+				selectedItems={singleFormField.state.value}
 				onChangeSelection={handleSingleChange}
 				defaultSelectedItems={defaultSelectedItems as D | null | undefined}
 			/>
@@ -102,7 +97,7 @@ export function ListSelect<T extends object, D extends object>(
 			<ListSelectComponent
 				{...rest}
 				selectionMode="multiple"
-				selectedItems={multipleLocalState.value}
+				selectedItems={multipleFormField.state.value}
 				onChangeSelection={handleMultipleChange}
 				defaultSelectedItems={defaultSelectedItems as D[] | undefined}
 			/>
