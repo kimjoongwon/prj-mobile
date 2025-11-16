@@ -77,23 +77,23 @@ export { TextFieldUI };
 export type { TextFieldUIProps };
 
 // Re-export subcomponents
-	export {
-		TextFieldDescription,
-		TextFieldErrorMessage,
-		TextFieldInput,
-		TextFieldInputEndContent,
-		TextFieldInputStartContent,
-		TextFieldLabel
-	};
+export {
+	TextFieldDescription,
+	TextFieldErrorMessage,
+	TextFieldInput,
+	TextFieldInputEndContent,
+	TextFieldInputStartContent,
+	TextFieldLabel,
+};
 
 // Re-export types
-	export type {
-		TextFieldDescriptionProps,
-		TextFieldErrorMessageProps,
-		TextFieldLabelProps,
-		TextFieldRootProps,
-		TextFieldSize,
-		TextFieldVariant
-	} from './TextField';
+export type {
+	TextFieldDescriptionProps,
+	TextFieldErrorMessageProps,
+	TextFieldLabelProps,
+	TextFieldRootProps,
+	TextFieldSize,
+	TextFieldVariant,
+} from './TextField';
 
 export default TextField;
