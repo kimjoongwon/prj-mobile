@@ -63,7 +63,7 @@
 		"prebuild:android:clean": "expo prebuild --platform android --clean"
 	},
 	"dependencies": {
-		"@cocrepo/hooks": "latest",
+		"@cocrepo/hooks": "1.3.7",
 		"@cocrepo/toolkit": "1.3.7",
 		"@cocrepo/types": "latest",
 		"@expo/vector-icons": "^15.0.2",
