@@ -17,8 +17,16 @@ const uniwindConfig = withUniwindConfig(config, {
 
 if (isStorybookMode) {
 	// Storybook 모드: NativeWind + Storybook 래퍼 모두 적용
-	const withStorybook = require('@storybook/react-native/metro/withStorybook');
-	module.exports = withStorybook(uniwindConfig);
+	try {
+		const { withStorybook } = require('@storybook/react-native/metro');
+		module.exports = withStorybook(uniwindConfig);
+	} catch (error) {
+		console.warn(
+			'Storybook metro config not found, falling back to uniwind config:',
+			error.message
+		);
+		module.exports = uniwindConfig;
+	}
 } else {
 	module.exports = uniwindConfig;
 }

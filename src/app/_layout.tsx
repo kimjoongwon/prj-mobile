@@ -1,8 +1,18 @@
 import { Providers, SafeAreaView } from '@/components';
 import { Stack } from 'expo-router';
+import { Spinner } from 'heroui-native';
 import { lazy, Suspense } from 'react';
-import 'react-native-reanimated';
+import {
+	configureReanimatedLogger,
+	ReanimatedLogLevel,
+} from 'react-native-reanimated';
 import '../../globals.css';
+
+// Reanimated strict 모드 경고 비활성화
+configureReanimatedLogger({
+	level: ReanimatedLogLevel.warn,
+	strict: false, // strict 모드 비활성화
+});
 
 export const unstable_settings = {
 	anchor: '(tabs)',
@@ -12,7 +22,7 @@ function StorybookLayout() {
 	const StorybookView = lazy(() => import('../../.rnstorybook'));
 
 	return (
-		<Suspense fallback={<></>}>
+		<Suspense fallback={<Spinner />}>
 			<SafeAreaView className="flex-1 bg-background" edges={['top']}>
 				<StorybookView />
 			</SafeAreaView>
